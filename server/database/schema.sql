@@ -3,8 +3,8 @@ CREATE TABLE owner (
   name VARCHAR(85) NOT NULL,
   mail VARCHAR(85) NOT NULL,
   password VARCHAR(30) NOT NULL,
-  adress VARCHAR(85) NOT NULL,
-  phone_nb INT(10) NOT NULL
+  address VARCHAR(85) NOT NULL,
+  phone_nb VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE veterinary (
@@ -12,8 +12,8 @@ CREATE TABLE veterinary (
   name VARCHAR(85) NOT NULL,
   mail VARCHAR(85) NOT NULL,
   password VARCHAR(30) NOT NULL,
-  adress VARCHAR(85) NOT NULL,
-  phone_nb INT(10) NOT NULL,
+  address VARCHAR(85) NOT NULL,
+  phone_nb VARCHAR(30) NOT NULL,
   order_nb INT(5) NOT NULL
 );
 
@@ -21,11 +21,11 @@ CREATE TABLE pet (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
   tattoo_nb VARCHAR(10) NULL,
-  chip_nb INT(11) NOT NULL,
+  chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
   species VARCHAR(15) NOT NULL,
   breed VARCHAR(30) NOT NULL,
-  is_neutered BOOLEAN NOT NULL,
+  is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
   weight FLOAT(10) DEFAULT NULL,
   owner_id INT NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE communication (
 CREATE TABLE consultation (
   date DATETIME,
   report TEXT,
-  is_vaccinated BOOLEAN NOT NULL,
+  is_vaccinated BOOLEAN DEFAULT FALSE,
   pet_id INT NOT NULL,
   veterinary_id INT NOT NULL,
   PRIMARY KEY (pet_id, veterinary_id)

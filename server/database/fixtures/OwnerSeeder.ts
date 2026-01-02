@@ -8,11 +8,12 @@ class OwnerSeeder extends AbstractSeeder {
   run() {
     for (let i = 0; i < 5; i += 1) {
       const fakeOwner = {
-        name: this.faker.person.firstName(),
-        mail: this.faker.internet.email(),
+        firstname: this.faker.person.firstName(),
+        lastname: this.faker.person.lastName(),
+        email: this.faker.internet.email(),
         password: this.faker.internet.password(),
-        address: this.faker.location.city(),
-        phone_nb: this.faker.phone.number(),
+        city: this.faker.location.city(),
+        phone: this.faker.phone.number(),
       };
 
       this.insert(fakeOwner);

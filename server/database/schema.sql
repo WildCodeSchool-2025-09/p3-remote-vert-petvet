@@ -1,19 +1,21 @@
 CREATE TABLE owner (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(85) NOT NULL,
-  mail VARCHAR(85) NOT NULL,
+  firstname VARCHAR(85) NOT NULL,
+  lastname VARCHAR(85) NOT NULL,
+  email VARCHAR(85) NOT NULL,
   password VARCHAR(30) NOT NULL,
-  address VARCHAR(85) NOT NULL,
-  phone_nb VARCHAR(30) NOT NULL
+  city VARCHAR(85) NOT NULL,
+  phone VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE veterinary (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(85) NOT NULL,
-  mail VARCHAR(85) NOT NULL,
+  firstname VARCHAR(85) NOT NULL,
+  lastname VARCHAR(85) NOT NULL,
+  email VARCHAR(85) NOT NULL,
   password VARCHAR(30) NOT NULL,
-  address VARCHAR(85) NOT NULL,
-  phone_nb VARCHAR(30) NOT NULL,
+  city VARCHAR(85) NOT NULL,
+  phone VARCHAR(30) NOT NULL,
   order_nb INT(5) NOT NULL
 );
 
@@ -23,7 +25,7 @@ CREATE TABLE pet (
   tattoo_nb VARCHAR(10) NULL,
   chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
-  species VARCHAR(15) NOT NULL,
+  specie VARCHAR(15) NOT NULL,
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
@@ -37,15 +39,10 @@ CREATE TABLE disease (
   name VARCHAR(85)
 );
 
-CREATE TABLE frequency (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  frequency_type TEXT
-);
-
 CREATE TABLE reminder (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  date DATETIME,
-  medication VARCHAR(100) NOT NULL,
+  programmed_at DATETIME,
+  content VARCHAR(100) NOT NULL,
   dosage INT NOT NULL,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,

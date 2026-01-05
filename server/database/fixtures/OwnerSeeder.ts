@@ -6,7 +6,7 @@ class OwnerSeeder extends AbstractSeeder {
   }
 
   run() {
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 5; i++) {
       const fakeOwner = {
         firstname: this.faker.person.firstName(),
         lastname: this.faker.person.lastName(),
@@ -14,6 +14,7 @@ class OwnerSeeder extends AbstractSeeder {
         password: this.faker.internet.password(),
         city: this.faker.location.city(),
         phone: this.faker.phone.number(),
+        refName: `owner_${i}`,
       };
 
       this.insert(fakeOwner);

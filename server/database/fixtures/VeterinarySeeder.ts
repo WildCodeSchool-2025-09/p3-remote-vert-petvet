@@ -6,7 +6,7 @@ class VeterinarySeeder extends AbstractSeeder {
   }
 
   run() {
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < 5; i++) {
       const fakeVeterinary = {
         firstname: this.faker.person.firstName(),
         lastname: this.faker.person.lastName(),
@@ -15,6 +15,7 @@ class VeterinarySeeder extends AbstractSeeder {
         city: this.faker.location.city(),
         phone: this.faker.phone.number(),
         order_nb: this.faker.number.int({ max: 5 }),
+        refName: `veterinary_${i}`,
       };
 
       this.insert(fakeVeterinary);

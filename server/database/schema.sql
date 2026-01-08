@@ -1,21 +1,56 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE owner (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  firstname VARCHAR(85) NOT NULL,
+  lastname VARCHAR(85) NOT NULL,
+  email VARCHAR(85) NOT NULL,
+  password VARCHAR(30) NOT NULL,
+  city VARCHAR(85) NOT NULL,
+  phone VARCHAR(30) NOT NULL
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE veterinary (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  firstname VARCHAR(85) NOT NULL,
+  lastname VARCHAR(85) NOT NULL,
+  email VARCHAR(85) NOT NULL,
+  password VARCHAR(30) NOT NULL,
+  city VARCHAR(85) NOT NULL,
+  phone VARCHAR(30) NOT NULL,
+  order_nb INT(5) NOT NULL
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
+CREATE TABLE pet (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  tattoo_nb VARCHAR(10) NULL,
+  chip_nb INT(11) NULL,
+  born_at DATETIME NOT NULL,
+  specie VARCHAR(15) NOT NULL,
+  breed VARCHAR(30) NOT NULL,
+  is_neutered BOOLEAN DEFAULT FALSE,
+  photo TEXT DEFAULT NULL,
+  weight FLOAT(10) DEFAULT NULL,
+  owner_id INT NOT NULL,
+  veterinary_id INT NOT NULL
+);
 
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+CREATE TABLE reminder (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  programmed_at DATETIME,
+  content VARCHAR(100) NOT NULL,
+  dosage INT NOT NULL,
+  veterinary_id INT NOT NULL,
+  pet_id INT NOT NULL,
+  frequency ENUM('jour', 'semaine', 'mois', 'an')
+);
+
+
+CREATE TABLE consultation (
+  date DATETIME,
+  report TEXT,
+  is_vaccinated BOOLEAN DEFAULT FALSE,
+  category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
+  pet_id INT NOT NULL,
+  veterinary_id INT NOT NULL,
+  PRIMARY KEY (pet_id, veterinary_id)
+);

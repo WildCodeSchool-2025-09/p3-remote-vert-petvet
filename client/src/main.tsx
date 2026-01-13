@@ -24,8 +24,8 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for the home page
   },
   {
-    path: "/healthrecord", // The root path
-    element: <HealthRecord />, // Renders the App component for the home page
+    path: "/healthrecord/",
+    element: <HealthRecord />,
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);

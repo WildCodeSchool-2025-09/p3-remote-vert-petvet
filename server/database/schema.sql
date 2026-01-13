@@ -36,6 +36,7 @@ CREATE TABLE pet (
 
 CREATE TABLE reminder (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
   programmed_at DATETIME,
   content VARCHAR(100) NOT NULL,
   dosage INT NOT NULL,

@@ -1,7 +1,8 @@
 import "./App.css";
+import HealthRecord from "./components/HealthRecord";
 
 function App() {
-  return <h1>Titre</h1>;
+  return <HealthRecord />;
 }
 
 export default App;

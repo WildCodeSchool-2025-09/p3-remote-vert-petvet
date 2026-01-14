@@ -1,13 +1,8 @@
 import express from "express";
+import ReminderAction from "./modules/reminder/ReminderAction";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// Define item-related routes
-
-/* ************************************************************************* */
+router.get("/api/pet/:petId/reminders", ReminderAction.browseByPet);
 
 export default router;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 interface Pet {
   name: string;
@@ -7,31 +8,39 @@ interface Pet {
   born_at: string;
   specie: string;
   breed: string;
+  gender: string;
   is_neutered: boolean;
   photo: string;
   weight: number;
   owner_id: string;
   veterinary_id: string;
+  lastname: string;
 }
 
 function PetInfo() {
   const [petInfo, setPetInfo] = useState<Pet>();
-
-  //Le petselected est la pour simuler la selection de l'animal par le propriétaire, à changer---//
-  //  si les seeders sont relancés (les id sont écrasés)-----------------------------------------//
-  const petselected = 1;
-  //---------------------------------------------------------------------------------------------//
+  const [error, setError] = useState();
+  const params = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pet/${petselected}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pet/${params.id}`)
       .then((response) => response.json())
-      .then((petData) => setPetInfo(petData[0]));
-  }, []);
+      .then((petData) => {
+        if (petData.error) {
+          setError(petData.error);
+        } else {
+          setPetInfo(petData);
+        }
+      });
+  }, [params]);
 
-  if (!petInfo) return <p>Loading or pet not found...</p>;
+  if (!petInfo) return <p>{error}</p>;
+
+  const today = new Date();
+  const currentYear = today.getFullYear();
 
   return (
-    <>
+    <div>
       <img
         src={petInfo.photo}
         alt={petInfo.specie}
@@ -44,11 +53,12 @@ function PetInfo() {
         <br />
         {petInfo.breed}
       </p>
-      <p>{petInfo.born_at}</p>
+      <p>{petInfo.gender}</p>
+      <p>{currentYear - Number(petInfo.born_at.slice(0, 4))} ans</p>
       <p>{petInfo.weight}</p>
       <p>{petInfo.chip_nb}</p>
-      <p>{petInfo.veterinary_id}</p>
-    </>
+      <p>Suivi par : Dr {petInfo.lastname}</p>
+    </div>
   );
 }
 

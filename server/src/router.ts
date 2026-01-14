@@ -1,12 +1,11 @@
 import express from "express";
-import { getPetById } from "./modules/pet/PetActions";
-
+import * as PetActions from "./modules/pet/PetActions";
 const router = express.Router();
 
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
-router.get("/pet/:id", getPetById);
+router.get("/pet/:id", PetActions.browse);
 // Define item-related routes
 
 /* ************************************************************************* */

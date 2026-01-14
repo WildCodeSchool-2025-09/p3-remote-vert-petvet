@@ -27,6 +27,10 @@ const router = createBrowserRouter([
     path: "/healthrecord/",
     element: <HealthRecord />,
   },
+  {
+    path: "/healthrecord/:id",
+    element: <HealthRecord />,
+  },
   // Try adding a new route! For example, "/about" with an About component
 ]);
 

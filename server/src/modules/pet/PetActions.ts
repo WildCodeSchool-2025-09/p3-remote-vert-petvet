@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { findPetById } from "./PetRepository";
 
-export const getPetById = async (
+export const browse = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -9,8 +9,11 @@ export const getPetById = async (
   try {
     const id = Number.parseInt(req.params.id);
     const pet = await findPetById(id);
+    if (!pet) {
+      res.status(400).json({ error: "Pas de de compagnons sur cette page !" });
+    }
     res.status(200).json(pet);
   } catch (error) {
-    next();
+    next(error);
   }
 };

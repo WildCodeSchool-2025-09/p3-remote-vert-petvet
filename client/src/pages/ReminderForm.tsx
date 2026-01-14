@@ -23,16 +23,6 @@ function ReminderForm() {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /* Afficher un message d’erreur si le backend retourne une erreur lors de la création du reminder.
-    -> Utilisation d'un state -> errorMessage setErrorMessage
-
-    Afficher une confirmation si le reminder est créé avec succès.
-    -> Utilisation d'un state -> successMessage setSuccessMessage
-
-    Rediriger l’utilisateur vers /health_record après la création.
-    -> UseNavigate + timeOut (3 sec) -> état du bouton ? (isSubmiting) protéger en empêchant de rappuyer.
-    */
-
   const navigate = useNavigate();
 
   const createReminder = async (reminder: Reminder) => {

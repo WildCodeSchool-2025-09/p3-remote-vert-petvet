@@ -1,26 +1,55 @@
 import { useState } from "react";
 
+type Frequency = "jour" | "semaine" | "mois" | "an";
+
+interface Reminder {
+  title: string;
+  programmed_at: string;
+  content: string;
+  dosage: string | null;
+  frequency: Frequency | null;
+  frequency_count: number | null;
+}
+
 function ReminderForm() {
   const [title, setTitle] = useState("");
   const [programmedAt, setProgrammedAt] = useState("");
   const [content, setContent] = useState("");
   const [dosage, setDosage] = useState("");
-  const [frequency, setFrequency] = useState("");
+  const [frequency, setFrequency] = useState<Frequency | "">("");
   const [frequencyValue, setFrequencyValue] = useState<number | "">("");
+
+  const createReminder = async (reminder: Reminder) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/reminder`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reminder),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de la création du rappel");
+      }
+    } catch (error) {
+      console.error("Erreur API :", error);
+    }
+  };
 
   const submitReminder = (e: React.FormEvent) => {
     e.preventDefault();
 
     const newReminder = {
       title: title,
-      pragrammed_at: programmedAt,
+      programmed_at: programmedAt,
       content: content,
       dosage: dosage || null,
       frequency: frequency || null,
       frequency_count: frequencyValue || null,
     };
 
-    console.log("Reminder envoyé:", newReminder);
+    createReminder(newReminder);
   };
 
   return (
@@ -75,7 +104,7 @@ function ReminderForm() {
           <p>foir par</p>
           <select
             value={frequency}
-            onChange={(e) => setFrequency(e.target.value)}
+            onChange={(e) => setFrequency(e.target.value as Frequency)}
           >
             <option value="jour">jour</option>
             <option value="semaine">semaine</option>

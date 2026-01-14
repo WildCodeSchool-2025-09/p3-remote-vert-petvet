@@ -22,6 +22,7 @@ class PetSeeder extends AbstractSeeder {
         breed: this.faker.animal.dog(),
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
+        refName: `pet_${i}`,
       };
 
       this.insert(fakePet);

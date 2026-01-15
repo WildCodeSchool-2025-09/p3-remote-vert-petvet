@@ -3,6 +3,6 @@ import ReminderAction from "./modules/reminder/ReminderAction";
 
 const router = express.Router();
 
-router.get("/api/pet/:petId/reminders", ReminderAction.browseByPet);
+router.get("/pet/:petId/reminders", ReminderAction.browseByPet);
 
 export default router;

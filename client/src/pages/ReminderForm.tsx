@@ -92,7 +92,7 @@ function ReminderForm() {
           <label>
             Date programmée*
             <input
-              type="text"
+              type="datetime-local"
               value={programmedAt}
               onChange={(e) => setProgrammedAt(e.target.value)}
               required

@@ -1,3 +1,4 @@
+import "../assets/styles/reset.css";
 import PetInfo from "../components/PetInfo";
 
 function HealthRecord() {

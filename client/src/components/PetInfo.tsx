@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import "../assets/styles/variables.css";
+import "../assets/styles/petInfo.css";
 
 interface Pet {
   name: string;
@@ -40,25 +42,54 @@ function PetInfo() {
   const currentYear = today.getFullYear();
 
   return (
-    <div>
-      <img
-        src={petInfo.photo}
-        alt={petInfo.specie}
-        width={"150px"}
-        height={"150px"}
-      />
-      <h2>{petInfo.name}</h2>
-      <p>
-        {petInfo.specie}
-        <br />
-        {petInfo.breed}
-      </p>
-      <p>{petInfo.gender}</p>
-      <p>{currentYear - Number(petInfo.born_at.slice(0, 4))} ans</p>
-      <p>{petInfo.weight}</p>
-      <p>{petInfo.chip_nb}</p>
-      <p>Suivi par : Dr {petInfo.lastname}</p>
-    </div>
+    <section className="pet-card">
+      <div className="pet-first-info">
+        <img
+          src={petInfo.photo}
+          alt={petInfo.specie}
+          width={"150px"}
+          height={"150px"}
+        />
+        <div className="pet-name-info">
+          <div>
+            <h2>{petInfo.name}</h2>
+            <p>
+              {petInfo.gender}
+              {petInfo.is_neutered
+                ? petInfo.gender === "mâle"
+                  ? "- Stérilisé"
+                  : "- Stérilisée"
+                : ""}
+            </p>
+          </div>
+          <div className="pet-title">
+            <p className="age">
+              {currentYear - Number(petInfo.born_at.slice(0, 4))} ans
+            </p>
+            <p className="weight">{petInfo.weight} kg</p>
+            <p>
+              {petInfo.gender === "mâle" ? "Né le " : "Née le "}
+              {petInfo.born_at.slice(0, 10)}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="pet-second-info">
+        <div>
+          <h3>Espèce</h3>
+          <p>{petInfo.specie}</p>
+        </div>
+        <div>
+          <h3>Race</h3>
+          <p>{petInfo.breed}</p>
+        </div>
+        <div>
+          <h3>Puce électronique</h3>
+          <p>{petInfo.chip_nb}</p>
+        </div>
+        <p>Suivi : Dr {petInfo.lastname}</p>
+      </div>
+    </section>
   );
 }
 

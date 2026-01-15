@@ -21,9 +21,14 @@ class PetSeeder extends AbstractSeeder {
         specie: this.faker.helpers.arrayElement(["chien", "chat", "lapin"]),
         gender: this.faker.helpers.arrayElement(["mâle", "femelle"]),
         breed: this.faker.animal.dog(),
+        weight: this.faker.number.int({ max: 100 }),
         photo: this.faker.image.url(),
+        is_neutered: this.faker.datatype.boolean(),
+        tattoo_nb: this.faker.string.alphanumeric(10),
+        chip_nb: this.faker.number.int({ min: 100000000, max: 999999999 }),
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
+        refName: `pet_${i}`,
       };
 
       this.insert(fakePet);

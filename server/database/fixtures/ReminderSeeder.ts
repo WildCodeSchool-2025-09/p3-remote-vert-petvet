@@ -1,7 +1,7 @@
-import OwnerSeeder from "./OwnerSeeder";
-import VeterinarySeeder from "./VeterinarySeeder";
-import PetSeeder from "./PetSeeder";
 import AbstractSeeder from "./AbstractSeeder";
+import OwnerSeeder from "./OwnerSeeder";
+import PetSeeder from "./PetSeeder";
+import VeterinarySeeder from "./VeterinarySeeder";
 
 class ReminderSeeder extends AbstractSeeder {
   constructor() {
@@ -21,10 +21,10 @@ class ReminderSeeder extends AbstractSeeder {
         title: this.faker.lorem.word(),
         programmed_at: this.faker.date.anytime(),
         content: this.faker.lorem.sentence(),
-        dosage: this.faker.helpers.arrayElement(['5mg', '10mg', '2ml']),
+        dosage: this.faker.helpers.arrayElement(["5mg", "10mg", "2ml"]),
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
-        pet_id: pet.insertId
+        pet_id: pet.insertId,
       };
 
       this.insert(fakeReminder);

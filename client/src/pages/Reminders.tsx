@@ -23,16 +23,15 @@ function Reminders() {
 
   return (
     <div>
-        <h1>Mes rappels</h1>
-        {reminders.map((reminder) => (
-            <div key={reminder.id} className="reminder-card">
-                <h3>{reminder.title}</h3>
-                <p>Date: {reminder.programmed_at}</p>
-                {reminder.content && <p>{reminder.content}</p>}
-            </div>
-        ))}
+      <h1>Mes rappels</h1>
+      {reminders.map((reminder) => (
+        <div key={reminder.id} className="reminder-card">
+          <h3>{reminder.title}</h3>
+          <p>Date: {reminder.programmed_at}</p>
+          {reminder.content && <p>{reminder.content}</p>}
+        </div>
+      ))}
     </div>
-);
-
+  );
 }
 export default Reminders;

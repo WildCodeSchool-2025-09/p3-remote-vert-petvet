@@ -10,6 +10,7 @@ class PetRepository {
      WHERE pet.id = ?`,
       [id],
     );
+
     return pet[0];
   }
 }

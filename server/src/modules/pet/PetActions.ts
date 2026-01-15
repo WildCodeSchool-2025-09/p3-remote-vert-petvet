@@ -1,19 +1,17 @@
 import type { NextFunction, Request, Response } from "express";
-import PetRepository from "./PetRepository";
+import PetRepository from "../pet/petRepository";
 
-export const browse = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const read = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
     const pet = await PetRepository.read(id);
+
     if (!pet) {
-      res.status(400).json({ error: "Pas de de compagnons sur cette page !" });
+      res.status(400).json({ error: "Pas de compagnons sur cette page !" });
     }
     res.status(200).json(pet);
   } catch (error) {
     next(error);
   }
 };
+export default { read };

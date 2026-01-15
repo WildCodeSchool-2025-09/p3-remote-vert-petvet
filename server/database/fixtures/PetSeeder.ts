@@ -19,7 +19,7 @@ class PetSeeder extends AbstractSeeder {
         name: this.faker.animal.petName(),
         born_at: this.faker.date.birthdate(),
         specie: this.faker.helpers.arrayElement(["chien", "chat", "lapin"]),
-        gender: this.faker.helpers.arrayElement(["mâle", "femelle"]),
+        gender: this.faker.helpers.arrayElement(["m", "f"]),
         breed: this.faker.animal.dog(),
         weight: this.faker.number.int({ max: 100 }),
         photo: this.faker.image.url(),

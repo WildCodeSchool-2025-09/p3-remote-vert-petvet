@@ -1,6 +1,6 @@
-import AbstractSeeder from "./AbstractSeeder";
-import OwnerSeeder from "./OwnerSeeder";
-import VeterinarySeeder from "./VeterinarySeeder";
+import AbstractSeeder from "./abstractSeeder";
+import OwnerSeeder from "./ownerSeeder";
+import VeterinarySeeder from "./veterinarySeeder";
 
 class PetSeeder extends AbstractSeeder {
   constructor() {

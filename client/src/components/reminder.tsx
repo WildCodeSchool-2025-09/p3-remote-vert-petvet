@@ -20,23 +20,27 @@ function Reminder({ pet_Id }: ReminderProps) {
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/pet/${pet_Id}/reminders`)
+
       .then((response) => {
         if (response.status === 204) return [];
         return response.json();
       })
+
       .then((reminder) => {
         setReminder(reminder);
         if (reminder.length > 0) {
           setPetNameReminder(reminder[0].petName);
         }
       })
+
       .catch((err) => console.error("Failed to fetch reminders:", err));
   }, [pet_Id]);
 
   return (
-    <div className="reminder-container">
+    <section className="reminder-container">
       <h1>Les rappels</h1>
       <h2>Tous les rappels de {petNameReminder}</h2>
+
       <ul>
         {reminder.map((reminder) => (
           <li key={reminder.id}>
@@ -49,7 +53,7 @@ function Reminder({ pet_Id }: ReminderProps) {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
 export default Reminder;

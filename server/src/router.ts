@@ -1,5 +1,5 @@
 import express from "express";
-import ReminderAction from "./modules/reminder/ReminderAction";
+import ReminderAction from "./modules/reminder/reminderActions";
 
 const router = express.Router();
 

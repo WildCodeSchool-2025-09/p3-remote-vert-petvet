@@ -9,15 +9,16 @@ interface Reminder {
 
 class ReminderRepository {
   async findAllByPetId(petId: number) {
-    const [rows] = await databaseClient.query(
+    const [petReminders] = await databaseClient.query(
       `SELECT r.*, p.name as petName 
-     FROM reminder r 
-     JOIN pet p ON r.pet_id = p.id 
-     WHERE r.pet_id = ? 
-     ORDER BY r.programmed_at ASC`,
+    	FROM reminder r 
+    	JOIN pet p ON r.pet_id = p.id 
+    	WHERE r.pet_id = ? 
+     	ORDER BY r.programmed_at ASC`,
       [petId],
     );
-    return rows as Reminder[];
+
+    return petReminders as Reminder[];
   }
 }
 

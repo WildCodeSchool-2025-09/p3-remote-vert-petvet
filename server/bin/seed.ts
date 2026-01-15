@@ -7,7 +7,7 @@ import path from "node:path";
 // Import database client
 import database from "../database/client";
 
-import type { AbstractSeeder } from "../database/fixtures/AbstractSeeder";
+import type { AbstractSeeder } from "../database/fixtures/abstractSeeder";
 
 const fixturesPath = path.join(__dirname, "../database/fixtures");
 
@@ -22,7 +22,7 @@ const seed = async () => {
 
     for (const filePath of filePaths) {
       const { default: SeederClass } = await import(
-	`file://${path.join(fixturesPath, filePath)}`
+        `file://${path.join(fixturesPath, filePath)}`
       );
 
       const seeder = new SeederClass() as AbstractSeeder;

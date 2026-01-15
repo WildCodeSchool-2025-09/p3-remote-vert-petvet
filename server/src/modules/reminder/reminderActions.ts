@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import ReminderRepository from "./ReminderRepository";
+import ReminderRepository from "./reminderRepository";
 
 const browseByPet: RequestHandler = async (req, res, next) => {
   try {

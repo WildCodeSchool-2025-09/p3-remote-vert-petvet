@@ -1,4 +1,4 @@
-import AbstractSeeder from "./AbstractSeeder";
+import AbstractSeeder from "./abstractSeeder";
 
 class OwnerSeeder extends AbstractSeeder {
   constructor() {

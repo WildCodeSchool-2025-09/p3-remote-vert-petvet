@@ -1,5 +1,5 @@
-import "./App.css";
 import HealthRecord from "./pages/HealthRecord";
+import "./assets/styles/reset.css";
 
 function App() {
   return <HealthRecord />;

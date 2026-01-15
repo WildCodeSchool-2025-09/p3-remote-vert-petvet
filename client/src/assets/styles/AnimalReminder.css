@@ -1,0 +1,58 @@
+.reminder-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 300px;
+}
+.reminder-container h1 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 28px;
+}
+.reminder-container h2 {
+  color: var(--owner-color);
+  margin-bottom: 15px;
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: 20px;
+}
+.reminder-container img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.reminder-container li {
+  list-style-type: none;
+  padding: 10px;
+  background-color: var(--main-color);
+  border-radius: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reminder-container li h3 {
+  margin: 0;
+  font-family: var(--font-text);
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--text-color);
+}
+.reminder-container li p {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 14px;
+  color: var(--text-color);
+}
+.reminder-container ul {
+  padding: 0;
+  margin: 0;
+}
+.reminder-container li:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}

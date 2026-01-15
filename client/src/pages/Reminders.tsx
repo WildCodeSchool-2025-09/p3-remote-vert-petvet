@@ -34,7 +34,8 @@ function Reminders() {
             <h3 className="reminder-title">{reminder.title}</h3>
           </div>
           <p className="reminder-date">
-            {new Date(reminder.programmed_at).toLocaleDateString()}</p>
+            {new Date(reminder.programmed_at).toLocaleDateString()}
+          </p>
         </div>
       ))}
     </section>

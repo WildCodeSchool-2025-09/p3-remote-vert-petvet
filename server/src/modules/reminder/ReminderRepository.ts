@@ -3,16 +3,16 @@ import type { Rows } from "../../../database/client";
 
 class ReminderRepository {
   async readAll(): Promise<Rows> {
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM reminder");
-    return rows;
+    const [reminders] = await databaseClient.query<Rows>("SELECT * FROM reminder");
+    return reminders;
   }
 
   async read(id: number): Promise<Rows[0]> {
-    const [rows] = await databaseClient.query<Rows>(
+    const [reminders] = await databaseClient.query<Rows>(
       "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet _id WHERE owner_id = ?",
       [id],
     );
-    return rows[0];
+    return reminders[0];
   }
 }
 

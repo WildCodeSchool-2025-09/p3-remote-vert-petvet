@@ -22,30 +22,3 @@ export const read: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-export const add: RequestHandler = async (req, res, next) => {
-  try {
-    const result = await reminderRepository.create(req.body);
-    res.status(201).json({ id: result.insertId });
-  } catch (err) {
-    next(err);
-  }
-};
-
-export const edit: RequestHandler = async (req, res, next) => {
-  try {
-    await reminderRepository.update(Number(req.params.id), req.body);
-    res.sendStatus(204);
-  } catch (err) {
-    next(err);
-  }
-};
-
-export const destroy: RequestHandler = async (req, res, next) => {
-  try {
-    await reminderRepository.delete(Number(req.params.id));
-    res.sendStatus(204);
-  } catch (err) {
-    next(err);
-  }
-};

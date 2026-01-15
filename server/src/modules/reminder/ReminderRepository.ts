@@ -9,7 +9,7 @@ class ReminderRepository {
 
   async read(id: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM reminder WHERE owner_id = ?",
+      "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet _id WHERE owner_id = ?",
       [id],
     );
     return rows[0];

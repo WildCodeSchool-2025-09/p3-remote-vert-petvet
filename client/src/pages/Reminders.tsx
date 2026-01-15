@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import "../assets/styles/ReminderPage.css"
+import "../assets/styles/variables.css"
 
 interface Reminders {
   id: number;
   title: string;
-  programmed_at: number;
+  programmed_at: string;
   content: string;
   dosage: number;
+  photo: string;
   veterinary_id: number;
   pet_id: number;
   frequency: string;
@@ -19,19 +22,24 @@ function Reminders() {
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders))
       .catch(() => console.error("Erreur lors du chargement"));
-  });
+  }, []);
 
   return (
-    <div>
+    <section className="all-reminders">
       <h1>Mes rappels</h1>
       {reminders.map((reminder) => (
         <div key={reminder.id} className="reminder-card">
-          <h3>{reminder.title}</h3>
-          <p>Date: {reminder.programmed_at}</p>
-          {reminder.content && <p>{reminder.content}</p>}
+          <img src={reminder.photo} alt="Profil" className="reminder-img" />
+          <div>
+            <h3 className="reminder-title">{reminder.title}</h3>
+            <p className="reminder-content"> {reminder.content}</p>
+          </div>
+          <p className="reminder-date">
+            {new Date(reminder.programmed_at).toLocaleDateString()}
+          </p>
         </div>
       ))}
-    </div>
+    </section>
   );
 }
 export default Reminders;

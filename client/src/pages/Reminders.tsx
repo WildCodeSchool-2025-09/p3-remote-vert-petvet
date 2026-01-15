@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "../assets/styles/ReminderPage.css"
-import "../assets/styles/variables.css"
+import "../assets/styles/ReminderPage.css";
+import "../assets/styles/variables.css";
 
 interface Reminders {
   id: number;
@@ -32,11 +32,9 @@ function Reminders() {
           <img src={reminder.photo} alt="Profil" className="reminder-img" />
           <div>
             <h3 className="reminder-title">{reminder.title}</h3>
-            <p className="reminder-content"> {reminder.content}</p>
           </div>
           <p className="reminder-date">
-            {new Date(reminder.programmed_at).toLocaleDateString()}
-          </p>
+            {new Date(reminder.programmed_at).toLocaleDateString()}</p>
         </div>
       ))}
     </section>

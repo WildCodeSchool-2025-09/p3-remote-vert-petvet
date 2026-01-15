@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
-import ReminderRepository from "./reminderRepository";
+import reminderRepository from "./reminderRepository";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
@@ -19,9 +19,10 @@ const add: RequestHandler = async (req, res, next) => {
       petId: 2,
       ownerId: 1,
     };
-    const newReminderId = ReminderRepository.insert(newReminder);
+
+    const newReminderId = reminderRepository.insert(newReminder);
+
     res.status(StatusCodes.CREATED).json({ newReminderId });
-    console.log(newReminder);
   } catch (err) {
     next(err);
   }

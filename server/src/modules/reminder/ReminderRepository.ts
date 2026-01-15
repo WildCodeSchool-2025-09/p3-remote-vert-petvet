@@ -16,7 +16,7 @@ interface Reminder {
   ownerId: number;
 }
 
-class ReminderRepository {
+class reminderRepository {
   async insert(reminder: Omit<Reminder, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO reminder (title, programmed_at, content, dosage, frequency, frequency_count, veterinary_id, pet_id, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -36,4 +36,4 @@ class ReminderRepository {
   }
 }
 
-export default new ReminderRepository();
+export default new reminderRepository();

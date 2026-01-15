@@ -5,11 +5,11 @@ type Frequency = "jour" | "semaine" | "mois" | "an";
 
 interface Reminder {
   title: string;
-  programmed_at: string;
+  programmedAt: string;
   content: string;
   dosage: string | null;
   frequency: Frequency | null;
-  frequency_count: number | null;
+  frequencyCount: number | null;
 }
 
 function ReminderForm() {
@@ -18,7 +18,7 @@ function ReminderForm() {
   const [content, setContent] = useState("");
   const [dosage, setDosage] = useState("");
   const [frequency, setFrequency] = useState<Frequency | "">("");
-  const [frequencyValue, setFrequencyValue] = useState<number | "">("");
+  const [frequencyCount, setFrequencyValue] = useState<number | "">("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,11 +62,11 @@ function ReminderForm() {
 
     const newReminder = {
       title: title,
-      programmed_at: programmedAt,
+      programmedAt: programmedAt,
       content: content,
       dosage: dosage || null,
       frequency: frequency || null,
-      frequency_count: frequencyValue || null,
+      frequencyCount: frequencyCount || null,
     };
 
     createReminder(newReminder);
@@ -120,7 +120,7 @@ function ReminderForm() {
             <input
               type="number"
               min={1}
-              value={frequencyValue}
+              value={frequencyCount}
               placeholder="Nombre de fois"
               onChange={(e) => setFrequencyValue(Number(e.target.value))}
             />

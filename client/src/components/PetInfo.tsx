@@ -87,7 +87,7 @@ function PetInfo() {
           <h3>Puce électronique</h3>
           <p>{petInfo.chip_nb}</p>
         </div>
-        <p>Suivi : Dr {petInfo.lastname}</p>
+        <p>Suivi : Dr. {petInfo.lastname}</p>
       </div>
     </section>
   );

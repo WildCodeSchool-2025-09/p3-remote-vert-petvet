@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { findPetById } from "./PetRepository";
+import PetRepository from "./PetRepository";
 
 export const browse = async (
   req: Request,
@@ -8,7 +8,7 @@ export const browse = async (
 ) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await findPetById(id);
+    const pet = await PetRepository.read(id);
     if (!pet) {
       res.status(400).json({ error: "Pas de de compagnons sur cette page !" });
     }

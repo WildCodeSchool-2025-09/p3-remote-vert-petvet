@@ -1,18 +1,17 @@
-import type { RowDataPacket } from "mysql2";
-import client from "../../../database/client";
+import type { Rows } from "../../../database/client";
+import databaseClient from "../../../database/client";
 
-export const findPetById = async (id: number) => {
-  const [petSearched] = await client.execute(
-    `SELECT pet.*, veterinary.lastname
+class PetRepository {
+  async read(id: number): Promise<Rows[0]> {
+    const [pet] = await databaseClient.query<Rows>(
+      `SELECT pet.*, veterinary.lastname
      FROM pet
      JOIN veterinary ON veterinary.id = pet.veterinary_id
      WHERE pet.id = ?`,
-    [id],
-  );
+      [id],
+    );
+    return pet[0];
+  }
+}
 
-  const pet = petSearched as RowDataPacket[];
-
-  if (pet.length === 0) return null;
-
-  return pet[0];
-};
+export default new PetRepository();

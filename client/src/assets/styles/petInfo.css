@@ -26,6 +26,7 @@
   p {
     font-family: var(--font-text);
     color: var(--text-color);
+    padding-top: 5px;
   }
 }
 
@@ -36,16 +37,18 @@
   h3 {
     font-family: var(--font-logo);
     font-size: 1rem;
+    font-weight: 600;
   }
   p {
     font-family: var(--font-text);
     color: var(--text-color);
+    padding-top: 5px;
   }
 }
 
 .pet-title {
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
 
   .age {
     color: white;

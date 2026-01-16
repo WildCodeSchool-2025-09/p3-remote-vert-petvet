@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/AnimalReminder.css";
+import "../assets/styles/animalReminder.css";
 
 interface ReminderType {
   id: number;
@@ -44,10 +44,7 @@ function Reminder({ pet_Id }: ReminderProps) {
       <ul>
         {reminder.map((reminder) => (
           <li key={reminder.id}>
-            <img
-              src="./public/images/calendrier-vert.png "
-              alt="Reminder Icon"
-            />
+            <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
             <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
           </li>

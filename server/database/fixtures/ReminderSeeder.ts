@@ -1,4 +1,4 @@
-import AbstractSeeder from "./abstractSeeder";
+import AbstractSeeder from "./AbstractSeeder";
 import OwnerSeeder from "./ownerSeeder";
 import PetSeeder from "./petSeeder";
 import VeterinarySeeder from "./veterinarySeeder";
@@ -14,11 +14,11 @@ class ReminderSeeder extends AbstractSeeder {
 
   run() {
     for (let i = 0; i < 5; i++) {
-      const owner = this.getRef("owner_0");
+      const owner = this.getRef(`owner_${i}`);
 
-      const veterinary = this.getRef("veterinary_0");
+      const veterinary = this.getRef(`veterinary_${i}`);
 
-      const pet = this.getRef("pet_0");
+      //const pet = this.getRef(`pet_${i}`);
 
       const fakeReminder = {
         title: this.faker.helpers.arrayElement([
@@ -31,7 +31,8 @@ class ReminderSeeder extends AbstractSeeder {
         programmed_at: this.faker.date.anytime(),
         content: this.faker.lorem.sentence(),
         dosage: this.faker.helpers.arrayElement(["5mg", "10mg", "2ml"]),
-        pet_id: pet.insertId,
+        // pet_id: pet.insertId,
+        pet_id: 3,
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
         frequency: this.faker.helpers.arrayElement([

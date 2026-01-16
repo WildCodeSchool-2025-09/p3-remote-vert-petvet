@@ -1,6 +1,7 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
+import "../assets/styles/healthRecord.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Reminder from "../components/reminder";
@@ -26,7 +27,7 @@ function HealthRecord() {
   if (!petInfo) return <p>{error}</p>;
 
   return (
-    <>
+    <div className="health-record-page">
       <section className="pet-card">
         <div className="pet-first-info">
           <img
@@ -76,8 +77,11 @@ function HealthRecord() {
           <p>Suivi : Dr. {petInfo.lastname}</p>
         </div>
       </section>
-      <Reminder pet_Id={1} petName="Pet Name" />
-    </>
+
+      <section className="pet-reminder">
+        <Reminder pet_Id={Number(id)} petName={petInfo.name} />
+      </section>
+    </div>
   );
 }
 

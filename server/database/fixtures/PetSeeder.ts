@@ -1,4 +1,4 @@
-import AbstractSeeder from "./abstractSeeder";
+import AbstractSeeder from "./AbstractSeeder";
 import OwnerSeeder from "./ownerSeeder";
 import VeterinarySeeder from "./veterinarySeeder";
 

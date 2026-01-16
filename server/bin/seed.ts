@@ -7,7 +7,7 @@ import path from "node:path";
 // Import database client
 import database from "../database/client";
 
-import type { AbstractSeeder } from "../database/fixtures/abstractSeeder";
+import type { AbstractSeeder } from "../database/fixtures/AbstractSeeder";
 
 const fixturesPath = path.join(__dirname, "../database/fixtures");
 

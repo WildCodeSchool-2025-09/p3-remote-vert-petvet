@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 type Frequency = "jour" | "semaine" | "mois" | "an";
 
-interface Reminder {
+interface CreateReminder {
   title: string;
   programmedAt: string;
   content: string;
@@ -25,7 +25,7 @@ function ReminderForm() {
 
   const navigate = useNavigate();
 
-  const createReminder = async (reminder: Reminder) => {
+  const createReminder = async (reminder: CreateReminder) => {
     setIsSubmitting(true);
 
     try {
@@ -44,8 +44,8 @@ function ReminderForm() {
       setSuccessMessage("Rappel créé avec succès !");
 
       setTimeout(() => {
-        navigate("/healtrecord");
-      }, 3000);
+        navigate("/");
+      }, 2000);
     } catch (error: unknown) {
       setErrorMessage(
         error instanceof Error

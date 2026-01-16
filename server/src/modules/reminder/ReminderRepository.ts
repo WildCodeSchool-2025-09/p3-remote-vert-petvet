@@ -4,7 +4,6 @@ import type { Result } from "../../../database/client";
 type Frequency = "jour" | "semaine" | "mois" | "an";
 
 interface Reminder {
-  id: number;
   title: string;
   programmedAt: string;
   content: string;
@@ -32,6 +31,7 @@ class reminderRepository {
         reminder.ownerId,
       ],
     );
+
     return result.insertId;
   }
 }

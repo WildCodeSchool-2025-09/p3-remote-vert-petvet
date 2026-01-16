@@ -4,6 +4,7 @@ import type { Rows } from "../../../database/client";
 class ReminderRepository {
   async readAll(): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>("SELECT * FROM reminder");
+    console.log(reminders);
     return reminders;
   }
 

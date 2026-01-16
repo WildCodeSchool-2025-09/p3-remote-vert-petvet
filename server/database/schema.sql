@@ -40,7 +40,7 @@ CREATE TABLE reminder (
   title VARCHAR(100) NOT NULL,
   programmed_at DATETIME,
   content VARCHAR(100) NOT NULL,
-  dosage VARCHAR(30) NOT NULL,
+  dosage VARCHAR(30) DEFAULT NULL,
   owner_id INT NOT NULL,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,

@@ -14,7 +14,7 @@ export const read: RequestHandler = async (req, res, next) => {
   try {
     const reminder = await reminderRepository.read(Number(req.params.id));
     if (!reminder) {
-      res.status(404).json({ message: "Reminder not found" });
+      res.status(404).json({ message: "Il n'y a aucuns rappels !" });
     } else {
       res.json(reminder);
     }

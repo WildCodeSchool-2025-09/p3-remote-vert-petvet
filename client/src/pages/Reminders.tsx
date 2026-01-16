@@ -9,20 +9,22 @@ interface Reminders {
   content: string;
   dosage: number;
   photo: string;
+  frequency: string;
   veterinary_id: number;
   pet_id: number;
-  frequency: string;
 }
 
 function Reminders() {
   const [reminders, setReminders] = useState<Reminders[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/reminder`)
+    fetch(`${import.meta.env.VITE_API_URL}/reminder/`)
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders))
       .catch(() => console.error("Erreur lors du chargement"));
   }, []);
+
+  console.log(reminders);
 
   return (
     <section className="all-reminders">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/ReminderPage.css";
 import "../assets/styles/variables.css";
+import { useParams } from "react-router";
 
 interface Reminders {
   id: number;
@@ -12,19 +13,19 @@ interface Reminders {
   frequency: string;
   veterinary_id: number;
   pet_id: number;
+  owner_id: number;
 }
 
 function Reminders() {
   const [reminders, setReminders] = useState<Reminders[]>([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/reminder/`)
+    fetch(`${import.meta.env.VITE_API_URL}/reminder/${id}`)
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders))
       .catch(() => console.error("Erreur lors du chargement"));
-  }, []);
-
-  console.log(reminders);
+  }, [id]);
 
   return (
     <section className="all-reminders">

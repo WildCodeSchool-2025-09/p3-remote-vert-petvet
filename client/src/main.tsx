@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/reminder",
+    path: "/reminder/:id",
     element: <Reminders />,
   },
 ]);

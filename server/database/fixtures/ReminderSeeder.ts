@@ -42,9 +42,10 @@ class ReminderSeeder extends AbstractSeeder {
           "an",
         ]),
         frequency_count: 1,
+        refName: `reminder_${i}`,
       };
 
-      //refName: `reminder_${i}`,
+      this.insert(fakeReminder);
     }
   }
 }

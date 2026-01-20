@@ -23,7 +23,6 @@
 .reminder-container img {
   width: 40px;
   height: 40px;
-  margin-right: 0.625rem;
 }
 .reminder-container button {
   width: 100%;
@@ -52,5 +51,25 @@
 }
 .reminder-container button:hover {
   background-color: #f0f0f0;
+  cursor: pointer;
+}
+.reminder-container .add-reminder-button {
+  width: 7rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--owner-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin: 1.25rem auto 0 auto;
+}
+.reminder-container .add-reminder-button img {
+  width: 15px;
+  height: 15px;
+}
+.reminder-container .add-reminder-button:hover {
+  background-color: #95a878;
   cursor: pointer;
 }

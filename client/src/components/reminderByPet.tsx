@@ -1,18 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
-
-interface ReminderType {
-  id: number;
-  title: string;
-  programmed_at: string;
-  petName: string;
-}
-
-interface ReminderProps {
-  pet_Id: number;
-  petName: string;
-}
+import type { ReminderProps, ReminderType } from "../types/Reminder";
 
 function reminderByPet({ pet_Id }: ReminderProps) {
   const [reminder, setReminder] = useState<ReminderType[]>([]);
@@ -50,6 +39,9 @@ function reminderByPet({ pet_Id }: ReminderProps) {
           </button>
         ))}
       </ul>
+      <button type="button" className="add-reminder-button">
+        <img src="/images/plus-blanc.png" alt="Add Reminder Icon" />
+      </button>
     </section>
   );
 }

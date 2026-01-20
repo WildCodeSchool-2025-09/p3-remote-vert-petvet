@@ -25,7 +25,7 @@ CREATE TABLE pet (
   tattoo_nb VARCHAR(10) NULL,
   chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
-  gender ENUM("mâle","femelle"),
+  gender ENUM("m","f"),
   specie ENUM("chien","chat","lapin"),
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,

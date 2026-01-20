@@ -3,9 +3,9 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 import App from "./App";
 import Reminders from "./pages/Reminders";
+import HealthRecord from "./pages/HealthRecord";
 
-// Create router configuration with routes
-// You can add more routes as you build out your app!
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/reminder/:id",
     element: <Reminders />,
+  },
+  {
+    path: "/pet-profile/:id",
+    element: <HealthRecord />,
   },
 ]);
 

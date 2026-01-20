@@ -35,5 +35,45 @@ export default function Reminder({ open, onClose, reminderId }: ReminderProps) {
 
   if (!open) return null;
 
-  return <></>;
+  return (
+    <div className="overlay">
+      <div className="reminder">
+        {reminder ? (
+          <>
+            <button type="button" onClick={onClose}>
+              <img
+                src={croix}
+                alt="croix de fermeture"
+                width="35px"
+                height="35px"
+              />
+            </button>
+            <h2 className="title_reminder">{reminder.title}</h2>
+            <p className="date_reminder">
+              <h3>Date :</h3> <br />
+              {new Date(reminder.programmed_at).toLocaleString()}
+            </p>
+            <p className="animal_name_reminder">
+              <h3>Animal :</h3> <br /> {reminder.name}
+            </p>
+            <p className="frequency_reminder">
+              {reminder.dosage != null &&
+              reminder.frequency_count != null &&
+              reminder.frequency ? (
+                <p className="frequency_reminder">
+                  {reminder.dosage} {reminder.frequency_count} fois par{" "}
+                  {reminder.frequency}
+                </p>
+              ) : null}
+            </p>
+            <p className="content_reminder">
+              <h3>Description :</h3> {reminder.content}
+            </p>
+          </>
+        ) : (
+          <p>Chargement...</p>
+        )}
+      </div>
+    </div>
+  );
 }

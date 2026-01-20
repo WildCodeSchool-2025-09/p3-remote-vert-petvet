@@ -36,12 +36,15 @@ CREATE TABLE pet (
 
 CREATE TABLE reminder (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  programmed_at DATETIME,
+  title VARCHAR(100) NOT NULL,
+  programmed_at DATETIME NOT NULL,
   content VARCHAR(100) NOT NULL,
-  dosage INT NOT NULL,
+  dosage VARCHAR(30) DEFAULT NULL,
+  frequency ENUM('jour', 'semaine', 'mois', 'an') DEFAULT NULL,
+  frequency_count INT DEFAULT 1,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
-  frequency ENUM('jour', 'semaine', 'mois', 'an')
+  owner_id INT NOT NULL
 );
 
 

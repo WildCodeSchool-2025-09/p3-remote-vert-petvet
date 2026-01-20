@@ -76,42 +76,44 @@ function ReminderForm() {
   };
 
   return (
-    <body>
+    <section>
       <header className="pet-vet">Pet&Vet</header>
-      <section>
-        <h1 className="reminder-form-title">Ajouter un rappel</h1>
-        <p>* : Champs obligatoires</p>
-        <article className="form-container">
-          <p>{errorMessage}</p>
-          <p>{successMessage}</p>
-          <form onSubmit={submitReminder}>
-            <div className="title-date">
-              <label>
-                Titre*
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </label>
-              <label>
-                Date programmée*
-                <input
-                  type="datetime-local"
-                  value={programmedAt}
-                  onChange={(e) => setProgrammedAt(e.target.value)}
-                  required
-                />
-              </label>
-            </div>
+      <h1 className="reminder-form-title">Ajouter un rappel</h1>
+      <article className="form-container">
+        <form onSubmit={submitReminder}>
+          <p className="error">{errorMessage}</p>
+          <p className="success">{successMessage}</p>
+          <div className="title-date">
             <label>
-              Description*
+              Titre <span className="obligatory">*</span>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                className="title"
+              />
+            </label>
+            <label>
+              Date programmée <span className="obligatory">*</span>
+              <input
+                type="datetime-local"
+                value={programmedAt}
+                onChange={(e) => setProgrammedAt(e.target.value)}
+                required
+                className="date"
+              />
+            </label>
+          </div>
+          <div className="content-cotainer">
+            <label>
+              Description <span className="obligatory">*</span>
               <input
                 type="text"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required
+                className="content"
               />
             </label>
             <label>
@@ -122,35 +124,43 @@ function ReminderForm() {
                 onChange={(e) => setDosage(e.target.value)}
               />
             </label>
-            <div className="frequency-container">
+          </div>
+          <div className="frequency-container">
+            <div className="frequency">
               <label>
                 Fréquence
                 <input
                   type="number"
                   min={1}
                   value={frequencyCount}
-                  placeholder="Nombre de fois"
+                  placeholder="Nb de x"
                   onChange={(e) => setFrequencyValue(Number(e.target.value))}
+                  className="frequency-count"
                 />
-                <p>fois par</p>
-                <select
-                  value={frequency}
-                  onChange={(e) => setFrequency(e.target.value as Frequency)}
-                >
-                  <option value="jour">jour</option>
-                  <option value="semaine">semaine</option>
-                  <option value="mois">mois</option>
-                  <option value="an">an</option>
-                </select>
               </label>
             </div>
+            <div className="frequency-value">
+              <p>fois par</p>
+              <select
+                value={frequency}
+                onChange={(e) => setFrequency(e.target.value as Frequency)}
+              >
+                <option value="jour">jour</option>
+                <option value="semaine">semaine</option>
+                <option value="mois">mois</option>
+                <option value="an">an</option>
+              </select>
+            </div>
+          </div>
+          <div className="button-container">
+            <p className="obligatory">* Champs obligatoires</p>
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Création..." : "Créer un rappel"}
             </button>
-          </form>
-        </article>
-      </section>
-    </body>
+          </div>
+        </form>
+      </article>
+    </section>
   );
 }
 

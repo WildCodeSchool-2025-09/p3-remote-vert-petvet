@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
 import ReminderRepository from "./ReminderRepository";
 
-export const read: RequestHandler = async (req, res, next) => {
+export const readByOwner: RequestHandler = async (req, res, next) => {
   try {
     const reminder = await ReminderRepository.read(Number(req.params.id));
     if (!reminder) {

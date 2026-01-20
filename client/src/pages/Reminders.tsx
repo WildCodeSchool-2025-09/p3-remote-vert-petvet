@@ -1,23 +1,11 @@
 import { useEffect, useState } from "react";
-import "../assets/styles/ReminderPage.css";
+import "../assets/styles/Reminders.css";
 import "../assets/styles/variables.css";
 import { useParams } from "react-router";
-
-interface Reminders {
-  id: number;
-  title: string;
-  programmed_at: string;
-  content: string;
-  dosage: number;
-  photo: string;
-  frequency: string;
-  veterinary_id: number;
-  pet_id: number;
-  owner_id: number;
-}
+import type { Reminder } from "../types/Reminder";
 
 function Reminders() {
-  const [reminders, setReminders] = useState<Reminders[]>([]);
+  const [reminders, setReminders] = useState<Reminder[]>([]);
   const { id } = useParams();
 
   useEffect(() => {

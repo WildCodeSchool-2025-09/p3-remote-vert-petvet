@@ -2,9 +2,8 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import App from "./App";
-import Reminders from "./pages/Reminders";
 import HealthRecord from "./pages/HealthRecord";
-
+import Reminders from "./pages/Reminders";
 
 const router = createBrowserRouter([
   {

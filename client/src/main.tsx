@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/reminder/:id",
+    path: "/reminder/owner/:id",
     element: <Reminders />,
   },
   {

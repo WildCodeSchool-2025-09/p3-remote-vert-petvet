@@ -9,7 +9,7 @@ function Reminders() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/reminder/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/reminder/owner/${id}`)
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders))
       .catch(() => console.error("Erreur lors du chargement"));

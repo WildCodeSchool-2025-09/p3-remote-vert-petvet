@@ -2,6 +2,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
+import HealthRecord from "./pages/HealthRecord";
 
 /* ************************************************************************* */
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/", // The root path
     element: <App />, // Renders the App component for the home page
+  },
+  {
+    path: "/pet-profile/:id",
+    element: <HealthRecord />,
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);

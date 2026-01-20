@@ -4,7 +4,7 @@ import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Reminder from "../components/reminder";
+import ReminderByPet from "../components/reminderByPet";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
@@ -79,7 +79,7 @@ function HealthRecord() {
       </section>
 
       <section className="pet-reminder">
-        <Reminder pet_Id={Number(id)} petName={petInfo.name} />
+        <ReminderByPet pet_Id={Number(id)} petName={petInfo.name} />
       </section>
     </div>
   );

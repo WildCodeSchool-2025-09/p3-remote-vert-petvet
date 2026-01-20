@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/animalReminder.css";
+import "../assets/styles/reminderByPet.css";
 
 interface ReminderType {
   id: number;
@@ -14,7 +14,7 @@ interface ReminderProps {
   petName: string;
 }
 
-function Reminder({ pet_Id }: ReminderProps) {
+function reminderByPet({ pet_Id }: ReminderProps) {
   const [reminder, setReminder] = useState<ReminderType[]>([]);
   const [petNameReminder, setPetNameReminder] = useState<string>("");
 
@@ -43,14 +43,14 @@ function Reminder({ pet_Id }: ReminderProps) {
 
       <ul>
         {reminder.map((reminder) => (
-          <li key={reminder.id}>
+          <button type="button" key={reminder.id}>
             <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
             <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
-          </li>
+          </button>
         ))}
       </ul>
     </section>
   );
 }
-export default Reminder;
+export default reminderByPet;

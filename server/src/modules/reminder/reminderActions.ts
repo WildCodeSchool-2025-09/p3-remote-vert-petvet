@@ -2,7 +2,7 @@ import { error } from "node:console";
 import type { RequestHandler } from "express";
 import ReminderRepository from "./reminderRepository";
 
-const browseByPet: RequestHandler = async (req, res, next) => {
+const readByPet: RequestHandler = async (req, res, next) => {
   try {
     const petId = Number(req.params.petId);
     const reminders = await ReminderRepository.findAllByPetId(petId);
@@ -20,5 +20,5 @@ const browseByPet: RequestHandler = async (req, res, next) => {
 };
 
 export default {
-  browseByPet,
+  readByPet,
 };

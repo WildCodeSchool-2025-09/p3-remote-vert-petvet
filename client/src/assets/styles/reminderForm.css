@@ -1,0 +1,44 @@
+body {
+  background-color: var(--main-color);
+}
+
+.pet-vet {
+  text-align: right;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 50px;
+}
+
+.reminder-form-title {
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+
+  input {
+    display: block;
+  }
+}
+
+form {
+  width: 40vw;
+}
+
+.title-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.frequency-container {
+  display: flex;
+}

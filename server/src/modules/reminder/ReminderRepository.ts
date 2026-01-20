@@ -1,3 +1,4 @@
+import type { Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
 interface Reminder {
@@ -8,7 +9,7 @@ interface Reminder {
 }
 
 class ReminderRepository {
-  async findAllByPetId(petId: number) {
+  async getByPetId(petId: number) {
     const [petReminders] = await databaseClient.query(
       `SELECT r.*, p.name as petName 
     	FROM reminder r 
@@ -19,6 +20,14 @@ class ReminderRepository {
     );
 
     return petReminders as Reminder[];
+  }
+
+  async get(id: number): Promise<Rows> {
+    const [reminders] = await databaseClient.query<Rows>(
+      "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      [id],
+    );
+    return reminders;
   }
 }
 

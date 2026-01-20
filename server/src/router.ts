@@ -4,10 +4,12 @@ import ReminderAction from "./modules/reminder/reminderActions";
 
 const router = express.Router();
 
-router.get("/pet/:petId/reminders", ReminderAction.readByPet);
 router.get("/pet/:id", petActions.read);
-// Define item-related routes
 
-/* ************************************************************************* */
+router.get("/reminder/owner/:id", ReminderAction.browseByOwner);
+
+router.get("/pet/:id", petActions.read);
+
+router.get("/pet/:petId/reminders", ReminderAction.readByPet);
 
 export default router;

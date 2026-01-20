@@ -1,5 +1,5 @@
 import express from "express";
-import petActions from "../src/modules/pet/petActions";
+import petActions from "../src/modules/pet/PetActions";
 const router = express.Router();
 
 /* ************************************************************************* */

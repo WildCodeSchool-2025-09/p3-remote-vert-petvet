@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import PetRepository from "../pet/petRepository";
+import PetRepository from "../pet/PetRepository";
 
 const read = async (req: Request, res: Response, next: NextFunction) => {
   try {

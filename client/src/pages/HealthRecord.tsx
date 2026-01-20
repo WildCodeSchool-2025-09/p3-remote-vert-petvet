@@ -73,6 +73,7 @@ function HealthRecord() {
         </div>
         <p>Suivi : Dr. {petInfo.lastname}</p>
       </div>
+      <button type="button">Historique</button>
     </section>
   );
 }

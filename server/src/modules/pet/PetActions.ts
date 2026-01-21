@@ -1,17 +1,19 @@
 import type { NextFunction, Request, Response } from "express";
+import reminderRepository from "../reminder/reminderRepository";
 import PetRepository from "./petRepository";
 
 const read = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await PetRepository.read(id);
+    const pet = await PetRepository.get(id);
+    const reminders = await reminderRepository.getByPet(id);
 
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });
     }
-    res.status(200).json(pet);
+    res.status(200).json({ pet, reminders });
   } catch (error) {
-    next(error);
+    next();
   }
 };
 export default { read };

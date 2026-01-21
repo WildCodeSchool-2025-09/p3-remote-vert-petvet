@@ -14,24 +14,23 @@ const browseByOwner: RequestHandler = async (req, res, next) => {
   }
 };
 
-const readByPet: RequestHandler = async (req, res, next) => {
+const browseByPet: RequestHandler = async (req, res, next) => {
   try {
     const petId = Number(req.params.petId);
-    const reminders = await ReminderRepository.getByPetId(petId);
+    const reminders = await ReminderRepository.getByPet(petId);
 
     if (!reminders || reminders.length === 0) {
       res.status(404).json({
         message: "Nous n'avons pas trouvé de rappels pour cet animal.",
       });
-    } else {
-      res.status(200).json(reminders);
     }
+    res.status(200).json(reminders);
   } catch (err) {
     next(err);
   }
 };
 
 export default {
-  readByPet,
+  browseByPet,
   browseByOwner,
 };

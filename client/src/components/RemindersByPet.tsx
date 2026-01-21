@@ -1,37 +1,36 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
-import type { ReminderProps, ReminderType } from "../types/Reminder";
+import type { Pet } from "../types/Pet";
 
-function reminderByPet({ pet_Id }: ReminderProps) {
-  const [reminder, setReminder] = useState<ReminderType[]>([]);
-  const [petNameReminder, setPetNameReminder] = useState<string>("");
+interface ReminderType {
+  id: number;
+  title: string;
+  programmed_at: string;
+  petName: string;
+}
+
+function RemindersByPet({ pet }: { pet: Pet }) {
+  const [reminders, setReminders] = useState<ReminderType[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pet/${pet_Id}/reminders`)
+    fetch(`${import.meta.env.VITE_API_URL}/pet/${pet.id}`)
 
       .then((response) => {
-        if (response.status === 204) return [];
         return response.json();
       })
-
-      .then((reminder) => {
-        setReminder(reminder);
-        if (reminder.length > 0) {
-          setPetNameReminder(reminder[0].petName);
-        }
-      })
-
-      .catch((err) => console.error("Failed to fetch reminders:", err));
-  }, [pet_Id]);
+      .then((reminders) => {
+        setReminders(reminders.reminders);
+      });
+  });
 
   return (
     <section className="reminder-container">
       <h1>Les rappels</h1>
-      <h2>Tous les rappels de {petNameReminder}</h2>
+      <h2>Tous les rappels de {pet.name}</h2>
 
       <ul>
-        {reminder.map((reminder) => (
+        {reminders.map((reminder) => (
           <button type="button" key={reminder.id}>
             <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
@@ -45,4 +44,4 @@ function reminderByPet({ pet_Id }: ReminderProps) {
     </section>
   );
 }
-export default reminderByPet;
+export default RemindersByPet;

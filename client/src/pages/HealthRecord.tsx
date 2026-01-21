@@ -4,7 +4,7 @@ import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import ReminderByPet from "../components/reminderByPet";
+import RemindersByPet from "../components/RemindersByPet";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
@@ -19,7 +19,7 @@ function HealthRecord() {
         if (petData.error) {
           setError(petData.error);
         } else {
-          setPetInfo(petData);
+          setPetInfo(petData.pet);
         }
       });
   }, [id]);
@@ -50,13 +50,14 @@ function HealthRecord() {
             </div>
             <div className="pet-title">
               <p className="age">
-                {new Date().getFullYear() - Number(petInfo.born_at.slice(0, 4))}{" "}
+                {new Date().getFullYear() -
+                  new Date(petInfo.born_at).getFullYear()}{" "}
                 ans
               </p>
               <p className="weight">{petInfo.weight} kg</p>
               <p>
                 {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                {petInfo.born_at.slice(0, 10)}
+                {petInfo.born_at}
               </p>
             </div>
           </div>
@@ -79,7 +80,7 @@ function HealthRecord() {
       </section>
 
       <section className="pet-reminder">
-        <ReminderByPet pet_Id={Number(id)} petName={petInfo.name} />
+        <RemindersByPet pet={petInfo} />
       </section>
     </div>
   );

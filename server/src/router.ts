@@ -8,6 +8,4 @@ router.get("/pet/:id", petActions.read);
 
 router.get("/reminder/owner/:id", reminderActions.browseByOwner);
 
-router.get("/pet/:petId/reminders", reminderActions.readByPet);
-
 export default router;

@@ -1,4 +1,5 @@
 export interface Pet {
+  id: number;
   name: string;
   tatoo_nb: number;
   chip_nb: number;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Reminder from "../components/Reminder/Reminder";
-
+import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 
 export default function HealthRecord() {

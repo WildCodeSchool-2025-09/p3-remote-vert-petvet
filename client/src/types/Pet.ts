@@ -1,4 +1,5 @@
 export interface Pet {
+  id: number;
   name: string;
   tatoo_nb: number;
   chip_nb: number;
@@ -9,7 +10,7 @@ export interface Pet {
   is_neutered: boolean;
   photo: string;
   weight: number;
-  owner_id: string;
-  veterinary_id: string;
+  owner_id: number;
+  veterinary_id: number;
   lastname: string;
 }

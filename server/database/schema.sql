@@ -37,21 +37,24 @@ CREATE TABLE pet (
 
 CREATE TABLE reminder (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  programmed_at DATETIME,
+  title VARCHAR(100) NOT NULL,
+  programmed_at DATETIME NOT NULL,
   content VARCHAR(100) NOT NULL,
-  dosage INT NOT NULL,
+  dosage VARCHAR(30) DEFAULT NULL,
+  owner_id INT NOT NULL,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
   frequency ENUM('jour', 'semaine', 'mois', 'an')
 );
 
-
 CREATE TABLE consultation (
-  date DATETIME,
-  report TEXT,
-  is_vaccinated BOOLEAN DEFAULT FALSE,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(50) NOT NULL,
+  created_at DATETIME NOT NULL,
+  report TEXT NOT NULL,
+  treatment TEXT DEFAULT NULL,
+  dosage TEXT DEFAULT NULL,
   category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
   pet_id INT NOT NULL,
-  veterinary_id INT NOT NULL,
-  PRIMARY KEY (pet_id, veterinary_id)
+  veterinary_id INT NOT NULL
 );

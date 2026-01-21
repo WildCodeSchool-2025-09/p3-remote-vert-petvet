@@ -1,0 +1,37 @@
+import type { RequestHandler } from "express";
+import ReminderRepository from "./reminderRepository";
+
+const browseByOwner: RequestHandler = async (req, res, next) => {
+  try {
+    const reminder = await ReminderRepository.get(Number(req.params.id));
+    if (!reminder) {
+      res.status(404).json({ message: "Il n'y a aucuns rappels !" });
+    } else {
+      res.json(reminder);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readByPet: RequestHandler = async (req, res, next) => {
+  try {
+    const petId = Number(req.params.petId);
+    const reminders = await ReminderRepository.getByPetId(petId);
+
+    if (!reminders || reminders.length === 0) {
+      res.status(404).json({
+        message: "Nous n'avons pas trouvé de rappels pour cet animal.",
+      });
+    } else {
+      res.status(200).json(reminders);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default {
+  readByPet,
+  browseByOwner,
+};

@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
 import reminderRepository from "./reminderRepository";
 
-export const browseByOwner: RequestHandler = async (req, res, next) => {
+const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
     const reminder = await reminderRepository.getByOwner(Number(req.params.id));
     if (!reminder) {
@@ -13,3 +13,5 @@ export const browseByOwner: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
+export default { browseByOwner };

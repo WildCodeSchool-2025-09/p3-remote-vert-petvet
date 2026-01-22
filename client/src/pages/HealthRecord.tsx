@@ -18,7 +18,7 @@ function HealthRecord() {
         if (petData.error) {
           setError(petData.error);
         } else {
-          setPetInfo(petData);
+          setPetInfo(petData.pet);
         }
       });
   }, [id]);
@@ -49,13 +49,14 @@ function HealthRecord() {
             </div>
             <div className="pet-title">
               <p className="age">
-                {new Date().getFullYear() - Number(petInfo.born_at.slice(0, 4))}{" "}
+                {new Date().getFullYear() -
+                  new Date(petInfo.born_at).getFullYear()}{" "}
                 ans
               </p>
               <p className="weight">{petInfo.weight} kg</p>
               <p>
                 {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                {petInfo.born_at.slice(0, 10)}
+                {new Date(petInfo.born_at).toLocaleDateString()}
               </p>
             </div>
           </div>
@@ -76,6 +77,7 @@ function HealthRecord() {
           <p>Suivi : Dr. {petInfo.lastname}</p>
         </div>
       </section>
+
       <section className="vet-consultations-section">
         <VetConsultations pet={petInfo} />
       </section>

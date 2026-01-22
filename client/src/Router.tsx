@@ -12,4 +12,5 @@ const router = createBrowserRouter([
     element: <HealthRecord />,
   },
 ]);
+
 export default router;

@@ -1,12 +1,23 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 import consultationRepository from "../consultation/consultationRepository";
 import PetRepository from "./petRepository";
 
-const read = async (req: Request, res: Response, next: NextFunction) => {
+const read: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const id = Number.parseInt(req.params.id);
-    const pet = await PetRepository.read(id);
-    const consultations = await consultationRepository.findVetConsultation(id);
+    const petId = Number.parseInt(req.params.id);
+
+    if (Number.isNaN(petId)) {
+      res.status(400).json({ error: "ID de l'animal invalide." });
+      return;
+    }
+
+    const pet = await PetRepository.read(petId);
+    const consultations =
+      await consultationRepository.findVetConsultation(petId);
 
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });

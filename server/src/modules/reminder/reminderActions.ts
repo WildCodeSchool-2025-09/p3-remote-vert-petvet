@@ -3,7 +3,8 @@ import reminderRepository from "./reminderRepository";
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
-    const reminder = await reminderRepository.getByOwner(Number(req.params.id));
+    const id = 4;
+    const reminder = await reminderRepository.getByOwner(Number(id));
     if (!reminder) {
       res.status(404).json({ message: "Il n'y a aucuns rappels !" });
     } else {

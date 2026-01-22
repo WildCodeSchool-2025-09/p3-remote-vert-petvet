@@ -18,7 +18,7 @@ class ReminderSeeder extends AbstractSeeder {
 
       const veterinary = this.getRef(`veterinary_${i}`);
 
-      //const pet = this.getRef(`pet_${i}`);
+      const pet = this.getRef(`pet_${i}`);
 
       const fakeReminder = {
         title: this.faker.helpers.arrayElement([

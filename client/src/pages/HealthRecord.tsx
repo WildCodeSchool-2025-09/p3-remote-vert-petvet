@@ -59,7 +59,7 @@ function HealthRecord() {
               <p className="weight">{petInfo.weight} kg</p>
               <p>
                 {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                {petInfo.born_at}
+                {new Date(petInfo.born_at).toLocaleDateString()}
               </p>
             </div>
           </div>

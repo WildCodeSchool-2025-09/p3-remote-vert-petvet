@@ -1,13 +1,11 @@
 import express from "express";
-import petActions from "../src/modules/pet/petActions";
+import petActions from "./modules/pet/petActions";
+import reminderActions from "./modules/reminder/reminderActions";
+
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-router.get("/pet/:id", petActions.read);
-// Define item-related routes
+router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
-/* ************************************************************************* */
+router.get("/pet/:id", petActions.browseByPet);
 
 export default router;

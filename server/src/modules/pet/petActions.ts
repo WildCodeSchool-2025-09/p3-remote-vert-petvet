@@ -2,10 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import reminderRepository from "../reminder/reminderRepository";
 import PetRepository from "./petRepository";
 
-const read = async (req: Request, res: Response, next: NextFunction) => {
+const browseByPet = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await PetRepository.get(id);
+    const pet = await PetRepository.getByPet(id);
     const reminders = await reminderRepository.getByPet(id);
 
     if (!pet) {
@@ -16,4 +16,4 @@ const read = async (req: Request, res: Response, next: NextFunction) => {
     next();
   }
 };
-export default { read };
+export default { browseByPet };

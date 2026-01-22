@@ -7,7 +7,7 @@ function Reminders() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/owner/me/reminders`)
+    fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders/`)
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders));
   }, []);

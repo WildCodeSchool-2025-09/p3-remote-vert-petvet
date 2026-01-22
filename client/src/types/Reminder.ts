@@ -10,3 +10,9 @@ export interface Reminder {
   pet_id: number;
   owner_id: number;
 }
+export interface ReminderType {
+  id: number;
+  title: string;
+  programmed_at: string;
+  petName: string;
+}

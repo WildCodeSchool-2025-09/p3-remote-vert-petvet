@@ -10,6 +10,7 @@ import type { Pet } from "../types/Pet";
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState();
+  const [reminders, setReminders] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function HealthRecord() {
           setError(petData.error);
         } else {
           setPetInfo(petData.pet);
+          setReminders(petData.reminders);
         }
       });
   }, [id]);
@@ -80,7 +82,7 @@ function HealthRecord() {
       </section>
 
       <section className="pet-reminder">
-        <RemindersByPet pet={petInfo} />
+        <RemindersByPet reminders={reminders} pet={petInfo} />
       </section>
     </div>
   );

@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/Reminders.css";
 import "../assets/styles/variables.css";
-import { useParams } from "react-router";
 import type { Reminder } from "../types/Reminder";
 
 function Reminders() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
-  const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/reminder/owner/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/owner/me/reminders`)
       .then((res) => res.json())
-      .then((reminders) => setReminders(reminders))
-      .catch(() => console.error("Erreur lors du chargement"));
-  }, [id]);
+      .then((reminders) => setReminders(reminders));
+  }, []);
 
   return (
     <section className="all-reminders">

@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
 import type { Pet } from "../types/Pet";
+import type { ReminderType } from "../types/Reminder";
 
-interface ReminderType {
-  id: number;
-  title: string;
-  programmed_at: string;
-  petName: string;
-}
-
-function RemindersByPet({ pet }: { pet: Pet }) {
-  const [reminders, setReminders] = useState<ReminderType[]>([]);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pet/${pet.id}`)
-
-      .then((response) => {
-        return response.json();
-      })
-      .then((reminders) => {
-        setReminders(reminders.reminders);
-      });
-  });
-
+function RemindersByPet({
+  pet,
+  reminders,
+}: { pet: Pet; reminders: ReminderType[] }) {
   return (
     <section className="reminder-container">
       <h1>Les rappels</h1>

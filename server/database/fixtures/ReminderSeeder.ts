@@ -1,7 +1,7 @@
 import AbstractSeeder from "./AbstractSeeder";
-import OwnerSeeder from "./ownerSeeder";
-import PetSeeder from "./petSeeder";
-import VeterinarySeeder from "./veterinarySeeder";
+import OwnerSeeder from "./OwnerSeeder";
+import PetSeeder from "./PetSeeder";
+import VeterinarySeeder from "./VeterinarySeeder";
 
 class ReminderSeeder extends AbstractSeeder {
   constructor() {

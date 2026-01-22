@@ -4,8 +4,8 @@ import reminderActions from "./modules/reminder/reminderActions";
 
 const router = express.Router();
 
-router.get("/pet/:id", petActions.read);
+router.get("/api/pet/:id", petActions.read);
 
-router.get("/reminder/owner/:id", reminderActions.browseByOwner);
+router.get("/api/owner/me/reminders", reminderActions.browseByOwner);
 
 export default router;

@@ -22,7 +22,7 @@ class ReminderRepository {
     return petReminders as Reminder[];
   }
 
-  async get(id: number): Promise<Rows> {
+  async getByOwner(id: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
       "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
       [id],

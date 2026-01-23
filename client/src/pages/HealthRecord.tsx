@@ -3,11 +3,13 @@ import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import ConsultDetails from "../components/ConsultDetails";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState();
+  const [openConsult, setOpenConsult] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,55 +27,65 @@ function HealthRecord() {
   if (!petInfo) return <p>{error}</p>;
 
   return (
-    <section className="pet-card">
-      <div className="pet-first-info">
-        <img
-          src={petInfo.photo}
-          alt={petInfo.specie}
-          width={"150px"}
-          height={"150px"}
-        />
-        <div className="pet-name-info">
+    <>
+      <section className="pet-card">
+        <div className="pet-first-info">
+          <img
+            src={petInfo.photo}
+            alt={petInfo.specie}
+            width={"150px"}
+            height={"150px"}
+          />
+          <div className="pet-name-info">
+            <div>
+              <h2>{petInfo.name}</h2>
+              <p>
+                {petInfo.gender === "m" ? "Mâle" : "Femelle"}
+                {petInfo.is_neutered
+                  ? petInfo.gender === "mâle"
+                    ? "- Stérilisé"
+                    : "- Stérilisée"
+                  : ""}
+              </p>
+            </div>
+            <div className="pet-title">
+              <p className="age">
+                {new Date().getFullYear() - Number(petInfo.born_at.slice(0, 4))}{" "}
+                ans
+              </p>
+              <p className="weight">{petInfo.weight} kg</p>
+              <p>
+                {`Né${petInfo.gender === "f" ? "e" : ""} le `}
+                {petInfo.born_at.slice(0, 10)}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="pet-second-info">
           <div>
-            <h2>{petInfo.name}</h2>
-            <p>
-              {petInfo.gender === "m" ? "Mâle" : "Femelle"}
-              {petInfo.is_neutered
-                ? petInfo.gender === "mâle"
-                  ? "- Stérilisé"
-                  : "- Stérilisée"
-                : ""}
-            </p>
+            <h3>Espèce</h3>
+            <p>{petInfo.specie}</p>
           </div>
-          <div className="pet-title">
-            <p className="age">
-              {new Date().getFullYear() - Number(petInfo.born_at.slice(0, 4))}{" "}
-              ans
-            </p>
-            <p className="weight">{petInfo.weight} kg</p>
-            <p>
-              {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-              {petInfo.born_at.slice(0, 10)}
-            </p>
+          <div>
+            <h3>Race</h3>
+            <p>{petInfo.breed}</p>
           </div>
+          <div>
+            <h3>Puce électronique</h3>
+            <p>{petInfo.chip_nb}</p>
+          </div>
+          <p>Suivi : Dr. {petInfo.lastname}</p>
         </div>
-      </div>
-      <div className="pet-second-info">
-        <div>
-          <h3>Espèce</h3>
-          <p>{petInfo.specie}</p>
-        </div>
-        <div>
-          <h3>Race</h3>
-          <p>{petInfo.breed}</p>
-        </div>
-        <div>
-          <h3>Puce électronique</h3>
-          <p>{petInfo.chip_nb}</p>
-        </div>
-        <p>Suivi : Dr. {petInfo.lastname}</p>
-      </div>
-    </section>
+      </section>
+      <button type="button" onClick={() => setOpenConsult(true)}>
+        Caca
+      </button>
+      <ConsultDetails
+        consultId={3}
+        open={openConsult}
+        onClose={() => setOpenConsult(false)}
+      />
+    </>
   );
 }
 

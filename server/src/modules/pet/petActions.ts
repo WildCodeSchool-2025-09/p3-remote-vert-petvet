@@ -1,10 +1,10 @@
 import type { NextFunction, Request, Response } from "express";
 import petRepository from "./petRepository";
 
-const browseByPet = async (req: Request, res: Response, next: NextFunction) => {
+const read = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await petRepository.getByPet(id);
+    const pet = await petRepository.get(id);
 
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });
@@ -14,4 +14,4 @@ const browseByPet = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
-export default { browseByPet };
+export default { read };

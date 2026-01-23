@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../assets/styles/variables.css";
 import "../assets/styles/vetConsultations.css";
 import type { VetConsultation } from "../types/Consultation";
@@ -15,6 +16,12 @@ const CategoryIcons: Record<string, string> = {
 function VetConsultations({
   consultations,
 }: { pet: Pet; consultations: VetConsultation[] }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const displayedConsultations = isExpanded
+    ? consultations
+    : consultations.slice(0, 3);
+
   return (
     <section className="vet-consultations-container">
       <article className="vet-consultations-header">
@@ -27,7 +34,7 @@ function VetConsultations({
       <article className="vet-consultations-cards">
         <h1>Consultations</h1>
         <ul>
-          {consultations.map((consultation) => {
+          {displayedConsultations.map((consultation) => {
             const categoryKey =
               consultation.category?.toLowerCase() || "default";
             const iconSrc = CategoryIcons[categoryKey] || CategoryIcons.default;
@@ -54,6 +61,13 @@ function VetConsultations({
             );
           })}
         </ul>
+        <button
+          type="button"
+          className="see-more-button"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? "Voir moins ▲" : "Voir plus ▼"}
+        </button>
       </article>
     </section>
   );

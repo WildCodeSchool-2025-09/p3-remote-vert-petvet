@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for the home page
   },
   {
-    path: "/consultation/add",
+    path: "/consultation/add/:id",
     element: <ConsultForm />,
   },
   // Try adding a new route! For example, "/about" with an About component

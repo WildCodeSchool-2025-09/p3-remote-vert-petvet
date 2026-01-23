@@ -1,13 +1,9 @@
 import express from "express";
+import consultAction from "../database/modules/consult/consultAction";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// Define item-related routes
-
-/* ************************************************************************* */
+router.get("/consult/pet/:id", consultAction.readByConsult);
+//router.post("/consult", consultAction.add);
 
 export default router;

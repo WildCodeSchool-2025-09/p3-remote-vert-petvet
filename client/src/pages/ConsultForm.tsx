@@ -13,6 +13,8 @@ interface CreateConsult {
   dosage: string | null;
   category: Category | null;
   treatment: string | null;
+  petId: number;
+  veterinaryId: number;
 }
 
 type Animal = {
@@ -30,21 +32,33 @@ function ConsultForm() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedAnimal, setSelectedAnimal] = useState<string>("");
+  const [selectedAnimal, setSelectedAnimal] = useState<number | null>(null);
   const [animals, setAnimals] = useState<Animal[]>([]);
-  const { vetId } = useParams<{ vetId: string }>();
+  const { id } = useParams<{ id: string }>();
+  const vetId = Number(id);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!vetId) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/consult/${vetId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/consult/pet/${vetId}`)
       .then((res) => res.json())
-      .then((data) => setAnimals(data))
+      .then((data) => {
+        console.log("API response:", data);
+
+        if (Array.isArray(data)) {
+          setAnimals(data);
+        } else if (data?.id && data?.name) {
+          setAnimals([data]);
+        } else {
+          console.error("Format inattendu:", data);
+          setAnimals([]);
+        }
+      })
       .catch((err) => console.error(err));
   }, [vetId]);
-
+  console.log(animals);
   const createConsult = async (Consult: CreateConsult) => {
     setIsSubmitting(true);
 
@@ -87,6 +101,8 @@ function ConsultForm() {
       dosage: dosage || null,
       category: category || null,
       treatment: treatment || null,
+      petId: selectedAnimal ?? 0,
+      veterinaryId: vetId,
     };
 
     createConsult(newConsult);
@@ -130,16 +146,15 @@ function ConsultForm() {
           </div>
           <div className="animal_name">
             <select
-              value={selectedAnimal}
-              aria-placeholder="animal"
-              onChange={(e) => setSelectedAnimal(e.target.value)}
+              value={selectedAnimal ?? ""}
+              onChange={(e) => setSelectedAnimal(Number(e.target.value))}
             >
               <option value="" disabled hidden>
                 Sélectionne un animal
               </option>
-              {animals.map((animals) => (
-                <option key={animals.id} value={animals.name}>
-                  {animals.name}
+              {animals.map((animal) => (
+                <option key={animal.id} value={animal.id}>
+                  {animal.name}
                 </option>
               ))}
             </select>

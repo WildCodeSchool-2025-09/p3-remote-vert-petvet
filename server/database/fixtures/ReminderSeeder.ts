@@ -31,7 +31,7 @@ class ReminderSeeder extends AbstractSeeder {
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
         pet_id: pet.insertId,
-        refName: `reminder_${i}`,
+        refName: `reminder${i}`,
       };
       console;
       this.insert(fakeReminder);

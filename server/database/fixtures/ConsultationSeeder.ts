@@ -29,7 +29,7 @@ class ConsultationSeeder extends AbstractSeeder {
           "médicale",
         ]),
         pet_id: pet.insertId,
-        veterinaryid: veterinary.insertId,
+        veterinary_id: veterinary.insertId,
         refName: `consultation${i}`,
       };
 

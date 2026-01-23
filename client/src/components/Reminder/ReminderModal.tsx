@@ -1,4 +1,4 @@
-import "../../assets/styles/reminder.css";
+import "../../assets/styles/reminderModal.css";
 import { useEffect, useRef, useState } from "react";
 import croix from "./../../assets/img/marque-de-croix.png";
 
@@ -21,7 +21,11 @@ type ReminderProps = {
   onClose: () => void;
 };
 
-export default function Reminder({ open, onClose, reminderId }: ReminderProps) {
+export default function ReminderModal({
+  open,
+  onClose,
+  reminderId,
+}: ReminderProps) {
   const [reminder, setReminder] = useState<ReminderData | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);

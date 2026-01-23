@@ -3,7 +3,7 @@ import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
 import type { Pet } from "../types/Pet";
 import type { ReminderType } from "../types/Reminder";
-import Reminder from "./Reminder/Reminder";
+import ReminderModal from "./Reminder/ReminderModal";
 
 function RemindersByPet({
   pet,
@@ -30,7 +30,7 @@ function RemindersByPet({
         ))}
       </ul>
       {openReminderId !== null && (
-        <Reminder
+        <ReminderModal
           reminderId={openReminderId}
           open={true}
           onClose={() => setOpenReminderId(null)}

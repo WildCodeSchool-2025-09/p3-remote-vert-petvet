@@ -20,7 +20,6 @@ const readByConsult: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    console.log(req.body);
     if (!req.body.title || typeof req.body.title !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
     }
@@ -56,7 +55,7 @@ const add: RequestHandler = async (req, res, next) => {
       veterinaryId: req.body.veterinaryId,
       petId: req.body.petId,
     };
-
+    console.log(newConsult);
     const newConsultId = consultRepository.insertConsult(newConsult);
 
     res.status(StatusCodes.CREATED).json({ newConsultId });

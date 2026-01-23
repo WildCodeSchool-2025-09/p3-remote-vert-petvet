@@ -4,7 +4,7 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/consultForm.css";
 
-type Category = "vaccination" | "urgence" | "suivi" | "opération" | "médicale";
+type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
 
 interface CreateConsult {
   title: string;
@@ -59,17 +59,20 @@ function ConsultForm() {
       .catch((err) => console.error(err));
   }, [vetId]);
 
-  const createConsult = async (Consult: CreateConsult) => {
+  const createConsult = async (consult: CreateConsult) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/consult`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/consult/${selectedAnimal}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(consult),
         },
-        body: JSON.stringify(Consult),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Erreur lors de la création de la consultation");
@@ -128,8 +131,8 @@ function ConsultForm() {
               <option value="vaccination">vaccination</option>
               <option value="urgence">urgence</option>
               <option value="suivi">suivi</option>
-              <option value="opération">opération</option>
-              <option value="médicale">médicale</option>
+              <option value="operation">opération</option>
+              <option value="medicale">médicale</option>
             </select>
           </div>
           <div className="date">

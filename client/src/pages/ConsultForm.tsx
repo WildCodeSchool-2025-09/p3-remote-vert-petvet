@@ -58,7 +58,7 @@ function ConsultForm() {
       })
       .catch((err) => console.error(err));
   }, [vetId]);
-  console.log(animals);
+
   const createConsult = async (Consult: CreateConsult) => {
     setIsSubmitting(true);
 

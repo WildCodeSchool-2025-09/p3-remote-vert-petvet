@@ -1,8 +1,8 @@
 import type { Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
-class PetRepository {
-  async read(petId: number): Promise<Rows[0]> {
+class petRepository {
+  async getByPet(petId: number): Promise<Rows[0]> {
     const [pet] = await databaseClient.query<Rows>(
       `SELECT pet.*, veterinary.lastname
      FROM pet
@@ -15,4 +15,4 @@ class PetRepository {
   }
 }
 
-export default new PetRepository();
+export default new petRepository();

@@ -1,8 +1,10 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
+import "../assets/styles/healthRecord.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import RemindersByPet from "../components/RemindersByPet";
 import VetConsultations from "../components/VetConsultations";
 import type { VetConsultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
@@ -10,7 +12,8 @@ import type { Pet } from "../types/Pet";
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [consultations, setConsultations] = useState<VetConsultation[]>([]);
-  const [error, setError] = useState();
+  const [error, setError] = useState<string>();
+  const [reminders, setReminders] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function HealthRecord() {
         } else {
           setPetInfo(petData.pet);
           setConsultations(petData.consultations);
+          setReminders(petData.reminders);
         }
       });
   }, [id]);
@@ -83,7 +87,10 @@ function HealthRecord() {
       </section>
 
       <section className="vet-consultations-section">
-        <VetConsultations pet={petInfo} consultations={consultations} />
+        <VetConsultations consultations={consultations} pet={petInfo} />
+      </section>
+      <section className="pet-reminder">
+        <RemindersByPet reminders={reminders} pet={petInfo} />
       </section>
     </div>
   );

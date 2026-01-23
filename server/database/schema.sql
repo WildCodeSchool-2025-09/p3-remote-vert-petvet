@@ -25,7 +25,8 @@ CREATE TABLE pet (
   tattoo_nb VARCHAR(10) NULL,
   chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
-  specie VARCHAR(15) NOT NULL,
+  gender ENUM("m","f"),
+  specie ENUM("chien","chat","lapin"),
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
@@ -40,11 +41,11 @@ CREATE TABLE reminder (
   programmed_at DATETIME NOT NULL,
   content VARCHAR(100) NOT NULL,
   dosage VARCHAR(30) DEFAULT NULL,
-  frequency ENUM('jour', 'semaine', 'mois', 'an') DEFAULT NULL,
-  frequency_count INT DEFAULT 1,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
-  owner_id INT NOT NULL
+  owner_id INT NOT NULL,
+  frequency ENUM('jour', 'semaine', 'mois', 'an'),
+  frequency_count INT DEFAULT 1
 );
 
 

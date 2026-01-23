@@ -1,0 +1,75 @@
+.reminder-container {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin: 1.25rem auto;
+  max-width: 300px;
+}
+.reminder-container h1 {
+  color: var(--text-color);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+.reminder-container h2 {
+  color: var(--owner-color);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.reminder-container img {
+  width: 40px;
+  height: 40px;
+}
+.reminder-container .button-reminder {
+  width: 100%;
+  border: none;
+  padding: 0.625rem;
+  background-color: var(--main-color);
+  border-radius: 50px;
+  margin-bottom: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.reminder-container .button-reminder h3 {
+  margin: 0;
+  font-family: var(--font-text);
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+.reminder-container .button-reminder p {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+.reminder-container .button-reminder:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.reminder-container .add-reminder-button {
+  width: 7rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--owner-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin: 1.25rem auto 0 auto;
+}
+.reminder-container .add-reminder-button img {
+  width: 15px;
+  height: 15px;
+}
+.reminder-container .add-reminder-button:hover {
+  background-color: #95a878;
+  cursor: pointer;
+}

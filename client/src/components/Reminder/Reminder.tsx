@@ -27,7 +27,7 @@ export default function Reminder({ open, onClose, reminderId }: ReminderProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!open || !reminderId) return;
+    if (!open || !reminderId == null) return;
 
     fetch(`${import.meta.env.VITE_API_URL}/reminder/${reminderId}`)
       .then((res) => res.json())
@@ -61,7 +61,14 @@ export default function Reminder({ open, onClose, reminderId }: ReminderProps) {
       <div className="reminder" ref={modalRef}>
         {reminder ? (
           <>
-            <button type="button" className="button_close" onClick={onClose}>
+            <button
+              type="button"
+              className="button_close"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+            >
               <img
                 src={croix}
                 alt="croix de fermeture"

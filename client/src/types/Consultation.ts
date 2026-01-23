@@ -3,4 +3,5 @@ export interface VetConsultation {
   created_at: string;
   title: string;
   petName: string;
+  category: string;
 }

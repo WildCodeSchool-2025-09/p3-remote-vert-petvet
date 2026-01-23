@@ -4,6 +4,7 @@
   align-items: flex-start;
   padding: 20px;
   gap: 20px;
+  background-color: var(--main-color);
 }
 .pet-card {
   width: 100%;
@@ -12,6 +13,7 @@
 .pet-reminder {
   width: 100%;
   max-width: 500px;
-  align-items: right;
+  display: flex;
+  align-items: flex-end;
   margin-left: auto;
 }

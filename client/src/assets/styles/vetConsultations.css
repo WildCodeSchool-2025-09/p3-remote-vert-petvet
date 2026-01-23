@@ -1,70 +1,107 @@
 .vet-consultations-container {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.vet-consultations-container .add-consultation-button {
+  width: 15rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--vet-color);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin: 1.25rem 0 0 0;
+  font-size: 0.75rem;
+  color: #ffffff;
+  font-family: var(--font-text);
+}
+.vet-consultations-container
+  .vet-consultations-header
+  .add-consultation-button
+  img {
+  width: 15px;
+  height: 15px;
+}
+.vet-consultations-container
+  .vet-consultations-header
+  .add-consultation-button:hover {
+  background-color: #6fa0dd;
+  cursor: pointer;
+}
+
+.vet-consultations-container .vet-consultations-cards {
   background-color: #ffffff;
   padding: 1.25rem;
   border-radius: 10px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   margin: 1.25rem auto;
-  max-width: 300px;
+  width: 100%;
 }
-.vet-consultations-container h1 {
+.vet-consultations-container .vet-consultations-cards h1 {
   color: var(--text-color);
   margin-bottom: 1.25rem;
   font-family: var(--font-logo);
   font-weight: 700;
   font-size: 1.75rem;
 }
-/*.vet-consultations-container img {
+.vet-consultations-container .vet-consultations-cards img {
   width: 40px;
   height: 40px;
-}*/
-.vet-consultations-container button {
+}
+.vet-consultations-container .vet-consultations-cards .consultation-item {
   width: 100%;
   border: none;
-  padding: 0.625rem;
+  padding: 1rem;
   background-color: var(--main-color);
   border-radius: 50px;
-  margin-bottom: 0.625rem;
+  margin-bottom: 1rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
+  justify-content: space-around;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
-/*.vet-consultations-container button h3 {
+.vet-consultations-container
+  .vet-consultations-cards
+  .consultation-item
+  .consultation-details {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
+}
+.vet-consultations-container .vet-consultations-cards .consultation-item:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.vet-consultations-container .vet-consultations-cards .consultation-item h3 {
   margin: 0;
   font-family: var(--font-text);
   font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color);
-}*/
-.vet-consultations-container button p {
+}
+.vet-consultations-container .vet-consultations-cards .consultation-details p {
   margin: 0;
   font-family: var(--font-text);
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-color);
 }
-.vet-consultations-container button:hover {
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
-.vet-consultations-container .add-reminder-button {
-  width: 7rem;
-  height: 2rem;
-  border: none;
-  background-color: var(--owner-color);
-  border-radius: 10px;
+.vet-consultations-container .vet-consultations-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  margin: 1.25rem auto 0 auto;
-  color: #ffffff;
-  font-family: var(--font-text);
-}
-.vet-consultations-container .add-reminder-button img {
-  width: 15px;
-  height: 15px;
-}
-.vet-consultations-container .add-reminder-button:hover {
-  background-color: #95a878;
-  cursor: pointer;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: flex-end;
 }

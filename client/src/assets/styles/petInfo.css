@@ -1,3 +1,9 @@
+.medical-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .pet-card {
   margin: auto;
   width: 800px;
@@ -77,4 +83,59 @@
 
 img {
   border-radius: 50%;
+}
+
+.resume {
+  display: flex;
+}
+
+.short-medical-history {
+  border: solid blue 2px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  h2 {
+    color: var(--text-color);
+    font-family: var(--font-logo);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    color: var(--vet-color);
+    font-family: var(--font-text);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .consultation-list {
+    display: flex;
+    flex-direction: column;
+    border: solid green 2px;
+  }
+
+  .consultation-card {
+    display: flex;
+    border: solid purple 2px;
+    h3 {
+      display: none;
+    }
+    p {
+      display: none;
+    }
+    .created-date {
+      display: block;
+    }
+  }
+}
+
+.reminders-blanck {
+  border: solid red 2px;
+  width: 40%;
+}
+
+.none {
+  display: none;
 }

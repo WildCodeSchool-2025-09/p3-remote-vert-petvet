@@ -1,0 +1,78 @@
+.consultation-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+
+.consultation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 30px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  width: 400px;
+  height: auto;
+  gap: 30px;
+  border-radius: 10px;
+  font-family: var(--font-text);
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+  }
+
+  button {
+    font-family: var(--font-title);
+  }
+}
+
+.consultation-first-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  h1 {
+    font-family: var(--font-title);
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+  }
+}
+
+.consultation-second-info {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    color: white;
+    border: none;
+    background-color: var(--vet-color);
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+  }
+}
+
+.medical-info {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: stretch;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      max-width: 200px;
+    }
+  }
+}

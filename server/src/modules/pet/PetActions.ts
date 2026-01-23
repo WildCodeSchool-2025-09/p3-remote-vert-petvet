@@ -10,7 +10,7 @@ const read = async (req: Request, res: Response, next: NextFunction) => {
       await consultationRepository.findConsultationsByPetId(id);
 
     if (!pet) {
-      res.status(400).json({ error: "Pas de compagnons sur cette page !" });
+      res.status(400).json({ error: "Pas de compagnon sur cette page !" });
     }
     res.status(200).json({ pet, consultations });
   } catch (error) {

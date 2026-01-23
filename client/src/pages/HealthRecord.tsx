@@ -4,21 +4,25 @@ import "../assets/styles/petInfo.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import VetConsultations from "../components/VetConsultations";
+import type { VetConsultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
+  const [consultations, setConsultations] = useState<VetConsultation[]>([]);
   const [error, setError] = useState();
   const { id } = useParams();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/pet/${id}`)
+
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {
           setError(petData.error);
         } else {
           setPetInfo(petData.pet);
+          setConsultations(petData.consultations);
         }
       });
   }, [id]);
@@ -79,7 +83,7 @@ function HealthRecord() {
       </section>
 
       <section className="vet-consultations-section">
-        <VetConsultations pet={petInfo} />
+        <VetConsultations pet={petInfo} consultations={consultations} />
       </section>
     </div>
   );

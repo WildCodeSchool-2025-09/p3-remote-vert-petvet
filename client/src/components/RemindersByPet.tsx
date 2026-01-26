@@ -2,17 +2,15 @@ import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import calendar from "../../public/images/green/calendar.png";
-import whiteCross from "../../public/images/white-cross.png";
 import type { Pet } from "../types/Pet";
-import type { ReminderType } from "../types/Reminder";
-import ReminderModal from "./ReminderModal";
+import type { Reminder } from "../types/Reminder";
+import ReminderDetails from "./ReminderDetails";
 
 function RemindersByPet({
   pet,
   reminders,
-}: { pet: Pet; reminders: ReminderType[] }) {
-  const [openReminderId, setOpenReminderId] = useState<number | null>(null);
+}: { pet: Pet; reminders: Reminder[] }) {
+  const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
 
   const navigate = useNavigate();
 
@@ -27,29 +25,32 @@ function RemindersByPet({
             type="button"
             className="button-reminder"
             key={reminder.id}
-            onClick={() => setOpenReminderId(reminder.id)}
+            onClick={() => setCurrentReminder(reminder)}
           >
-            <img src={calendar} alt="Reminder Icon" />
+            <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
             <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
           </button>
         ))}
       </ul>
-      {openReminderId !== null && (
-        <ReminderModal
-          reminderId={openReminderId}
-          open={true}
-          onClose={() => setOpenReminderId(null)}
+
+      {currentReminder && (
+        <ReminderDetails
+          reminderId={currentReminder.id}
+          reminder={currentReminder}
+          onClose={() => setCurrentReminder(null)}
         />
       )}
+
       <button
         type="button"
         className="add-reminder-button"
         onClick={() => navigate(`/pet-profile/${pet.id}/reminders/new`)}
       >
-        <img src={whiteCross} alt="Add Reminder Icon" />
+        <img src="/images/plus-blanc.png" alt="Add Reminder Icon" />
       </button>
     </section>
   );
 }
+
 export default RemindersByPet;

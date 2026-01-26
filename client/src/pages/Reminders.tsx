@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/reminders.css";
 import "../assets/styles/variables.css";
-import ReminderModal from "../components/ReminderModal";
+import ReminderDetails from "../components/ReminderDetails";
 import type { Reminder } from "../types/Reminder";
 
 function Reminders() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
-  const [openReminderId, setOpenReminderId] = useState<number | null>(null);
+  const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders/`)
@@ -17,19 +17,21 @@ function Reminders() {
   return (
     <section className="all-reminders">
       <h1>Mes rappels</h1>
-      {openReminderId !== null && (
-        <ReminderModal
-          reminderId={openReminderId}
-          open={true}
-          onClose={() => setOpenReminderId(null)}
+
+      {currentReminder && (
+        <ReminderDetails
+          reminderId={currentReminder.id}
+          reminder={currentReminder}
+          onClose={() => setCurrentReminder(null)}
         />
       )}
+
       {reminders.map((reminder) => (
         <button
           type="button"
           className="button-reminder reminder-card"
           key={reminder.id}
-          onClick={() => setOpenReminderId(reminder.id)}
+          onClick={() => setCurrentReminder(reminder)}
         >
           <img src={reminder.photo} alt="Profil" className="reminder-img" />
           <div>

@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
 import reminderRepository from "../reminder/reminderRepository";
-import PetRepository from "./petRepository";
+import petRepository from "./petRepository";
 
 const browseByPet = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await PetRepository.getByPet(id);
+    const pet = await petRepository.getByPet(id);
     const reminders = await reminderRepository.getByPet(id);
 
     if (!pet) {

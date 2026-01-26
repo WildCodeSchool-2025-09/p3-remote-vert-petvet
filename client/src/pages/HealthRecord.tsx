@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import RemindersByPet from "../components/ReminderByPet";
+import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";

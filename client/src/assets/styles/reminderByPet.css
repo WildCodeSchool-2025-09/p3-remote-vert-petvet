@@ -27,7 +27,7 @@
 .reminder-container .button-reminder {
   width: 100%;
   border: none;
-  padding: 1rem;
+  padding: 0.625rem;
   background-color: var(--main-color);
   border-radius: 50px;
   margin-bottom: 0.625rem;
@@ -35,7 +35,6 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  gap: 1.5rem;
 }
 .reminder-container .button-reminder h3 {
   margin: 0;

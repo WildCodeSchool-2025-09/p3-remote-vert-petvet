@@ -14,7 +14,7 @@ class VeterinarySeeder extends AbstractSeeder {
         password: this.faker.internet.password(),
         city: this.faker.location.city(),
         phone: this.faker.phone.number(),
-        order_nb: this.faker.number.int({ max: 5 }),
+        order_nb: this.faker.number.int({ min: 1000, max: 99999 }),
         refName: `veterinary_${i}`,
       };
 

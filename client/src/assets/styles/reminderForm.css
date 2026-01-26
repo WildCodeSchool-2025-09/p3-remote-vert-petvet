@@ -47,7 +47,7 @@ p {
   padding: 20px;
 }
 
-.content-cotainer {
+.content-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -79,7 +79,7 @@ input {
   color: var(--text-color);
   padding: 10px;
   font-size: 1.1rem;
-  background-color: lightgrey;
+  background-color: #e7e7e7;
   border-radius: 10px;
   border: none;
 }
@@ -95,7 +95,7 @@ select {
   color: var(--text-color);
   padding: 10px;
   font-size: 1.1rem;
-  background-color: lightgrey;
+  background-color: #e7e7e7;
   border-radius: 10px;
   border: none;
   cursor: pointer;

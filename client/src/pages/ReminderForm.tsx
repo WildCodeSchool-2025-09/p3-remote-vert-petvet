@@ -1,19 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderForm.css";
-
-type Frequency = "jour" | "semaine" | "mois" | "an";
-
-interface CreateReminder {
-  title: string;
-  programmedAt: string;
-  content: string;
-  dosage: string | null;
-  frequency: Frequency | null;
-  frequencyCount: number | null;
-}
+import type { CreateReminder, Frequency } from "../types/Reminder";
 
 function ReminderForm() {
   const [title, setTitle] = useState("");
@@ -27,18 +17,22 @@ function ReminderForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const createReminder = async (reminder: CreateReminder) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/reminder`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/pet/${id}/reminders`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reminder),
         },
-        body: JSON.stringify(reminder),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Erreur lors de la création du rappel");
@@ -47,7 +41,7 @@ function ReminderForm() {
       setSuccessMessage("Rappel créé avec succès !");
 
       setTimeout(() => {
-        navigate("/");
+        navigate(`/pet-profile/${id}`);
       }, 2000);
     } catch (error: unknown) {
       setErrorMessage(
@@ -70,6 +64,7 @@ function ReminderForm() {
       dosage: dosage || null,
       frequency: frequency || null,
       frequencyCount: frequencyCount || null,
+      petId: Number(id),
     };
 
     createReminder(newReminder);
@@ -105,7 +100,7 @@ function ReminderForm() {
               />
             </label>
           </div>
-          <div className="content-cotainer">
+          <div className="content-container">
             <label>
               Description <span className="obligatory">*</span>
               <input

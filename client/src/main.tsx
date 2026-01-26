@@ -1,18 +1,6 @@
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router";
-import App from "./App";
-import ReminderForm from "./pages/ReminderForm";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/reminder/add",
-    element: <ReminderForm />,
-  },
-]);
+import { RouterProvider } from "react-router";
+import router from "./Router";
 
 const rootElement = document.getElementById("root");
 if (rootElement == null) {

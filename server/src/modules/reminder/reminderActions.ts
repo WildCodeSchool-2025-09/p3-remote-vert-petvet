@@ -2,6 +2,37 @@ import type { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
 import reminderRepository from "./reminderRepository";
 
+const browseByOwner: RequestHandler = async (req, res, next) => {
+  try {
+    const id = 3;
+    const reminder = await reminderRepository.getByOwner(Number(id));
+
+    if (!reminder) {
+      res.status(404).json({ message: "Il n'y a aucuns rappels !" });
+    } else {
+      res.json(reminder);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const browseByPet: RequestHandler = async (req, res, next) => {
+  try {
+    const petId = Number(req.params.petId);
+    const reminders = await reminderRepository.getByPet(petId);
+
+    if (!reminders || reminders.length === 0) {
+      res.status(404).json({
+        message: "Nous n'avons pas trouvé de rappels pour cet animal.",
+      });
+    }
+    res.status(200).json(reminders);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     if (!req.body.title || typeof req.body.title !== "string") {
@@ -33,7 +64,7 @@ const add: RequestHandler = async (req, res, next) => {
       frequency: req.body.frequency,
       frequencyCount: req.body.frequencyCount,
       veterinaryId: 1,
-      petId: 2,
+      petId: req.body.petId,
       ownerId: 1,
     };
 
@@ -45,4 +76,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+export default { browseByOwner, browseByPet, add };

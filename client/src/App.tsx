@@ -1,5 +1,4 @@
-import "./App.css";
-import HealthRecord from "./components/HealthRecord";
+import HealthRecord from "./pages/HealthRecord";
 
 function App() {
   return <HealthRecord />;

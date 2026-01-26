@@ -25,7 +25,8 @@ CREATE TABLE pet (
   tattoo_nb VARCHAR(10) NULL,
   chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
-  specie VARCHAR(15) NOT NULL,
+  gender ENUM("m","f"),
+  specie ENUM("chien","chat","lapin"),
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
@@ -46,7 +47,6 @@ CREATE TABLE reminder (
   pet_id INT NOT NULL,
   owner_id INT NOT NULL
 );
-
 
 CREATE TABLE consultation (
   date DATETIME,

@@ -1,15 +1,18 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
+import "../assets/styles/healthRecord.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ConsultDetails from "../components/ConsultDetails";
+import RemindersByPet from "../components/RemindersByPet";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState();
   const [openConsult, setOpenConsult] = useState(false);
+  const [reminders, setReminders] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,7 +22,8 @@ function HealthRecord() {
         if (petData.error) {
           setError(petData.error);
         } else {
-          setPetInfo(petData);
+          setPetInfo(petData.pet);
+          setReminders(petData.reminders);
         }
       });
   }, [id]);
@@ -27,7 +31,7 @@ function HealthRecord() {
   if (!petInfo) return <p>{error}</p>;
 
   return (
-    <>
+    <div className="health-record-page">
       <section className="pet-card">
         <div className="pet-first-info">
           <img
@@ -50,13 +54,14 @@ function HealthRecord() {
             </div>
             <div className="pet-title">
               <p className="age">
-                {new Date().getFullYear() - Number(petInfo.born_at.slice(0, 4))}{" "}
+                {new Date().getFullYear() -
+                  new Date(petInfo.born_at).getFullYear()}{" "}
                 ans
               </p>
               <p className="weight">{petInfo.weight} kg</p>
               <p>
                 {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                {petInfo.born_at.slice(0, 10)}
+                {new Date(petInfo.born_at).toLocaleDateString()}
               </p>
             </div>
           </div>
@@ -77,6 +82,10 @@ function HealthRecord() {
           <p>Suivi : Dr. {petInfo.lastname}</p>
         </div>
       </section>
+
+      <section className="pet-reminder">
+        <RemindersByPet reminders={reminders} pet={petInfo} />
+      </section>
       <button type="button" onClick={() => setOpenConsult(true)}>
         Caca
       </button>
@@ -85,7 +94,7 @@ function HealthRecord() {
         open={openConsult}
         onClose={() => setOpenConsult(false)}
       />
-    </>
+    </div>
   );
 }
 

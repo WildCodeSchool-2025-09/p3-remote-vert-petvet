@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/styles/consultDetails.css";
-import croix from "../assets/img/marque-de-croix.png";
+import croix from "../../public/images/marque-de-croix.png";
 import type { ConsultData } from "../types/Consult";
 
 type ConsultProps = {

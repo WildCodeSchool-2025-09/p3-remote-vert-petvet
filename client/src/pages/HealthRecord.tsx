@@ -96,6 +96,7 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(false);
               }}
+              className={openResume ? "selected-section" : ""}
             >
               Résumé
             </button>
@@ -106,6 +107,7 @@ function HealthRecord() {
                 setOpenHealth(true);
                 setOpenMedicalHistory(false);
               }}
+              className={openHealth ? "selected-section" : ""}
             >
               Santé
             </button>
@@ -116,6 +118,7 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(true);
               }}
+              className={openMedicalHistory ? "selected-section" : ""}
             >
               Historique
             </button>

@@ -1,7 +1,7 @@
 .medical-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 .pet-card {
@@ -90,11 +90,15 @@ img {
 }
 
 .short-medical-history {
-  border: solid blue 2px;
-  width: 80%;
+  /*border: solid blue 2px;*/
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  padding: 3rem;
+  margin: 0 3rem 3rem 3rem;
+  border-radius: 20px;
+  gap: 2rem;
 
   h2 {
     color: var(--text-color);
@@ -113,12 +117,15 @@ img {
   .consultation-list {
     display: flex;
     flex-direction: column;
-    border: solid green 2px;
+    /*border: solid green 2px;*/
   }
 
   .consultation-card {
     display: flex;
-    border: solid purple 2px;
+    gap: 0;
+    border-radius: 50px;
+    background-color: rgba(253, 244, 234, 0.6);
+    /*border: solid purple 2px;*/
     h3 {
       display: none;
     }
@@ -128,14 +135,49 @@ img {
     .created-date {
       display: block;
     }
+
+    button {
+      display: none;
+    }
+    .consultation-first-info div {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
   }
 }
 
 .reminders-blanck {
-  border: solid red 2px;
+  /*border: solid red 2px;*/
   width: 40%;
 }
 
 .none {
   display: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+  margin: 4rem;
+
+  button:not(.selected-section) {
+    height: 2rem;
+    width: 5rem;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    color: var(--font-text);
+  }
+}
+
+.selected-section {
+  height: 2rem;
+  width: 5rem;
+  background-color: var(--owner-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
 }

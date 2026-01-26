@@ -5,7 +5,7 @@ class consultationRepository {
   async getByConsultation(consultationId: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT consultation.*,
-        pet.name
+        pet.name AS pet_name
         FROM consultation 
         JOIN pet ON consultation.pet_id = pet.id 
         WHERE consultation.id = ?`,

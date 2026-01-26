@@ -21,7 +21,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
       dialogRef.current?.close();
     };
   }, []);
-  console.log(reminder);
+
   return (
     <dialog
       ref={dialogRef}

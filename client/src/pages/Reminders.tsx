@@ -14,8 +14,6 @@ function Reminders() {
       .then((reminders) => setReminders(reminders));
   }, []);
 
-  console.log({ reminders });
-
   return (
     <section className="all-reminders">
       <h1>Mes rappels</h1>

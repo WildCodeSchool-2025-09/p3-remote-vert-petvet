@@ -1,4 +1,6 @@
+import "../assets/styles/reset.css";
 import "../assets/styles/homePage.css";
+
 function HomePage() {
   return (
     <>
@@ -46,20 +48,25 @@ function HomePage() {
             Pet&Vet : avec vous pour vous accompagner dans le suivis de vos
             animaux
           </h1>
-          <h2>Le carnet de santé numérique Pour tous les animaux</h2>
-          <p>
-            Le premier carnet de santé numérique pour tous les animaux de
-            compagnie, entièrement gratuit et disponible sur smartphone.
-          </p>
-          <span>
-            Attention: l'utilisation de ce site ne remplace pas l'avis d'un
-            vétérinaire.
-          </span>
-          <img
-            src="/images/dog-cat.jpg"
-            alt="Chien et chat assis"
-            width="300"
-          />
+          <div className="intro-section">
+            <div className="intro-text">
+              <h2>Le carnet de santé numérique Pour tous les animaux</h2>
+              <p>
+                Le premier carnet de santé numérique pour tous les animaux de
+                compagnie, entièrement gratuit et disponible sur smartphone.
+              </p>
+              <span>
+                Attention: l'utilisation de ce site ne remplace pas l'avis d'un
+                vétérinaire.
+              </span>
+            </div>
+
+            <img
+              src="/images/dog-cat.jpg"
+              alt="Chien et chat assis"
+              width="500px"
+            />
+          </div>
         </section>
         <section className="individuals">
           <h1>Particuliers et passionnés</h1>
@@ -80,7 +87,7 @@ function HomePage() {
           <img
             src="/images/cat-hand.jpg"
             alt="Chat qui tape dans la main"
-            width="300"
+            width="300px"
           />
         </section>
 

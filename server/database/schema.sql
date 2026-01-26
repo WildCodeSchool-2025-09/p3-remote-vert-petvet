@@ -58,5 +58,5 @@ CREATE TABLE consultation (
   dosage TEXT DEFAULT NULL,
   category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
   pet_id INT NOT NULL,
-  veterinary_id INT NOT NULL
+  veterinary_id INT NOT NULl
 );

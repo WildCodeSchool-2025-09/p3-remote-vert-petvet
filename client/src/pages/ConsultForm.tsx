@@ -134,7 +134,7 @@ function ConsultForm() {
               onChange={(e) => setCategory(e.target.value as Category)}
             >
               <option value="" disabled hidden>
-                Select a category <span className="obligatory">*</span>
+                Select a category
               </option>
               <option value="vaccination">vaccination</option>
               <option value="urgence">urgence</option>
@@ -155,7 +155,7 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="animal_name">
+          <div className="animal-name">
             <select
               value={selectedAnimal ?? ""}
               onChange={(e) => setSelectedAnimal(Number(e.target.value))}
@@ -178,7 +178,7 @@ function ConsultForm() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="title_input"
+                className="title-input"
               />
             </label>
           </div>
@@ -201,7 +201,7 @@ function ConsultForm() {
                 value={treatment}
                 placeholder="traitement"
                 onChange={(e) => setTreatment(String(e.target.value))}
-                className="treatment_input"
+                className="treatment-input"
               />
             </label>
           </div>
@@ -213,7 +213,7 @@ function ConsultForm() {
                 value={dosage}
                 placeholder="posologie"
                 onChange={(e) => setDosage(e.target.value)}
-                className="dosage_input"
+                className="dosage-input"
               />
             </label>
           </div>
@@ -221,7 +221,7 @@ function ConsultForm() {
             <p className="obligatory">* Champs obligatoires</p>
             <button
               type="submit"
-              className="send_button"
+              className="send-button"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Création..." : "Créer une consultation"}

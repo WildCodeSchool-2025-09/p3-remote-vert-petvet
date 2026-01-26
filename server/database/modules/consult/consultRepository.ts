@@ -25,6 +25,7 @@ class ConsultRepository {
   }
 
   async insertConsult(consult: Omit<consult, "id">) {
+    console.log(consult);
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO consultation (title, created_at, report, treatment, dosage, category, pet_id, veterinary_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [

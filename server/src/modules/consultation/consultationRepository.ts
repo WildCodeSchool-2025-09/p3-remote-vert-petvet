@@ -1,7 +1,7 @@
 import type { Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
-class consultationepository {
+class consultationRepository {
   async findConsultationsByPetId(petId: number): Promise<Rows> {
     const [consultations] = await databaseClient.query<Rows>(
       `SELECT consultation.*
@@ -16,4 +16,4 @@ class consultationepository {
   }
 }
 
-export default new consultationepository();
+export default new consultationRepository();

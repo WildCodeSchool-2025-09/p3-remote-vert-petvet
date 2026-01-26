@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import MedicalHistory from "../components/MedicalHistory";
 import type { Consultation } from "../types/Consult";
+import "../assets/styles/healthRecord.css";
+import RemindersByPet from "../components/RemindersByPet";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState();
+  const [reminders, setReminders] = useState([]);
   const { id } = useParams();
   const [openResume, setOpenResume] = useState(true);
   const [openHealth, setOpenHealth] = useState(false);
@@ -25,12 +28,13 @@ function HealthRecord() {
           setError(petData.error);
         } else {
           setPetInfo(petData.pet);
-          setConsultations(petData.consultations);
+          setConsultations(petData.consultations ?? []);
+          setReminders(petData.reminders);
         }
       });
   }, [id]);
 
-  const fewConsultations = consultations.slice(0, 3);
+  const fewConsultations = consultations.slice(0, 3) ?? [];
 
   if (!petInfo) return <p>{error}</p>;
 
@@ -137,11 +141,8 @@ function HealthRecord() {
               </div>
               <MedicalHistory consultations={fewConsultations} />
             </article>
-            <article className="reminders-blanck">
-              <div>
-                <h2>Rappels</h2>
-                <h3>Les rappels de {petInfo.name}</h3>
-              </div>
+            <article className="pet-reminder">
+              <RemindersByPet reminders={reminders} pet={petInfo} />
             </article>
           </div>
           <div

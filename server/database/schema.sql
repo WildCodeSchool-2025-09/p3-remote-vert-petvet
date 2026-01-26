@@ -41,10 +41,11 @@ CREATE TABLE reminder (
   programmed_at DATETIME NOT NULL,
   content VARCHAR(100) NOT NULL,
   dosage VARCHAR(30) DEFAULT NULL,
-  owner_id INT NOT NULL,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
-  frequency ENUM('jour', 'semaine', 'mois', 'an')
+  owner_id INT NOT NULL,
+  frequency ENUM('jour', 'semaine', 'mois', 'an'),
+  frequency_count INT DEFAULT 1
 );
 
 CREATE TABLE consultation (

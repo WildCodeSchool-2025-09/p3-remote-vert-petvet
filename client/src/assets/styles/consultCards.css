@@ -54,7 +54,7 @@
   button {
     color: white;
     border: none;
-    background-color: var(--vet-color);
+    background-color: var(--owner-color);
     font-size: 1rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-radius: 10px;

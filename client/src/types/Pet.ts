@@ -1,3 +1,5 @@
+import type { Reminder } from "./Reminder";
+
 export interface Pet {
   id: number;
   name: string;
@@ -13,4 +15,5 @@ export interface Pet {
   owner_id: number;
   veterinary_id: number;
   lastname: string;
+  reminders: Reminder[];
 }

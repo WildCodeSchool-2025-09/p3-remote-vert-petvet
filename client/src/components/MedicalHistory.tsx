@@ -5,7 +5,7 @@ type MedicProps = {
 };
 
 function MedicalHistory({ consultations }: MedicProps) {
-  if (consultations.length === 0)
+  if (!consultations || consultations.length === 0)
     return <p>Pas de consultation pour ce doudou !</p>;
 
   return (
@@ -29,17 +29,21 @@ function MedicalHistory({ consultations }: MedicProps) {
               <div>
                 <h3>Traitement(s)</h3>
                 <p>
-                  {consultation.treatment.length >= 20
-                    ? `${consultation.treatment.slice(0, 20)} ...`
-                    : consultation.treatment}
+                  {consultation.treatment
+                    ? consultation.treatment.length >= 20
+                      ? `${consultation.treatment.slice(0, 20)} ...`
+                      : consultation.treatment
+                    : "Aucun traitement"}
                 </p>
               </div>
               <div>
                 <h3>Posologie(s)</h3>
                 <p>
-                  {consultation.dosage.length >= 20
-                    ? `${consultation.dosage.slice(0, 20)} ...`
-                    : consultation.dosage}
+                  {consultation.dosage
+                    ? consultation.dosage.length >= 20
+                      ? `${consultation.dosage.slice(0, 20)} ...`
+                      : consultation.dosage
+                    : "Aucune posologie"}
                 </p>
               </div>
             </div>

@@ -1,7 +1,8 @@
-import "./App.css";
+import HealthRecord from "./pages/HealthRecord";
+import "./assets/styles/reset.css";
 
 function App() {
-  return <h1>Titre</h1>;
+  return <HealthRecord />;
 }
 
 export default App;

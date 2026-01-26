@@ -25,7 +25,8 @@ CREATE TABLE pet (
   tattoo_nb VARCHAR(10) NULL,
   chip_nb INT(11) NULL,
   born_at DATETIME NOT NULL,
-  specie VARCHAR(15) NOT NULL,
+  gender ENUM("m","f"),
+  specie ENUM("chien","chat","lapin"),
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
@@ -49,11 +50,13 @@ CREATE TABLE reminder (
 
 
 CREATE TABLE consultation (
-  date DATETIME,
-  report TEXT,
-  is_vaccinated BOOLEAN DEFAULT FALSE,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(50) NOT NULL,
+  created_at DATETIME NOT NULL,
+  report TEXT NOT NULL,
+  treatment TEXT DEFAULT NULL,
+  dosage TEXT DEFAULT NULL,
   category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
   pet_id INT NOT NULL,
-  veterinary_id INT NOT NULL,
-  PRIMARY KEY (pet_id, veterinary_id)
+  veterinary_id INT NOT NULL
 );

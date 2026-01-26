@@ -34,6 +34,28 @@ class reminderRepository {
 
     return result.insertId;
   }
+
+  async getByPet(petId: number) {
+    const [petReminders] = await databaseClient.query(
+      `SELECT reminder.*, pet.name as petName 
+    	FROM reminder 
+    	JOIN pet ON reminder.pet_id = pet.id 
+    	WHERE reminder.pet_id = ? 
+     	ORDER BY reminder.programmed_at ASC`,
+      [petId],
+    );
+
+    return petReminders as Reminder[];
+  }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "DELETE FROM reminder WHERE id = ?",
+      [id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new reminderRepository();

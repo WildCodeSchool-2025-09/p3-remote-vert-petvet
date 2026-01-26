@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 import App from "./App";
+import MyPetsList from "./pages/MyPetsList";
 import ReminderForm from "./pages/ReminderForm";
 
 const router = createBrowserRouter([
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/reminder/add",
     element: <ReminderForm />,
+  },
+  {
+    path: "/my-pets/:id/",
+    element: <MyPetsList />,
   },
 ]);
 

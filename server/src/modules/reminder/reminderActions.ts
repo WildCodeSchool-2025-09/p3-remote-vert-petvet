@@ -45,4 +45,16 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+const destroy: RequestHandler = async (req, res, next) => {
+  const reminderId = Number(req.params.id);
+
+  try {
+    await reminderRepository.delete(reminderId);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, destroy };

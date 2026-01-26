@@ -2,14 +2,15 @@ import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
 import type { Pet } from "../types/Pet";
-import type { ReminderType } from "../types/Reminder";
-import ReminderModal from "./Reminder/ReminderModal";
+import type { Reminder } from "../types/Reminder";
+import ReminderDetails from "./Reminder/ReminderDetails";
 
 function RemindersByPet({
   pet,
   reminders,
-}: { pet: Pet; reminders: ReminderType[] }) {
-  const [openReminderId, setOpenReminderId] = useState<number | null>(null);
+}: { pet: Pet; reminders: Reminder[] }) {
+  const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
+
   return (
     <section className="reminder-container">
       <h1>Les rappels</h1>
@@ -21,7 +22,7 @@ function RemindersByPet({
             type="button"
             className="button-reminder"
             key={reminder.id}
-            onClick={() => setOpenReminderId(reminder.id)}
+            onClick={() => setCurrentReminder(reminder)}
           >
             <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
@@ -29,17 +30,20 @@ function RemindersByPet({
           </button>
         ))}
       </ul>
-      {openReminderId !== null && (
-        <ReminderModal
-          reminderId={openReminderId}
-          open={true}
-          onClose={() => setOpenReminderId(null)}
+
+      {currentReminder && (
+        <ReminderDetails
+          reminderId={currentReminder.id}
+          reminder={currentReminder}
+          onClose={() => setCurrentReminder(null)}
         />
       )}
+
       <button type="button" className="add-reminder-button">
         <img src="/images/plus-blanc.png" alt="Add Reminder Icon" />
       </button>
     </section>
   );
 }
+
 export default RemindersByPet;

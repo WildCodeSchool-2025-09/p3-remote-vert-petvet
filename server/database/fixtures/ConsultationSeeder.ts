@@ -16,7 +16,7 @@ class ConsultationSeeder extends AbstractSeeder {
       const pet = this.getRef(`pet_${i}`);
       const veterinary = this.getRef(`veterinary_${i}`);
       const fakeConsultation = {
-        title: this.faker.lorem.words({ min: 1, max: 5 }),
+        title: this.faker.lorem.words({ min: 1, max: 3 }),
         created_at: this.faker.date.recent(),
         report: this.faker.lorem.paragraphs({ min: 1, max: 3 }),
         treatment: this.faker.lorem.sentences({ min: 1, max: 3 }),

@@ -34,13 +34,13 @@ function HealthRecord() {
       });
   }, [id]);
 
-  const fewConsultations = consultations.slice(0, 3) ?? [];
+  const fewActivities = consultations.slice(0, 5) ?? [];
 
   if (!petInfo) return <p>{error}</p>;
 
   return (
     <>
-      <div className="medical-list">
+      <div className="health-record-page">
         <section className="pet-card">
           <div className="pet-first-info">
             <img
@@ -48,6 +48,7 @@ function HealthRecord() {
               alt={petInfo.specie}
               width={"150px"}
               height={"150px"}
+              className="image-pet"
             />
             <div className="pet-name-info">
               <div>
@@ -139,7 +140,7 @@ function HealthRecord() {
                 <h2>Activités récentes</h2>
                 <h3>Les dernières activités de {petInfo.name}</h3>
               </div>
-              <MedicalHistory consultations={fewConsultations} />
+              <MedicalHistory consultations={fewActivities} />
             </article>
             <article className="pet-reminder">
               <RemindersByPet reminders={reminders} pet={petInfo} />

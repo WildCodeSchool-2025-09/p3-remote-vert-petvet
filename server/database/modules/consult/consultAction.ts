@@ -22,43 +22,59 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     if (!req.body.title || typeof req.body.title !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
+
     if (!req.body.createdAt || typeof req.body.createdAt !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
+
     if (!req.body.report || typeof req.body.report !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
-    if (req.body.treatment !== null && typeof req.body.treatment !== "string") {
+
+    if (req.body.treatment != null && typeof req.body.treatment !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
-    if (req.body.dosage !== null && typeof req.body.dosage !== "string") {
+
+    if (req.body.dosage != null && typeof req.body.dosage !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
+
     if (!req.body.category || typeof req.body.category !== "string") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
-    if (!req.body.veterinaryId || typeof req.body.veterinaryId !== "number") {
+
+    if (typeof req.body.veterinaryId !== "number") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
-    if (!req.body.petID || typeof req.body.petID !== "number") {
+
+    if (typeof req.body.petId !== "number") {
       res.sendStatus(StatusCodes.BAD_REQUEST);
+      return;
     }
 
     const newConsult = {
       title: req.body.title,
       createdAt: req.body.createdAt,
-      report: req.body.content,
-      treatment: req.body.treatment,
-      dosage: req.body.dosage,
+      report: req.body.report,
+      treatment: req.body.treatment ?? null,
+      dosage: req.body.dosage ?? null,
       category: req.body.category,
       veterinaryId: req.body.veterinaryId,
       petId: req.body.petId,
     };
-    console.log(newConsult);
-    const newConsultId = consultRepository.insertConsult(newConsult);
+
+    const newConsultId = await consultRepository.insertConsult(newConsult);
 
     res.status(StatusCodes.CREATED).json({ newConsultId });
+    return;
   } catch (err) {
     next(err);
   }

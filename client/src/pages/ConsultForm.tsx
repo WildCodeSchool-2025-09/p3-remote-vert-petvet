@@ -8,7 +8,7 @@ type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
 
 interface CreateConsult {
   title: string;
-  programmedAt: string;
+  createdAt: string;
   report: string;
   dosage: string | null;
   category: Category | null;
@@ -24,7 +24,7 @@ type Animal = {
 
 function ConsultForm() {
   const [title, setTitle] = useState("");
-  const [programmedAt, setProgrammedAt] = useState("");
+  const [createdAt, setcreatedAt] = useState("");
   const [report, setReport] = useState("");
   const [dosage, setDosage] = useState("");
   const [category, setCategory] = useState<Category | "">("");
@@ -60,6 +60,14 @@ function ConsultForm() {
   }, [vetId]);
 
   const createConsult = async (consult: CreateConsult) => {
+    if (!selectedAnimal) {
+      setErrorMessage("Veuillez sélectionner un animal");
+      return;
+    }
+    if (!category) {
+      setErrorMessage("Veuillez sélectionner une categorie");
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -99,7 +107,7 @@ function ConsultForm() {
 
     const newConsult = {
       title: title,
-      programmedAt: programmedAt,
+      createdAt: createdAt,
       report: report,
       dosage: dosage || null,
       category: category || null,
@@ -126,7 +134,7 @@ function ConsultForm() {
               onChange={(e) => setCategory(e.target.value as Category)}
             >
               <option value="" disabled hidden>
-                Select a category
+                Select a category <span className="obligatory">*</span>
               </option>
               <option value="vaccination">vaccination</option>
               <option value="urgence">urgence</option>
@@ -140,8 +148,8 @@ function ConsultForm() {
               Date programmée <span className="obligatory">*</span>
               <input
                 type="datetime-local"
-                value={programmedAt}
-                onChange={(e) => setProgrammedAt(e.target.value)}
+                value={createdAt}
+                onChange={(e) => setcreatedAt(e.target.value)}
                 required
                 className="date"
               />
@@ -177,16 +185,9 @@ function ConsultForm() {
           <div className="content">
             <label>
               <textarea
-                placeholder="Détails de la consultation : "
+                placeholder="Détails de la consultation :"
                 value={report}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (!value.startsWith("Détails de la consultation : ")) {
-                    setReport("Détails de la consultation : ");
-                  } else {
-                    setReport(value);
-                  }
-                }}
+                onChange={(e) => setReport(e.target.value)}
                 required
                 className="content"
               />

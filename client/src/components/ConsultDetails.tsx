@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/styles/consultDetails.css";
-import croix from "../../public/images/marque-de-croix.png";
+import cross from "../../public/images/cross.png";
 import type { ConsultData } from "../types/Consult";
 
 type ConsultProps = {
@@ -58,7 +58,7 @@ export default function ConsultDetails({
             <>
               <button type="button" className="button_close" onClick={onClose}>
                 <img
-                  src={croix}
+                  src={cross}
                   alt="croix de fermeture"
                   width="35px"
                   height="35px"

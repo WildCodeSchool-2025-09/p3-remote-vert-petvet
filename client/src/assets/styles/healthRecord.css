@@ -13,6 +13,7 @@
 .pet-reminder {
   width: 100%;
   max-width: 500px;
+  display: flex;
   align-items: right;
   margin-left: auto;
 }

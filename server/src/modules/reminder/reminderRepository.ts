@@ -1,17 +1,24 @@
-import type { Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
+
+type Frequency = "jour" | "semaine" | "mois" | "an";
 
 interface Reminder {
-  id: number;
-  pet_id: number;
-  programmed_at: Date;
-  message: string;
+  title: string;
+  programmedAt: string;
+  content: string;
+  dosage: string | null;
+  frequency: Frequency | null;
+  frequencyCount: number | null;
+  veterinaryId: number;
+  petId: number;
+  ownerId: number;
 }
 
-class ReminderRepository {
+class reminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      `SELECT reminder.*, pet.name as petName 
+      `SELECT reminder.*, pet.name 
     	FROM reminder 
     	JOIN pet ON reminder.pet_id = pet.id 
     	WHERE reminder.pet_id = ? 
@@ -24,11 +31,30 @@ class ReminderRepository {
 
   async getByOwner(ownerId: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
-      "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      "SELECT reminder.*, pet.photo, pet.name FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
       [ownerId],
     );
     return reminders;
   }
+
+  async insert(reminder: Omit<Reminder, "id">) {
+    const [result] = await databaseClient.query<Result>(
+      "INSERT INTO reminder (title, programmed_at, content, dosage, frequency, frequency_count, veterinary_id, pet_id, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        reminder.title,
+        reminder.programmedAt,
+        reminder.content,
+        reminder.dosage,
+        reminder.frequency,
+        reminder.frequencyCount,
+        reminder.veterinaryId,
+        reminder.petId,
+        reminder.ownerId,
+      ],
+    );
+
+    return result.insertId;
+  }
 }
 
-export default new ReminderRepository();
+export default new reminderRepository();

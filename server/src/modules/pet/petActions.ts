@@ -1,12 +1,12 @@
 import type { NextFunction, Request, Response } from "express";
 import consultationRepository from "../consultation/consultationRepository";
 import reminderRepository from "../reminder/reminderRepository";
-import PetRepository from "./petRepository";
+import petRepository from "./petRepository";
 
 const browseByPet = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number.parseInt(req.params.id);
-    const pet = await PetRepository.getByPet(id);
+    const pet = await petRepository.getByPet(id);
     const reminders = await reminderRepository.getByPet(id);
     const consultations =
       await consultationRepository.findConsultationsByPetId(id);

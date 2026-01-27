@@ -69,7 +69,7 @@ const add: RequestHandler = async (req, res, next) => {
     };
 
     const newReminderId = reminderRepository.insert(newReminder);
-
+    console.log(newReminder);
     res.status(StatusCodes.CREATED).json({ newReminderId });
   } catch (err) {
     next(err);

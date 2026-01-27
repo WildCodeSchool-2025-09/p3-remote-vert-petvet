@@ -1,6 +1,6 @@
-import steto from "../../public//images/steto-vert.png";
-import seringue from "../../public/images/contour-de-la-seringue-vert.png";
-import urgence from "../../public/images/urgence-vert.png";
+import emergency from "../../public/images/green/emergency.png";
+import steto from "../../public/images/green/stetoscope.png";
+import syringe from "../../public/images/green/syringe.png";
 import type { Consultation } from "../types/Consult";
 
 type MedicProps = {
@@ -19,9 +19,9 @@ function MedicalHistory({ consultations }: MedicProps) {
             <img
               src={
                 consultation.category === "vaccination"
-                  ? seringue
+                  ? syringe
                   : consultation.category === "urgence"
-                    ? urgence
+                    ? emergency
                     : steto
               }
               alt={`Icone ${consultation.category}`}

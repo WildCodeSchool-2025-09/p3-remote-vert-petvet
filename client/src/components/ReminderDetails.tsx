@@ -1,6 +1,6 @@
 import "../../assets/styles/reminderDetails.css";
 import { useEffect, useRef } from "react";
-import type { Reminder } from "../../types/Reminder";
+import type { Reminder } from "../types/Reminder";
 import croix from "./../../assets/img/close-modal.png";
 
 type ReminderProps = {

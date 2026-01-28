@@ -3,7 +3,7 @@ import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
 import type { Pet } from "../types/Pet";
 import type { Reminder } from "../types/Reminder";
-import ReminderDetails from "./Reminder/ReminderDetails";
+import ReminderDetails from "./ReminderDetails";
 
 function RemindersByPet({
   pet,

@@ -98,26 +98,30 @@ function HomePage() {
 
         <section className="professionals">
           <h1>L’allié numérique des experts de la santé animale</h1>
-          <p>
-            Vétérinaires et ASV, optimisez l'observance de vos soins grâce à
-            Pet&Vet, l'outil numérique gratuit qui connecte votre expertise au
-            quotidien des propriétaires.
-          </p>
-          <p>
-            Plus qu’un carnet de santé, l’application vous permet d'ajouter et
-            de consulter l'historique des visites, tout en gardant un œil sur le
-            suivi de chaque animal.
-          </p>
-          <p>
-            En coordonnant les traitements et les rappels directement avec vos
-            clients, vous modernisez votre pratique et garantissez une meilleure
-            réussite thérapeutique.
-          </p>
-          <img
-            src="/images/dog-plush.jpg"
-            alt="Chien avec un doudou"
-            width="300"
-          />
+          <div className="professionals-text-and-image">
+            <div className="professionals-text">
+              <p>
+                Vétérinaires et ASV, optimisez l'observance de vos soins grâce à
+                Pet&Vet, l'outil numérique gratuit qui connecte votre expertise
+                au quotidien des propriétaires.
+              </p>
+              <p>
+                Plus qu’un carnet de santé, l’application vous permet d'ajouter
+                et de consulter l'historique des visites, tout en gardant un œil
+                sur le suivi de chaque animal.
+              </p>
+              <p>
+                En coordonnant les traitements et les rappels directement avec
+                vos clients, vous modernisez votre pratique et garantissez une
+                meilleure réussite thérapeutique.
+              </p>
+            </div>
+            <img
+              src="/images/dog-plush.jpg"
+              alt="Chien avec un doudou"
+              width="300"
+            />
+          </div>
         </section>
 
         <section className="associations">
@@ -125,36 +129,40 @@ function HomePage() {
           <h2>
             L’outil gratuit pour optimiser la gestion de votre association
           </h2>
-          <p>
-            Gagnez en efficacité grâce à notre plateforme web dédiée qui
-            centralise tous les carnets de santé numériques de vos animaux en
-            attente d'adoption.
-          </p>
-          <img
-            src="/images/dog-window.jpg"
-            alt="Chien regardant par la fenêtre"
-            width="300"
-          />
+          <div className="associations-text-and-image">
+            <div className="associations-text">
+              <p>
+                Gagnez en efficacité grâce à notre plateforme web dédiée qui
+                centralise tous les carnets de santé numériques de vos animaux
+                en attente d'adoption.
+              </p>
+            </div>
+            <img
+              src="/images/dog-window.jpg"
+              alt="Chien regardant par la fenêtre"
+              width="300"
+            />
+          </div>
         </section>
         <section className="buttons-bottom">
-          <button type="button">
-            <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
-            Contacts utiles
-          </button>
-          <button type="button">
-            <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
-            Me connecter
-          </button>
-          <button type="button">
-            <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
-            M'inscrire
-          </button>
+          <div className="button-contacts-utile">
+            <button type="button" className="button-homePage">
+              <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
+              Contacts utiles
+            </button>
+          </div>
+          <div className="button-register-login">
+            <button type="button" className="button-homePage">
+              <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
+              Me connecter
+            </button>
+            <button type="button" className="button-homePage">
+              <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
+              M'inscrire
+            </button>
+          </div>
         </section>
       </main>
-      <footer>
-        <p>© 2026 PetVet. Tous droits réservés.</p>
-        <p>Made with ❤️ by Wilders</p>
-      </footer>
     </>
   );
 }

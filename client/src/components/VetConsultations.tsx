@@ -4,15 +4,6 @@ import "../assets/styles/vetConsultations.css";
 import type { VetConsultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
-const CategoryIcons: Record<string, string> = {
-  vaccination: "/images/seringue-bleu.png",
-  urgence: "/images/urgence-bleu.png",
-  suivi: "/images/steto-bleu.png",
-  opération: "/images/steto-bleu.png",
-  médicale: "/images/steto-bleu.png",
-  default: "/images/steto-bleu.png",
-};
-
 function VetConsultations({
   consultations,
 }: { pet: Pet; consultations: VetConsultation[] }) {
@@ -35,10 +26,6 @@ function VetConsultations({
         <h1>Consultations</h1>
         <ul>
           {displayedConsultations.map((consultation) => {
-            const categoryKey =
-              consultation.category?.toLowerCase() || "default";
-            const iconSrc = CategoryIcons[categoryKey] || CategoryIcons.default;
-
             return (
               <button
                 type="button"
@@ -46,8 +33,14 @@ function VetConsultations({
                 className="consultation-item"
               >
                 <img
-                  src={iconSrc}
-                  alt={categoryKey}
+                  src={
+                    consultation.category === "vaccination"
+                      ? "/images/seringue-bleu.png"
+                      : consultation.category === "urgence"
+                        ? "/images/urgence-bleu.png"
+                        : "/images/steto-bleu.png"
+                  }
+                  alt="Icône de consultation vétérinaire"
                   className="consultation-icon"
                 />
 

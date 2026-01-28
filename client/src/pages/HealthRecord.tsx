@@ -42,6 +42,7 @@ function HealthRecord() {
             alt={petInfo.specie}
             width={"150px"}
             height={"150px"}
+            className="image-pet"
           />
           <div className="pet-name-info">
             <div>

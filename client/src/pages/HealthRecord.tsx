@@ -94,7 +94,7 @@ function HealthRecord() {
           </div>
         </section>
         <section>
-          <div className="button-container">
+          <div className="buttons-container">
             <button
               type="button"
               onClick={() => {

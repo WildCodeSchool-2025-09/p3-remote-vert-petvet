@@ -26,6 +26,10 @@
 
   button {
     font-family: var(--font-title);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

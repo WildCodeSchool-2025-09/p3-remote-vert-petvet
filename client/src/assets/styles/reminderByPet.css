@@ -24,7 +24,7 @@
   width: 40px;
   height: 40px;
 }
-.reminder-container button {
+.reminder-container .button-reminder {
   width: 100%;
   border: none;
   padding: 0.625rem;
@@ -36,20 +36,20 @@
   justify-content: space-between;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
-.reminder-container button h3 {
+.reminder-container .button-reminder h3 {
   margin: 0;
   font-family: var(--font-text);
   font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color);
 }
-.reminder-container button p {
+.reminder-container .button-reminder p {
   margin: 0;
   font-family: var(--font-text);
   font-size: 0.875rem;
   color: var(--text-color);
 }
-.reminder-container button:hover {
+.reminder-container .button-reminder:hover {
   background-color: #f0f0f0;
   cursor: pointer;
 }

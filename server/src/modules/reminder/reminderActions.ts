@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 import ReminderRepository from "./reminderRepository";
+import reminderRepository from "./reminderRepository";
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {

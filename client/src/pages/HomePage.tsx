@@ -36,12 +36,11 @@ function HomePage() {
             </button>
           </ul>
 
-          <h1>PetVet</h1>
+          <h1>Pet&Vet</h1>
         </nav>
 
-        <h2>Bienvenue sur PetVet !</h2>
+        <h2>Bienvenue sur Pet&Vet !</h2>
       </header>
-
       <main>
         <section className="intro">
           <h1>
@@ -56,7 +55,7 @@ function HomePage() {
                 compagnie, entièrement gratuit et disponible sur smartphone.
               </p>
               <span>
-                Attention: l'utilisation de ce site ne remplace pas l'avis d'un
+                ATTENTION : l'utilisation de ce site ne remplace pas l'avis d'un
                 vétérinaire.
               </span>
             </div>
@@ -71,24 +70,30 @@ function HomePage() {
         <section className="individuals">
           <h1>Particuliers et passionnés</h1>
           <h2>Tout le suivi de vos animaux dans une seule application!</h2>
-          <p>
-            Peu importe l'espèce de vos compagnons, Pet&Vet simplifie leur suivi
-            de santé grâce à un carnet numérique interactif et gratuit.
-          </p>
-          <p>
-            Créez des profils personnalisés pour chacun d'entre eux, programmez
-            vos alertes pour ne plus oublier aucun rendez-vous et partagez
-            instantanément leurs données médicales avec votre vétérinaire.
-          </p>
-          <p>
-            Profitez d'un espace personnel sécurisé et accessible à tout moment
-            pour veiller sereinement sur tous vos animaux.
-          </p>
-          <img
-            src="/images/cat-hand.jpg"
-            alt="Chat qui tape dans la main"
-            width="300px"
-          />
+          <div className="individuals-text-and-image">
+            <div className="individuals-text">
+              <p>
+                Peu importe l'espèce de vos compagnons, Pet&Vet simplifie leur
+                suivi de santé grâce à un carnet numérique interactif et
+                gratuit.
+              </p>
+              <p>
+                Créez des profils personnalisés pour chacun d'entre eux,
+                programmez vos alertes pour ne plus oublier aucun rendez-vous et
+                partagez instantanément leurs données médicales avec votre
+                vétérinaire.
+              </p>
+              <p>
+                Profitez d'un espace personnel sécurisé et accessible à tout
+                moment pour veiller sereinement sur tous vos animaux.
+              </p>
+            </div>
+            <img
+              src="/images/cat-hand.jpg"
+              alt="Chat qui tape dans la main"
+              width="300px"
+            />
+          </div>
         </section>
 
         <section className="professionals">

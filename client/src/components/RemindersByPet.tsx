@@ -24,7 +24,7 @@ function RemindersByPet({
             key={reminder.id}
             onClick={() => setCurrentReminder(reminder)}
           >
-            <img src="/images/calendrier-vert.png" alt="Reminder Icon" />
+            <img src="/images/green/calendar.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
             <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
           </button>
@@ -40,7 +40,7 @@ function RemindersByPet({
       )}
 
       <button type="button" className="add-reminder-button">
-        <img src="/images/plus-blanc.png" alt="Add Reminder Icon" />
+        <img src="/images/white-cross.png" alt="Add Reminder Icon" />
       </button>
     </section>
   );

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/vetConsultations.css";
-import type { VetConsultation } from "../types/Consultation";
+import "../assets/styles/Consultations.css";
+import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
-function VetConsultations({
+function Consultations({
   consultations,
-}: { pet: Pet; consultations: VetConsultation[] }) {
+}: { pet: Pet; consultations: Consultation[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const displayedConsultations = isExpanded
@@ -17,7 +17,7 @@ function VetConsultations({
     <section className="vet-consultations-container">
       <article className="vet-consultations-header">
         <button type="button" className="add-consultation-button">
-          <img src="/images/plus-blanc.png" alt="Ajouter une consultation" />
+          <img src="/images/white-cross.png" alt="Ajouter une consultation" />
           AJOUTER UNE CONSULTATION
         </button>
       </article>
@@ -35,10 +35,10 @@ function VetConsultations({
                 <img
                   src={
                     consultation.category === "vaccination"
-                      ? "/images/seringue-bleu.png"
+                      ? "/images/blue/syringe.png"
                       : consultation.category === "urgence"
-                        ? "/images/urgence-bleu.png"
-                        : "/images/steto-bleu.png"
+                        ? "/images/blue/emergency.png"
+                        : "/images/blue/stetoscope.png"
                   }
                   alt="Icône de consultation vétérinaire"
                   className="consultation-icon"
@@ -66,4 +66,4 @@ function VetConsultations({
   );
 }
 
-export default VetConsultations;
+export default Consultations;

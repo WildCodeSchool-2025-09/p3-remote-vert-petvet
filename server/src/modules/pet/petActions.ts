@@ -24,8 +24,7 @@ const browseByPet: RequestHandler = async (
       return;
     }
 
-    const consultations =
-      await consultationRepository.findVetConsultation(petId);
+    const consultations = await consultationRepository.getByPet(petId);
 
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });

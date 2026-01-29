@@ -8,7 +8,7 @@ interface VetConsultation {
 }
 
 class ConsultationRepository {
-  async findVetConsultation(petId: number) {
+  async getByPet(petId: number) {
     const [vetConsultations] = await databaseClient.query(
       `SELECT consultation.*, pet.name as petName
 			FROM consultation

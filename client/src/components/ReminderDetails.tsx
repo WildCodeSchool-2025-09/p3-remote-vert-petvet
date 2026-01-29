@@ -55,10 +55,10 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           }}
         >
           <img
-            src="/images/close-modal.png"
+            src="/images/cross.png"
             alt="croix de fermeture"
-            width="35"
-            height="35"
+            width="35px"
+            height="35px"
           />
         </button>
 

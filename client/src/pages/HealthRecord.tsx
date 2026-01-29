@@ -5,13 +5,13 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
-import VetConsultations from "../components/VetConsultations";
-import type { VetConsultation } from "../types/Consultation";
+import Consultations from "../components/Consultations";
+import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
-  const [consultations, setConsultations] = useState<VetConsultation[]>([]);
+  const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
@@ -40,8 +40,8 @@ function HealthRecord() {
           <img
             src={petInfo.photo}
             alt={petInfo.specie}
-            width={"150px"}
-            height={"150px"}
+            width="150px"
+            height="150px"
             className="image-pet"
           />
           <div className="pet-name-info">
@@ -88,7 +88,7 @@ function HealthRecord() {
       </section>
 
       <section className="vet-consultations-section">
-        <VetConsultations consultations={consultations} pet={petInfo} />
+        <Consultations consultations={consultations} pet={petInfo} />
       </section>
       <section className="pet-reminder">
         <RemindersByPet reminders={reminders} pet={petInfo} />

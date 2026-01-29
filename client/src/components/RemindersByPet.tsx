@@ -1,9 +1,6 @@
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import calendar from "../../public/images/green/calendar.png";
-import addCross from "../../public/images/white-cross.png";
 import type { Pet } from "../types/Pet";
 import type { Reminder } from "../types/Reminder";
 import ReminderDetails from "./ReminderDetails";
@@ -13,8 +10,6 @@ function RemindersByPet({
   reminders,
 }: { pet: Pet; reminders: Reminder[] }) {
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
-
-  const navigate = useNavigate();
 
   return (
     <section className="reminder-container">
@@ -29,7 +24,7 @@ function RemindersByPet({
             key={reminder.id}
             onClick={() => setCurrentReminder(reminder)}
           >
-            <img src={calendar} alt="Reminder Icon" />
+            <img src="/images/green/calendar.png" alt="Reminder Icon" />
             <h3>{reminder.title}</h3>
             <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
           </button>
@@ -44,12 +39,8 @@ function RemindersByPet({
         />
       )}
 
-      <button
-        type="button"
-        className="add-reminder-button"
-        onClick={() => navigate(`/pet-profile/${pet.id}/reminders/new`)}
-      >
-        <img src={addCross} alt="Add Reminder Icon" />
+      <button type="button" className="add-reminder-button">
+        <img src="/images/white-cross.png" alt="Add Reminder Icon" />
       </button>
     </section>
   );

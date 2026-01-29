@@ -49,13 +49,13 @@ CREATE TABLE reminder (
 );
 
 CREATE TABLE consultation (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  title VARCHAR(50) NOT NULL,
-  created_at DATETIME NOT NULL,
-  report TEXT NOT NULL,
-  treatment TEXT DEFAULT NULL,
-  dosage TEXT DEFAULT NULL,
-  category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
-  pet_id INT NOT NULL,
-  veterinary_id INT NOT NULl
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(50) NOT NULL,
+  	created_at DATETIME NOT NULL,
+  	report TEXT NOT NULL,
+  	treatment TEXT DEFAULT NULL,
+  	dosage TEXT DEFAULT NULL,
+  	category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
+  	pet_id INT NOT NULL,
+  	veterinary_id INT NOT NULL
 );

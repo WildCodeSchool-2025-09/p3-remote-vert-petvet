@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 500px;
   display: flex;
-  align-items: right;
+  align-items: flex-end;
   margin-left: auto;
 }
 

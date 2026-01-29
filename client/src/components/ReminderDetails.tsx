@@ -55,7 +55,12 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
             onClose();
           }}
         >
-          <img src={cross} alt="croix de fermeture" width="35" height="35" />
+          <img
+            src={cross}
+            alt="croix de fermeture"
+            width="35px"
+            height="35px"
+          />
         </button>
 
         <h2 className="title_reminder">{reminder.title}</h2>

@@ -52,7 +52,7 @@ body {
   cursor: pointer;
 }
 
-.category-value {
+.consult-category-value {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
 }
@@ -62,7 +62,7 @@ body {
   grid-row: 2 / 3;
 }
 
-.animal-name {
+.consult-animal-name {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
 }
@@ -78,7 +78,7 @@ body {
   grid-row: 4 / 5;
 }
 
-.title-input {
+.consult-title-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;
@@ -97,13 +97,10 @@ body {
   justify-self: center;
   align-self: center;
   border-radius: 15px;
-}
-
-textarea {
   resize: none;
 }
 
-.treatment {
+.consult-treatment {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -114,13 +111,13 @@ textarea {
   justify-self: center;
 }
 
-.treatment-input {
+.consult-treatment-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;
 }
 
-.dosage {
+.consult-dosage {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -131,7 +128,7 @@ textarea {
   justify-self: center;
 }
 
-.dosage-input {
+.consult-dosage-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;

@@ -127,7 +127,7 @@ function ConsultForm() {
         <form className="consult-form" onSubmit={submitConsult}>
           <p className="consult-error">{errorMessage}</p>
           <p className="consult-success">{successMessage}</p>
-          <div className="category-value">
+          <div className="consult-category-value">
             <select
               className="consult-select"
               value={category}
@@ -156,7 +156,7 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="animal-name">
+          <div className="consult-animal-name">
             <select
               className="consult-select"
               value={selectedAnimal ?? ""}
@@ -180,7 +180,7 @@ function ConsultForm() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="title-input"
+                className="consult-title-input"
               />
             </label>
           </div>
@@ -195,7 +195,7 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="treatment">
+          <div className="consult-treatment">
             <label>
               Traitement
               <input
@@ -203,11 +203,11 @@ function ConsultForm() {
                 value={treatment}
                 placeholder="traitement"
                 onChange={(e) => setTreatment(String(e.target.value))}
-                className="treatment-input"
+                className="consult-treatment-input"
               />
             </label>
           </div>
-          <div className="dosage">
+          <div className="consult-dosage">
             <label>
               Posologie
               <input
@@ -215,7 +215,7 @@ function ConsultForm() {
                 value={dosage}
                 placeholder="posologie"
                 onChange={(e) => setDosage(e.target.value)}
-                className="dosage-input"
+                className="consult-dosage-input"
               />
             </label>
           </div>

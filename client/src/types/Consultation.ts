@@ -1,4 +1,4 @@
-export interface ConsultData {
+export interface Consultation {
   id: number;
   title: string;
   created_at: number;
@@ -8,5 +8,5 @@ export interface ConsultData {
   category: string;
   pet_id: number;
   veterinary_id: number;
-  pet_name: string;
+  petName: string;
 }

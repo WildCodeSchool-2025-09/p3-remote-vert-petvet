@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/styles/consultationDetails.css";
 import cross from "../../public/images/cross.png";
-import type { ConsultData } from "../types/Consultation";
+import type { Consultation } from "../types/Consultation";
 
 type ConsultProps = {
   consultId: number;
@@ -15,7 +15,7 @@ export default function ConsultationDetails({
   consultId,
 }: ConsultProps) {
   const [consultationDetails, setConsultationDetails] =
-    useState<ConsultData | null>(null);
+    useState<Consultation | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +69,7 @@ export default function ConsultationDetails({
               </h2>
               <div className="animal_name_consult">
                 <h3 className="animal_name">Animal :</h3> <br />
-                <p>{consultationDetails.pet_name}</p>
+                <p>{consultationDetails.petName}</p>
               </div>
               <div className="date_detail">
                 <h3 className="title_date">Date :</h3> <br />

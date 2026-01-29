@@ -4,7 +4,7 @@ import consultationRepository from "./consultationRepository";
 const read = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const consultationId = Number(req.params.id);
-    const consultation = await consultationRepository.get(consultationId);
+    const consultation = await consultationRepository.getByPet(consultationId);
 
     if (!consultation) {
       res

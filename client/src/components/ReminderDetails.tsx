@@ -1,7 +1,6 @@
-import "../../assets/styles/reminderDetails.css";
+import "../assets/styles/reminderDetails.css";
 import { useEffect, useRef } from "react";
-import cross from "../../../public/images/cross.png";
-import type { Reminder } from "../../types/Reminder";
+import type { Reminder } from "../types/Reminder";
 
 type ReminderProps = {
   reminderId: number;
@@ -55,7 +54,12 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
             onClose();
           }}
         >
-          <img src={cross} alt="croix de fermeture" width="35" height="35" />
+          <img
+            src="/images/cross.png"
+            alt="croix de fermeture"
+            width="35px"
+            height="35px"
+          />
         </button>
 
         <h2 className="title_reminder">{reminder.title}</h2>

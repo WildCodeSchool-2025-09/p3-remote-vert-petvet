@@ -1,18 +1,24 @@
-import type { Rows } from "../../../database/client";
-import databaseClient from "../../../database/client";
+import databaseClient from "../../../database/client.js";
 
-class consultationRepository {
-  async get(id: number): Promise<Rows[0]> {
-    const [rows] = await databaseClient.query<Rows>(
-      `SELECT consultation.*,
-        pet.name AS pet_name
-        FROM consultation 
-        JOIN pet ON consultation.pet_id = pet.id 
-        WHERE consultation.id = ?`,
-      [id],
+interface VetConsultation {
+  id: number;
+  pet_id: number;
+  petName: string;
+  created_at: Date;
+}
+
+class ConsultationRepository {
+  async getByPet(petId: number) {
+    const [vetConsultations] = await databaseClient.query(
+      `SELECT consultation.*, pet.name as petName
+			FROM consultation
+			JOIN pet ON consultation.pet_id = pet.id
+			WHERE consultation.pet_id = ?
+			ORDER BY consultation.created_at DESC`,
+      [petId],
     );
-    return rows[0];
+    return vetConsultations as VetConsultation[];
   }
 }
 
-export default new consultationRepository();
+export default new ConsultationRepository();

@@ -48,7 +48,6 @@ CREATE TABLE reminder (
   owner_id INT NOT NULL
 );
 
-
 CREATE TABLE consultation (
   id INT PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(50) NOT NULL,

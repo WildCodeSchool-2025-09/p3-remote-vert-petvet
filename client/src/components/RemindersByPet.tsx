@@ -1,0 +1,58 @@
+import "../assets/styles/variables.css";
+import "../assets/styles/reminderByPet.css";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import calendar from "../../public/images/green/calendar.png";
+import addCross from "../../public/images/white-cross.png";
+import type { Pet } from "../types/Pet";
+import type { Reminder } from "../types/Reminder";
+import ReminderDetails from "./ReminderDetails";
+
+function RemindersByPet({
+  pet,
+  reminders,
+}: { pet: Pet; reminders: Reminder[] }) {
+  const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
+
+  const navigate = useNavigate();
+
+  return (
+    <section className="reminder-container">
+      <h1>Les rappels</h1>
+      <h2>Tous les rappels de {pet.name}</h2>
+
+      <ul>
+        {reminders.map((reminder) => (
+          <button
+            type="button"
+            className="button-reminder"
+            key={reminder.id}
+            onClick={() => setCurrentReminder(reminder)}
+          >
+            <img src={calendar} alt="Reminder Icon" />
+            <h3>{reminder.title}</h3>
+            <p>{new Date(reminder.programmed_at).toLocaleDateString()}</p>
+          </button>
+        ))}
+      </ul>
+
+      {currentReminder && (
+        <ReminderDetails
+          reminderId={currentReminder.id}
+          reminder={currentReminder}
+          onClose={() => setCurrentReminder(null)}
+        />
+      )}
+
+      <button
+        type="button"
+        className="add-reminder-button"
+        onClick={() => navigate(`/pet-profile/${pet.id}/reminders/new`)}
+      >
+        <img src={addCross} alt="Add Reminder Icon" />
+      </button>
+    </section>
+  );
+}
+
+export default RemindersByPet;

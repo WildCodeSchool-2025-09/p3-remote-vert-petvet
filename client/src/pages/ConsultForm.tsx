@@ -89,7 +89,7 @@ function ConsultForm() {
       setSuccessMessage("Consultation créé avec succès !");
 
       setTimeout(() => {
-        navigate("/");
+        navigate(`/pet-profile/${id}`);
       }, 2000);
     } catch (error: unknown) {
       setErrorMessage(
@@ -121,14 +121,15 @@ function ConsultForm() {
 
   return (
     <section>
-      <header className="pet-vet">Pet&Vet</header>
+      <header className="pet-vet-consult">Pet&Vet</header>
       <h1 className="Consult-form-title">Ajouter une consultation</h1>
-      <article className="form-container">
-        <form onSubmit={submitConsult}>
-          <p className="error">{errorMessage}</p>
-          <p className="success">{successMessage}</p>
+      <article className="consult-form-container">
+        <form className="consult-form" onSubmit={submitConsult}>
+          <p className="consult-error">{errorMessage}</p>
+          <p className="consult-success">{successMessage}</p>
           <div className="category-value">
             <select
+              className="consult-select"
               value={category}
               aria-placeholder="category"
               onChange={(e) => setCategory(e.target.value as Category)}
@@ -143,9 +144,9 @@ function ConsultForm() {
               <option value="medicale">médicale</option>
             </select>
           </div>
-          <div className="date">
+          <div className="consult-date">
             <label>
-              Date programmée <span className="obligatory">*</span>
+              Date programmée <span className="consult-obligatory">*</span>
               <input
                 type="datetime-local"
                 value={createdAt}
@@ -157,6 +158,7 @@ function ConsultForm() {
           </div>
           <div className="animal-name">
             <select
+              className="consult-select"
               value={selectedAnimal ?? ""}
               onChange={(e) => setSelectedAnimal(Number(e.target.value))}
             >
@@ -170,9 +172,9 @@ function ConsultForm() {
               ))}
             </select>
           </div>
-          <div className="title">
+          <div className="consult-title">
             <label>
-              Titre <span className="obligatory">*</span>
+              Titre <span className="consult-obligatory">*</span>
               <input
                 type="text"
                 value={title}
@@ -182,14 +184,14 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="content">
+          <div className="consult-content">
             <label>
               <textarea
                 placeholder="Détails de la consultation :"
                 value={report}
                 onChange={(e) => setReport(e.target.value)}
                 required
-                className="content"
+                className="consult-content"
               />
             </label>
           </div>
@@ -217,8 +219,8 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="button-container">
-            <p className="obligatory">* Champs obligatoires</p>
+          <div className="consult-button-container">
+            <p className="consult-obligatory">* Champs obligatoires</p>
             <button
               type="submit"
               className="send-button"

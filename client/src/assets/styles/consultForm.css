@@ -2,7 +2,7 @@ body {
   background-color: var(--main-color);
 }
 
-.pet-vet {
+.pet-vet-consult {
   text-align: right;
   font-family: var(--font-logo);
   font-weight: 800;
@@ -20,7 +20,7 @@ body {
   padding-bottom: 30px;
 }
 
-.form-container {
+.consult-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ body {
   }
 }
 
-form {
+.consult-form {
   width: 60vw;
   height: 80vh;
   background-color: white;
@@ -41,7 +41,7 @@ form {
   grid-template-rows: 1fr 1fr 1fr 1fr 6fr 2fr 1fr;
 }
 
-select {
+.consult-select {
   margin: 20px;
   font-family: var(--font-text);
   color: var(--text-color);
@@ -57,7 +57,7 @@ select {
   grid-row: 2 / 3;
 }
 
-.date {
+.consult-date {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
 }
@@ -67,7 +67,7 @@ select {
   grid-row: 3 / 4;
 }
 
-.title {
+.consult-title {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -84,7 +84,7 @@ select {
   border-radius: 5px;
 }
 
-.content {
+.consult-content {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -137,7 +137,7 @@ textarea {
   border-radius: 5px;
 }
 
-.button-container {
+.consult-button-container {
   grid-column: 3 / 4;
   grid-row: 7 / 8;
   display: flex;
@@ -148,7 +148,7 @@ textarea {
   button {
     width: 100px;
     height: 50px;
-    background-color: var(--owner-color);
+    background-color: var(--vet-color);
     font-family: var(--font-text);
     font-size: 0.6rem;
     padding: 10px;
@@ -161,17 +161,17 @@ textarea {
   }
 }
 
-.obligatory {
+.consult-obligatory {
   color: #d4896c;
   font-weight: 800;
 }
 
-.error {
+.consult-error {
   color: #d4896c;
   font-weight: 800;
 }
 
-.success {
-  color: var(--owner-color);
+.consult-success {
+  color: var(--vet-color);
   font-weight: 800;
 }

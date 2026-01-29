@@ -1,6 +1,10 @@
-import type { RequestHandler } from "express";
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import Joi from "joi";
 import reminderRepository from "./reminderRepository";
+import type { Reminder } from "./reminderRepository";
+
+type CreatedReminder = Omit<Reminder, "veterinaryId" | "ownerId">;
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
@@ -35,38 +39,14 @@ const browseByPet: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    if (!req.body.title || typeof req.body.title !== "string") {
-      res.sendStatus(StatusCodes.BAD_REQUEST);
-    }
-    if (!req.body.programmedAt || typeof req.body.programmedAt !== "string") {
-      res.sendStatus(StatusCodes.BAD_REQUEST);
-    }
-    if (!req.body.content || typeof req.body.content !== "string") {
-      res.sendStatus(StatusCodes.BAD_REQUEST);
-    }
-    if (
-      req.body.frequencyCount !== null &&
-      typeof req.body.frequencyCount !== "number"
-    ) {
-      res.sendStatus(StatusCodes.BAD_REQUEST);
-    }
-    if (req.body.dosage !== null && typeof req.body.dosage !== "string") {
-      res.sendStatus(StatusCodes.BAD_REQUEST);
-    }
+    const body = req.body as CreatedReminder;
 
-    //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
-
-    const newReminder = {
-      title: req.body.title,
-      programmedAt: req.body.programmedAt,
-      content: req.body.content,
-      dosage: req.body.dosage,
-      frequency: req.body.frequency,
-      frequencyCount: req.body.frequencyCount,
+    const newReminder: Reminder = {
+      ...body,
       veterinaryId: 1,
-      petId: req.body.petId,
       ownerId: 1,
     };
+    //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
 
     const newReminderId = reminderRepository.insert(newReminder);
 
@@ -76,4 +56,25 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseByOwner, browseByPet, add };
+const reminderSchema = Joi.object({
+  title: Joi.string().max(100).required(),
+  programmed_at: Joi.date().required(),
+  content: Joi.string().max(100).required(),
+  dosage: Joi.string().max(30),
+  frequency: Joi.string().valid("jour", "semaine", "mois", "an"),
+  frequency_count: Joi.number().integer(),
+});
+
+const validateReminder = (req: Request, res: Response, next: NextFunction) => {
+  const { error } = reminderSchema.validate(req.body, { abortEarly: false });
+
+  if (error == null) {
+    next();
+  } else {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ validationErrors: error.details });
+  }
+};
+
+export default { browseByOwner, browseByPet, add, validateReminder };

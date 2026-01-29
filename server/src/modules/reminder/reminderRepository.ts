@@ -1,9 +1,9 @@
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
-type Frequency = "jour" | "semaine" | "mois" | "an";
+export type Frequency = "jour" | "semaine" | "mois" | "an";
 
-interface Reminder {
+export interface Reminder {
   title: string;
   programmedAt: string;
   content: string;

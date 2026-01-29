@@ -5,14 +5,12 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
-import ConsultDetails from "../components/ConsultationDetails";
 import Consultations from "../components/Consultations";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
-  const [openConsult, setOpenConsult] = useState(false);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
@@ -95,14 +93,6 @@ function HealthRecord() {
       <section className="pet-reminder">
         <RemindersByPet reminders={reminders} pet={petInfo} />
       </section>
-      <button type="button" onClick={() => setOpenConsult(true)}>
-        Caca
-      </button>
-      <ConsultDetails
-        consultId={3}
-        open={openConsult}
-        onClose={() => setOpenConsult(false)}
-      />
     </div>
   );
 }

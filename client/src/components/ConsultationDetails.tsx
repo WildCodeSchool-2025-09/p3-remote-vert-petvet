@@ -1,110 +1,100 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "../assets/styles/consultationDetails.css";
-import cross from "../../public/images/cross.png";
 import type { Consultation } from "../types/Consultation";
 
-type ConsultProps = {
+type ConsultationProps = {
   consultId: number;
-  open: boolean;
   onClose: () => void;
+  consultation: Consultation;
 };
 
-export default function ConsultationDetails({
-  open,
+export default function consultation({
+  consultation,
   onClose,
-  consultId,
-}: ConsultProps) {
-  const [consultationDetails, setConsultationDetails] =
-    useState<Consultation | null>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
+}: ConsultationProps) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
-    if (!open || !consultId) return;
+    if (!dialogRef.current) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/consultation/${consultId}`)
-      .then((res) => res.json())
-      .then((data) => setConsultationDetails(data))
-      .catch((err) => console.error(err));
-
-    function handleClickOutside(e: MouseEvent) {
-      const modal = modalRef.current;
-      const overlay = overlayRef.current;
-
-      if (!modal || !overlay) return;
-      if (
-        overlay.contains(e.target as Node) &&
-        !modal.contains(e.target as Node)
-      ) {
-        onClose();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
+    dialogRef.current.showModal();
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      dialogRef.current?.close();
     };
-  }, [consultId, open, onClose]);
-
-  if (!open) return null;
+  }, []);
 
   return (
-    <div className="overlay" ref={overlayRef}>
-      <div className="modal" ref={modalRef}>
-        <div className="consult_card">
-          {consultationDetails ? (
-            <>
-              <button type="button" className="button_close" onClick={onClose}>
-                <img
-                  src={cross}
-                  alt="croix de fermeture"
-                  width="35px"
-                  height="35px"
-                />
-              </button>
-              <h1 className="title_detail">Détails de la consultation</h1>
-              <h2 className="category_detail">
-                {consultationDetails.category}
-              </h2>
-              <div className="animal_name_consult">
-                <h3 className="animal_name">Animal :</h3> <br />
-                <p>{consultationDetails.petName}</p>
-              </div>
-              <div className="date_detail">
-                <h3 className="title_date">Date :</h3> <br />
-                <p>
-                  {new Date(consultationDetails.created_at).toLocaleString(
-                    "fr-FR",
-                    {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    },
-                  )}
-                </p>
-              </div>
-              <div className="treatment">
-                <h3 className="treatment_detail">Traitement :</h3> <br />
-                <p>{consultationDetails.treatment}</p>
-              </div>
-              <div className="dosage">
-                <h3 className="dosage_detail">Posologie :</h3> <br />
-                <p>{consultationDetails.dosage}</p>
-              </div>
-              <div className="content_report">
-                <h3 className="report_title">Description :</h3>
-                <p>{consultationDetails.report}</p>
-              </div>
-              <button type="button" className="delete_button">
-                Supprimer
-              </button>
-            </>
-          ) : (
-            <p>Chargement...</p>
-          )}
-        </div>
+    <dialog
+      ref={dialogRef}
+      className="consultation_modal"
+      onCancel={onClose}
+      tabIndex={-1}
+      onClick={(e) => {
+        if (e.target === dialogRef.current) {
+          onClose();
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          e.target === dialogRef.current
+        ) {
+          onClose();
+        }
+      }}
+    >
+      <div className="consultation_card">
+        {consultation ? (
+          <>
+            <button type="button" className="button_close" onClick={onClose}>
+              <img
+                src="/images/cross.png"
+                alt="croix de fermeture"
+                width="35px"
+                height="35px"
+              />
+            </button>
+            <h1 className="title_detail">Détails de la consultation</h1>
+            <h2 className="category_detail">{consultation.category}</h2>
+            <div className="consultation_animal_name">
+              <h3 className="animal_name">Animal :</h3> <br />
+              <p>{consultation.petName}</p>
+            </div>
+            <div className="consultation_date">
+              <h3 className="title_date">Date :</h3> <br />
+              <p>
+                {new Date(consultation.created_at).toLocaleString("fr-FR", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+            </div>
+            <div className="treatment">
+              <h3 className="treatment_detail">Traitement :</h3> <br />
+              <p>{consultation.treatment}</p>
+            </div>
+            <div className="dosage">
+              <h3 className="dosage_detail">Posologie :</h3> <br />
+              <p>{consultation.dosage}</p>
+            </div>
+            <div className="content_report">
+              <h3 className="report_title">Description :</h3>
+              <p>{consultation.report}</p>
+            </div>
+            <button type="button" className="delete_button">
+              Supprimer
+            </button>
+          </>
+        ) : (
+          <p>Chargement...</p>
+        )}
       </div>
-    </div>
+    </dialog>
   );
 }

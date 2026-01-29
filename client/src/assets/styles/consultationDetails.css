@@ -7,7 +7,7 @@
   z-index: 1000;
 }
 
-.consult_card {
+.consultation_card {
   font-family: var(--font-logo);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -52,7 +52,7 @@
   font-weight: bold;
 }
 
-.date_detail {
+.consultation_date {
   padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
@@ -67,11 +67,11 @@
   font-weight: bold;
 }
 
-.consult_date p {
+.consultation_date p {
   padding-left: 2%;
 }
 
-.animal_name_consult {
+.consultation_animal_name {
   padding: 4%;
   border-radius: 15px;
   font-family: var(--font-text);

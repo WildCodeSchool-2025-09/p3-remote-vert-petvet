@@ -30,7 +30,7 @@ class ConsultationSeeder extends AbstractSeeder {
         ]),
         pet_id: pet.insertId,
         veterinary_id: veterinary.insertId,
-        refName: `consultation${i}`,
+        refName: `consultations${i}`,
       };
 
       this.insert(fakeConsultation);

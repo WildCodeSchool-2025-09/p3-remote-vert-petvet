@@ -11,11 +11,7 @@ interface Reminder {
 class ReminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      `SELECT reminder.*, pet.name
-    	FROM reminder 
-    	JOIN pet ON reminder.pet_id = pet.id 
-    	WHERE reminder.pet_id = ? 
-     	ORDER BY reminder.programmed_at ASC`,
+      "SELECT reminder.*, pet.name FROM reminder JOIN pet ON reminder.pet_id = pet.id WHERE reminder.pet_id = ? ORDER BY reminder.programmed_at ASC",
       [petId],
     );
 
@@ -24,7 +20,7 @@ class ReminderRepository {
 
   async getByOwner(ownerId: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
-      "SELECT reminder.*, pet.photo, pet.name FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      "SELECT reminder.*, pet.name, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
       [ownerId],
     );
     return reminders;

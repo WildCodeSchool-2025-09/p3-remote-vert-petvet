@@ -54,8 +54,6 @@ const add: RequestHandler = async (req, res, next) => {
       res.sendStatus(StatusCodes.BAD_REQUEST);
     }
 
-    //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
-
     const newReminder = {
       title: req.body.title,
       programmedAt: req.body.programmedAt,

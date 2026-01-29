@@ -5,22 +5,27 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
+import Consultations from "../components/Consultations";
+import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
-  const [error, setError] = useState();
+  const [consultations, setConsultations] = useState<Consultation[]>([]);
+  const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/pet/${id}`)
+
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {
           setError(petData.error);
         } else {
           setPetInfo(petData.pet);
+          setConsultations(petData.consultations);
           setReminders(petData.reminders);
         }
       });
@@ -35,8 +40,9 @@ function HealthRecord() {
           <img
             src={petInfo.photo}
             alt={petInfo.specie}
-            width={"150px"}
-            height={"150px"}
+            width="150px"
+            height="150px"
+            className="image-pet"
           />
           <div className="pet-name-info">
             <div>
@@ -81,6 +87,9 @@ function HealthRecord() {
         </div>
       </section>
 
+      <section className="vet-consultations-section">
+        <Consultations consultations={consultations} pet={petInfo} />
+      </section>
       <section className="pet-reminder">
         <RemindersByPet reminders={reminders} pet={petInfo} />
       </section>

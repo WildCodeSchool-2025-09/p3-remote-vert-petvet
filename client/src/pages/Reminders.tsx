@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/styles/reminders.css";
 import "../assets/styles/variables.css";
-import ReminderDetails from "../components/Reminder/ReminderDetails";
+import ReminderDetails from "../components/ReminderDetails";
 import type { Reminder } from "../types/Reminder";
 
 function Reminders() {

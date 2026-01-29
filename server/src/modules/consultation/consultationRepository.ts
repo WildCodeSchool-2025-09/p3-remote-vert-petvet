@@ -2,14 +2,14 @@ import type { Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
 class consultationRepository {
-  async getByConsultation(consultationId: number): Promise<Rows[0]> {
+  async get(id: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT consultation.*,
         pet.name AS pet_name
         FROM consultation 
         JOIN pet ON consultation.pet_id = pet.id 
         WHERE consultation.id = ?`,
-      [consultationId],
+      [id],
     );
     return rows[0];
   }

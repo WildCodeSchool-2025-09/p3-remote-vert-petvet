@@ -5,7 +5,7 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import "../assets/styles/healthRecord.css";
-import ConsultDetails from "../components/ConsultDetails";
+import ConsultDetails from "../components/ConsultationDetails";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {

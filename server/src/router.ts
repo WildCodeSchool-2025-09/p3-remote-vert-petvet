@@ -9,6 +9,6 @@ router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
 router.get("/api/pet/:id", petActions.browseByPet);
 
-router.get("/api/consultation/:id", consultationActions.readByConsultation);
+router.get("/api/consultations/:id", consultationActions.read);
 
 export default router;

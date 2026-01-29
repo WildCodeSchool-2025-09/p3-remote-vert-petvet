@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import "../assets/styles/consultDetails.css";
+import "../assets/styles/consultationDetails.css";
 import cross from "../../public/images/cross.png";
-import type { ConsultData } from "../types/Consult";
+import type { ConsultData } from "../types/Consultation";
 
 type ConsultProps = {
   consultId: number;
@@ -9,14 +9,13 @@ type ConsultProps = {
   onClose: () => void;
 };
 
-export default function ConsultDetails({
+export default function ConsultationDetails({
   open,
   onClose,
   consultId,
 }: ConsultProps) {
-  const [consultDetails, setConsultDetails] = useState<ConsultData | null>(
-    null,
-  );
+  const [consultationDetails, setConsultationDetails] =
+    useState<ConsultData | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +24,7 @@ export default function ConsultDetails({
 
     fetch(`${import.meta.env.VITE_API_URL}/consultation/${consultId}`)
       .then((res) => res.json())
-      .then((data) => setConsultDetails(data))
+      .then((data) => setConsultationDetails(data))
       .catch((err) => console.error(err));
 
     function handleClickOutside(e: MouseEvent) {
@@ -54,7 +53,7 @@ export default function ConsultDetails({
     <div className="overlay" ref={overlayRef}>
       <div className="modal" ref={modalRef}>
         <div className="consult_card">
-          {consultDetails ? (
+          {consultationDetails ? (
             <>
               <button type="button" className="button_close" onClick={onClose}>
                 <img
@@ -65,32 +64,37 @@ export default function ConsultDetails({
                 />
               </button>
               <h1 className="title_detail">Détails de la consultation</h1>
-              <h2 className="category_detail">{consultDetails.category}</h2>
+              <h2 className="category_detail">
+                {consultationDetails.category}
+              </h2>
               <div className="animal_name_consult">
                 <h3 className="animal_name">Animal :</h3> <br />
-                <p>{consultDetails.pet_name}</p>
+                <p>{consultationDetails.pet_name}</p>
               </div>
               <div className="date_detail">
                 <h3 className="title_date">Date :</h3> <br />
                 <p>
-                  {new Date(consultDetails.created_at).toLocaleString("fr-FR", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  {new Date(consultationDetails.created_at).toLocaleString(
+                    "fr-FR",
+                    {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    },
+                  )}
                 </p>
               </div>
               <div className="treatment">
                 <h3 className="treatment_detail">Traitement :</h3> <br />
-                <p>{consultDetails.treatment}</p>
+                <p>{consultationDetails.treatment}</p>
               </div>
               <div className="dosage">
                 <h3 className="dosage_detail">Posologie :</h3> <br />
-                <p>{consultDetails.dosage}</p>
+                <p>{consultationDetails.dosage}</p>
               </div>
               <div className="content_report">
                 <h3 className="report_title">Description :</h3>
-                <p>{consultDetails.report}</p>
+                <p>{consultationDetails.report}</p>
               </div>
               <button type="button" className="delete_button">
                 Supprimer

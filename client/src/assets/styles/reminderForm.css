@@ -1,0 +1,153 @@
+body {
+  background-color: var(--main-color);
+}
+
+.pet-vet {
+  text-align: right;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+}
+
+.reminder-form-title {
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    display: block;
+  }
+}
+
+form {
+  width: 35vw;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+p {
+  font-family: var(--font-text);
+}
+
+.title-date {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.content-cotainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.frequency-container {
+  display: flex;
+  padding: 20px;
+  gap: 10px;
+}
+.frequency-container .frequency {
+  display: flex;
+  flex-direction: column;
+}
+.frequency-container .frequency-value {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.frequency-value p {
+  padding-bottom: 15px;
+}
+
+input {
+  margin-top: 5px;
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: none;
+}
+
+label {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+select {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+
+  button {
+    background-color: var(--owner-color);
+    font-family: var(--font-text);
+    font-size: 1.1rem;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}
+
+.title {
+  width: 300px;
+}
+
+.content {
+  width: 350px;
+}
+
+.frequency-count {
+  width: 75px;
+}
+
+.obligatory {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.date {
+  width: 203px;
+}
+
+.error {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.success {
+  color: var(--owner-color);
+  font-weight: 800;
+}

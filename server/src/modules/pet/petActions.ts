@@ -1,7 +1,7 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
 import consultationRepository from "../consultation/consultationRepository";
 import reminderRepository from "../reminder/reminderRepository";
-import PetRepository from "./petRepository";
+import petRepository from "./petRepository";
 
 const browseByPet: RequestHandler = async (
   req: Request,
@@ -16,7 +16,7 @@ const browseByPet: RequestHandler = async (
       return;
     }
 
-    const pet = await PetRepository.getByPet(petId);
+    const pet = await petRepository.getByPet(petId);
     const reminders = await reminderRepository.getByPet(petId);
 
     if (!pet) {

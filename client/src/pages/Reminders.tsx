@@ -45,5 +45,4 @@ function Reminders() {
     </section>
   );
 }
-
 export default Reminders;

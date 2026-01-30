@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/Consultations.css";
+import "../assets/styles/consultations.css";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 

@@ -113,6 +113,7 @@ main .intro .intro-section .intro-text span {
   background-color: #faecdb;
   padding: 20px;
   border-radius: 10px;
+  font-family: var(--font-title);
 }
 
 main .individuals {
@@ -148,6 +149,10 @@ main .individuals p {
   padding-top: 2rem;
   text-align: left;
 }
+main .individuals .individuals-text-and-image img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
 main .professionals {
   background-color: var(--main-color);
   background-image: url(/images/paws-path.png);
@@ -175,6 +180,10 @@ main .professionals p {
   padding-left: 8rem;
   padding-top: 2rem;
   text-align: left;
+}
+main .professionals .professionals-text-and-image img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 main .associations {
   background-color: #faecdb;
@@ -215,6 +224,10 @@ main .associations .associations-text-and-image {
 main .associations .associations-text-and-image .associations-text {
   max-width: 600px;
 }
+main .associations .associations-text-and-image img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
 main .buttons-bottom {
   display: flex;
   justify-content: center;
@@ -222,7 +235,8 @@ main .buttons-bottom {
   padding: 5rem 0;
   background-color: var(--main-color);
   flex-direction: column;
-  background-image: url(/images/paws-path.png);
+  background-image: url(/images/paws-path-reverse.png);
+  background-repeat: no-repeat;
 }
 main .buttons-bottom .button-homePage {
   gap: 15px;
@@ -256,4 +270,33 @@ main .buttons-bottom .button-register-login {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+}
+.reveal {
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+h1.reveal {
+  opacity: 0;
+  transform: translateY(-50px) scale(1.2);
+  transition: all 1.2s ease-out;
+}
+h1.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.from-top {
+  transform: translateY(-50px);
+}
+.from-bottom {
+  transform: translateY(50px);
+}
+.from-left {
+  transform: translateX(-50px);
+}
+.from-right {
+  transform: translateX(50px);
 }

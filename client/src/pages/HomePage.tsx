@@ -1,45 +1,66 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/homePage.css";
+import { useEffect } from "react";
 
 function HomePage() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+    const elements = document.querySelectorAll(".reveal, .reveal-img");
+    for (const el of elements) {
+      observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <header>
         <nav>
           <div className="logo-container">
             <img
-              src="/images/logo-vert.png"
+              src="/images/green/logo.png"
               alt="PetVet Logo vert"
-              className="logo logo1"
-              width="120"
+              className="logo logo1 reveal from-right"
+              width="120px"
             />
             <img
-              src="/images/logo-bleu.png"
+              src="/images/blue/logo.png"
               alt="PetVet Logo bleu"
-              className="logo logo2"
-              width="120"
+              className="logo logo2 reveal from-left"
+              width="120px"
             />
           </div>
 
           <ul>
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-left">
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               Contacts utiles
             </button>
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-left">
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               Me connecter
             </button>
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-left">
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               M'inscrire
             </button>
           </ul>
 
-          <h1>Pet&Vet</h1>
+          <h1 className="reveal">Pet&Vet</h1>
         </nav>
 
-        <h2>Bienvenue sur Pet&Vet !</h2>
+        <h2 className="reveal">Bienvenue sur Pet&Vet !</h2>
       </header>
       <main>
         <section className="intro">
@@ -54,7 +75,7 @@ function HomePage() {
                 Le premier carnet de santé numérique pour tous les animaux de
                 compagnie, entièrement gratuit et disponible sur smartphone.
               </p>
-              <span>
+              <span className="reveal from-bottom">
                 ATTENTION : l'utilisation de ce site ne remplace pas l'avis d'un
                 vétérinaire.
               </span>
@@ -64,6 +85,7 @@ function HomePage() {
               src="/images/dog-cat.jpg"
               alt="Chien et chat assis"
               width="500px"
+              className="reveal from-right"
             />
           </div>
         </section>
@@ -92,6 +114,7 @@ function HomePage() {
               src="/images/cat-hand.jpg"
               alt="Chat qui tape dans la main"
               width="300px"
+              className="reveal from-left"
             />
           </div>
         </section>
@@ -117,9 +140,10 @@ function HomePage() {
               </p>
             </div>
             <img
-              src="/images/dog-plush.jpg"
-              alt="Chien avec un doudou"
-              width="300"
+              src="/images/rabbit.jpg"
+              alt="Lapin"
+              width="400px"
+              className="reveal from-right"
             />
           </div>
         </section>
@@ -140,23 +164,24 @@ function HomePage() {
             <img
               src="/images/dog-window.jpg"
               alt="Chien regardant par la fenêtre"
-              width="300"
+              width="300px"
+              className="reveal from-bottom"
             />
           </div>
         </section>
         <section className="buttons-bottom">
           <div className="button-contacts-utile">
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-right">
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               Contacts utiles
             </button>
           </div>
           <div className="button-register-login">
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-right">
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               Me connecter
             </button>
-            <button type="button" className="button-homePage">
+            <button type="button" className="button-homePage reveal from-right">
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               M'inscrire
             </button>

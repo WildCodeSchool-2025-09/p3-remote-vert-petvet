@@ -22,7 +22,6 @@ function ReminderForm() {
 
   const createReminder = async (reminder: CreateReminder) => {
     setIsSubmited(true);
-    console.log(reminder);
 
     try {
       const response = await fetch(

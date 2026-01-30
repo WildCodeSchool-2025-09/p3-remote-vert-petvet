@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import "../assets/styles/consultForm.css";
+import "../assets/styles/consultationForm.css";
 
 type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
 
-interface CreateConsult {
+interface Createconsultation {
   title: string;
   createdAt: string;
   report: string;
@@ -22,7 +22,7 @@ type Animal = {
   name: string;
 };
 
-function ConsultForm() {
+function consultationForm() {
   const [title, setTitle] = useState("");
   const [createdAt, setcreatedAt] = useState("");
   const [report, setReport] = useState("");
@@ -42,11 +42,9 @@ function ConsultForm() {
   useEffect(() => {
     if (!vetId) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/consult/pet/${vetId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/consultation/pet/${vetId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("API response:", data);
-
         if (Array.isArray(data)) {
           setAnimals(data);
         } else if (data?.id && data?.name) {
@@ -59,7 +57,7 @@ function ConsultForm() {
       .catch((err) => console.error(err));
   }, [vetId]);
 
-  const createConsult = async (consult: CreateConsult) => {
+  const createconsultation = async (consultation: Createconsultation) => {
     if (!selectedAnimal) {
       setErrorMessage("Veuillez sélectionner un animal");
       return;
@@ -71,22 +69,23 @@ function ConsultForm() {
     setIsSubmitting(true);
 
     try {
+      console.log("coucou");
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/consult/${selectedAnimal}`,
+        `${import.meta.env.VITE_API_URL}/consultation/${selectedAnimal}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(consult),
+          body: JSON.stringify(consultation),
         },
       );
 
       if (!response.ok) {
-        throw new Error("Erreur lors de la création de la consultation");
+        throw new Error("Erreur lors de la création de la consultationation");
       }
 
-      setSuccessMessage("Consultation créé avec succès !");
+      setSuccessMessage("consultationation créé avec succès !");
 
       setTimeout(() => {
         navigate(`/pet-profile/${id}`);
@@ -95,17 +94,17 @@ function ConsultForm() {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "Erreur lors de la création de la consultation",
+          : "Erreur lors de la création de la consultationation",
       );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const submitConsult = (e: React.FormEvent) => {
+  const submitconsultation = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newConsult = {
+    const newconsultation = {
       title: title,
       createdAt: createdAt,
       report: report,
@@ -116,20 +115,20 @@ function ConsultForm() {
       veterinaryId: vetId,
     };
 
-    createConsult(newConsult);
+    createconsultation(newconsultation);
   };
 
   return (
     <section>
-      <header className="pet-vet-consult">Pet&Vet</header>
-      <h1 className="Consult-form-title">Ajouter une consultation</h1>
-      <article className="consult-form-container">
-        <form className="consult-form" onSubmit={submitConsult}>
-          <p className="consult-error">{errorMessage}</p>
-          <p className="consult-success">{successMessage}</p>
-          <div className="consult-category-value">
+      <header className="pet-vet-consultation">Pet&Vet</header>
+      <h1 className="consultation-form-title">Ajouter une consultationation</h1>
+      <article className="consultation-form-container">
+        <form className="consultation-form" onSubmit={submitconsultation}>
+          <p className="consultation-error">{errorMessage}</p>
+          <p className="consultation-success">{successMessage}</p>
+          <div className="consultation-category-value">
             <select
-              className="consult-select"
+              className="consultation-select"
               value={category}
               aria-placeholder="category"
               onChange={(e) => setCategory(e.target.value as Category)}
@@ -144,9 +143,9 @@ function ConsultForm() {
               <option value="medicale">médicale</option>
             </select>
           </div>
-          <div className="consult-date">
+          <div className="consultation-date">
             <label>
-              Date programmée <span className="consult-obligatory">*</span>
+              Date programmée <span className="consultation-obligatory">*</span>
               <input
                 type="datetime-local"
                 value={createdAt}
@@ -156,9 +155,9 @@ function ConsultForm() {
               />
             </label>
           </div>
-          <div className="consult-animal-name">
+          <div className="consultation-animal-name">
             <select
-              className="consult-select"
+              className="consultation-select"
               value={selectedAnimal ?? ""}
               onChange={(e) => setSelectedAnimal(Number(e.target.value))}
             >
@@ -172,30 +171,30 @@ function ConsultForm() {
               ))}
             </select>
           </div>
-          <div className="consult-title">
+          <div className="consultation-title">
             <label>
-              Titre <span className="consult-obligatory">*</span>
+              Titre <span className="consultation-obligatory">*</span>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="consult-title-input"
+                className="consultation-title-input"
               />
             </label>
           </div>
-          <div className="consult-content">
+          <div className="consultation-content">
             <label>
               <textarea
-                placeholder="Détails de la consultation :"
+                placeholder="Détails de la consultationation :"
                 value={report}
                 onChange={(e) => setReport(e.target.value)}
                 required
-                className="consult-content"
+                className="consultation-content"
               />
             </label>
           </div>
-          <div className="consult-treatment">
+          <div className="consultation-treatment">
             <label>
               Traitement
               <input
@@ -203,11 +202,11 @@ function ConsultForm() {
                 value={treatment}
                 placeholder="traitement"
                 onChange={(e) => setTreatment(String(e.target.value))}
-                className="consult-treatment-input"
+                className="consultation-treatment-input"
               />
             </label>
           </div>
-          <div className="consult-dosage">
+          <div className="consultation-dosage">
             <label>
               Posologie
               <input
@@ -215,18 +214,18 @@ function ConsultForm() {
                 value={dosage}
                 placeholder="posologie"
                 onChange={(e) => setDosage(e.target.value)}
-                className="consult-dosage-input"
+                className="consultation-dosage-input"
               />
             </label>
           </div>
-          <div className="consult-button-container">
-            <p className="consult-obligatory">* Champs obligatoires</p>
+          <div className="consultation-button-container">
+            <p className="consultation-obligatory">* Champs obligatoires</p>
             <button
               type="submit"
               className="send-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Création..." : "Créer une consultation"}
+              {isSubmitting ? "Création..." : "Créer une consultationation"}
             </button>
           </div>
         </form>
@@ -235,4 +234,4 @@ function ConsultForm() {
   );
 }
 
-export default ConsultForm;
+export default consultationForm;

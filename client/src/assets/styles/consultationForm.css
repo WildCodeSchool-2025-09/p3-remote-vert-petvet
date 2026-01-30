@@ -2,7 +2,7 @@ body {
   background-color: var(--main-color);
 }
 
-.pet-vet-consult {
+.pet-vet-consultation {
   text-align: right;
   font-family: var(--font-logo);
   font-weight: 800;
@@ -12,7 +12,7 @@ body {
   padding-right: 100px;
 }
 
-.Consult-form-title {
+.consultation-form-title {
   font-family: var(--font-logo);
   font-size: 1.5rem;
   padding-top: 50px;
@@ -20,7 +20,7 @@ body {
   padding-bottom: 30px;
 }
 
-.consult-form-container {
+.consultation-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ body {
   }
 }
 
-.consult-form {
+.consultation-form {
   width: 60vw;
   height: 80vh;
   background-color: white;
@@ -41,7 +41,7 @@ body {
   grid-template-rows: 1fr 1fr 1fr 1fr 6fr 2fr 1fr;
 }
 
-.consult-select {
+.consultation-select {
   margin: 20px;
   font-family: var(--font-text);
   color: var(--text-color);
@@ -52,22 +52,22 @@ body {
   cursor: pointer;
 }
 
-.consult-category-value {
+.consultation-category-value {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
 }
 
-.consult-date {
+.consultation-date {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
 }
 
-.consult-animal-name {
+.consultation-animal-name {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
 }
 
-.consult-title {
+.consultation-title {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -78,13 +78,13 @@ body {
   grid-row: 4 / 5;
 }
 
-.consult-title-input {
+.consultation-title-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;
 }
 
-.consult-content {
+.consultation-content {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -100,7 +100,7 @@ body {
   resize: none;
 }
 
-.consult-treatment {
+.consultation-treatment {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -111,13 +111,13 @@ body {
   justify-self: center;
 }
 
-.consult-treatment-input {
+.consultation-treatment-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;
 }
 
-.consult-dosage {
+.consultation-dosage {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
@@ -128,13 +128,13 @@ body {
   justify-self: center;
 }
 
-.consult-dosage-input {
+.consultation-dosage-input {
   background-color: #d9d9d9;
   border: none;
   border-radius: 5px;
 }
 
-.consult-button-container {
+.consultation-button-container {
   grid-column: 3 / 4;
   grid-row: 7 / 8;
   display: flex;
@@ -158,17 +158,17 @@ body {
   }
 }
 
-.consult-obligatory {
+.consultation-obligatory {
   color: #d4896c;
   font-weight: 800;
 }
 
-.consult-error {
+.consultation-error {
   color: #d4896c;
   font-weight: 800;
 }
 
-.consult-success {
+.consultation-success {
   color: var(--vet-color);
   font-weight: 800;
 }

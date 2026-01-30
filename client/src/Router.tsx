@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
-import ConsultForm from "./pages/ConsultForm";
+import ConsultationForm from "./pages/ConsultationForm";
 import HealthRecord from "./pages/HealthRecord";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/consultation/add/:id",
-    element: <ConsultForm />,
+    element: <ConsultationForm />,
   },
 ]);
 

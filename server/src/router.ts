@@ -1,5 +1,5 @@
 import express from "express";
-import consultActions from "./modules/consult/consultActions";
+import consultationActions from "./modules/consultation/consultationActions";
 import petActions from "./modules/pet/petActions";
 import reminderActions from "./modules/reminder/reminderActions";
 
@@ -10,7 +10,11 @@ router.post("/api/pet/:id/reminders", reminderActions.add);
 
 router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
-router.get("/api/consult/pet/:id", consultActions.readByConsult);
-router.post("/api/consult/:id", consultActions.add);
+router.get("/api/consultation/pet/:id", consultationActions.readByConsultation);
+router.post(
+  "/api/consultation/:id",
+  consultationActions.validateConsultation,
+  consultationActions.add,
+);
 
 export default router;

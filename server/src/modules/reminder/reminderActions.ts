@@ -75,7 +75,9 @@ const validateReminder = (req: Request, res: Response, next: NextFunction) => {
   if (error == null) {
     next();
   } else {
-    res.status(StatusCodes.CONFLICT).json({ validationErrors: error.details });
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ validationErrors: error.details });
   }
 };
 

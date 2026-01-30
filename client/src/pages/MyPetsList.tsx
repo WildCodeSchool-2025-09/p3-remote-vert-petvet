@@ -20,7 +20,6 @@ function MyPetsList() {
     fetch(`${import.meta.env.VITE_API_URL}/owners/${ownerId}/pets`)
       .then((response) => response.json())
       .then((petsData: Pet[]) => {
-        console.log("Données reçue :", petsData);
         setPets(petsData);
         setIsLoading(false);
       })

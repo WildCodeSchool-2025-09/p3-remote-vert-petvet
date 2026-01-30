@@ -1,6 +1,6 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
 import consultationRepository from "../consultation/consultationRepository";
-//import reminderRepository from "../reminder/reminderRepository";
+import reminderRepository from "../reminder/reminderRepository";
 import petRepository from "./petRepository";
 
 const browseByPet: RequestHandler = async (
@@ -17,7 +17,7 @@ const browseByPet: RequestHandler = async (
     }
 
     const pet = await petRepository.getByPet(petId);
-    //const reminders = await reminderRepository.getByPet(petId);
+    const reminders = await reminderRepository.getByPet(petId);
 
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });
@@ -29,7 +29,7 @@ const browseByPet: RequestHandler = async (
     if (!pet) {
       res.status(400).json({ error: "Pas de compagnons sur cette page !" });
     }
-    // res.status(200).json({ pet, consultations, reminders });
+    res.status(200).json({ pet, consultations, reminders });
   } catch (error) {
     next(error);
   }

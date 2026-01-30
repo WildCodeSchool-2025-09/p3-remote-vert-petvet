@@ -18,3 +18,15 @@ export interface ReminderType {
   programmed_at: string;
   name: string;
 }
+
+export type Frequency = "jour" | "semaine" | "mois" | "an";
+
+export interface CreateReminder {
+  title: string;
+  programmedAt: string;
+  content: string;
+  dosage: string | null;
+  frequency: Frequency | null;
+  frequencyCount: number | null;
+  petId: number;
+}

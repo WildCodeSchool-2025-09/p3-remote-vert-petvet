@@ -3,12 +3,14 @@ import "../assets/styles/variables.css";
 import "../assets/styles/consultations.css";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
+import ConsultationDetails from "./ConsultationDetails";
 
 function Consultations({
   consultations,
 }: { pet: Pet; consultations: Consultation[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const [currentConsultation, setCurrentConsultation] =
+    useState<Consultation | null>(null);
   const displayedConsultations = isExpanded
     ? consultations
     : consultations.slice(0, 3);
@@ -31,6 +33,7 @@ function Consultations({
                 type="button"
                 key={consultation.id}
                 className="consultation-item"
+                onClick={() => setCurrentConsultation(consultation)}
               >
                 <img
                   src={
@@ -54,6 +57,13 @@ function Consultations({
             );
           })}
         </ul>
+        {currentConsultation && (
+          <ConsultationDetails
+            consultId={currentConsultation.id}
+            consultation={currentConsultation}
+            onClose={() => setCurrentConsultation(null)}
+          />
+        )}
         <button
           type="button"
           className="see-more-button"

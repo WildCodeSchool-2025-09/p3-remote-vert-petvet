@@ -1,6 +1,7 @@
 import "../assets/styles/variables.css";
 import "../assets/styles/reminderByPet.css";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import type { Pet } from "../types/Pet";
 import type { Reminder } from "../types/Reminder";
 import ReminderDetails from "./ReminderDetails";
@@ -10,6 +11,8 @@ function RemindersByPet({
   reminders,
 }: { pet: Pet; reminders: Reminder[] }) {
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
+
+  const navigate = useNavigate();
 
   return (
     <section className="reminder-container">
@@ -38,8 +41,11 @@ function RemindersByPet({
           onClose={() => setCurrentReminder(null)}
         />
       )}
-
-      <button type="button" className="add-reminder-button">
+      <button
+        type="button"
+        className="add-reminder-button"
+        onClick={() => navigate(`/pet-profile/${pet.id}/reminders/new`)}
+      >
         <img src="/images/white-cross.png" alt="Add Reminder Icon" />
       </button>
     </section>

@@ -73,10 +73,11 @@
   background-color: #95a878;
   cursor: pointer;
 }
+
 .reminder-container ul {
-  max-width: 350px;
+  max-height: 300px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--owner-color) #f0f0f0;
-  padding-right: 5px;
+  padding-right: 10px;
 }

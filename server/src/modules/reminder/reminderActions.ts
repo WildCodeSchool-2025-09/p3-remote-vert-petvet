@@ -58,11 +58,15 @@ const add: RequestHandler = async (req, res, next) => {
 
 const reminderSchema = Joi.object({
   title: Joi.string().max(100).required(),
-  programmed_at: Joi.date().required(),
+  programmedAt: Joi.date().required(),
   content: Joi.string().max(100).required(),
-  dosage: Joi.string().max(30),
-  frequency: Joi.string().valid("jour", "semaine", "mois", "an"),
-  frequency_count: Joi.number().integer(),
+  dosage: Joi.string().max(30).allow(null).optional(),
+  frequency: Joi.string()
+    .valid("jour", "semaine", "mois", "an")
+    .allow(null)
+    .optional(),
+  frequencyCount: Joi.number().integer().min(1).allow(null).optional(),
+  petId: Joi.number().required(),
 });
 
 const validateReminder = (req: Request, res: Response, next: NextFunction) => {
@@ -71,9 +75,7 @@ const validateReminder = (req: Request, res: Response, next: NextFunction) => {
   if (error == null) {
     next();
   } else {
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ validationErrors: error.details });
+    res.status(StatusCodes.CONFLICT).json({ validationErrors: error.details });
   }
 };
 

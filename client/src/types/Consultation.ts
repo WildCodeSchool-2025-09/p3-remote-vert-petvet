@@ -8,4 +8,5 @@ export interface Consultation {
   category: "vaccination" | "urgence" | "suivi" | "opération" | "médicale";
   pet_id: number;
   veterinary_id: number;
+  petName: string;
 }

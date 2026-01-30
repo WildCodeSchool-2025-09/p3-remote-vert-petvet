@@ -1,7 +1,7 @@
 import emergency from "../../public/images/green/emergency.png";
 import steto from "../../public/images/green/stetoscope.png";
 import syringe from "../../public/images/green/syringe.png";
-import type { Consultation } from "../types/Consult";
+import type { Consultation } from "../types/Consultation";
 
 type MedicProps = {
   consultations: Consultation[];

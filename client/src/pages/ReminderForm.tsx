@@ -11,20 +11,21 @@ function ReminderForm() {
   const [content, setContent] = useState("");
   const [dosage, setDosage] = useState("");
   const [frequency, setFrequency] = useState<Frequency | "">("");
-  const [frequencyCount, setFrequencyValue] = useState<number | "">("");
+  const [frequencyCount, setFrequencyCount] = useState<number | "">("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [successMessage, setSuccessMessage] = useState<string>("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const navigate = useNavigate();
+
   const { id } = useParams();
+  const petId = Number(id);
 
   const createReminder = async (reminder: CreateReminder) => {
-    setIsSubmitting(true);
+    setIsSubmited(true);
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/pet/${id}/reminders`,
+        `${import.meta.env.VITE_API_URL}/pets/${petId}/reminders`,
         {
           method: "POST",
           headers: {
@@ -38,11 +39,9 @@ function ReminderForm() {
         throw new Error("Erreur lors de la création du rappel");
       }
 
-      setSuccessMessage("Rappel créé avec succès !");
-
-      setTimeout(() => {
-        navigate(`/pet-profile/${id}`);
-      }, 2000);
+      navigate(`/pet-profile/${petId}`, {
+        state: { successMessage: "Rappel créé avec succès !" },
+      });
     } catch (error: unknown) {
       setErrorMessage(
         error instanceof Error
@@ -50,24 +49,8 @@ function ReminderForm() {
           : "Erreur lors de la création du rappel",
       );
     } finally {
-      setIsSubmitting(false);
+      setIsSubmited(false);
     }
-  };
-
-  const submitReminder = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newReminder = {
-      title: title,
-      programmedAt: programmedAt,
-      content: content,
-      dosage: dosage || null,
-      frequency: frequency || null,
-      frequencyCount: frequencyCount || null,
-      petId: Number(id),
-    };
-
-    createReminder(newReminder);
   };
 
   return (
@@ -75,9 +58,21 @@ function ReminderForm() {
       <header className="pet-vet">Pet&Vet</header>
       <h1 className="reminder-form-title">Ajouter un rappel</h1>
       <article className="form-container">
-        <form onSubmit={submitReminder}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createReminder({
+              title,
+              programmedAt,
+              content,
+              dosage: dosage || null,
+              frequency: frequency || null,
+              frequencyCount: frequencyCount || null,
+              petId,
+            });
+          }}
+        >
           <p className="error">{errorMessage}</p>
-          <p className="success">{successMessage}</p>
           <div className="title-date">
             <label>
               Titre <span className="obligatory">*</span>
@@ -129,7 +124,7 @@ function ReminderForm() {
                   min={1}
                   value={frequencyCount}
                   placeholder="Nb de x"
-                  onChange={(e) => setFrequencyValue(Number(e.target.value))}
+                  onChange={(e) => setFrequencyCount(Number(e.target.value))}
                   className="frequency-count"
                 />
               </label>
@@ -149,8 +144,8 @@ function ReminderForm() {
           </div>
           <div className="button-container">
             <p className="obligatory">* Champs obligatoires</p>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Création..." : "Créer un rappel"}
+            <button type="submit" disabled={isSubmited}>
+              {isSubmited ? "Création..." : "Créer un rappel"}
             </button>
           </div>
         </form>

@@ -1,27 +1,32 @@
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router";
+import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/petInfo.css";
 import "../assets/styles/consultCards.css";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import MedicalHistory from "../components/MedicalHistory";
-import type { Consultation } from "../types/Consult";
+import type { Consultation } from "../types/Consultation";
 import "../assets/styles/healthRecord.css";
-import RemindersByPet from "../components/RemindersByPet";
+import Consultations from "../components/Consultations";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const [petInfo, setPetInfo] = useState<Pet>();
-  const [error, setError] = useState();
+  const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
   const [openResume, setOpenResume] = useState(true);
   const [openHealth, setOpenHealth] = useState(false);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [openMedicalHistory, setOpenMedicalHistory] = useState(false);
+  const location = useLocation();
+  const [temporaryMessage, setTemporaryMessage] = useState<string | null>(
+    location.state?.successMessage ?? null,
+  );
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pet/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`)
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {
@@ -36,6 +41,14 @@ function HealthRecord() {
 
   const fewActivities = consultations.slice(0, 5) ?? [];
 
+  useEffect(() => {
+    if (temporaryMessage) {
+      setTimeout(() => {
+        setTemporaryMessage(null);
+      }, 3000);
+    }
+  }, [temporaryMessage]);
+
   if (!petInfo) return <p>{error}</p>;
 
   return (
@@ -47,8 +60,8 @@ function HealthRecord() {
             <img
               src={petInfo.photo}
               alt={petInfo.specie}
-              width={"150px"}
-              height={"150px"}
+              width="150px"
+              height="150px"
               className="image-pet"
             />
             <div className="pet-name-info">
@@ -93,6 +106,15 @@ function HealthRecord() {
             <p>Suivi : Dr. {petInfo.lastname}</p>
           </div>
         </section>
+        {temporaryMessage && <p className="success">{temporaryMessage}</p>}
+        <section className="vet-consultations-section">
+          <Consultations /*Lea coté Veto*/
+            consultations={consultations}
+            pet={petInfo}
+          />
+        </section>
+      </div>
+      <div>
         <section>
           <div className="buttons-container">
             <button

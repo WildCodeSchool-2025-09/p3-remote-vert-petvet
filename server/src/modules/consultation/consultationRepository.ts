@@ -23,7 +23,7 @@ class consultationRepository {
 
   async getByPet(petId: number) {
     const [vetConsultations] = await databaseClient.query(
-      `SELECT consultation.*, pet.name
+      `SELECT consultation.*, pet.name as petName
 			FROM consultation
 			JOIN pet ON consultation.pet_id = pet.id
 			WHERE consultation.pet_id = ?

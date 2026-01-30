@@ -12,9 +12,9 @@ router.post(
   reminderActions.add,
 );
 
-router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
+router.get("/api/owners/:id/pets", petActions.browseByOwner);
 
-router.get("/api/pets/:id", petActions.browseByPet);
+router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
 router.get("/api/consultations/:id", consultationActions.read);
 

@@ -1,22 +1,26 @@
-/*import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Pet } from "../types/Pet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/myPetsList.css";
+import "../assets/styles/healthRecord.css";
+import { Link, useParams } from "react-router";
 
 function MyPetsList() {
   const [pets, setPets] = useState<Pet[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const ownerId = 1;
+  const formatGender = (gender: string) => (gender === "m" ? "♂" : "♀");
 
-  const formatGender = (gender: "m" | "f") => (gender === "m" ? "♂" : "♀");
+  const { id } = useParams();
+  const ownerId = Number(id);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/my-pets/${ownerId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/owners/${ownerId}/pets`)
       .then((response) => response.json())
       .then((petsData: Pet[]) => {
+        console.log("Données reçue :", petsData);
         setPets(petsData);
         setIsLoading(false);
       })
@@ -24,7 +28,7 @@ function MyPetsList() {
         setError("Impossible de charger les animaux");
         setIsLoading(false);
       });
-  }, []);
+  }, [ownerId]);
 
   if (isLoading) return <p>Chargement de vos animaux...</p>;
   if (error) return <p>{error}</p>;
@@ -61,9 +65,11 @@ function MyPetsList() {
                 </div>
               </div>
               <div className="button">
-                <button type="button" className="profil-access">
-                  Fiche de santé
-                </button>
+                <Link to={`/pet-profile/${pet.id}`}>
+                  <button type="button" className="profil-access">
+                    Fiche de santé
+                  </button>
+                </Link>
               </div>
             </article>
           ))}
@@ -73,4 +79,4 @@ function MyPetsList() {
   );
 }
 
-export default MyPetsList;*/
+export default MyPetsList;

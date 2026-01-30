@@ -13,7 +13,7 @@ class PetSeeder extends AbstractSeeder {
 
   run() {
     for (let i = 0; i < 5; i++) {
-      //const owner = this.getRef(`owner_${i}`);
+      const owner = this.getRef(`owner_${i}`);
       const veterinary = this.getRef(`veterinary_${i}`);
       const fakePet = {
         name: this.faker.animal.petName(),
@@ -26,7 +26,7 @@ class PetSeeder extends AbstractSeeder {
         is_neutered: this.faker.datatype.boolean(),
         tattoo_nb: this.faker.string.alphanumeric(10),
         chip_nb: this.faker.number.int({ min: 100000000, max: 999999999 }),
-        owner_id: 1,
+        owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
         refName: `pet_${i}`,
       };

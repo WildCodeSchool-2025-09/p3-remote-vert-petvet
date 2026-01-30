@@ -12,6 +12,7 @@ export default function consultation({
   consultation,
   onClose,
 }: ConsultationProps) {
+  console.log("Ma consultation reçue :", consultation);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {

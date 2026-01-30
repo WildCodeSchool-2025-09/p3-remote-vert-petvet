@@ -10,14 +10,7 @@ export interface Reminder {
   veterinary_id: number;
   pet_id: number;
   owner_id: number;
-  name: string;
-}
-
-export interface ReminderType {
-  id: number;
-  title: string;
-  programmed_at: string;
-  name: string;
+  petName: string;
 }
 
 export type Frequency = "jour" | "semaine" | "mois" | "an";

@@ -25,3 +25,10 @@
   border: none;
   border-radius: 10px;
 }
+
+.success {
+  font-family: var(--font-text);
+  color: var(--owner-color);
+  font-size: 1.1rem;
+  padding: 20px;
+}

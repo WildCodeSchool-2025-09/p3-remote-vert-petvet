@@ -14,9 +14,7 @@ class ConsultationSeeder extends AbstractSeeder {
   run() {
     for (let i = 0; i < 5; i++) {
       const pet = this.getRef(`pet_${i}`);
-
       const veterinary = this.getRef(`veterinary_${i}`);
-
       const fakeConsultation = {
         title: this.faker.lorem.words({ min: 1, max: 5 }),
         created_at: this.faker.date.recent(),
@@ -32,7 +30,7 @@ class ConsultationSeeder extends AbstractSeeder {
         ]),
         pet_id: pet.insertId,
         veterinary_id: veterinary.insertId,
-        refName: `consultation${i}`,
+        refName: `consultations${i}`,
       };
 
       this.insert(fakeConsultation);

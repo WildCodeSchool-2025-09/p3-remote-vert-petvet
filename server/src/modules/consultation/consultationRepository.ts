@@ -20,10 +20,22 @@ interface VetConsultation {
   created_at: Date;
 }
 
-class ConsultationRepository {
+class consultationRepository {
+  async get(id: number): Promise<Rows[0]> {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT consultation.*,
+        pet.name AS petName
+        FROM consultation 
+        JOIN pet ON consultation.pet_id = pet.id 
+        WHERE consultation.id = ?`,
+      [id],
+    );
+    return rows[0];
+  }
+
   async getByPet(petId: number) {
     const [vetConsultations] = await databaseClient.query(
-      `SELECT consultation.*, pet.name as petName
+      `SELECT consultation.*, pet.name
 			FROM consultation
 			JOIN pet ON consultation.pet_id = pet.id
 			WHERE consultation.pet_id = ?
@@ -61,4 +73,4 @@ class ConsultationRepository {
   }
 }
 
-export default new ConsultationRepository();
+export default new consultationRepository();

@@ -1,4 +1,4 @@
-import type { RequestHandler } from "express";
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 import consultationRepository from "./consultationRepository";
@@ -32,6 +32,23 @@ const readByConsultation: RequestHandler = async (req, res, next) => {
       res.sendStatus(404);
     } else {
       res.json(petList);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const read = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const consultationId = Number(req.params.id);
+    const consultation = await consultationRepository.get(consultationId);
+
+    if (!consultation) {
+      res
+        .sendStatus(404)
+        .json({ error: "Pas de consultations pour le moment" });
+    } else {
+      res.status(200).json(consultation);
     }
   } catch (err) {
     next(err);
@@ -78,4 +95,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { readByConsultation, add, validateConsultation };
+export default { readByConsultation, read, add, validateConsultation };

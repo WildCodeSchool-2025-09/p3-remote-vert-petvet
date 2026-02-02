@@ -1,18 +1,15 @@
 .overlay {
   position: fixed;
   inset: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   z-index: 1000;
 }
 
-.reminder {
+.consultation_card {
   font-family: var(--font-logo);
   display: grid;
-  gap: 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 3fr 1fr;
   background-color: var(--main-color);
@@ -24,71 +21,119 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-.title_reminder {
+.title_detail {
   padding: 1.2rem;
   justify-self: center;
   align-self: center;
-  font-size: 1.5rem;
+  margin-bottom: 6%;
+  margin-top: 4%;
+  font-size: 1.2rem;
   border-radius: 15px;
-  background-color: white;
-  margin-top: 1;
+  grid-row: 2 / 1;
+  grid-column: 1 / 3;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.category_detail {
+  padding: 1rem;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.2rem;
+  color: var(--owner-color);
+  border-radius: 15px;
   grid-row: 2 / 3;
   grid-column: 1 / 3;
   text-align: center;
 }
 
-.reminder h2 {
-  text-decoration: underline;
+.category_detail {
+  margin-top: -10%;
   font-weight: bold;
 }
 
-.reminder h3 {
-  font-weight: bold;
-}
-
-.date_reminder {
-  padding: 10px;
-  margin: 5px;
+.consultation_date {
+  padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
   background-color: white;
   grid-row: 3 / 4;
   grid-column: 1 / 2;
+  margin: -4% 3% 3% 3%;
 }
 
-.animal_name_reminder {
-  padding: 10px;
-  margin: 5px;
+.title_date {
+  padding-left: 2%;
+  font-weight: bold;
+}
+
+.consultation_date p {
+  padding-left: 2%;
+}
+
+.consultation_animal_name {
+  padding: 4%;
   border-radius: 15px;
   font-family: var(--font-text);
   background-color: white;
   grid-row: 3 / 4;
   grid-column: 2 / 3;
+  margin: -4% 3% 3% 3%;
 }
 
-.frequency_reminder {
-  padding: 1.2rem;
-  justify-self: center;
-  align-self: center;
+.animal_name {
+  font-weight: bold;
+}
+
+.treatment {
+  padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
   background-color: white;
-  text-align: center;
-  grid-row: 4 / 5;
-  grid-column: 1 / 3;
+  grid-row: 4 / 4;
+  grid-column: 2 / 2;
+  margin: 0 3% 3% 3%;
 }
 
-.content_reminder h3 {
-  padding-bottom: 10px;
+.treatment_detail {
+  font-weight: bold;
 }
 
-.content_reminder {
-  padding: 10px;
+.treatment p {
+  font-size: 12px;
+}
+
+.dosage {
+  padding: 4%;
+  border-radius: 15px;
+  font-family: var(--font-text);
+  background-color: white;
+  grid-row: 4 / 4;
+  grid-column: 1 / 2;
+  margin: 0 3% 3% 3%;
+}
+
+.dosage_detail {
+  font-weight: bold;
+}
+
+.dosage p {
+  font-size: 12px;
+}
+.report_title {
+  margin-bottom: 3%;
+  font-weight: bold;
+}
+
+.content_report {
+  padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
   background-color: white;
   grid-row: 5 / 6;
   grid-column: 1 / 3;
+  height: 85%;
+  margin: 0 1%;
 }
 
 .button_close {

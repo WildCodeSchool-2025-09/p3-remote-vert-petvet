@@ -69,7 +69,6 @@ function consultationForm() {
     setIsSubmitting(true);
 
     try {
-      console.log("coucou");
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/consultation/${selectedAnimal}`,
         {
@@ -88,7 +87,7 @@ function consultationForm() {
       setSuccessMessage("consultationation créé avec succès !");
 
       setTimeout(() => {
-        navigate(`/pet-profile/${id}`);
+        navigate(`/pet-profile/${selectedAnimal}`);
       }, 2000);
     } catch (error: unknown) {
       setErrorMessage(

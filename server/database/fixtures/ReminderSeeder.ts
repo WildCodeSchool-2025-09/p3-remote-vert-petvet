@@ -31,8 +31,7 @@ class ReminderSeeder extends AbstractSeeder {
         programmed_at: this.faker.date.anytime(),
         content: this.faker.lorem.sentence(),
         dosage: this.faker.helpers.arrayElement(["5mg", "10mg", "2ml"]),
-        //pet_id: pet.insertId,
-        pet_id: 3,
+        pet_id: pet.insertId,
         owner_id: owner.insertId,
         veterinary_id: veterinary.insertId,
         frequency: this.faker.helpers.arrayElement([

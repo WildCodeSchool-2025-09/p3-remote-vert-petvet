@@ -1,9 +1,9 @@
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
-type Frequency = "jour" | "semaine" | "mois" | "an";
+export type Frequency = "jour" | "semaine" | "mois" | "an";
 
-interface Reminder {
+export interface Reminder {
   title: string;
   programmedAt: string;
   content: string;
@@ -13,12 +13,13 @@ interface Reminder {
   veterinaryId: number;
   petId: number;
   ownerId: number;
+  petName: string;
 }
 
 class reminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      `SELECT reminder.*, pet.name as petName 
+      `SELECT reminder.*, pet.name AS petName
     	FROM reminder 
     	JOIN pet ON reminder.pet_id = pet.id 
     	WHERE reminder.pet_id = ? 
@@ -31,7 +32,7 @@ class reminderRepository {
 
   async getByOwner(ownerId: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
-      "SELECT reminder.*, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      "SELECT reminder.*, pet.name AS petName, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
       [ownerId],
     );
     return reminders;

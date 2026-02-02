@@ -11,8 +11,7 @@ interface VetConsultation {
 class consultationRepository {
   async get(id: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT consultation.*,
-        pet.name AS petName
+      `SELECT consultation.*, pet.name AS petName
         FROM consultation 
         JOIN pet ON consultation.pet_id = pet.id 
         WHERE consultation.id = ?`,
@@ -22,7 +21,7 @@ class consultationRepository {
   }
 
   async getByPet(petId: number) {
-    const [Consultations] = await databaseClient.query(
+    const [consultations] = await databaseClient.query(
       `SELECT consultation.*, pet.name AS petName
 			FROM consultation
 			JOIN pet ON consultation.pet_id = pet.id
@@ -30,7 +29,7 @@ class consultationRepository {
 			ORDER BY consultation.created_at DESC`,
       [petId],
     );
-    return Consultations as VetConsultation[];
+    return consultations as VetConsultation[];
   }
 }
 

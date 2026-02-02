@@ -18,7 +18,7 @@ function Consultations({
   const displayedConsultations = isExpanded
     ? consultations
     : consultations.slice(0, 3);
-
+  console.log(consultations);
   return (
     <section className="vet-consultations-container">
       <article className="vet-consultations-header">

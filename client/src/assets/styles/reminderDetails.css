@@ -1,5 +1,7 @@
 .reminder-modal {
   border: none;
+  padding: 0;
+  border-radius: 10px;
 }
 
 .reminder-modal-content {

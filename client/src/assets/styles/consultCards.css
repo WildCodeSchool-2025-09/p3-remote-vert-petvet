@@ -1,0 +1,83 @@
+.consultation-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+
+.consultation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: auto;
+  gap: 30px;
+  border-radius: 10px;
+  font-family: var(--font-text);
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  button {
+    font-family: var(--font-title);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.consultation-first-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  h1 {
+    font-family: var(--font-title);
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: 1.1rem;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+  }
+}
+
+.consultation-second-info {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    color: white;
+    border: none;
+    background-color: var(--owner-color);
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+  }
+}
+
+.medical-info {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: stretch;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      max-width: 200px;
+    }
+  }
+}

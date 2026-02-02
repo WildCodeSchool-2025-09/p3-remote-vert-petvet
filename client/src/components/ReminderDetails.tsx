@@ -71,7 +71,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
 
         <div className="animal_name_reminder">
           <h3>Animal :</h3>
-          <p>{reminder.name}</p>
+          <p>{reminder.petName}</p>
         </div>
 
         <p

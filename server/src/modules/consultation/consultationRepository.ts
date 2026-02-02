@@ -1,7 +1,7 @@
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
-type Category = "vaccination" | "urgence" | "suivi" | "opération" | "médicale";
+type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
 
 interface Consultation {
   title: string;

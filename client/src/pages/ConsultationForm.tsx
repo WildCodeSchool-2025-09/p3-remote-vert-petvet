@@ -87,7 +87,9 @@ function consultationForm() {
       setSuccessMessage("consultationation créé avec succès !");
 
       setTimeout(() => {
-        navigate(`/pet-profile/${selectedAnimal}`);
+        navigate(`/pet-profile/${selectedAnimal}`, {
+          state: { successMessage: "Consultation créé avec succès !" },
+        });
       }, 2000);
     } catch (error: unknown) {
       setErrorMessage(

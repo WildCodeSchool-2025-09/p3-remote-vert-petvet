@@ -50,7 +50,7 @@ const add: RequestHandler = async (req, res, next) => {
     //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
 
     const newReminderId = reminderRepository.insert(newReminder);
-    console.log(newReminder);
+
     res.status(StatusCodes.CREATED).json({ newReminderId });
   } catch (err) {
     next(err);

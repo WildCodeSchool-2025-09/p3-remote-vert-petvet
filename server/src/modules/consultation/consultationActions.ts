@@ -15,7 +15,7 @@ const consultationSchema = Joi.object({
   dosage: Joi.string().allow(null),
 
   category: Joi.string()
-    .valid("vaccination", "urgence", "suivi", "opération", "médicale")
+    .valid("vaccination", "urgence", "suivi", "operation", "medicale")
     .required(),
 
   veterinaryId: Joi.number().integer().required(),

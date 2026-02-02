@@ -12,7 +12,7 @@ function RemindersByPet({
 }: { pet: Pet; reminders: Reminder[] }) {
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
   const navigate = useNavigate();
-  console.log(reminders);
+
   return (
     <section className="reminder-container">
       <h1>Les rappels</h1>

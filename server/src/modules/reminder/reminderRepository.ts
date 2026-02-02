@@ -13,13 +13,12 @@ export interface Reminder {
   veterinaryId: number;
   petId: number;
   ownerId: number;
-  petName: string;
 }
 
 class reminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      `SELECT reminder.*, pet.name AS petName
+      `SELECT reminder.*, pet.name 
     	FROM reminder 
     	JOIN pet ON reminder.pet_id = pet.id 
     	WHERE reminder.pet_id = ? 

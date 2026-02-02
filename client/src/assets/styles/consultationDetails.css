@@ -1,10 +1,6 @@
-.overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+.consultation_modal {
+  border: none;
+  background: none;
 }
 
 .consultation_card {
@@ -18,7 +14,6 @@
   width: 90%;
   max-width: 600px;
   max-height: 600px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .title_detail {

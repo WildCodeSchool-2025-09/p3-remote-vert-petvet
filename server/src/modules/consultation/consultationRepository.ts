@@ -1,9 +1,14 @@
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
-type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
+export type Category =
+  | "vaccination"
+  | "urgence"
+  | "suivi"
+  | "operation"
+  | "medicale";
 
-interface Consultation {
+export interface Consultation {
   title: string;
   createdAt: string;
   report: string;

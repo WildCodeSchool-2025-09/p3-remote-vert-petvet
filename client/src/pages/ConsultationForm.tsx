@@ -17,7 +17,7 @@ interface Createconsultation {
   veterinaryId: number;
 }
 
-type Animal = {
+type pet = {
   id: number;
   name: string;
 };
@@ -30,10 +30,9 @@ function consultationForm() {
   const [category, setCategory] = useState<Category | "">("");
   const [treatment, setTreatment] = useState<string | "">("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [successMessage, setSuccessMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedAnimal, setSelectedAnimal] = useState<number | null>(null);
-  const [animals, setAnimals] = useState<Animal[]>([]);
+  const [selectedPet, setSelectedPet] = useState<number | null>(null);
+  const [pets, setpets] = useState<pet[]>([]);
   const { id } = useParams<{ id: string }>();
   const vetId = Number(id);
 
@@ -46,20 +45,20 @@ function consultationForm() {
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          setAnimals(data);
+          setpets(data);
         } else if (data?.id && data?.name) {
-          setAnimals([data]);
+          setpets([data]);
         } else {
           console.error("Format inattendu:", data);
-          setAnimals([]);
+          setpets([]);
         }
       })
       .catch((err) => console.error(err));
   }, [vetId]);
 
   const createconsultation = async (consultation: Createconsultation) => {
-    if (!selectedAnimal) {
-      setErrorMessage("Veuillez sélectionner un animal");
+    if (!selectedPet) {
+      setErrorMessage("Veuillez sélectionner un pet");
       return;
     }
     if (!category) {
@@ -70,7 +69,7 @@ function consultationForm() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/consultation/${selectedAnimal}`,
+        `${import.meta.env.VITE_API_URL}/consultation/${selectedPet}`,
         {
           method: "POST",
           headers: {
@@ -84,13 +83,11 @@ function consultationForm() {
         throw new Error("Erreur lors de la création de la consultationation");
       }
 
-      setSuccessMessage("consultationation créé avec succès !");
-
       setTimeout(() => {
-        navigate(`/pet-profile/${selectedAnimal}`, {
+        navigate(`/pet-profile/${selectedPet}`, {
           state: { successMessage: "Consultation créé avec succès !" },
         });
-      }, 2000);
+      });
     } catch (error: unknown) {
       setErrorMessage(
         error instanceof Error
@@ -112,7 +109,7 @@ function consultationForm() {
       dosage: dosage || null,
       category: category || null,
       treatment: treatment || null,
-      petId: selectedAnimal ?? 0,
+      petId: selectedPet ?? 0,
       veterinaryId: vetId,
     };
 
@@ -126,7 +123,6 @@ function consultationForm() {
       <article className="consultation-form-container">
         <form className="consultation-form" onSubmit={submitconsultation}>
           <p className="consultation-error">{errorMessage}</p>
-          <p className="consultation-success">{successMessage}</p>
           <div className="consultation-category-value">
             <select
               className="consultation-select"
@@ -156,18 +152,18 @@ function consultationForm() {
               />
             </label>
           </div>
-          <div className="consultation-animal-name">
+          <div className="consultation-pet-name">
             <select
               className="consultation-select"
-              value={selectedAnimal ?? ""}
-              onChange={(e) => setSelectedAnimal(Number(e.target.value))}
+              value={selectedPet ?? ""}
+              onChange={(e) => setSelectedPet(Number(e.target.value))}
             >
               <option value="" disabled hidden>
-                Sélectionne un animal
+                Sélectionne un pet
               </option>
-              {animals.map((animal) => (
-                <option key={animal.id} value={animal.id}>
-                  {animal.name}
+              {pets.map((pet) => (
+                <option key={pet.id} value={pet.id}>
+                  {pet.name}
                 </option>
               ))}
             </select>

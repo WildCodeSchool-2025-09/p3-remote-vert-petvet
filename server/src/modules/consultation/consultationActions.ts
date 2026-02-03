@@ -2,6 +2,7 @@ import type { NextFunction, Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 import consultationRepository from "./consultationRepository";
+import type { Consultation } from "./consultationRepository";
 
 const consultationSchema = Joi.object({
   title: Joi.string().max(50).required(),
@@ -74,21 +75,15 @@ const validateConsultation: RequestHandler = (req, res, next): void => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newconsultation = {
-      title: req.body.title,
-      createdAt: req.body.createdAt,
-      report: req.body.report,
-      treatment: req.body.treatment ?? null,
-      dosage: req.body.dosage ?? null,
-      category: req.body.category,
-      veterinaryId: req.body.veterinaryId,
-      petId: req.body.petId,
+    const body = req.body as Consultation;
+    const newConsultation: Consultation = {
+      ...body,
     };
 
-    const newconsultationId =
-      await consultationRepository.insertConsultation(newconsultation);
+    const newConsultationId =
+      await consultationRepository.insertConsultation(newConsultation);
 
-    res.status(StatusCodes.CREATED).json({ newconsultationId });
+    res.status(StatusCodes.CREATED).json({ newConsultationId });
     return;
   } catch (err) {
     next(err);

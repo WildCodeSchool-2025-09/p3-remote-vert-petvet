@@ -146,8 +146,3 @@ p {
   color: #d4896c;
   font-weight: 800;
 }
-
-.success {
-  color: var(--owner-color);
-  font-weight: 800;
-}

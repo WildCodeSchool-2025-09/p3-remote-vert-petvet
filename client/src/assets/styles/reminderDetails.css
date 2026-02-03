@@ -1,5 +1,7 @@
 .reminder_modal {
   border: none;
+  background: none;
+  box-shadow: none;
 }
 
 .reminder_modal_content {

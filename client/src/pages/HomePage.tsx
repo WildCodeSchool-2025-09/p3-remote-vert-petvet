@@ -1,27 +1,49 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/homePage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
+  const [showButton, setShowButton] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active");
           }
         }
       },
       {
-        threshold: 0.5,
+        threshold: 0.2,
       },
     );
     const elements = document.querySelectorAll(".reveal, .reveal-img");
     for (const el of elements) {
       observer.observe(el);
     }
-    return () => observer.disconnect();
+
+    const scrollToUpButton = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", scrollToUpButton);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", scrollToUpButton);
+    };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -42,11 +64,14 @@ function HomePage() {
             />
           </div>
 
+          <h1 className="reveal">Pet&Vet</h1>
+        </nav>
+        <div className="header-content">
+          <h2 className="reveal">Bienvenue sur Pet&Vet !</h2>
+          <h3 className="reveal">
+            Votre carnet de santé numérique pour animaux de compagnie
+          </h3>
           <ul>
-            <button type="button" className="button-homePage reveal from-left">
-              <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
-              Contacts utiles
-            </button>
             <button type="button" className="button-homePage reveal from-left">
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               Me connecter
@@ -55,17 +80,20 @@ function HomePage() {
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               M'inscrire
             </button>
+            <button type="button" className="button-homePage reveal from-left">
+              <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
+              Contacts utiles
+            </button>
           </ul>
-
-          <h1 className="reveal">Pet&Vet</h1>
-        </nav>
-
-        <h2 className="reveal">Bienvenue sur Pet&Vet !</h2>
+        </div>
+        <a href="#intro" className="scroll-down">
+          <span className="arrow">↓</span>
+        </a>
       </header>
       <main>
-        <section className="intro">
+        <section id="intro" className="intro">
           <h1>
-            Pet&Vet : avec vous pour vous accompagner dans le suivis de vos
+            Pet&Vet : avec vous pour vous accompagner dans le suivi de vos
             animaux
           </h1>
           <div className="intro-section">
@@ -187,6 +215,14 @@ function HomePage() {
             </button>
           </div>
         </section>
+        <button
+          type="button"
+          className={`back-to-top ${showButton ? "show" : ""}`}
+          onClick={scrollToTop}
+          title="Retour en haut"
+        >
+          ↑
+        </button>
       </main>
     </>
   );

@@ -1,8 +1,43 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 header {
   padding: 20px;
-  background-color: var(--main-color);
-  padding-bottom: 5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 4px solid rgba(255, 255, 255, 0.897);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.288),
+      rgba(255, 255, 255, 0.281)
+    ), url(/images/dog-and-cat.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
+header .header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 4vh;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 header nav .logo-container {
   display: flex;
   align-items: center;
@@ -16,22 +51,51 @@ header nav .logo-container .logo.logo2 {
   position: relative;
   z-index: 1;
 }
-header nav {
+
+header nav h1 {
+  font-family: var(--font-logo);
+  font-size: 3.8rem;
+  color: var(--text-color);
+  font-weight: bold;
+  margin: 0 3rem;
+  text-align: center;
+}
+
+header h2 {
+  font-family: var(--font-logo);
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+header h3 {
+  font-family: var(--font-text);
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 35vh;
+}
+
+header ul {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
 }
-header nav ul {
-  display: flex;
-  gap: 40px;
-}
-header nav ul .button-homePage {
+
+header .button-homePage {
   gap: 15px;
-  width: auto;
-  font-size: 1rem;
-  background-color: #ffffff;
+  width: 20rem;
+  height: 5rem;
+  font-size: 1.2rem;
+  background-color: var(--main-color);
   border: none;
-  padding: 10px 15px;
+  padding: 20px 25px;
   border-radius: 15px;
   cursor: pointer;
   display: flex;
@@ -39,28 +103,37 @@ header nav ul .button-homePage {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: var(--text-color);
   font-family: var(--font-text);
+  justify-content: center;
+  min-width: 150px;
 }
-header nav ul .button-homePage:hover {
-  background-color: #f0f0f0;
-}
-header nav h1 {
-  font-family: var(--font-logo);
-  font-size: 3rem;
+header .scroll-down {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--text-color);
+  font-family: var(--font-text);
   font-weight: bold;
-  margin: 0 3rem;
-  text-align: center;
+  font-size: 1.5rem;
 }
-header h2 {
-  font-family: var(--font-logo);
-  font-size: 3.5rem;
-  font-weight: bold;
-  color: var(--text-color);
-  text-align: center;
-  margin-top: 3rem;
+header .scroll-down .arrow {
+  font-size: 2rem;
+  animation: bounce 2s infinite;
 }
-main {
-  border-top: 4px solid rgba(255, 255, 255, 0.897);
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 main .intro {
   background-color: var(--main-color);
@@ -69,6 +142,7 @@ main .intro {
   text-align: center;
   margin-bottom: 3rem;
   padding: 5rem 12rem;
+  min-width: 100vh;
 }
 main .intro .intro-section {
   display: flex;
@@ -87,19 +161,19 @@ main .intro .intro-text {
 
 main .intro h1 {
   font-family: var(--font-logo);
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   color: var(--text-color);
   margin-bottom: 1.5rem;
 }
 main .intro h2 {
   font-family: var(--font-title);
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
   color: var(--text-color);
   margin: 1.5rem 0;
 }
 main .intro p {
   font-family: var(--font-text);
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
   color: var(--text-color);
   margin-bottom: 1.5rem;
   padding: 0 50px;
@@ -114,22 +188,23 @@ main .intro .intro-section .intro-text span {
   padding: 20px;
   border-radius: 10px;
   font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 main .individuals {
   background-color: #faecdb;
-  padding: 1rem 2rem;
+  padding: 4rem 4rem;
   border-radius: 74% 26% 70% 30% / 25% 30% 70% 75%;
 }
 main .individuals h1 {
   font-family: var(--font-logo);
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: var(--owner-color);
   text-align: left;
 }
 main .individuals h2 {
   font-family: var(--font-logo);
-  font-size: 1.75rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
   color: var(--text-color);
   margin: 1.5rem 0;
 }
@@ -142,7 +217,7 @@ main .individuals .individuals-text-and-image {
 }
 main .individuals p {
   font-family: var(--font-text);
-  font-size: 1.7rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
   color: var(--text-color);
   margin-bottom: 1.5rem;
   padding-right: 8rem;
@@ -157,11 +232,11 @@ main .professionals {
   background-color: var(--main-color);
   background-image: url(/images/paws-path.png);
   background-repeat: no-repeat;
-  padding: 2rem 3rem;
+  padding: 8rem 4rem;
 }
 main .professionals h1 {
   font-family: var(--font-logo);
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: var(--vet-color);
   text-align: right;
 }
@@ -174,9 +249,9 @@ main .professionals .professionals-text-and-image {
 }
 main .professionals p {
   font-family: var(--font-text);
-  font-size: 1.7rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   padding-left: 8rem;
   padding-top: 2rem;
   text-align: left;
@@ -190,23 +265,23 @@ main .associations {
   background-image: url(/images/paws-path-reverse.png);
   background-repeat: no-repeat;
   background-position: right;
-  padding: 2rem 3rem;
+  padding: 5rem 4rem;
 }
 main .associations h1 {
   font-family: var(--font-logo);
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: var(--owner-color);
   text-align: left;
 }
 main .associations h2 {
   font-family: var(--font-logo);
-  font-size: 1.75rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
   color: var(--text-color);
   margin: 1.5rem 0;
 }
 main .associations p {
   font-family: var(--font-text);
-  font-size: 1.7rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
   color: var(--text-color);
   margin-bottom: 1.5rem;
   padding-right: 8rem;
@@ -242,7 +317,7 @@ main .buttons-bottom .button-homePage {
   gap: 15px;
   width: 15rem;
   height: 4rem;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1vw, 1rem);
   background-color: #ffffff;
   border: none;
   padding: 10px 15px;
@@ -299,4 +374,35 @@ h1.reveal.active {
 }
 .from-right {
   transform: translateX(50px);
+}
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #333;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: #f8f8f8;
+  transform: translateY(-5px);
 }

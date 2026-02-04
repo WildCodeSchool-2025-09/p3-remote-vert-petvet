@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
+import ConsultationForm from "./pages/ConsultationForm";
 import HealthRecord from "./pages/HealthRecord";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/pet-profile/:id/reminders/new",
     element: <ReminderForm />,
+  },
+  {
+    path: "/consultation/add/:id",
+    element: <ConsultationForm />,
   },
 ]);
 

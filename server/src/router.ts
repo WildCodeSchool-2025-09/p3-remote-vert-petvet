@@ -14,7 +14,12 @@ router.post(
 
 router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
-router.get("/api/pets/:id", petActions.browseByPet);
+router.get("/api/consultation/pet/:id", consultationActions.readByConsultation);
+router.post(
+  "/api/consultation/:id",
+  consultationActions.validateConsultation,
+  consultationActions.add,
+);
 
 router.get("/api/consultations/:id", consultationActions.read);
 

@@ -40,7 +40,8 @@ class consultationRepository {
 
   async getPetByVetId(vetId: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT pet.id, name FROM pet WHERE veterinary_id = ?",
+      `SELECT pet.id, name FROM pet
+       WHERE user_id = ?`,
       [vetId],
     );
 
@@ -49,7 +50,7 @@ class consultationRepository {
 
   async insertConsultation(consultation: Omit<Consultation, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO consultation (title, created_at, report, treatment, dosage, category, pet_id, veterinary_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO consultation (title, created_at, report, treatment, dosage, category, pet_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [
         consultation.title,
         consultation.createdAt,

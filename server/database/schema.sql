@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT,
   firstname VARCHAR(85) NOT NULL,
   lastname VARCHAR(85) NOT NULL,
@@ -10,13 +10,6 @@ CREATE TABLE users (
   order_nb INT NULL
 );
 
-CREATE TABLE pet_user (
-  pet_id INT NOT NULL,
-  user_id INT NOT NULL,
-  PRIMARY KEY (pet_id, user_id),
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (pet_id) REFERENCES pets(id)
-);
 
 CREATE TABLE pet (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -29,9 +22,15 @@ CREATE TABLE pet (
   breed VARCHAR(30) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
-  weight FLOAT(10) DEFAULT NULL,
-  owner_id INT NOT NULL,
-  veterinary_id INT NOT NULL
+  weight FLOAT(10) DEFAULT NULL
+);
+
+CREATE TABLE pet_user (
+  pet_id INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (pet_id, user_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (pet_id) REFERENCES pet(id)
 );
 
 CREATE TABLE reminder (
@@ -44,7 +43,7 @@ CREATE TABLE reminder (
   frequency_count INT DEFAULT 1,
   veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
-  owner_id INT NOT NULL
+  user_id INT NOT NULL
 );
 
 CREATE TABLE consultation (
@@ -56,5 +55,5 @@ CREATE TABLE consultation (
   dosage TEXT DEFAULT NULL,
   category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
   pet_id INT NOT NULL,
-  veterinary_id INT NOT NULL
+  user_id INT NOT NULL
 );

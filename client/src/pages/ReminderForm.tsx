@@ -18,8 +18,8 @@ function ReminderForm() {
   const navigate = useNavigate();
 
   const { id } = useParams();
+
   const petId = Number(id);
-  const userId = Number(id);
 
   const createReminder = async (reminder: CreateReminder) => {
     setIsSubmited(true);
@@ -70,7 +70,6 @@ function ReminderForm() {
               frequency: frequency || null,
               frequencyCount: frequencyCount || null,
               petId,
-              userId,
             });
           }}
         >

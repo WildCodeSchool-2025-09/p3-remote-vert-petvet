@@ -19,8 +19,6 @@ const consultationSchema = Joi.object({
     .valid("vaccination", "urgence", "suivi", "operation", "medicale")
     .required(),
 
-  veterinaryId: Joi.number().integer().required(),
-
   petId: Joi.number().integer().required(),
 });
 

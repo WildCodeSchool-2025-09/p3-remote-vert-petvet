@@ -43,7 +43,6 @@ const add: RequestHandler = async (req, res, next) => {
     const newReminder: Reminder = {
       ...body,
     };
-    //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
 
     const newReminderId = reminderRepository.insert(newReminder);
 

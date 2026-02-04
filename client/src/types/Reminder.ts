@@ -22,5 +22,4 @@ export interface CreateReminder {
   frequency: Frequency | null;
   frequencyCount: number | null;
   petId: number;
-  userId: number;
 }

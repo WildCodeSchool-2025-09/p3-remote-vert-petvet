@@ -26,5 +26,4 @@ export interface CreateConsultation {
   category: Category | null;
   treatment: string | null;
   petId: number;
-  veterinaryId: number;
 }

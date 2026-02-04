@@ -64,19 +64,19 @@ function consultationForm() {
       );
 
       if (!response.ok) {
-        throw new Error("Erreur lors de la création de la consultationation");
+        throw new Error("Erreur lors de la création de la consultation");
       }
 
       setTimeout(() => {
         navigate(`/pet-profile/${selectedPet}`, {
-          state: { successMessage: "Consultation créé avec succès !" },
+          state: { successMessage: "Consultation créée avec succès !" },
         });
       });
     } catch (error: unknown) {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "Erreur lors de la création de la consultationation",
+          : "Erreur lors de la création de la consultation",
       );
     } finally {
       setIsSubmitting(false);
@@ -86,7 +86,7 @@ function consultationForm() {
   return (
     <section>
       <header className="pet-vet-consultation">Pet&Vet</header>
-      <h1 className="consultation-form-title">Ajouter une consultationation</h1>
+      <h1 className="consultation-form-title">Ajouter une consultation</h1>
       <article className="consultation-form-container">
         <form
           className="consultation-form"
@@ -100,7 +100,6 @@ function consultationForm() {
               category: category || null,
               treatment: treatment || null,
               petId: selectedPet ?? 0,
-              veterinaryId: vetId,
             });
           }}
         >
@@ -165,7 +164,7 @@ function consultationForm() {
           <div className="consultation-content">
             <label>
               <textarea
-                placeholder="Détails de la consultationation :"
+                placeholder="Détails de la consultation :"
                 value={report}
                 onChange={(e) => setReport(e.target.value)}
                 required
@@ -204,7 +203,7 @@ function consultationForm() {
               className="send-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Création..." : "Créer une consultationation"}
+              {isSubmitting ? "Création..." : "Créer une consultation"}
             </button>
           </div>
         </form>

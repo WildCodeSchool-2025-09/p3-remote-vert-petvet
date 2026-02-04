@@ -38,7 +38,6 @@ function HealthRecord() {
         }
       });
   }, [id]);
-
   const fewActivities = consultations.slice(0, 5) ?? [];
 
   useEffect(() => {
@@ -103,7 +102,7 @@ function HealthRecord() {
               <h3>Puce électronique</h3>
               <p>{petInfo.chip_nb}</p>
             </div>
-            <p>Suivi : Dr. {petInfo.lastname}</p>
+            <p>Suivi : Dr. {petInfo.veterinaryName}</p>
           </div>
         </section>
         {temporaryMessage && <p className="success">{temporaryMessage}</p>}

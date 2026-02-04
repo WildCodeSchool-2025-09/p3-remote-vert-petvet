@@ -1,3 +1,4 @@
+import type { RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
@@ -26,6 +27,8 @@ interface VetConsultation {
   created_at: Date;
 }
 
+type VeterinaryRow = RowDataPacket & { id: number };
+
 class consultationRepository {
   async getByPet(petId: number) {
     const [consultations] = await databaseClient.query(
@@ -41,11 +44,10 @@ class consultationRepository {
 
   async getPetByVetId(vetId: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT pet.id, name FROM pet
-      JOIN pet_user ON pet_user.pet_id = pet.id
-      JOIN user ON pet_user.user_id = user.id
-      WHERE user_id = ?
-      AND user.role = 'veterinary'`,
+      `SELECT pet.id, pet.name
+FROM pet
+JOIN pet_user ON pet.id = pet_user.pet_id
+WHERE pet_user.user_id = ?`,
       [vetId],
     );
 
@@ -53,6 +55,18 @@ class consultationRepository {
   }
 
   async insertConsultation(consultation: Omit<Consultation, "id">) {
+    const [rows] = await databaseClient.query<VeterinaryRow[]>(
+      `SELECT user.id
+      FROM pet_user
+      JOIN user ON user.id = pet_user.user_id
+      WHERE pet_user.pet_id = ?
+      AND user.role = 'veterinary'
+      LIMIT 1`,
+      [consultation.petId],
+    );
+
+    const veterinaryId = rows[0].id;
+
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO consultation 
       (title, created_at, report, treatment, dosage, category, pet_id, user_id) 
@@ -65,7 +79,7 @@ class consultationRepository {
         consultation.dosage,
         consultation.category,
         consultation.petId,
-        consultation.userId,
+        veterinaryId,
       ],
     );
 

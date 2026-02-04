@@ -16,13 +16,17 @@ router.get("/api/owners/:id/pets", petActions.browseByOwner);
 
 router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
-router.get("/api/consultation/pet/:id", consultationActions.readByConsultation);
+router.get(
+  "/api/consultations/pets/:id",
+  consultationActions.readByConsultation,
+);
+
 router.post(
-  "/api/consultation/:id",
+  "/api/consultations/:id",
   consultationActions.validateConsultation,
   consultationActions.add,
 );
 
-router.get("/api/consultations/:id", consultationActions.read);
+//router.get("/api/consultations/:id", consultationActions.read);
 
 export default router;

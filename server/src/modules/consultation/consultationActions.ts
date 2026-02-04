@@ -39,23 +39,6 @@ const readByConsultation: RequestHandler = async (req, res, next) => {
   }
 };
 
-const read = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const consultationId = Number(req.params.id);
-    const consultation = await consultationRepository.get(consultationId);
-
-    if (!consultation) {
-      res
-        .sendStatus(404)
-        .json({ error: "Pas de consultations pour le moment" });
-    } else {
-      res.status(200).json(consultation);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
 const validateConsultation: RequestHandler = (req, res, next): void => {
   const { error, value } = consultationSchema.validate(req.body, {
     abortEarly: false,
@@ -90,4 +73,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { readByConsultation, read, add, validateConsultation };
+export default { readByConsultation, add, validateConsultation };

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import emergency from "../../public/images/green/emergency.png";
 import steto from "../../public/images/green/stetoscope.png";
 import syringe from "../../public/images/green/syringe.png";
 import type { Consultation } from "../types/Consultation";
+import ConsultationDetails from "./ConsultationDetails";
 
 type MedicProps = {
   consultations: Consultation[];
@@ -10,6 +12,9 @@ type MedicProps = {
 function MedicalHistory({ consultations }: MedicProps) {
   if (!consultations || consultations.length === 0)
     return <p>Pas de consultation pour ce doudou !</p>;
+
+  const [currentConsultation, setCurrentConsultation] =
+    useState<Consultation | null>(null);
 
   return (
     <section className="consultation-list">
@@ -56,7 +61,21 @@ function MedicalHistory({ consultations }: MedicProps) {
                 </p>
               </div>
             </div>
-            <button type="button">Details</button>
+            {currentConsultation && (
+              <ConsultationDetails
+                consultId={currentConsultation.id}
+                consultation={currentConsultation}
+                onClose={() => setCurrentConsultation(null)}
+              />
+            )}
+            <button
+              type="button"
+              key={consultation.id}
+              className="consultation-item"
+              onClick={() => setCurrentConsultation(consultation)}
+            >
+              Details
+            </button>
           </div>
         </article>
       ))}

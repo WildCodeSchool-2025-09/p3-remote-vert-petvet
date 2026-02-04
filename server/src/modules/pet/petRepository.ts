@@ -13,6 +13,18 @@ class petRepository {
 
     return pet[0];
   }
+
+  async getByOwner(ownerId: number): Promise<Rows> {
+    const [pets] = await databaseClient.query<Rows>(
+      `SELECT pet.*
+      FROM pet
+      JOIN owner ON owner.id = pet.owner_id
+      WHERE pet.owner_id = ?`,
+      [ownerId],
+    );
+
+    return pets;
+  }
 }
 
 export default new petRepository();

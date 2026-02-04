@@ -35,4 +35,23 @@ const browseByPet: RequestHandler = async (
   }
 };
 
-export default { browseByPet };
+const browseByOwner = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const pets = await petRepository.getByOwner(Number(req.params.id));
+
+    if (!pets) {
+      res.status(400).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+    }
+    res.status(200).json(pets);
+  } catch (error) {
+    next();
+  }
+};
+
+export default { browseByPet, browseByOwner };

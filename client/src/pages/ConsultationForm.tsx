@@ -3,24 +3,8 @@ import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import "../assets/styles/consultationForm.css";
-
-type Category = "vaccination" | "urgence" | "suivi" | "operation" | "medicale";
-
-interface Createconsultation {
-  title: string;
-  createdAt: string;
-  report: string;
-  dosage: string | null;
-  category: Category | null;
-  treatment: string | null;
-  petId: number;
-  veterinaryId: number;
-}
-
-type pet = {
-  id: number;
-  name: string;
-};
+import type { Category, CreateConsultation } from "../types/Consultation";
+import type { Pet } from "../types/Pet";
 
 function consultationForm() {
   const [title, setTitle] = useState("");
@@ -32,7 +16,7 @@ function consultationForm() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedPet, setSelectedPet] = useState<number | null>(null);
-  const [pets, setpets] = useState<pet[]>([]);
+  const [pets, setpets] = useState<Pet[]>([]);
   const { id } = useParams<{ id: string }>();
   const vetId = Number(id);
 
@@ -41,7 +25,7 @@ function consultationForm() {
   useEffect(() => {
     if (!vetId) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/consultation/pet/${vetId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/consultations/pets/${vetId}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -56,7 +40,7 @@ function consultationForm() {
       .catch((err) => console.error(err));
   }, [vetId]);
 
-  const createconsultation = async (consultation: Createconsultation) => {
+  const createConsultation = async (consultation: CreateConsultation) => {
     if (!selectedPet) {
       setErrorMessage("Veuillez sélectionner un pet");
       return;
@@ -69,7 +53,7 @@ function consultationForm() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/consultation/${selectedPet}`,
+        `${import.meta.env.VITE_API_URL}/consultations/${selectedPet}`,
         {
           method: "POST",
           headers: {
@@ -99,29 +83,27 @@ function consultationForm() {
     }
   };
 
-  const submitconsultation = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newconsultation = {
-      title: title,
-      createdAt: createdAt,
-      report: report,
-      dosage: dosage || null,
-      category: category || null,
-      treatment: treatment || null,
-      petId: selectedPet ?? 0,
-      veterinaryId: vetId,
-    };
-
-    createconsultation(newconsultation);
-  };
-
   return (
     <section>
       <header className="pet-vet-consultation">Pet&Vet</header>
       <h1 className="consultation-form-title">Ajouter une consultationation</h1>
       <article className="consultation-form-container">
-        <form className="consultation-form" onSubmit={submitconsultation}>
+        <form
+          className="consultation-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            createConsultation({
+              title,
+              createdAt,
+              report,
+              dosage: dosage || null,
+              category: category || null,
+              treatment: treatment || null,
+              petId: selectedPet ?? 0,
+              veterinaryId: vetId,
+            });
+          }}
+        >
           <p className="consultation-error">{errorMessage}</p>
           <div className="consultation-category-value">
             <select

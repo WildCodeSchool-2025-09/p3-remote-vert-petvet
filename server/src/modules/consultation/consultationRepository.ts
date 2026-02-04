@@ -26,18 +26,6 @@ interface VetConsultation {
 }
 
 class consultationRepository {
-  async get(id: number): Promise<Rows[0]> {
-    const [rows] = await databaseClient.query<Rows>(
-      `SELECT consultation.*,
-        pet.name AS petName
-        FROM consultation 
-        JOIN pet ON consultation.pet_id = pet.id 
-        WHERE consultation.id = ?`,
-      [id],
-    );
-    return rows[0];
-  }
-
   async getByPet(petId: number) {
     const [consultations] = await databaseClient.query(
       `SELECT consultation.*, pet.name AS petName

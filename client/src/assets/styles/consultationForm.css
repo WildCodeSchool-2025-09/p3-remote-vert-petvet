@@ -1,0 +1,174 @@
+body {
+  background-color: var(--main-color);
+}
+
+.pet-vet-consultation {
+  text-align: right;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+}
+
+.consultation-form-title {
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.consultation-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    display: block;
+  }
+}
+
+.consultation-form {
+  width: 60vw;
+  height: 80vh;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 6fr 2fr 1fr;
+}
+
+.consultation-select {
+  margin: 20px;
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.consultation-category-value {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.consultation-date {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.consultation-pet-name {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.consultation-title {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  padding: 20px;
+  align-self: center;
+  border: none;
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+}
+
+.consultation-title-input {
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 5px;
+}
+
+.consultation-content {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  width: 60vw;
+  height: 25vh;
+  grid-column: 1 / 4;
+  grid-row: 5 / 6;
+  border: none;
+  background-color: #d9d9d9;
+  justify-self: center;
+  align-self: center;
+  border-radius: 15px;
+  resize: none;
+}
+
+.consultation-treatment {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  border: none;
+  grid-column: 1 / 2;
+  grid-row: 6 / 7;
+  align-self: center;
+  justify-self: center;
+}
+
+.consultation-treatment-input {
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 5px;
+}
+
+.consultation-dosage {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  border: none;
+  grid-column: 2 / 3;
+  grid-row: 6 / 7;
+  align-self: center;
+  justify-self: center;
+}
+
+.consultation-dosage-input {
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 5px;
+}
+
+.consultation-button-container {
+  grid-column: 3 / 4;
+  grid-row: 7 / 8;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+
+  button {
+    width: 100px;
+    height: 50px;
+    background-color: var(--vet-color);
+    font-family: var(--font-text);
+    font-size: 0.6rem;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}
+
+.consultation-obligatory {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.consultation-error {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.consultation-success {
+  color: var(--vet-color);
+  font-weight: 800;
+}

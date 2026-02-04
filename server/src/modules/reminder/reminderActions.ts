@@ -8,6 +8,7 @@ type CreatedReminder = Omit<Reminder, "veterinaryId" | "ownerId">;
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
+    //id a défaker jusqu'au fameux cours de Mika sur les Authentifications <3
     const id = 3;
     const reminder = await reminderRepository.getByOwner(Number(id));
 

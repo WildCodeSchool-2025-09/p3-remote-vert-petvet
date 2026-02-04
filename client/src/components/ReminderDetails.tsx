@@ -24,7 +24,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="reminder_modal"
+      className="reminder-modal"
       onCancel={onClose}
       tabIndex={-1}
       onClick={(e) => {
@@ -45,10 +45,10 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
         }
       }}
     >
-      <div className="reminder_modal_content">
+      <div className="reminder-modal-content">
         <button
           type="button"
-          className="button_close"
+          className="button-close"
           onClick={(e) => {
             e.stopPropagation();
             onClose();
@@ -62,16 +62,16 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           />
         </button>
 
-        <h2 className="title_reminder">{reminder.title}</h2>
+        <h2 className="title-reminder">{reminder.title}</h2>
 
-        <div className="date_reminder">
+        <div className="date-reminder">
           <h3>Date :</h3>
           <p>{new Date(reminder.programmed_at).toLocaleString()}</p>
         </div>
 
-        <div className="animal_name_reminder">
+        <div className="animal-name-reminder">
           <h3>Animal :</h3>
-          <p>{reminder.name}</p>
+          <p>{reminder.petName}</p>
         </div>
 
         <p
@@ -79,7 +79,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
             reminder.dosage != null &&
             reminder.frequency_count != null &&
             reminder.frequency
-              ? "frequency_reminder"
+              ? "frequency-reminder"
               : "none"
           }
         >
@@ -87,12 +87,12 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           {reminder.frequency}
         </p>
 
-        <div className="content_reminder">
+        <div className="content-reminder">
           <h3>Description :</h3>
           <p>{reminder.content}</p>
         </div>
 
-        <button type="button" className="delete_button">
+        <button type="button" className="delete-button">
           Supprimer le rappel
         </button>
       </div>

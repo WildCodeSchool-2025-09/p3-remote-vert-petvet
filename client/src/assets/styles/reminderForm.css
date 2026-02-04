@@ -30,7 +30,7 @@ body {
   }
 }
 
-form {
+.reminder-form {
   width: 35vw;
   background-color: white;
   border-radius: 20px;
@@ -73,7 +73,7 @@ p {
   padding-bottom: 15px;
 }
 
-input {
+.reminder-input {
   margin-top: 5px;
   font-family: var(--font-text);
   color: var(--text-color);
@@ -84,13 +84,13 @@ input {
   border: none;
 }
 
-label {
+.reminder-label {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
 }
 
-select {
+.reminder-select {
   font-family: var(--font-text);
   color: var(--text-color);
   padding: 10px;
@@ -104,7 +104,7 @@ select {
 .button-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding: 20px;
 
   button {
@@ -122,11 +122,11 @@ select {
 }
 
 .title {
-  width: 300px;
+  width: 200px;
 }
 
 .content {
-  width: 350px;
+  width: 250px;
 }
 
 .frequency-count {
@@ -144,10 +144,5 @@ select {
 
 .error {
   color: #d4896c;
-  font-weight: 800;
-}
-
-.success {
-  color: var(--owner-color);
   font-weight: 800;
 }

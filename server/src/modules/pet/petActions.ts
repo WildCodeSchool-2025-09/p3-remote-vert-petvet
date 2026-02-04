@@ -34,4 +34,5 @@ const browseByPet: RequestHandler = async (
     next(error);
   }
 };
+
 export default { browseByPet };

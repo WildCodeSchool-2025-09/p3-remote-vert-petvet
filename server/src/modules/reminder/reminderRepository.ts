@@ -10,16 +10,18 @@ export interface Reminder {
   dosage: string | null;
   frequency: Frequency | null;
   frequencyCount: number | null;
-  veterinaryId: number;
+  userId: number;
   petId: number;
-  ownerId: number;
   petName: string;
 }
 
 class reminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      "SELECT reminder.*, pet.name AS petName FROM reminder JOIN pet ON reminder.pet_id = pet.id WHERE reminder.pet_id = ? ORDER BY reminder.programmed_at ASC",
+      `SELECT reminder.*, pet.name AS petName 
+      FROM reminder JOIN pet ON reminder.pet_id = pet.id 
+      WHERE reminder.pet_id = ? 
+      ORDER BY reminder.programmed_at ASC`,
       [petId],
     );
 
@@ -28,7 +30,12 @@ class reminderRepository {
 
   async getByOwner(ownerId: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
-      "SELECT reminder.*, pet.name AS petName, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      `SELECT reminder.*, pet.name AS petName, pet_photo 
+      FROM reminder
+      JOIN pet ON pet.id = reminder.pet_id
+      JOIN user ON reminder.user_id = user.id
+      WHERE user.id = ?
+      AND user.role = 'owner'`,
       [ownerId],
     );
     return reminders;
@@ -36,7 +43,9 @@ class reminderRepository {
 
   async insert(reminder: Omit<Reminder, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO reminder (title, programmed_at, content, dosage, frequency, frequency_count, veterinary_id, pet_id, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO reminder 
+      (title, programmed_at, content, dosage, frequency, frequency_count, user_id, pet_id) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         reminder.title,
         reminder.programmedAt,
@@ -44,9 +53,8 @@ class reminderRepository {
         reminder.dosage,
         reminder.frequency,
         reminder.frequencyCount,
-        reminder.veterinaryId,
+        reminder.userId,
         reminder.petId,
-        reminder.ownerId,
       ],
     );
 

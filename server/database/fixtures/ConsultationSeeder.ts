@@ -1,13 +1,13 @@
 import AbstractSeeder from "./AbstractSeeder";
 import PetSeeder from "./PetSeeder";
-import UsersSeeder from "./UsersSeeder";
+import UserSeeder from "./UserSeeder";
 
 class ConsultationSeeder extends AbstractSeeder {
   constructor() {
     super({
       table: "consultation",
       truncate: true,
-      dependencies: [PetSeeder, UsersSeeder],
+      dependencies: [PetSeeder, UserSeeder],
     });
   }
 
@@ -29,7 +29,7 @@ class ConsultationSeeder extends AbstractSeeder {
           "médicale",
         ]),
         pet_id: pet.insertId,
-        veterinary_id: user.insertId,
+        user_id: user.insertId,
         refName: `consultation_${i}`,
       };
 

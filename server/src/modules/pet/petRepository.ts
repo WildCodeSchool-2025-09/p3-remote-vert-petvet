@@ -10,8 +10,8 @@ class petRepository {
       //  WHERE pet.id = ?`,
       `SELECT pet.*, user.lastname
     FROM pet
-    JOIN pet_user ON pet_user.pet_id = pet_id
-    JOIN user ON user_id = pet_user.user_id
+    JOIN pet_user ON pet_user.pet_id = pet.id
+    JOIN user ON pet_user.user_id = user.id
     WHERE pet.id = ?
     AND user.role = 'veterinary'`,
       [id],
@@ -28,10 +28,11 @@ class petRepository {
       // WHERE pet.owner_id = ?`,
       `SELECT pet.*
     FROM pet
-    JOIN pet_user ON pet_user.user_id = user.id
-    JOIN user ON user.id = pet_user.user_id
+    JOIN pet_user ON pet_user.pet_id = pet.id
+    JOIN user ON pet_user.user_id = user.id
     WHERE user.id = ?
-    AND user.role = 'owner'`[ownerId],
+    AND user.role = 'owner'`,
+      [ownerId],
     );
 
     return pets;

@@ -4,7 +4,7 @@ import Joi from "joi";
 import reminderRepository from "./reminderRepository";
 import type { Reminder } from "./reminderRepository";
 
-type CreatedReminder = Omit<Reminder, "veterinaryId" | "ownerId">;
+type CreatedReminder = Omit<Reminder, "userId">;
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
@@ -44,8 +44,7 @@ const add: RequestHandler = async (req, res, next) => {
 
     const newReminder: Reminder = {
       ...body,
-      veterinaryId: 1,
-      ownerId: 1,
+      userId: 1,
     };
     //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
 

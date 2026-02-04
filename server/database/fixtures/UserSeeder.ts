@@ -1,14 +1,14 @@
 import AbstractSeeder from "./AbstractSeeder";
 
-class UsersSeeder extends AbstractSeeder {
+class UserSeeder extends AbstractSeeder {
   constructor() {
-    super({ table: "veterinary", truncate: true });
+    super({ table: "user", truncate: true });
   }
 
   run() {
     for (let i = 0; i < 5; i++) {
       const role = this.faker.helpers.arrayElement(["owner", "veterinary"]);
-      const fakeUsers = {
+      const fakeUser = {
         firstname: this.faker.person.firstName(),
         lastname: this.faker.person.lastName(),
         email: this.faker.internet.email(),
@@ -23,9 +23,9 @@ class UsersSeeder extends AbstractSeeder {
         refName: `user_${i}`,
       };
 
-      this.insert(fakeUsers);
+      this.insert(fakeUser);
     }
   }
 }
 
-export default UsersSeeder;
+export default UserSeeder;

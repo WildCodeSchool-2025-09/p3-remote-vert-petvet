@@ -1,13 +1,13 @@
 import AbstractSeeder from "./AbstractSeeder";
 import PetSeeder from "./PetSeeder";
-import UsersSeeder from "./UsersSeeder";
+import UserSeeder from "./UserSeeder";
 
 class ReminderSeeder extends AbstractSeeder {
   constructor() {
     super({
       table: "reminder",
       truncate: true,
-      dependencies: [UsersSeeder, PetSeeder],
+      dependencies: [PetSeeder, UserSeeder],
     });
   }
 
@@ -29,8 +29,7 @@ class ReminderSeeder extends AbstractSeeder {
         content: this.faker.lorem.sentence(),
         dosage: this.faker.helpers.arrayElement(["5mg", "10mg", "2ml"]),
         pet_id: pet.insertId,
-        owner_id: user.insertId,
-        veterinary_id: user.insertId,
+        user_id: user.insertId,
         frequency: this.faker.helpers.arrayElement([
           "jour",
           "semaine",

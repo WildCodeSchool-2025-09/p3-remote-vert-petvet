@@ -15,9 +15,10 @@ export interface Consultation {
   treatment: string;
   dosage: string | null;
   category: Category | null;
-  veterinaryId: number;
+  userId: number;
   petId: number;
 }
+
 interface VetConsultation {
   id: number;
   pet_id: number;
@@ -41,7 +42,10 @@ class consultationRepository {
   async getPetByVetId(vetId: number): Promise<Rows[0]> {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT pet.id, name FROM pet
-       WHERE user_id = ?`,
+      JOIN pet_user ON pet_user.pet_id = pet.id
+      JOIN user ON pet_user.user_id = user.id
+      WHERE user_id = ?
+      AND user.role = 'veterinary'`,
       [vetId],
     );
 
@@ -50,7 +54,9 @@ class consultationRepository {
 
   async insertConsultation(consultation: Omit<Consultation, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO consultation (title, created_at, report, treatment, dosage, category, pet_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO consultation 
+      (title, created_at, report, treatment, dosage, category, pet_id, user_id) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         consultation.title,
         consultation.createdAt,
@@ -59,7 +65,7 @@ class consultationRepository {
         consultation.dosage,
         consultation.category,
         consultation.petId,
-        consultation.veterinaryId,
+        consultation.userId,
       ],
     );
 

@@ -41,7 +41,6 @@ CREATE TABLE reminder (
   dosage VARCHAR(30) DEFAULT NULL,
   frequency ENUM('jour', 'semaine', 'mois', 'an') DEFAULT NULL,
   frequency_count INT DEFAULT 1,
-  veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
   user_id INT NOT NULL
 );

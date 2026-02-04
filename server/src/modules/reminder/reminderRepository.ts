@@ -13,6 +13,7 @@ export interface Reminder {
   veterinaryId: number;
   petId: number;
   ownerId: number;
+  petName: string;
 }
 
 class reminderRepository {

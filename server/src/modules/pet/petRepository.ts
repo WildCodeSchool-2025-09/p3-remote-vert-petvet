@@ -12,8 +12,7 @@ class petRepository {
     FROM pet
     JOIN pet_user ON pet_user.pet_id = pet.id
     JOIN user ON pet_user.user_id = user.id
-    WHERE pet.id = ?
-    AND user.role = 'owner'`,
+    WHERE pet.id = ?`,
       [id],
     );
 

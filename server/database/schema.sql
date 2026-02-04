@@ -19,7 +19,7 @@ CREATE TABLE pet (
   born_at DATETIME NOT NULL,
   gender ENUM("m","f"),
   specie ENUM("chien","chat","lapin"),
-  breed VARCHAR(30) NOT NULL,
+  breed VARCHAR(100) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
   weight FLOAT(10) DEFAULT NULL

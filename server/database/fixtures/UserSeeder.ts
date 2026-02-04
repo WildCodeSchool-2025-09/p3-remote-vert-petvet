@@ -6,7 +6,7 @@ class UserSeeder extends AbstractSeeder {
   }
 
   run() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       const role = this.faker.helpers.arrayElement(["owner", "veterinary"]);
       const fakeUser = {
         firstname: this.faker.person.firstName(),
@@ -15,7 +15,7 @@ class UserSeeder extends AbstractSeeder {
         password: this.faker.internet.password(),
         city: this.faker.location.city(),
         phone: this.faker.phone.number(),
-        role: this.faker.helpers.arrayElement(["owner", "veterinary"]),
+        role: role,
         order_nb:
           role === "owner"
             ? null

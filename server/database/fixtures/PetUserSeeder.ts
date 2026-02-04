@@ -12,7 +12,7 @@ class PetUserSeeder extends AbstractSeeder {
   }
 
   run() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       //pet_id: this.faker.number.int({ min: 1, max: 10 }),
       //user_id: this.faker.number.int({ min: 1, max: 10 }),
       const pet = this.getRef(`pet_${i}`);

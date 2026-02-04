@@ -9,7 +9,7 @@ class PetSeeder extends AbstractSeeder {
   }
 
   run() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       const fakePet = {
         name: this.faker.animal.petName(),
         born_at: this.faker.date.birthdate(),

@@ -1,22 +1,21 @@
-CREATE TABLE owner (
+CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   firstname VARCHAR(85) NOT NULL,
   lastname VARCHAR(85) NOT NULL,
-  email VARCHAR(85) NOT NULL,
-  password VARCHAR(30) NOT NULL,
-  city VARCHAR(85) NOT NULL,
-  phone VARCHAR(30) NOT NULL
+  email VARCHAR(120) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  city VARCHAR(85),
+  phone VARCHAR(30),
+  role ENUM('owner','veterinary') NOT NULL,
+  order_nb INT NULL
 );
 
-CREATE TABLE veterinary (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  firstname VARCHAR(85) NOT NULL,
-  lastname VARCHAR(85) NOT NULL,
-  email VARCHAR(85) NOT NULL,
-  password VARCHAR(30) NOT NULL,
-  city VARCHAR(85) NOT NULL,
-  phone VARCHAR(30) NOT NULL,
-  order_nb INT(5) NOT NULL
+CREATE TABLE pet_user (
+  pet_id INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (pet_id, user_id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (pet_id) REFERENCES pets(id)
 );
 
 CREATE TABLE pet (

@@ -25,7 +25,7 @@ function Consultations({
         <button
           type="button"
           className="add-consultation-button"
-          onClick={() => navigate(`/consultation/add/${pet.veterinaryId}`)}
+          onClick={() => navigate(`/consultation/add/${pet.vetInfo.vetId}`)}
         >
           <img src="/images/white-cross.png" alt="Ajouter une consultation" />
           AJOUTER UNE CONSULTATION

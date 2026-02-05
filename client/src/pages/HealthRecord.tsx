@@ -102,7 +102,11 @@ function HealthRecord() {
               <h3>Puce électronique</h3>
               <p>{petInfo.chip_nb}</p>
             </div>
-            <p>Suivi : Dr. {petInfo.veterinaryName}</p>
+            <p>
+              {petInfo.vetInfo == null
+                ? "Pas de vétérinaire"
+                : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
+            </p>
           </div>
         </section>
         {temporaryMessage && <p className="success">{temporaryMessage}</p>}

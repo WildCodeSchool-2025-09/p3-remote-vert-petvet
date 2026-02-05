@@ -18,12 +18,6 @@ const browseByPet: RequestHandler = async (
 
     const pet = await petRepository.getByPet(petId);
     const reminders = await reminderRepository.getByPet(petId);
-
-    if (!pet) {
-      res.status(400).json({ error: "Pas de compagnons sur cette page !" });
-      return;
-    }
-
     const consultations = await consultationRepository.getByPet(petId);
 
     if (!pet) {

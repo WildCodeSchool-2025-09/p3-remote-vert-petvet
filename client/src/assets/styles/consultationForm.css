@@ -42,7 +42,7 @@ body {
 }
 
 .consultation-select {
-  margin: 20px;
+  margin: 300px;
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;

@@ -112,7 +112,7 @@ function consultationForm() {
               onChange={(e) => setCategory(e.target.value as Category)}
             >
               <option value="" disabled hidden>
-                Select a category
+                Choisi la catégorie
               </option>
               <option value="vaccination">vaccination</option>
               <option value="urgence">urgence</option>
@@ -140,7 +140,7 @@ function consultationForm() {
               onChange={(e) => setSelectedPet(Number(e.target.value))}
             >
               <option value="" disabled hidden>
-                Sélectionne un pet
+                Sélectionne ton animal
               </option>
               {pets.map((pet) => (
                 <option key={pet.id} value={pet.id}>

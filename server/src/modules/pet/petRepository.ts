@@ -14,36 +14,43 @@ type PetRow = RowDataPacket & {
   is_neutered: boolean;
   photo: string;
   weight: number;
-  veterinaryName: string;
+  vetRow: {
+    vetName: string | null;
+    vetId: number | null;
+  };
 };
 
 class petRepository {
   async getByPet(id: number): Promise<PetRow> {
-    // const [vetId] = await databaseClient.query<Rows[]>(
-    //     `SELECT user.lastname, user.id
-    //     FROM user
-    //     JOIN pet_user ON pet_user.user_id = user.id
-    //     JOIN pet ON pet.id = pet_user.pet_id
-    //     WHERE pet.id = ? `,
-    //     [id],
-    // );
-
-    const [pet] = await databaseClient.query<PetRow[]>(
-      //   `SELECT pet.*, veterinary.lastname
-      //  FROM pet
-      //  JOIN veterinary ON veterinary.id = pet.veterinary_id
-      //  WHERE pet.id = ?`,
-      `SELECT pet.*, user.lastname AS veterinaryName, user.id AS veterinaryId
-    FROM pet
-    JOIN pet_user ON pet_user.pet_id = pet.id
-    JOIN user 
-      ON pet_user.user_id = user.id 
-      AND user.role = 'veterinary'
-    WHERE pet.id = ?`,
+    const [vetRow] = await databaseClient.query<PetRow[]>(
+      `SELECT user.lastname AS vetName, user.id AS vetId
+        FROM user
+        JOIN pet_user ON pet_user.user_id = user.id
+        JOIN pet ON pet.id = pet_user.pet_id
+        WHERE pet.id = ? 
+        AND user.role ='veterinary'`,
       [id],
     );
 
-    return pet[0];
+    const vetInfo = vetRow[0] ?? null;
+
+    const [petRow] = await databaseClient.query<PetRow[]>(
+      `SELECT pet.*
+    FROM pet
+    JOIN pet_user ON pet_user.pet_id = pet.id
+    JOIN user 
+    ON pet_user.user_id = user.id 
+    WHERE pet.id = ?
+    AND user.role = 'owner'`,
+      [id],
+    );
+
+    const pet = petRow[0];
+
+    return {
+      ...pet,
+      vetInfo,
+    };
   }
 
   async getByOwner(ownerId: number): Promise<Rows> {

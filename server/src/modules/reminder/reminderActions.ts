@@ -4,12 +4,10 @@ import Joi from "joi";
 import reminderRepository from "./reminderRepository";
 import type { Reminder } from "./reminderRepository";
 
-type CreatedReminder = Omit<Reminder, "veterinaryId" | "ownerId">;
-
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
     //id a défaker jusqu'au fameux cours de Mika sur les Authentifications <3
-    const id = 3;
+    const id = 4;
     const reminder = await reminderRepository.getByOwner(Number(id));
 
     if (!reminder) {
@@ -40,14 +38,11 @@ const browseByPet: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const body = req.body as CreatedReminder;
+    const body = req.body as Reminder;
 
     const newReminder: Reminder = {
       ...body,
-      veterinaryId: 1,
-      ownerId: 1,
     };
-    //Ne pas oublier de changer les valeurs de vet_id pet_id et owner_id quand on crée la connexion.
 
     const newReminderId = reminderRepository.insert(newReminder);
 

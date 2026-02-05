@@ -1,3 +1,4 @@
+import type { RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
@@ -10,16 +11,20 @@ export interface Reminder {
   dosage: string | null;
   frequency: Frequency | null;
   frequencyCount: number | null;
-  veterinaryId: number;
+  userId: number;
   petId: number;
-  ownerId: number;
   petName: string;
 }
+
+type OwnerRow = RowDataPacket & { id: number };
 
 class reminderRepository {
   async getByPet(petId: number) {
     const [petReminders] = await databaseClient.query(
-      "SELECT reminder.*, pet.name AS petName FROM reminder JOIN pet ON reminder.pet_id = pet.id WHERE reminder.pet_id = ? ORDER BY reminder.programmed_at ASC",
+      `SELECT reminder.*, pet.name AS petName 
+      FROM reminder JOIN pet ON reminder.pet_id = pet.id 
+      WHERE reminder.pet_id = ? 
+      ORDER BY reminder.programmed_at ASC`,
       [petId],
     );
 
@@ -28,15 +33,34 @@ class reminderRepository {
 
   async getByOwner(ownerId: number): Promise<Rows> {
     const [reminders] = await databaseClient.query<Rows>(
-      "SELECT reminder.*, pet.name AS petName, pet.photo FROM reminder JOIN pet ON pet.id = reminder.pet_id WHERE reminder.owner_id = ?",
+      `SELECT reminder.*, pet.name AS petName, pet.photo 
+      FROM reminder
+      JOIN pet ON pet.id = reminder.pet_id
+      JOIN user ON reminder.user_id = user.id
+      WHERE user.id = ?
+      AND user.role = 'owner'`,
       [ownerId],
     );
     return reminders;
   }
 
   async insert(reminder: Omit<Reminder, "id">) {
+    const [rows] = await databaseClient.query<OwnerRow[]>(
+      `SELECT user.id
+      FROM pet_user
+      JOIN user ON user.id = pet_user.user_id
+      WHERE pet_user.pet_id = ?
+      AND user.role = 'owner'
+      LIMIT 1`,
+      [reminder.petId],
+    );
+
+    const ownerId = rows[0].id;
+
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO reminder (title, programmed_at, content, dosage, frequency, frequency_count, veterinary_id, pet_id, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO reminder 
+      (title, programmed_at, content, dosage, frequency, frequency_count, user_id, pet_id) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         reminder.title,
         reminder.programmedAt,
@@ -44,9 +68,8 @@ class reminderRepository {
         reminder.dosage,
         reminder.frequency,
         reminder.frequencyCount,
-        reminder.veterinaryId,
+        ownerId,
         reminder.petId,
-        reminder.ownerId,
       ],
     );
 

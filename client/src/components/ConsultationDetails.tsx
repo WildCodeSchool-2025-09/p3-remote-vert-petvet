@@ -65,7 +65,7 @@ export default function consultation({
               <h3 className="animal-name">Animal :</h3> <br />
               <p>{consultation.petName}</p>
             </div>
-            <div className="consultation-date">
+            <div className="consultation-date-detail">
               <h3 className="title-date">Date :</h3> <br />
               <p>
                 {new Date(consultation.created_at).toLocaleString("fr-FR", {

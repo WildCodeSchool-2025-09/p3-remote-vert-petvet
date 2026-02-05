@@ -2,9 +2,10 @@ import express from "express";
 import consultationActions from "./modules/consultation/consultationActions";
 import petActions from "./modules/pet/petActions";
 import reminderActions from "./modules/reminder/reminderActions";
+import userActions from "./modules/user/userActions";
 
 const router = express.Router();
-
+router.post("/api/users", userActions.add);
 router.get("/api/pets/:id", petActions.browseByPet);
 router.post(
   "/api/pets/:id/reminders",

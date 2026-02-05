@@ -1,16 +1,79 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { ChangeEventHandler, FormEventHandler } from "react";
 import "../assets/styles/register.css";
+import { useNavigate } from "react-router";
 
 function Register() {
+  const emailRef = useRef<HTMLInputElement>(null);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [orderNb, setOrderNb] = useState<number | null>(null);
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
+  const navigate = useNavigate();
+
+  const handlefirstNameChange: ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange: ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    setLastName(event.target.value);
+  };
+
+  const handleOrderNbChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const temporaryValue = event.target.value;
+    setOrderNb(temporaryValue === "" ? null : Number(temporaryValue));
+  };
+
+  const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange: ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
+    setConfirmedPassword(event.target.value);
+  };
+
+  const sendRegister: FormEventHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          orderNb,
+          email: (emailRef.current as HTMLInputElement).value,
+          password,
+        }),
+      });
+
+      console.log(response.body);
+
+      if (response.status === 201) {
+        navigate("/");
+      } else {
+        console.info(response);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
-      <form className="form-register" action="">
+      <form className="form-register" onSubmit={sendRegister}>
         <label htmlFor="firstname">
           {"Prénom : "}
           <input
@@ -18,7 +81,7 @@ function Register() {
             id="firstname"
             required
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={handlefirstNameChange}
             placeholder="Prénom"
           />
         </label>
@@ -29,7 +92,7 @@ function Register() {
             id="lastname"
             required
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={handleLastNameChange}
             placeholder="Nom"
           />
         </label>
@@ -40,16 +103,18 @@ function Register() {
             id="orderNb"
             required
             value={orderNb ?? ""}
-            onChange={(e) => {
-              const temporaryValue = e.target.value;
-              setOrderNb(temporaryValue === "" ? null : Number(temporaryValue));
-            }}
+            onChange={handleOrderNbChange}
             placeholder="Numéro d'ordre"
           />
         </label>
         <label htmlFor="email">
           {"Email : "}
-          <input type="text" id="email" placeholder="Adresse mail" />
+          <input
+            type="email"
+            ref={emailRef}
+            id="email"
+            placeholder="Adresse mail"
+          />
         </label>
         <label htmlFor="password">
           {"Mot de passe : "}
@@ -58,7 +123,7 @@ function Register() {
             id="password"
             required
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             placeholder="Mot de passe"
           />
         </label>
@@ -69,7 +134,7 @@ function Register() {
             id="confirmedPassword"
             required
             value={confirmedPassword}
-            onChange={(e) => setConfirmedPassword(e.target.value)}
+            onChange={handleConfirmPasswordChange}
             placeholder="Confirmez le mot de passe"
           />
         </label>

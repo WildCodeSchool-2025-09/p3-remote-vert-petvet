@@ -1,0 +1,42 @@
+import type { RowDataPacket } from "mysql2";
+import databaseClient from "../../../database/client";
+import type { Result } from "../../../database/client";
+
+export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  orderNb: number | null;
+  password: string;
+  role: "owner" | "veterinary";
+}
+
+class userRepository {
+  async insert(user: Partial<User>) {
+    let role = "";
+    if (!user.orderNb) {
+      role = "owner";
+    } else {
+      role = "veterinary";
+    }
+
+    const [result] = await databaseClient.query<Result>(
+      `INSERT INTO user 
+      (firstname, lastname, email, order_nb, password, role) 
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        user.firstName,
+        user.lastName,
+        user.email,
+        user.orderNb,
+        user.password,
+        role,
+      ],
+    );
+
+    return result.insertId;
+  }
+}
+
+export default new userRepository();

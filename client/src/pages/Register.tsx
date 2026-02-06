@@ -3,6 +3,11 @@ import type { ChangeEventHandler, FormEventHandler } from "react";
 import "../assets/styles/register.css";
 import { useNavigate } from "react-router";
 
+type ApiError = {
+  field: string | undefined;
+  message: string | undefined;
+};
+
 function Register() {
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -11,9 +16,10 @@ function Register() {
   const [orderNb, setOrderNb] = useState<number | null>(null);
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [errors, setErrors] = useState<ApiError[]>([]);
 
   const navigate = useNavigate();
-
+  // pensez a renommer les handles
   const handlefirstNameChange: ChangeEventHandler<HTMLInputElement> = (
     event,
   ) => {
@@ -59,10 +65,12 @@ function Register() {
         }),
       });
 
-      console.log(response.body);
+      const data = await response.json();
+      console.log(data.errors);
+      setErrors(data.errors);
 
       if (response.status === 201) {
-        navigate("/");
+        navigate("/"); // Mettre le path de la page login lors de l'US12_login
       } else {
         console.info(response);
       }
@@ -72,7 +80,11 @@ function Register() {
   };
 
   return (
+    // Mettre un bouton pour changer le type de formulaire
     <>
+      {errors.map((error) => {
+        return <p key={error.field}>{error.message}</p>;
+      })}
       <form className="form-register" onSubmit={sendRegister}>
         <label htmlFor="firstname">
           {"Prénom : "}
@@ -97,7 +109,10 @@ function Register() {
           />
         </label>
         <label htmlFor="orderNb">
-          {"Numéro d'ordre: "}
+          {
+            "Numéro d'ordre: " /* pour le numero d'ordre, il faudra display none en fonction 
+          du choix propriétaire ou vétérinaire*/
+          }
           <input
             type="number"
             id="orderNb"
@@ -117,7 +132,9 @@ function Register() {
           />
         </label>
         <label htmlFor="password">
-          {"Mot de passe : "}
+          {
+            "Mot de passe : " /* Il reste la gestion de la sécurité de MDP et que la comparaison soit faites */
+          }
           <input
             type="text"
             id="password"

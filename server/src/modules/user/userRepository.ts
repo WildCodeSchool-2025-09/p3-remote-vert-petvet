@@ -1,4 +1,3 @@
-import type { RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 import type { Result } from "../../../database/client";
 
@@ -9,6 +8,7 @@ export interface User {
   email: string;
   orderNb: number | null;
   password: string;
+  hashed_password: string;
   role: "owner" | "veterinary";
 }
 
@@ -23,14 +23,14 @@ class userRepository {
 
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO user 
-      (firstname, lastname, email, order_nb, password, role) 
+      (firstname, lastname, email, order_nb, hashed_password, role) 
       VALUES (?, ?, ?, ?, ?, ?)`,
       [
         user.firstName,
         user.lastName,
         user.email,
         user.orderNb,
-        user.password,
+        user.hashed_password,
         role,
       ],
     );

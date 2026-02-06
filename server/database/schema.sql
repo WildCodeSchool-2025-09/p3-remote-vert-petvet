@@ -3,7 +3,7 @@ CREATE TABLE user (
   firstname VARCHAR(85) NOT NULL,
   lastname VARCHAR(85) NOT NULL,
   email VARCHAR(120) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL,
   city VARCHAR(85),
   phone VARCHAR(30),
   role ENUM('owner','veterinary') NOT NULL,

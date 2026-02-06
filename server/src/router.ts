@@ -6,6 +6,7 @@ import reminderActions from "./modules/reminder/reminderActions";
 const router = express.Router();
 
 router.get("/api/pets/:id", petActions.browseByPet);
+
 router.post(
   "/api/pets/:id/reminders",
   reminderActions.validateReminder,
@@ -15,7 +16,5 @@ router.post(
 router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
 
 router.get("/api/pets/:id", petActions.browseByPet);
-
-router.get("/api/consultations/:id", consultationActions.read);
 
 export default router;

@@ -1,74 +1,52 @@
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
 
-export type User = {
+export interface User {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
   orderNb: number | null;
-  password: string;
+  hashed_password: string;
   role: "owner" | "veterinary";
-};
+}
 
-class UserRepository {
-  async create(user: Omit<User, "id" | "is_admin">) {
-    // Execute the SQL INSERT query to add a new user to the "user" table
+class userRepository {
+  async insert(user: Partial<User>) {
+    let role = "";
+    if (!user.orderNb) {
+      role = "owner";
+    } else {
+      role = "veterinary";
+    }
+
     const [result] = await databaseClient.query<Result>(
-      "insert into user (email, password) values (?, ?)",
-      [user.email, user.password],
+      `INSERT INTO user 
+      (firstname, lastname, email, order_nb, hashed_password, role) 
+      VALUES (?, ?, ?, ?, ?, ?),
+      [
+        user.firstName,
+        user.lastName,
+        user.email,
+        user.orderNb,
+        user.hashed_password,
+        role,
+      ]`,
     );
 
-    // Return the ID of the newly inserted user
     return result.insertId;
   }
 
-  // The Rs of CRUD - Read operations
-
-  async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific user by its ID
+  async getByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
-      "select * from user where id = ?",
-      [id],
-    );
-
-    // Return the first row of the result, which represents the user
-    return rows[0] as User;
-  }
-
-  async readByEmail(email: string) {
-    // Execute the SQL SELECT query to retrieve a specific user by its email
-    const [rows] = await databaseClient.query<Rows>(
-      "select * from user where email = ?",
+      `SELECT *
+      FROM user
+      WHERE email = ?`,
       [email],
     );
 
-    // Return the first row of the result, which represents the user
     return rows[0] as User;
   }
-
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await databaseClient.query<Rows>("select * from user");
-
-    // Return the array of users
-    return rows as User[];
-  }
-
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing user
-
-  // async update(user: User) {
-  //   ...
-  // }
-
-  // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an user by its ID
-
-  // async delete(id: number) {
-  //   ...
-  // }
 }
 
-export default new UserRepository();
+export default new userRepository();

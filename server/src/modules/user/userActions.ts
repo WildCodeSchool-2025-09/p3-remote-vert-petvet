@@ -9,7 +9,7 @@ const add: RequestHandler = async (req, res, next) => {
       hashed_password: req.body.hashed_password,
     };
     const body = req.body as User;
-    const newUserId = await userRepository.create(body);
+    const newUserId = await userRepository.insert(body);
 
     res.sendStatus(422).json({ newUserId });
   } catch (err) {

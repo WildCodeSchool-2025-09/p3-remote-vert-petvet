@@ -3,17 +3,16 @@ import authActions from "./modules/auth/authActions";
 import consultationActions from "./modules/consultation/consultationActions";
 import petActions from "./modules/pet/petActions";
 import reminderActions from "./modules/reminder/reminderActions";
-import userActions from "./modules/user/userActions";
 
 const router = express.Router();
 
 router.get("/api/pets/:id", petActions.browseByPet);
 
-/*router.post(
+router.post(
   "/api/pets/:id/reminders",
   reminderActions.validateReminder,
   reminderActions.add,
-);*/
+);
 
 router.get("/api/owners/:id/pets", petActions.browseByOwner);
 
@@ -24,11 +23,11 @@ router.get(
   consultationActions.readByConsultation,
 );
 
-/*router.post(
+router.post(
   "/api/consultations/:id",
   consultationActions.validateConsultation,
   consultationActions.add,
-);*/
+);
 
 router.post("/api/login", authActions.login);
 

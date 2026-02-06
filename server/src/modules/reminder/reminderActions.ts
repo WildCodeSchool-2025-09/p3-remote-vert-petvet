@@ -1,5 +1,5 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
-import { StatusCodes } from "http-status-codes";
+//import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 import reminderRepository from "./reminderRepository";
 import type { Reminder } from "./reminderRepository";
@@ -36,22 +36,6 @@ const browseByPet: RequestHandler = async (req, res, next) => {
   }
 };
 
-const add: RequestHandler = async (req, res, next) => {
-  try {
-    const body = req.body as Reminder;
-
-    const newReminder: Reminder = {
-      ...body,
-    };
-
-    const newReminderId = reminderRepository.insert(newReminder);
-
-    res.status(StatusCodes.CREATED).json({ newReminderId });
-  } catch (err) {
-    next(err);
-  }
-};
-
 const reminderSchema = Joi.object({
   title: Joi.string().max(100).required(),
   programmedAt: Joi.date().required(),
@@ -65,7 +49,7 @@ const reminderSchema = Joi.object({
   petId: Joi.number().required(),
 });
 
-const validateReminder = (req: Request, res: Response, next: NextFunction) => {
+/*const validateReminder = (req: Request, res: Response, next: NextFunction) => {
   const { error } = reminderSchema.validate(req.body, { abortEarly: false });
 
   if (error == null) {
@@ -75,6 +59,6 @@ const validateReminder = (req: Request, res: Response, next: NextFunction) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ validationErrors: error.details });
   }
-};
+}; rajouter les export en bas*/
 
-export default { browseByOwner, browseByPet, add, validateReminder };
+export default { browseByOwner, browseByPet };

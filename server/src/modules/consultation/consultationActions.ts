@@ -1,5 +1,5 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
-import { StatusCodes } from "http-status-codes";
+//import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 import consultationRepository from "./consultationRepository";
 import type { Consultation } from "./consultationRepository";
@@ -37,7 +37,7 @@ const readByConsultation: RequestHandler = async (req, res, next) => {
   }
 };
 
-const validateConsultation: RequestHandler = (req, res, next): void => {
+/*const validateConsultation: RequestHandler = (req, res, next): void => {
   const { error, value } = consultationSchema.validate(req.body, {
     abortEarly: false,
     stripUnknown: true,
@@ -52,9 +52,9 @@ const validateConsultation: RequestHandler = (req, res, next): void => {
 
   req.body = value;
   next();
-};
+};*/
 
-const add: RequestHandler = async (req, res, next) => {
+/*const add: RequestHandler = async (req, res, next) => {
   try {
     const body = req.body as Consultation;
     const newConsultation: Consultation = {
@@ -69,6 +69,6 @@ const add: RequestHandler = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+};*/
 
-export default { readByConsultation, add, validateConsultation };
+export default { readByConsultation };

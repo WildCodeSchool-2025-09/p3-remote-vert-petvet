@@ -81,7 +81,7 @@ function Register() {
   };
 
   return (
-    <>
+    <div className="register-page">
       <nav className="nav-register">
         <img
           src={isVet ? "/images/blue/logo.png" : "/images/green/logo.png"}
@@ -98,141 +98,138 @@ function Register() {
         </button>
         <h1>Pet&Vet</h1>
       </nav>
-      <div className="toggle-container-register">
-        <div className="toogle-wrapper-register">
-          <input
-            type="checkbox"
-            id="mode-switch-register"
-            checked={isVet}
-            onChange={() => setIsVet(!isVet)}
-          />
-          <label
-            htmlFor="mode-switch-register"
-            className="toggle-label-register"
-          >
-            <span className={`label-text ${!isVet ? "owner" : ""}`}>
-              Propriétaire
-            </span>
-            <span className={`label-text ${isVet ? "vet" : ""}`}>
-              Vétérinaire
-            </span>
-            <div className="switch-slider" />
-          </label>
-        </div>
-      </div>
 
-      {errors.map((error) => {
-        return <p key={error.field}>{error.message}</p>;
-      })}
-      <form className="form-register" onSubmit={sendRegister}>
-        <label htmlFor="firstname">
-          {"Prénom : "}
-          <input
-            type="text"
-            id="firstname"
-            required
-            value={firstName}
-            onChange={handlefirstNameChange}
-            placeholder="Prénom"
-          />
+      <div className="toggle-wrapper-register">
+        <input
+          type="checkbox"
+          id="mode-switch-register"
+          checked={isVet}
+          onChange={() => setIsVet(!isVet)}
+        />
+        <label htmlFor="mode-switch-register" className="toggle-label-register">
+          <span className={`label-text ${!isVet ? "active" : ""}`}>
+            Propriétaire
+          </span>
+          <span className={`label-text ${isVet ? "active" : ""}`}>
+            Vétérinaire
+          </span>
+          <div className="switch-slider" />
         </label>
-        <label htmlFor="lastname">
-          {"Nom : "}
-          <input
-            type="text"
-            id="lastname"
-            required
-            value={lastName}
-            onChange={handleLastNameChange}
-            placeholder="Nom"
-          />
-        </label>
-        {isVet && (
-          <label htmlFor="orderNb">
-            {"Numéro d'ordre: "}
+      </div>
+      <div className="form-section-register">
+        {errors.map((error) => {
+          return <p key={error.field}>{error.message}</p>;
+        })}
+        <form className="form-register" onSubmit={sendRegister}>
+          <label htmlFor="firstname">
+            {"Prénom : "}
             <input
-              type="number"
-              id="orderNb"
+              type="text"
+              id="firstname"
               required
-              value={orderNb ?? ""}
-              onChange={handleOrderNbChange}
-              placeholder="Numéro d'ordre"
+              value={firstName}
+              onChange={handlefirstNameChange}
+              placeholder="Prénom"
             />
           </label>
-        )}
-        <label htmlFor="email">
-          {"Email : "}
-          <input
-            type="email"
-            ref={emailRef}
-            id="email"
-            placeholder="Adresse mail"
-          />
-        </label>
-        <label htmlFor="password">
-          {
-            "Mot de passe : " /* Il reste la gestion de la sécurité de MDP et que la comparaison soit faites */
-          }
-          <input
-            type="text"
-            id="password"
-            required
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Mot de passe"
-          />
-        </label>
-        <label htmlFor="confirmedPassword">
-          {"Confirmez le mot de passe : "}
-          <input
-            type="text"
-            id="confirmedPassword"
-            required
-            value={confirmedPassword}
-            onChange={handleConfirmPasswordChange}
-            placeholder="Confirmez le mot de passe"
-          />
-        </label>
-        <button
-          type="submit"
-          className={`button-submit ${isVet ? "btn-blue" : "btn-green"}`}
-        >
-          Enregistrer
-        </button>
-      </form>
-      <section className="section-register">
-        {isVet ? (
-          <>
-            <h2>Inscription Veterinaire </h2>
-            <img
-              src="/images/blue/stetoscope.png"
-              alt="stetoscope"
-              className="image-section-register"
+          <label htmlFor="lastname">
+            {"Nom : "}
+            <input
+              type="text"
+              id="lastname"
+              required
+              value={lastName}
+              onChange={handleLastNameChange}
+              placeholder="Nom"
             />
-            <p>Bienvenue sur Pet&Vet !</p>
-            <p>
-              En tant que vétérinaire, tu auras la possibilité de suivre tes
-              patients, rédiger des consultations et suivre leurs activités
-            </p>
-          </>
-        ) : (
-          <>
-            <h2>Inscription Propriétaire </h2>
-            <img
-              src="/images/green/calendar.png"
-              alt="calendar"
-              className="image-section-register"
+          </label>
+          {isVet && (
+            <label htmlFor="orderNb">
+              {"Numéro d'ordre: "}
+              <input
+                type="number"
+                id="orderNb"
+                required
+                value={orderNb ?? ""}
+                onChange={handleOrderNbChange}
+                placeholder="Numéro d'ordre"
+              />
+            </label>
+          )}
+          <label htmlFor="email">
+            {"Email : "}
+            <input
+              type="email"
+              ref={emailRef}
+              id="email"
+              placeholder="Adresse mail"
             />
-            <p>Bienvenue sur Pet&Vet !</p>
-            <p>
-              En tant que propiétaire, tu auras la possibilité de suivre tous
-              tes animaux, te créer des rappels, et acccéder aux consultations
-              de leurs vétérinaires !
-            </p>
-          </>
-        )}
-      </section>
-    </>
+          </label>
+          <label htmlFor="password">
+            {
+              "Mot de passe : " /* Il reste la gestion de la sécurité de MDP et que la comparaison soit faites */
+            }
+            <input
+              type="text"
+              id="password"
+              required
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Mot de passe"
+            />
+          </label>
+          <label htmlFor="confirmedPassword">
+            {"Confirmez le mot de passe : "}
+            <input
+              type="text"
+              id="confirmedPassword"
+              required
+              value={confirmedPassword}
+              onChange={handleConfirmPasswordChange}
+              placeholder="Confirmez le mot de passe"
+            />
+          </label>
+          <button
+            type="submit"
+            className={`button-submit ${isVet ? "btn-blue" : "btn-green"}`}
+          >
+            Enregistrer
+          </button>
+        </form>
+        <section className="section-register">
+          {isVet ? (
+            <>
+              <h2>Inscription Veterinaire </h2>
+              <img
+                src="/images/blue/stetoscope.png"
+                alt="stetoscope"
+                className="image-section-register"
+              />
+              <p>Bienvenue sur Pet&Vet !</p>
+              <p>
+                En tant que vétérinaire, tu auras la possibilité de suivre tes
+                patients, rédiger des consultations et suivre leurs activités
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>Inscription Propriétaire </h2>
+              <img
+                src="/images/green/calendar.png"
+                alt="calendar"
+                className="image-section-register"
+              />
+              <p>Bienvenue sur Pet&Vet !</p>
+              <p>
+                En tant que propiétaire, tu auras la possibilité de suivre tous
+                tes animaux, te créer des rappels, et acccéder aux consultations
+                de leurs vétérinaires !
+              </p>
+            </>
+          )}
+        </section>
+      </div>
+    </div>
   );
 }
 

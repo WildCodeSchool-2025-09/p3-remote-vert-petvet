@@ -18,6 +18,7 @@ function ReminderForm() {
   const navigate = useNavigate();
 
   const { id } = useParams();
+
   const petId = Number(id);
 
   const createReminder = async (reminder: CreateReminder) => {
@@ -74,50 +75,51 @@ function ReminderForm() {
         >
           <p className="error">{errorMessage}</p>
           <div className="title-date">
-            <label>
+            <label className="reminder-label">
               Titre <span className="obligatory">*</span>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="title"
+                className="title reminder-input"
               />
             </label>
-            <label>
+            <label className="reminder-label">
               Date programmée <span className="obligatory">*</span>
               <input
                 type="datetime-local"
                 value={programmedAt}
                 onChange={(e) => setProgrammedAt(e.target.value)}
                 required
-                className="date"
+                className="date reminder-input"
               />
             </label>
           </div>
           <div className="content-container">
-            <label>
+            <label className="reminder-label">
               Description <span className="obligatory">*</span>
               <input
                 type="text"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required
-                className="content"
+                className="content reminder-input"
               />
             </label>
-            <label>
+            <label className="reminder-label">
               Dosage
               <input
                 type="text"
                 value={dosage}
                 onChange={(e) => setDosage(e.target.value)}
+                className="content reminder-input"
               />
             </label>
           </div>
           <div className="frequency-container">
             <div className="frequency">
-              <label>
+              <label className="reminder-label">
                 Fréquence
                 <input
                   type="number"
@@ -132,6 +134,7 @@ function ReminderForm() {
             <div className="frequency-value">
               <p>fois par</p>
               <select
+                className="reminder-select"
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value as Frequency)}
               >

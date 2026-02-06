@@ -7,9 +7,8 @@ export interface Reminder {
   photo: string;
   frequency: string;
   frequency_count: string;
-  veterinary_id: number;
   pet_id: number;
-  owner_id: number;
+  user_id: number;
   petName: string;
 }
 

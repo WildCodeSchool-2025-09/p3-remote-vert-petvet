@@ -3,7 +3,14 @@
   background: none;
 }
 
-.consultation_card {
+.consultation-modal {
+  border: none;
+  background: none;
+  width: 700px;
+  height: 700px;
+}
+
+.consultation-card {
   font-family: var(--font-logo);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -16,7 +23,7 @@
   max-height: 600px;
 }
 
-.title_detail {
+.title-detail {
   padding: 1.2rem;
   justify-self: center;
   align-self: center;
@@ -30,7 +37,7 @@
   font-weight: bold;
   text-decoration: underline;
 }
-.category_detail {
+.category-detail {
   padding: 1rem;
   justify-self: center;
   align-self: center;
@@ -42,12 +49,12 @@
   text-align: center;
 }
 
-.category_detail {
+.category-detail {
   margin-top: -10%;
   font-weight: bold;
 }
 
-.consultation_date {
+.consultation-date-detail {
   padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
@@ -57,16 +64,16 @@
   margin: -4% 3% 3% 3%;
 }
 
-.title_date {
+.title-date {
   padding-left: 2%;
   font-weight: bold;
 }
 
-.consultation_date p {
+.consultation-date p {
   padding-left: 2%;
 }
 
-.consultation_animal_name {
+.consultation-animal-name {
   padding: 4%;
   border-radius: 15px;
   font-family: var(--font-text);
@@ -76,7 +83,7 @@
   margin: -4% 3% 3% 3%;
 }
 
-.animal_name {
+.animal-name {
   font-weight: bold;
 }
 
@@ -90,7 +97,7 @@
   margin: 0 3% 3% 3%;
 }
 
-.treatment_detail {
+.treatment-detail {
   font-weight: bold;
 }
 
@@ -108,19 +115,19 @@
   margin: 0 3% 3% 3%;
 }
 
-.dosage_detail {
+.dosage-detail {
   font-weight: bold;
 }
 
 .dosage p {
   font-size: 12px;
 }
-.report_title {
+.report-title {
   margin-bottom: 3%;
   font-weight: bold;
 }
 
-.content_report {
+.content-report {
   padding: 3%;
   border-radius: 15px;
   font-family: var(--font-text);
@@ -131,7 +138,7 @@
   margin: 0 1%;
 }
 
-.button_close {
+.button-close {
   display: flex;
   border-radius: 100%;
   font-family: var(--font-text);
@@ -147,7 +154,7 @@
   cursor: pointer;
 }
 
-.button_close:hover {
+.button-close:hover {
   background-color: white;
 }
 
@@ -155,7 +162,7 @@
   display: none;
 }
 
-.delete_button {
+.delete-button {
   color: white;
   background-color: var(--owner-color);
   border-radius: 10px;

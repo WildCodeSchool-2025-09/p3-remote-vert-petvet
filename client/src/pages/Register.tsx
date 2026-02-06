@@ -17,6 +17,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [errors, setErrors] = useState<ApiError[]>([]);
+  const [isVet, setIsVet] = useState(false);
 
   const navigate = useNavigate();
   // pensez a renommer les handles
@@ -80,8 +81,46 @@ function Register() {
   };
 
   return (
-    // Mettre un bouton pour changer le type de formulaire
     <>
+      <nav className="nav-register">
+        <img
+          src={isVet ? "/images/blue/logo.png" : "/images/green/logo.png"}
+          alt="logo-petvet"
+          className="logo-register"
+        />
+        <button
+          type="button"
+          className="button-home-registerPage"
+          onClick={() => navigate("/")}
+        >
+          <img src="/images/paw.png" alt="paw" className="paw-register" />
+          Accueil
+        </button>
+        <h1>Pet&Vet</h1>
+      </nav>
+      <div className="toggle-container-register">
+        <div className="toogle-wrapper-register">
+          <input
+            type="checkbox"
+            id="mode-switch-register"
+            checked={isVet}
+            onChange={() => setIsVet(!isVet)}
+          />
+          <label
+            htmlFor="mode-switch-register"
+            className="toggle-label-register"
+          >
+            <span className={`label-text ${!isVet ? "owner" : ""}`}>
+              Propriétaire
+            </span>
+            <span className={`label-text ${isVet ? "vet" : ""}`}>
+              Vétérinaire
+            </span>
+            <div className="switch-slider" />
+          </label>
+        </div>
+      </div>
+
       {errors.map((error) => {
         return <p key={error.field}>{error.message}</p>;
       })}
@@ -108,20 +147,19 @@ function Register() {
             placeholder="Nom"
           />
         </label>
-        <label htmlFor="orderNb">
-          {
-            "Numéro d'ordre: " /* pour le numero d'ordre, il faudra display none en fonction 
-          du choix propriétaire ou vétérinaire*/
-          }
-          <input
-            type="number"
-            id="orderNb"
-            required
-            value={orderNb ?? ""}
-            onChange={handleOrderNbChange}
-            placeholder="Numéro d'ordre"
-          />
-        </label>
+        {isVet && (
+          <label htmlFor="orderNb">
+            {"Numéro d'ordre: "}
+            <input
+              type="number"
+              id="orderNb"
+              required
+              value={orderNb ?? ""}
+              onChange={handleOrderNbChange}
+              placeholder="Numéro d'ordre"
+            />
+          </label>
+        )}
         <label htmlFor="email">
           {"Email : "}
           <input
@@ -155,8 +193,45 @@ function Register() {
             placeholder="Confirmez le mot de passe"
           />
         </label>
-        <button type="submit">Enregistrer</button>
+        <button
+          type="submit"
+          className={`button-submit ${isVet ? "btn-blue" : "btn-green"}`}
+        >
+          Enregistrer
+        </button>
       </form>
+      <section className="section-register">
+        {isVet ? (
+          <>
+            <h2>Inscription Veterinaire </h2>
+            <img
+              src="/images/blue/stetoscope.png"
+              alt="stetoscope"
+              className="image-section-register"
+            />
+            <p>Bienvenue sur Pet&Vet !</p>
+            <p>
+              En tant que vétérinaire, tu auras la possibilité de suivre tes
+              patients, rédiger des consultations et suivre leurs activités
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>Inscription Propriétaire </h2>
+            <img
+              src="/images/green/calendar.png"
+              alt="calendar"
+              className="image-section-register"
+            />
+            <p>Bienvenue sur Pet&Vet !</p>
+            <p>
+              En tant que propiétaire, tu auras la possibilité de suivre tous
+              tes animaux, te créer des rappels, et acccéder aux consultations
+              de leurs vétérinaires !
+            </p>
+          </>
+        )}
+      </section>
     </>
   );
 }

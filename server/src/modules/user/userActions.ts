@@ -12,7 +12,6 @@ const newUserSchema = Joi.object({
   password: Joi.string()
     .min(8)
     .max(30)
-    // au moins 1 lettre minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial
     .pattern(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._#\-])[A-Za-z\d@$!%*?&._#\-]{8,30}$/,
     )
@@ -26,19 +25,40 @@ const newUserSchema = Joi.object({
     }),
 });
 
-const validateNewUser = (req: Request, res: Response, next: NextFunction) => {
+const validateNewUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (!req.body) {
+    res.status(400).json({
+      errors: [{ field: "body", message: "Body manquant" }],
+    });
+    return;
+  }
+
   const { error } = newUserSchema.validate(req.body, { abortEarly: false });
 
-  if (error == null) {
-    next();
-  } else {
-    res.status(StatusCodes.BAD_REQUEST).json({
+  if (error) {
+    res.status(400).json({
       errors: error.details.map((d) => ({
         field: d.path[0],
         message: d.message,
       })),
     });
+    return;
   }
+
+  const user = await userRepository.getUserByEmail(req.body.email);
+
+  if (user) {
+    res.status(400).json({
+      errors: [{ field: "email", message: "Email déjà utilisé" }],
+    });
+    return;
+  }
+
+  next();
 };
 
 const add: RequestHandler = async (req, res, next) => {

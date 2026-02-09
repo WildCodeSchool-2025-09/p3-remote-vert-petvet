@@ -18,36 +18,39 @@ function Register() {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [errors, setErrors] = useState<ApiError[]>([]);
   const [isVet, setIsVet] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
   const navigate = useNavigate();
-  // pensez a renommer les handles
-  const handlefirstNameChange: ChangeEventHandler<HTMLInputElement> = (
-    event,
-  ) => {
+  const currentFirstName: ChangeEventHandler<HTMLInputElement> = (event) => {
     setFirstName(event.target.value);
   };
 
-  const handleLastNameChange: ChangeEventHandler<HTMLInputElement> = (
-    event,
-  ) => {
+  const currentLastName: ChangeEventHandler<HTMLInputElement> = (event) => {
     setLastName(event.target.value);
   };
 
-  const handleOrderNbChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const currentOrderNb: ChangeEventHandler<HTMLInputElement> = (event) => {
     const temporaryValue = event.target.value;
     setOrderNb(temporaryValue === "" ? null : Number(temporaryValue));
   };
 
-  const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (
-    event,
-  ) => {
+  const currentPassword: ChangeEventHandler<HTMLInputElement> = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleConfirmPasswordChange: ChangeEventHandler<HTMLInputElement> = (
+  const currentConfirmPassword: ChangeEventHandler<HTMLInputElement> = (
     event,
   ) => {
     setConfirmedPassword(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmedPasswordVisibility = () => {
+    setShowConfirmedPassword(!showConfirmedPassword);
   };
 
   const sendRegister: FormEventHandler = async (event) => {
@@ -67,7 +70,6 @@ function Register() {
       });
 
       const data = await response.json();
-      console.log(data.errors);
       setErrors(data.errors);
 
       if (response.status === 201) {
@@ -118,9 +120,6 @@ function Register() {
       </div>
 
       <div className="form-section-register">
-        {errors.map((error) => {
-          return <p key={error.field}>{error.message}</p>;
-        })}
         <form className="form-register" onSubmit={sendRegister}>
           <label htmlFor="firstname">
             {"Prénom : "}
@@ -129,7 +128,7 @@ function Register() {
               id="firstname"
               required
               value={firstName}
-              onChange={handlefirstNameChange}
+              onChange={currentFirstName}
               placeholder="Prénom"
             />
           </label>
@@ -140,7 +139,7 @@ function Register() {
               id="lastname"
               required
               value={lastName}
-              onChange={handleLastNameChange}
+              onChange={currentLastName}
               placeholder="Nom"
             />
           </label>
@@ -150,9 +149,11 @@ function Register() {
               <input
                 type="number"
                 id="orderNb"
+                min={1000}
+                max={99999}
                 required
                 value={orderNb ?? ""}
-                onChange={handleOrderNbChange}
+                onChange={currentOrderNb}
                 placeholder="Numéro d'ordre"
               />
             </label>
@@ -163,33 +164,97 @@ function Register() {
               type="email"
               ref={emailRef}
               id="email"
+              required
               placeholder="Adresse mail"
             />
           </label>
           <label htmlFor="password">
-            {
-              "Mot de passe : " /* Il reste la gestion de la sécurité de MDP et que la comparaison soit faites */
-            }
-            <input
-              type="text"
-              id="password"
-              required
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="Mot de passe"
-            />
+            {"Mot de passe : "}
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                required
+                value={password}
+                onChange={currentPassword}
+                placeholder="Mot de passe"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                style={{ outline: "none" }}
+              >
+                {showPassword ? (
+                  <img
+                    src="/images/eye-hide.png"
+                    alt="Masquer"
+                    className="eye-visibility"
+                  />
+                ) : (
+                  <img
+                    src="/images/eye-show.png"
+                    alt="Afficher"
+                    className="eye-visibility"
+                  />
+                )}
+              </button>
+            </div>
           </label>
           <label htmlFor="confirmedPassword">
-            {"Confirmez le mot de passe : "}
-            <input
-              type="text"
-              id="confirmedPassword"
-              required
-              value={confirmedPassword}
-              onChange={handleConfirmPasswordChange}
-              placeholder="Confirmez le mot de passe"
-            />
+            <div className="confirm-password-label">
+              <span>Confirmez le mot de passe :</span>
+              {password && (
+                <img
+                  src={
+                    password === confirmedPassword
+                      ? "/images/matching-password.png"
+                      : "/images/no-matching-password.png"
+                  }
+                  alt={
+                    password === confirmedPassword
+                      ? "Mots de passe identiques"
+                      : "Mots de passe différents"
+                  }
+                />
+              )}
+            </div>
+            <div className="password-input-container">
+              <input
+                type={showConfirmedPassword ? "text" : "password"}
+                id="confirmedPassword"
+                required
+                value={confirmedPassword}
+                onChange={currentConfirmPassword}
+                placeholder="Confirmez le mot de passe"
+              />
+              <button
+                type="button"
+                onClick={toggleConfirmedPasswordVisibility}
+                style={{ outline: "none" }}
+              >
+                {showConfirmedPassword ? (
+                  <img
+                    src="/images/eye-hide.png"
+                    alt="Masquer"
+                    className="eye-visibility"
+                  />
+                ) : (
+                  <img
+                    src="/images/eye-show.png"
+                    alt="Afficher"
+                    className="eye-visibility"
+                  />
+                )}
+              </button>
+            </div>
           </label>
+          {errors.map((error) => {
+            return (
+              <p key={error.field} className="register-error">
+                {error.message}
+              </p>
+            );
+          })}
           <button
             type="submit"
             className={`button-submit ${isVet ? "btn-blue" : "btn-green"}`}

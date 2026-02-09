@@ -13,6 +13,17 @@ export interface User {
 }
 
 class userRepository {
+  async getUserByEmail(email: string) {
+    const [row] = await databaseClient.query<Rows>(
+      `SELECT *
+      FROM user
+      WHERE user.email = ?
+      `,
+      [email],
+    );
+    return row[0];
+  }
+
   async insert(user: Partial<User>) {
     let role = "";
     if (!user.orderNb) {

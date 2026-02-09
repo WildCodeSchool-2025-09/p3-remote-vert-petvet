@@ -56,6 +56,7 @@ const hashingOptions = {
   timeCost: 2,
   parallelism: 1,
 };
+
 const hashPassword: RequestHandler = async (req, res, next) => {
   try {
     const { password } = req.body;
@@ -63,7 +64,7 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 
     req.body.hashed_password = hashedPassword;
     req.body.password = undefined;
-
+    console.log(hashedPassword);
     next();
   } catch (err) {
     next(err);

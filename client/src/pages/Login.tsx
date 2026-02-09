@@ -8,14 +8,14 @@ function Login() {
   const navigate = useNavigate();
   const [, setUser] = useState(null);
 
-  const handleSubmit: FormEventHandler = async (event) => {
+  const userLogin: FormEventHandler = async (event) => {
     event.preventDefault();
 
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/login`,
         {
-          method: "post",
+          method: "POST",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify({
             email: (emailRef.current as HTMLInputElement).value,
@@ -37,7 +37,7 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={userLogin}>
       <div>
         <label htmlFor="email">Email</label> {""}
         <input ref={emailRef} type="email" id="email" />

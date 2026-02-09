@@ -7,6 +7,7 @@ export interface User {
   lastName: string;
   email: string;
   orderNb: number | null;
+  password: string;
   hashed_password: string;
   role: "owner" | "veterinary";
 }
@@ -23,7 +24,7 @@ class userRepository {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO user 
       (firstname, lastname, email, order_nb, hashed_password, role) 
-      VALUES (?, ?, ?, ?, ?, ?),
+      VALUES (?, ?, ?, ?, ?, ?)`,
       [
         user.firstName,
         user.lastName,
@@ -31,7 +32,7 @@ class userRepository {
         user.orderNb,
         user.hashed_password,
         role,
-      ]`,
+      ],
     );
 
     return result.insertId;

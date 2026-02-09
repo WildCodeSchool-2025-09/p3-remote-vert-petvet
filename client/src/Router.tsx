@@ -5,6 +5,7 @@ import ConsultationForm from "./pages/ConsultationForm";
 import HealthRecord from "./pages/HealthRecord";
 import Login from "./pages/Login";
 import MyPetsList from "./pages/MyPetsList";
+import Register from "./pages/Register";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         <ConsultationForm />,
       </AuthContext>
     ),
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 

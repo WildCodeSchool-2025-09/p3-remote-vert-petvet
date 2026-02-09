@@ -28,7 +28,11 @@ function HealthRecord() {
   );
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {

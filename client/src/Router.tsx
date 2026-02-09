@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/my-pets/:id/",
+    path: "/my-pets",
     element: (
       <ProtectedRoute allowedRoles={["owner"]}>
         <MyPetsList />

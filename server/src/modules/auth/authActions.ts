@@ -18,7 +18,7 @@ declare module "express-serve-static-core" {
   }
 }
 
-const requiredRole = (...allowedRoles: string[]): RequestHandler => {
+const checkRole = (...allowedRoles: string[]): RequestHandler => {
   return (req, res, next) => {
     if (!req.auth || !allowedRoles.includes(req.auth.role)) {
       res.sendStatus(403);
@@ -28,7 +28,7 @@ const requiredRole = (...allowedRoles: string[]): RequestHandler => {
   };
 };
 
-const authMiddleware: RequestHandler = (req, res, next) => {
+const checkLogin: RequestHandler = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -41,7 +41,7 @@ const authMiddleware: RequestHandler = (req, res, next) => {
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_RECALL as string,
+      process.env.APP_SECRET as string,
     ) as Payload;
 
     req.auth = {
@@ -77,7 +77,7 @@ const login: RequestHandler = async (req, res, next) => {
         role: user.role,
       };
 
-      const token = await jwt.sign(payload, process.env.JWT_RECALL as string, {
+      const token = await jwt.sign(payload, process.env.APP_SECRET as string, {
         expiresIn: "1h",
       });
 
@@ -107,11 +107,11 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 
     req.body.hashed_password = hashedPassword;
     req.body.password = undefined;
-    console.log(hashedPassword);
+
     next();
   } catch (err) {
     next(err);
   }
 };
 
-export default { login, hashPassword, requiredRole, authMiddleware };
+export default { login, hashPassword, checkRole, checkLogin };

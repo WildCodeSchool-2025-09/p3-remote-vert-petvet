@@ -22,7 +22,6 @@ function Login() {
         method: "POST",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           email: (emailRef.current as HTMLInputElement).value,
@@ -35,8 +34,9 @@ function Login() {
       }
 
       if (response.status === 200) {
-        const user = await response.json();
-        auth?.login(user);
+        const userData = await response.json();
+        localStorage.setItem("token", userData.token);
+        auth?.login(userData.user);
         navigate("/");
       }
     } catch (err) {

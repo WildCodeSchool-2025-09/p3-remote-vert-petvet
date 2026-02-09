@@ -6,9 +6,14 @@ import type { Reminder } from "./reminderRepository";
 
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
-    //id a défaker jusqu'au fameux cours de Mika sur les Authentifications <3
-    const id = 4;
-    const reminder = await reminderRepository.getByOwner(Number(id));
+    const ownerId = req.auth?.userId;
+
+    if (!ownerId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const reminder = await reminderRepository.getByOwner(Number(ownerId));
 
     if (!reminder) {
       res.status(404).json({ message: "Il n'y a aucuns rappels !" });

@@ -14,33 +14,50 @@ router.post(
   userActions.add,
 );
 
-router.get("/api/pets/:id", petActions.browseByPet);
+router.post("/api/login", authActions.login);
+
+router.get(
+  "/api/pets/:id",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary", "owner"),
+  petActions.browseByPet,
+);
 
 router.post(
   "/api/pets/:id/reminders",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary", "owner"),
   reminderActions.validateReminder,
   reminderActions.add,
 );
 
-router.get("/api/owners/:id/pets", petActions.browseByOwner);
+router.get(
+  "/api/owners/me/pets",
+  authActions.checkLogin,
+  authActions.checkRole("owner"),
+  petActions.browseByOwner,
+);
 
-router.get("/api/owners/me/reminders", reminderActions.browseByOwner);
+router.get(
+  "/api/owners/me/reminders",
+  authActions.checkLogin,
+  authActions.checkRole("owner"),
+  reminderActions.browseByOwner,
+);
 
 router.get(
   "/api/consultations/pets/:id",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary", "owner"),
   consultationActions.readByConsultation,
 );
 
 router.post(
   "/api/consultations/:id",
-  authActions.authMiddleware,
-  authActions.requiredRole("veterinary"),
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
   consultationActions.validateConsultation,
   consultationActions.add,
 );
-
-router.post("/api/login", authActions.login);
-
-//router.get("/api/consultations/:id", consultationActions.read);
 
 export default router;

@@ -7,7 +7,7 @@ export default function MyPatients() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/petsList`)
+    fetch(`${import.meta.env.VITE_API_URL}/petslist`)
       .then((response) => response.json())
       .then((petsData: Pet[]) => {
         setPetsList(petsData);

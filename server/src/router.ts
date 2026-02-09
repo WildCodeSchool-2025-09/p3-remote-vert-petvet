@@ -12,6 +12,8 @@ router.post(
   reminderActions.add,
 );
 
+router.get("/api/petslist", petActions.browseAllPets);
+
 router.get("/api/owners/:id/pets", petActions.browseByOwner);
 
 router.get("/api/owners/me/reminders", reminderActions.browseByOwner);

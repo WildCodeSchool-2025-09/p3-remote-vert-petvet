@@ -70,6 +70,12 @@ class petRepository {
 
     return pets;
   }
+
+  async getAllPets(): Promise<Rows> {
+    const [pets] = await databaseClient.query<Rows>("SELECT pet.* FROM pet");
+
+    return pets;
+  }
 }
 
 export default new petRepository();

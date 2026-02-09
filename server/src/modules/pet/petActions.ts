@@ -48,4 +48,25 @@ const browseByOwner = async (
   }
 };
 
-export default { browseByPet, browseByOwner };
+const browseAllPets = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const pets = await petRepository.getAllPets();
+
+    if (pets.length === 0) {
+      res.status(404).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+      return;
+    }
+
+    res.status(200).json(pets);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { browseByPet, browseByOwner, browseAllPets };

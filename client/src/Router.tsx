@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import App from "./App";
 import ConsultationForm from "./pages/ConsultationForm";
 import HealthRecord from "./pages/HealthRecord";
+import MyPatients from "./pages/MyPatients";
 import MyPetsList from "./pages/MyPetsList";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/consultation/add/:id",
     element: <ConsultationForm />,
+  },
+  {
+    path: "/patients/:id",
+    element: <MyPatients />,
   },
 ]);
 

@@ -116,6 +116,7 @@ function Register() {
           <div className="switch-slider" />
         </label>
       </div>
+
       <div className="form-section-register">
         {errors.map((error) => {
           return <p key={error.field}>{error.message}</p>;
@@ -205,11 +206,13 @@ function Register() {
                 alt="stetoscope"
                 className="image-section-register"
               />
-              <p>Bienvenue sur Pet&Vet !</p>
-              <p>
-                En tant que vétérinaire, tu auras la possibilité de suivre tes
-                patients, rédiger des consultations et suivre leurs activités
-              </p>
+              <div className="section-register-text">
+                <p>Bienvenue sur Pet&Vet !</p>
+                <p>
+                  En tant que vétérinaire, tu auras la possibilité de suivre tes
+                  patients, rédiger des consultations et suivre leurs activités
+                </p>
+              </div>
             </>
           ) : (
             <>
@@ -219,12 +222,14 @@ function Register() {
                 alt="calendar"
                 className="image-section-register"
               />
-              <p>Bienvenue sur Pet&Vet !</p>
-              <p>
-                En tant que propiétaire, tu auras la possibilité de suivre tous
-                tes animaux, te créer des rappels, et acccéder aux consultations
-                de leurs vétérinaires !
-              </p>
+              <div className="section-register-text">
+                <p>Bienvenue sur Pet&Vet !</p>
+                <p>
+                  En tant que propiétaire, tu auras la possibilité de suivre
+                  tous tes animaux, te créer des rappels, et acccéder aux
+                  consultations de leurs vétérinaires !
+                </p>
+              </div>
             </>
           )}
         </section>

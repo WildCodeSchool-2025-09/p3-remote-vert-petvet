@@ -1,12 +1,59 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
+import jwt from "jsonwebtoken";
 import userRepository from "../user/userRepository";
 
-interface MyPayload {
+interface Payload {
   sub: string;
   role: "owner" | "veterinary";
 }
+
+declare module "express-serve-static-core" {
+  interface Request {
+    auth?: {
+      userId: number;
+      role: string;
+    };
+  }
+}
+
+const requiredRole = (...allowedRoles: string[]): RequestHandler => {
+  return (req, res, next) => {
+    if (!req.auth || !allowedRoles.includes(req.auth.role)) {
+      res.sendStatus(403);
+      return;
+    }
+    next();
+  };
+};
+
+const authMiddleware: RequestHandler = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    res.sendStatus(401);
+    return;
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_RECALL as string,
+    ) as Payload;
+
+    req.auth = {
+      userId: Number(decoded.sub),
+      role: decoded.role,
+    };
+
+    next();
+  } catch (err) {
+    res.sendStatus(401);
+  }
+};
 
 const login: RequestHandler = async (req, res, next) => {
   try {
@@ -25,25 +72,21 @@ const login: RequestHandler = async (req, res, next) => {
     if (verified) {
       const { hashed_password, ...userWithoutHashedPassword } = user;
 
-      const myPayload: MyPayload = {
+      const payload: Payload = {
         sub: user.id.toString(),
         role: user.role,
       };
 
-      /*const token = await jwt.sign(
-        myPayload,
-        process.env.APP_SECRET as string,
-        {
-          expiresIn: "1h",
-        },
-      );
+      const token = await jwt.sign(payload, process.env.JWT_RECALL as string, {
+        expiresIn: "1h",
+      });
 
       res.json({
         token,
         user: userWithoutHashedPassword,
-      });*/
+      });
     } else {
-      res.sendStatus(422);
+      res.sendStatus(401);
     }
   } catch (err) {
     next(err);
@@ -71,4 +114,4 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword };
+export default { login, hashPassword, requiredRole, authMiddleware };

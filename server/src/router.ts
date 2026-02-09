@@ -6,7 +6,7 @@ import reminderActions from "./modules/reminder/reminderActions";
 import userActions from "./modules/user/userActions";
 
 const router = express.Router();
-// Middleware a faire sur le post user
+
 router.post(
   "/api/users",
   userActions.validateNewUser,
@@ -33,6 +33,8 @@ router.get(
 
 router.post(
   "/api/consultations/:id",
+  authActions.authMiddleware,
+  authActions.requiredRole("veterinary"),
   consultationActions.validateConsultation,
   consultationActions.add,
 );

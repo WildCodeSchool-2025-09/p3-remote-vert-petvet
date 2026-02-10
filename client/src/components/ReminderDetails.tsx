@@ -1,5 +1,5 @@
-import "../assets/styles/reminderDetails.css";
 import { useEffect, useRef } from "react";
+import style from "../assets/styles/reminderDetails.module.css";
 import type { Reminder } from "../types/Reminder";
 
 type ReminderProps = {
@@ -24,7 +24,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="reminder-modal"
+      className={style.reminderModal}
       onCancel={onClose}
       tabIndex={-1}
       onClick={(e) => {
@@ -45,10 +45,10 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
         }
       }}
     >
-      <div className="reminder-modal-content">
+      <div className={style.reminderModalContent}>
         <button
           type="button"
-          className="button-close"
+          className={style.buttonClose}
           onClick={(e) => {
             e.stopPropagation();
             onClose();
@@ -62,14 +62,14 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           />
         </button>
 
-        <h2 className="title-reminder">{reminder.title}</h2>
+        <h2 className={style.titleReminder}>{reminder.title}</h2>
 
-        <div className="date-reminder">
+        <div className={style.dateReminder}>
           <h3>Date :</h3>
           <p>{new Date(reminder.programmed_at).toLocaleString()}</p>
         </div>
 
-        <div className="animal-name-reminder">
+        <div className={style.animalNameReminder}>
           <h3>Animal :</h3>
           <p>{reminder.petName}</p>
         </div>
@@ -79,7 +79,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
             reminder.dosage != null &&
             reminder.frequency_count != null &&
             reminder.frequency
-              ? "frequency-reminder"
+              ? style.frequencyReminder
               : "none"
           }
         >
@@ -87,12 +87,12 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           {reminder.frequency}
         </p>
 
-        <div className="content-reminder">
+        <div className={style.contentReminder}>
           <h3>Description :</h3>
           <p>{reminder.content}</p>
         </div>
 
-        <button type="button" className="delete-button">
+        <button type="button" className={style.deleteButton}>
           Supprimer le rappel
         </button>
       </div>

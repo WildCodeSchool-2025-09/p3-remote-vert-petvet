@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import "../assets/styles/reminderForm.css";
+import style from "../assets/styles/reminderForm.module.css";
 import type { CreateReminder, Frequency } from "../types/Reminder";
 
 function ReminderForm() {
@@ -56,9 +56,9 @@ function ReminderForm() {
 
   return (
     <section>
-      <header className="pet-vet">Pet&Vet</header>
-      <h1 className="reminder-form-title">Ajouter un rappel</h1>
-      <article className="form-container">
+      <header className={style.petVet}>Pet&Vet</header>
+      <h1 className={style.reminderFormTitle}>Ajouter un rappel</h1>
+      <article className={style.formContainer}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -73,53 +73,53 @@ function ReminderForm() {
             });
           }}
         >
-          <p className="error">{errorMessage}</p>
-          <div className="title-date">
-            <label className="reminder-label">
-              Titre <span className="obligatory">*</span>
+          <p className={style.error}>{errorMessage}</p>
+          <div className={style.titleDate}>
+            <label className={style.reminderLabel}>
+              Titre <span className={style.obligatory}>*</span>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="title reminder-input"
+                className={`${style.title} ${style.reminderInput}`}
               />
             </label>
-            <label className="reminder-label">
-              Date programmée <span className="obligatory">*</span>
+            <label className={style.reminderLabel}>
+              Date programmée <span className={style.obligatory}>*</span>
               <input
                 type="datetime-local"
                 value={programmedAt}
                 onChange={(e) => setProgrammedAt(e.target.value)}
                 required
-                className="date reminder-input"
+                className={`${style.date} ${style.reminderInput}`}
               />
             </label>
           </div>
-          <div className="content-container">
-            <label className="reminder-label">
-              Description <span className="obligatory">*</span>
+          <div className={style.contentContainer}>
+            <label className={style.reminderLabel}>
+              Description <span className={style.obligatory}>*</span>
               <input
                 type="text"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required
-                className="content reminder-input"
+                className={`${style.content} ${style.reminderInput}`}
               />
             </label>
-            <label className="reminder-label">
+            <label className={style.reminderLabel}>
               Dosage
               <input
                 type="text"
                 value={dosage}
                 onChange={(e) => setDosage(e.target.value)}
-                className="content reminder-input"
+                className={`${style.content} ${style.reminderInput}`}
               />
             </label>
           </div>
-          <div className="frequency-container">
-            <div className="frequency">
-              <label className="reminder-label">
+          <div className={style.frequencyContainer}>
+            <div className={style.frequency}>
+              <label className={style.reminderLabel}>
                 Fréquence
                 <input
                   type="number"
@@ -127,14 +127,14 @@ function ReminderForm() {
                   value={frequencyCount}
                   placeholder="Nb de x"
                   onChange={(e) => setFrequencyCount(Number(e.target.value))}
-                  className="frequency-count"
+                  className={style.frequencyCount}
                 />
               </label>
             </div>
-            <div className="frequency-value">
+            <div className={style.frequencyValue}>
               <p>fois par</p>
               <select
-                className="reminder-select"
+                className={style.reminderSelect}
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value as Frequency)}
               >
@@ -145,8 +145,8 @@ function ReminderForm() {
               </select>
             </div>
           </div>
-          <div className="button-container">
-            <p className="obligatory">* Champs obligatoires</p>
+          <div className={style.buttonContainer}>
+            <p className={style.obligatory}>* Champs obligatoires</p>
             <button type="submit" disabled={isSubmited}>
               {isSubmited ? "Création..." : "Créer un rappel"}
             </button>

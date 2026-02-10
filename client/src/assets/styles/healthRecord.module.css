@@ -1,4 +1,15 @@
-.health-record-page {
+.petVet {
+  display: flex;
+  justify-content: end;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+}
+.healthRecordPage {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -6,11 +17,11 @@
   gap: 20px;
   background-color: var(--main-color);
 }
-.pet-card {
+.petCard {
   width: 100%;
   max-width: 800px;
 }
-.pet-reminder {
+.petReminder {
   width: 100%;
   max-width: 500px;
   display: flex;
@@ -18,7 +29,7 @@
   margin-left: auto;
 }
 
-.add-consult {
+.addConsult {
   display: flex;
   align-items: center;
   background-color: var(--vet-color);

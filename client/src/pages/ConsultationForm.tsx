@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import "../assets/styles/consultationForm.css";
+import style from "../assets/styles/consultationForm.module.css";
 import type { Category, CreateConsultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
@@ -85,11 +85,11 @@ function consultationForm() {
 
   return (
     <section>
-      <header className="pet-vet-consultation">Pet&Vet</header>
-      <h1 className="consultation-form-title">Ajouter une consultation</h1>
-      <article className="consultation-form-container">
+      <header className={style.petVetConsultation}>Pet&Vet</header>
+      <h1 className={style.consultationFormTitle}>Ajouter une consultation</h1>
+      <article className={style.consultationFormContainer}>
         <form
-          className="consultation-form"
+          className={style.consultationForm}
           onSubmit={(e) => {
             e.preventDefault();
             createConsultation({
@@ -103,10 +103,10 @@ function consultationForm() {
             });
           }}
         >
-          <p className="consultation-error">{errorMessage}</p>
-          <div className="consultation-category-value">
+          <p className={style.consultationError}>{errorMessage}</p>
+          <div className={style.consultationCategoryValue}>
             <select
-              className="consultation-select"
+              className={style.consultationSelect}
               value={category}
               aria-placeholder="category"
               onChange={(e) => setCategory(e.target.value as Category)}
@@ -121,21 +121,22 @@ function consultationForm() {
               <option value="medicale">médicale</option>
             </select>
           </div>
-          <div className="consultation-date">
+          <div className={style.consultationDate}>
             <label>
-              Date programmée <span className="consultation-obligatory">*</span>
+              Date programmée{" "}
+              <span className={style.consultationObligatory}>*</span>
               <input
                 type="datetime-local"
                 value={createdAt}
                 onChange={(e) => setcreatedAt(e.target.value)}
                 required
-                className="date"
+                className={style.date}
               />
             </label>
           </div>
-          <div className="consultation-pet-name">
+          <div className={style.consultationPetName}>
             <select
-              className="consultation-select"
+              className={style.consultationSelect}
               value={selectedPet ?? ""}
               onChange={(e) => setSelectedPet(Number(e.target.value))}
             >
@@ -149,30 +150,30 @@ function consultationForm() {
               ))}
             </select>
           </div>
-          <div className="consultation-title">
+          <div className={style.consultationTitle}>
             <label>
-              Titre <span className="consultation-obligatory">*</span>
+              Titre <span className={style.consultationObligatory}>*</span>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="consultation-title-input"
+                className={style.consultationTitleInput}
               />
             </label>
           </div>
-          <div className="consultation-content">
+          <div className={style.consultationContent}>
             <label>
               <textarea
                 placeholder="Détails de la consultation :"
                 value={report}
                 onChange={(e) => setReport(e.target.value)}
                 required
-                className="consultation-content"
+                className={style.consultationContent}
               />
             </label>
           </div>
-          <div className="consultation-treatment">
+          <div className={style.consultationTreatment}>
             <label>
               Traitement
               <input
@@ -180,11 +181,11 @@ function consultationForm() {
                 value={treatment}
                 placeholder="traitement"
                 onChange={(e) => setTreatment(String(e.target.value))}
-                className="consultation-treatment-input"
+                className={style.consultationTreatmentInput}
               />
             </label>
           </div>
-          <div className="consultation-dosage">
+          <div className={style.consultationDosage}>
             <label>
               Posologie
               <input
@@ -192,15 +193,17 @@ function consultationForm() {
                 value={dosage}
                 placeholder="posologie"
                 onChange={(e) => setDosage(e.target.value)}
-                className="consultation-dosage-input"
+                className={style.consultationDosageInput}
               />
             </label>
           </div>
-          <div className="consultation-button-container">
-            <p className="consultation-obligatory">* Champs obligatoires</p>
+          <div className={style.consultationButtonContainer}>
+            <p className={style.consultationObligatory}>
+              * Champs obligatoires
+            </p>
             <button
               type="submit"
-              className="send-button"
+              className={style.sendButton}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Création..." : "Créer une consultation"}

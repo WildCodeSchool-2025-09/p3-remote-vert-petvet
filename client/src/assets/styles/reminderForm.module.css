@@ -2,7 +2,7 @@ body {
   background-color: var(--main-color);
 }
 
-.pet-vet {
+.petVet {
   text-align: right;
   font-family: var(--font-logo);
   font-weight: 800;
@@ -12,7 +12,7 @@ body {
   padding-right: 100px;
 }
 
-.reminder-form-title {
+.reminderFormTitle {
   font-family: var(--font-logo);
   font-size: 1.5rem;
   padding-top: 50px;
@@ -20,7 +20,7 @@ body {
   padding-bottom: 30px;
 }
 
-.form-container {
+.formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ body {
   }
 }
 
-.reminder-form {
+.reminderForm {
   width: 35vw;
   background-color: white;
   border-radius: 20px;
@@ -41,39 +41,39 @@ p {
   font-family: var(--font-text);
 }
 
-.title-date {
+.titleDate {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 }
 
-.content-container {
+.contentContainer {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 }
 
-.frequency-container {
+.frequencyContainer {
   display: flex;
   padding: 20px;
   gap: 10px;
 }
-.frequency-container .frequency {
+.frequencyContainer .frequency {
   display: flex;
   flex-direction: column;
 }
-.frequency-container .frequency-value {
+.frequencyContainer .frequencyValue {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   gap: 10px;
 }
 
-.frequency-value p {
+.frequencyValue p {
   padding-bottom: 15px;
 }
 
-.reminder-input {
+.reminderInput {
   margin-top: 5px;
   font-family: var(--font-text);
   color: var(--text-color);
@@ -84,13 +84,13 @@ p {
   border: none;
 }
 
-.reminder-label {
+.reminderLabel {
   font-family: var(--font-text);
   color: var(--text-color);
   font-size: 1.1rem;
 }
 
-.reminder-select {
+.reminderSelect {
   font-family: var(--font-text);
   color: var(--text-color);
   padding: 10px;
@@ -101,7 +101,7 @@ p {
   cursor: pointer;
 }
 
-.button-container {
+.buttonContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,7 +129,7 @@ p {
   width: 250px;
 }
 
-.frequency-count {
+.frequencyCount {
   width: 75px;
 }
 

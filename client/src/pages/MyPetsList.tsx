@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import type { Pet } from "../types/Pet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import "../assets/styles/myPetsList.css";
-import "../assets/styles/healthRecord.css";
 import { Link, useParams } from "react-router";
+import style from "../assets/styles/myPetsList.module.css";
 
 function MyPetsList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -35,10 +34,10 @@ function MyPetsList() {
   return (
     <>
       <section>
-        <h1 className="pet-vet">Pet&Vet</h1>
-        <div className="title-container">
-          <h2 className="title">Ma Tribu :</h2>
-          <button type="button" className="add-animal">
+        <h1 className={style.petVet}>Pet&Vet</h1>
+        <div className={style.titleContainer}>
+          <h2 className={style.title}>Ma Tribu :</h2>
+          <button type="button" className={style.addAnimal}>
             Ajouter un animal
           </button>
         </div>
@@ -49,23 +48,26 @@ function MyPetsList() {
           </p>
         )}
       </section>
-      <section className="pet-cards">
-        <div className="pet-cards-container">
+      <section className={style.petCards}>
+        <div className={style.petCardsContainer}>
           {pets.map((pet) => (
-            <article className="pet-card" key={pet.id}>
-              <p className="gender">{formatGender(pet.gender)}</p>
-              <div className="pet-info-container">
+            <article className={style.petCard} key={pet.id}>
+              <p className={style.gender}>{formatGender(pet.gender)}</p>
+              <div className={style.petInfoContainer}>
                 <img src={pet.photo} alt={pet.name} />
-                <div className="pet-info">
+                <div className={style.petInfo}>
                   <h3>{pet.name}</h3>
-                  <p className="specie">
+                  <p className={style.specie}>
                     {pet.specie} - {pet.breed}
                   </p>
                 </div>
               </div>
-              <div className="button">
-                <Link to={`/pet-profile/${pet.id}`}>
-                  <button type="button" className="profil-access">
+              <div className={style.button}>
+                <Link
+                  to={`/pet-profile/${pet.id}`}
+                  className={style.linkButton}
+                >
+                  <button type="button" className={style.profilAccess}>
                     Fiche de santé
                   </button>
                 </Link>

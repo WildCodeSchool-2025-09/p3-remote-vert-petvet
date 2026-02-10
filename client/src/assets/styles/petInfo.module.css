@@ -1,10 +1,10 @@
-.medical-list {
+.medicalList {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-.pet-card {
+.petCard {
   margin: auto;
   width: 800px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
   background-color: white;
 }
 
-.pet-first-info {
+.petFirstInfo {
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -37,7 +37,7 @@
   }
 }
 
-.pet-second-info {
+.petSecondInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -53,7 +53,7 @@
   }
 }
 
-.pet-title {
+.petTitle {
   display: flex;
   gap: 3rem;
 
@@ -76,13 +76,13 @@
   }
 }
 
-.pet-name-info {
+.petNameInfo {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.image-pet {
+.imagePet {
   border-radius: 50%;
 }
 
@@ -90,7 +90,7 @@
   display: flex;
 }
 
-.short-medical-history {
+.shortMedicalHistory {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -117,14 +117,14 @@
     margin-bottom: 1.25rem;
   }
 
-  .consultation-list {
+  .consultationList {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0;
   }
 
-  .consultation-card {
+  .consultationCard {
     display: flex;
     gap: 0;
     border-radius: 50px;
@@ -138,14 +138,14 @@
     p {
       display: none;
     }
-    .created-date {
+    .createdDate {
       display: block;
     }
 
     button {
       display: none;
     }
-    .consultation-first-info div {
+    .consultationFirstInfo div {
       flex-direction: row;
       align-items: center;
       gap: 20px;
@@ -162,7 +162,7 @@
   display: none;
 }
 
-.buttons-container {
+.buttonsContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -183,7 +183,7 @@
   }
 }
 
-.selected-section {
+.selectedSection {
   height: 3rem;
   width: 8rem;
   background-color: var(--owner-color);

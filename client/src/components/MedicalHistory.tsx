@@ -2,6 +2,7 @@ import { useState } from "react";
 import emergency from "../../public/images/green/emergency.png";
 import steto from "../../public/images/green/stetoscope.png";
 import syringe from "../../public/images/green/syringe.png";
+import style from "../assets/styles/consultCards.module.css";
 import type { Consultation } from "../types/Consultation";
 import ConsultationDetails from "./ConsultationDetails";
 
@@ -17,10 +18,10 @@ function MedicalHistory({ consultations }: MedicProps) {
     useState<Consultation | null>(null);
 
   return (
-    <section className="consultation-list">
+    <section className={style.consultationList}>
       {consultations.map((consultation) => (
-        <article key={consultation.id} className="consultation-card">
-          <div className="consultation-first-info">
+        <article key={consultation.id} className={style.consultationCard}>
+          <div className={style.consultationFirstInfo}>
             <img
               src={
                 consultation.category === "vaccination"
@@ -33,13 +34,13 @@ function MedicalHistory({ consultations }: MedicProps) {
             />
             <div>
               <h1>{consultation.title}</h1>
-              <p className="created-date">
+              <p className={style.createdDate}>
                 {new Date(consultation.created_at).toLocaleDateString("fr-FR")}
               </p>
             </div>
           </div>
-          <div className="consultation-second-info">
-            <div className="medical-info">
+          <div className={style.consultationSecondInfo}>
+            <div className={style.medicalInfo}>
               <div>
                 <h3>Traitement(s)</h3>
                 <p>
@@ -71,7 +72,7 @@ function MedicalHistory({ consultations }: MedicProps) {
             <button
               type="button"
               key={consultation.id}
-              className="consultation-item"
+              className={style.consultationItem}
               onClick={() => setCurrentConsultation(consultation)}
             >
               Details

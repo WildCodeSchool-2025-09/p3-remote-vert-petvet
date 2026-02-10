@@ -1,4 +1,4 @@
-.register-page {
+.registerPage {
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -10,24 +10,24 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.nav-register {
+.navRegister {
   display: flex;
   align-items: center;
   padding: 10px 20px;
   justify-content: space-between;
 }
 
-.nav-register .logo-register {
+.navRegister .logoRegister {
   height: 100px;
   width: auto;
   flex: 0 1 200px;
 }
-.nav-register img {
+.navRegister img {
   height: 100px;
   width: auto;
   object-fit: contain;
 }
-.nav-register .button-home-registerPage {
+.navRegister .buttonHomeRegisterPage {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -46,14 +46,14 @@
   align-self: center;
   justify-content: space-evenly;
 }
-.nav-register .button-home-registerPage:hover {
+.navRegister .buttonHomeRegisterPage:hover {
   background-color: #f0f0f0;
 }
-.nav-register .button-home-registerPage img {
+.navRegister .buttonHomeRegisterPage img {
   height: 20px;
   width: auto;
 }
-.nav-register h1 {
+.navRegister h1 {
   font-family: var(--font-logo);
   font-size: 3rem;
   color: var(--text-color);
@@ -61,16 +61,16 @@
   margin: 0 3rem;
   text-align: center;
 }
-.toggle-wrapper-register {
+.toggleWrapperRegister {
   position: relative;
   width: 300px;
   height: 45px;
   margin: 3rem auto;
 }
-.toggle-wrapper-register input {
+.toggleWrapperRegister input {
   display: none;
 }
-.toggle-wrapper-register .toggle-label-register {
+.toggleWrapperRegister .toggleLabelRegister {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -82,7 +82,7 @@
   cursor: pointer;
   overflow: hidden;
 }
-.toggle-label-register .label-text {
+.toggleLabelRegister .labelText {
   flex: 1;
   text-align: center;
   z-index: 2;
@@ -92,10 +92,10 @@
   color: #666;
   font-family: var(--font-text);
 }
-.label-text.active {
+.labelText.active {
   color: #ffffff;
 }
-.toggle-label-register .switch-slider {
+.toggleLabelRegister .switchSlider {
   position: absolute;
   top: 0;
   left: 0;
@@ -106,15 +106,15 @@
   transition: transform 0.3s ease;
   z-index: 1;
 }
-.toggle-wrapper-register input:checked + .toggle-label-register .switch-slider {
+.toggleWrapperRegister input:checked + .toggleLabelRegister .switchSlider {
   transform: translateX(100%);
   background: var(--vet-color);
 }
-.form-section-register {
+.formSectionRegister {
   margin: 3rem 15%;
   display: flex;
 }
-.form-register {
+.formRegister {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -126,7 +126,7 @@
   font-family: var(--font-text);
   color: var(--text-color);
 }
-.form-register label {
+.formRegister label {
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
@@ -134,7 +134,7 @@
   align-self: center;
   gap: 10px;
 }
-.form-register input {
+.formRegister input {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
@@ -144,7 +144,7 @@
   color: var(--text-color);
   background-color: #d9d9d9;
 }
-.form-register .button-submit {
+.formRegister .buttonSubmit {
   width: 30%;
   height: 3rem;
   font-size: 1rem;
@@ -158,19 +158,19 @@
   margin-top: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
-.btn-blue {
+.btnBlue {
   background-color: var(--vet-color);
 }
-.btn-blue:hover {
+.btnBlue:hover {
   background-color: var(--vet-color-hover);
 }
-.btn-green {
+.btnGreen {
   background-color: var(--owner-color);
 }
-.btn-green:hover {
+.btnGreen:hover {
   background-color: var(--owner-color-hover);
 }
-.form-section-register .section-register {
+.formSectionRegister .sectionRegister {
   width: 75%;
   display: flex;
   flex-direction: column;
@@ -182,48 +182,48 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.section-register h2 {
+.sectionRegister h2 {
   font-family: var(--font-logo);
   font-size: 2rem;
   text-decoration: underline;
 }
-.section-register .section-register-text {
+.sectionRegister .sectionRegisterText {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
-.section-register p {
+.sectionRegister p {
   font-size: 1.5rem;
   font-family: var(--font-text);
   text-align: center;
   margin: 0 4rem;
 }
-.section-register .image-section-register {
+.sectionRegister .imageSectionRegister {
   border-radius: 0;
   width: 150px;
   height: auto;
 }
-.register-error {
+.registerError {
   color: #d4896c;
   font-size: 0.8rem;
   margin-top: -5px;
   margin-bottom: 10px;
 }
 
-.password-input-container {
+.passwordInputContainer {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.password-input-container input {
+.passwordInputContainer input {
   width: 100%;
   padding-right: 45px;
 }
 
-.password-input-container button {
+.passwordInputContainer button {
   position: absolute;
   right: 10px;
   bottom: 5px;
@@ -236,22 +236,22 @@
   height: 100%;
 }
 
-.eye-visibility {
+.eyeVisibility {
   width: 22px;
   height: auto;
   opacity: 0.5;
   transition: opacity 0.2s ease;
 }
 
-.eye-visibility:hover {
+.eyeVisibility:hover {
   opacity: 0.8;
 }
-.confirm-password-label {
+.confirmPasswordLabel {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.confirm-password-label img {
+.confirmPasswordLabel img {
   width: 20px;
   height: auto;
   opacity: 0.5;

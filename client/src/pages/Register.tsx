@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import type { ChangeEventHandler, FormEventHandler } from "react";
-import "../assets/styles/register.css";
 import { useNavigate } from "react-router";
+import styles from "../assets/styles/register.module.css";
 
 type ApiError = {
   field: string | undefined;
@@ -22,35 +22,10 @@ function Register() {
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
   const navigate = useNavigate();
-  const currentFirstName: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setFirstName(event.target.value);
-  };
-
-  const currentLastName: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setLastName(event.target.value);
-  };
 
   const currentOrderNb: ChangeEventHandler<HTMLInputElement> = (event) => {
     const temporaryValue = event.target.value;
     setOrderNb(temporaryValue === "" ? null : Number(temporaryValue));
-  };
-
-  const currentPassword: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const currentConfirmPassword: ChangeEventHandler<HTMLInputElement> = (
-    event,
-  ) => {
-    setConfirmedPassword(event.target.value);
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmedPasswordVisibility = () => {
-    setShowConfirmedPassword(!showConfirmedPassword);
   };
 
   const sendRegister: FormEventHandler = async (event) => {
@@ -83,44 +58,49 @@ function Register() {
   };
 
   return (
-    <div className="register-page">
-      <nav className="nav-register">
+    <div className={styles.registerPage}>
+      <nav className={styles.navRegister}>
         <img
           src={isVet ? "/images/blue/logo.png" : "/images/green/logo.png"}
           alt="logo-petvet"
-          className="logo-register"
+          className={styles.logoRegister}
         />
         <button
           type="button"
-          className="button-home-registerPage"
+          className={styles.buttonHomeRegisterPage}
           onClick={() => navigate("/")}
         >
-          <img src="/images/paw.png" alt="paw" className="paw-register" />
+          <img src="/images/paw.png" alt="paw" className={styles.pawRegister} />
           Accueil
         </button>
         <h1>Pet&Vet</h1>
       </nav>
 
-      <div className="toggle-wrapper-register">
+      <div className={styles.toggleWrapperRegister}>
         <input
           type="checkbox"
           id="mode-switch-register"
           checked={isVet}
           onChange={() => setIsVet(!isVet)}
         />
-        <label htmlFor="mode-switch-register" className="toggle-label-register">
-          <span className={`label-text ${!isVet ? "active" : ""}`}>
+        <label
+          htmlFor="mode-switch-register"
+          className={styles.toggleLabelRegister}
+        >
+          <span
+            className={`${styles.labelText} ${!isVet ? styles.active : ""}`}
+          >
             Propriétaire
           </span>
-          <span className={`label-text ${isVet ? "active" : ""}`}>
+          <span className={`${styles.labelText} ${isVet ? styles.active : ""}`}>
             Vétérinaire
           </span>
-          <div className="switch-slider" />
+          <div className={styles.switchSlider} />
         </label>
       </div>
 
-      <div className="form-section-register">
-        <form className="form-register" onSubmit={sendRegister}>
+      <div className={styles.formSectionRegister}>
+        <form className={styles.formRegister} onSubmit={sendRegister}>
           <label htmlFor="firstname">
             {"Prénom : "}
             <input
@@ -128,7 +108,7 @@ function Register() {
               id="firstname"
               required
               value={firstName}
-              onChange={currentFirstName}
+              onChange={(e) => setFirstName(e.target.value)}
               placeholder="Prénom"
             />
           </label>
@@ -139,7 +119,7 @@ function Register() {
               id="lastname"
               required
               value={lastName}
-              onChange={currentLastName}
+              onChange={(e) => setLastName(e.target.value)}
               placeholder="Nom"
             />
           </label>
@@ -170,38 +150,40 @@ function Register() {
           </label>
           <label htmlFor="password">
             {"Mot de passe : "}
-            <div className="password-input-container">
+            <div className={styles.passwordInputContainer}>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 required
                 value={password}
-                onChange={currentPassword}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mot de passe"
               />
               <button
                 type="button"
-                onClick={togglePasswordVisibility}
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
                 style={{ outline: "none" }}
               >
                 {showPassword ? (
                   <img
                     src="/images/eye-hide.png"
                     alt="Masquer"
-                    className="eye-visibility"
+                    className={styles.eyeVisibility}
                   />
                 ) : (
                   <img
                     src="/images/eye-show.png"
                     alt="Afficher"
-                    className="eye-visibility"
+                    className={styles.eyeVisibility}
                   />
                 )}
               </button>
             </div>
           </label>
           <label htmlFor="confirmedPassword">
-            <div className="confirm-password-label">
+            <div className={styles.confirmPasswordLabel}>
               <span>Confirmez le mot de passe :</span>
               {password && (
                 <img
@@ -218,31 +200,33 @@ function Register() {
                 />
               )}
             </div>
-            <div className="password-input-container">
+            <div className={styles.passwordInputContainer}>
               <input
                 type={showConfirmedPassword ? "text" : "password"}
                 id="confirmedPassword"
                 required
                 value={confirmedPassword}
-                onChange={currentConfirmPassword}
+                onChange={(e) => setConfirmedPassword(e.target.value)}
                 placeholder="Confirmez le mot de passe"
               />
               <button
                 type="button"
-                onClick={toggleConfirmedPasswordVisibility}
+                onClick={() => {
+                  setShowConfirmedPassword(!showConfirmedPassword);
+                }}
                 style={{ outline: "none" }}
               >
                 {showConfirmedPassword ? (
                   <img
                     src="/images/eye-hide.png"
                     alt="Masquer"
-                    className="eye-visibility"
+                    className={styles.eyeVisibility}
                   />
                 ) : (
                   <img
                     src="/images/eye-show.png"
                     alt="Afficher"
-                    className="eye-visibility"
+                    className={styles.eyeVisibility}
                   />
                 )}
               </button>
@@ -250,28 +234,28 @@ function Register() {
           </label>
           {errors.map((error) => {
             return (
-              <p key={error.field} className="register-error">
+              <p key={error.field} className={styles.registerError}>
                 {error.message}
               </p>
             );
           })}
           <button
             type="submit"
-            className={`button-submit ${isVet ? "btn-blue" : "btn-green"}`}
+            className={`${styles.buttonSubmit} ${isVet ? styles.btnBlue : styles.btnGreen}`}
           >
             Enregistrer
           </button>
         </form>
-        <section className="section-register">
+        <section className={styles.sectionRegister}>
           {isVet ? (
             <>
               <h2>Inscription Veterinaire </h2>
               <img
                 src="/images/blue/stetoscope.png"
                 alt="stetoscope"
-                className="image-section-register"
+                className={styles.imageSectionRegister}
               />
-              <div className="section-register-text">
+              <div className={styles.sectionRegisterText}>
                 <p>Bienvenue sur Pet&Vet !</p>
                 <p>
                   En tant que vétérinaire, tu auras la possibilité de suivre tes
@@ -285,9 +269,9 @@ function Register() {
               <img
                 src="/images/green/calendar.png"
                 alt="calendar"
-                className="image-section-register"
+                className={styles.imageSectionRegister}
               />
-              <div className="section-register-text">
+              <div className={styles.sectionRegisterText}>
                 <p>Bienvenue sur Pet&Vet !</p>
                 <p>
                   En tant que propiétaire, tu auras la possibilité de suivre

@@ -11,6 +11,14 @@
   max-width: 800px;
 }
 
+.add-consult {
+  display: flex;
+  align-items: center;
+  background-color: var(--vet-color);
+  border: none;
+  border-radius: 10px;
+}
+
 .success {
   font-family: var(--font-text);
   color: var(--owner-color);

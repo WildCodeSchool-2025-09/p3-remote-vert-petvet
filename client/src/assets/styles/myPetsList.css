@@ -1,0 +1,130 @@
+body {
+  background-color: var(--main-color);
+}
+
+.pet-vet {
+  display: flex;
+  justify-content: end;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.title {
+  font-family: var(--font-logo);
+  font-size: 1.8rem;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.add-animal {
+  background-color: var(--owner-color);
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  color: white;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.pet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  background-color: white;
+  width: 500px;
+  height: 200px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.gender {
+  text-align: right;
+  font-size: larger;
+  font-family: var(--font-text);
+}
+
+img {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+}
+
+h3 {
+  font-family: var(--font-logo);
+  font-weight: bolder;
+  font-size: 1.4rem;
+}
+
+.specie {
+  font-family: var(--font-text);
+  padding-top: 5px;
+}
+
+.pet-info-container {
+  display: flex;
+}
+
+.pet-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+
+.profil-access {
+  display: flex;
+  justify-content: center;
+  background-color: var(--owner-color);
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  color: white;
+  width: 150px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-left: 35px;
+}
+
+.pet-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  width: 60vw;
+}
+
+.pet-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

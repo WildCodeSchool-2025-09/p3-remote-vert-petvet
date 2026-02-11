@@ -1,23 +1,15 @@
-CREATE TABLE owner (
+CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT,
   firstname VARCHAR(85) NOT NULL,
   lastname VARCHAR(85) NOT NULL,
-  email VARCHAR(85) NOT NULL,
-  password VARCHAR(30) NOT NULL,
-  city VARCHAR(85) NOT NULL,
-  phone VARCHAR(30) NOT NULL
+  email VARCHAR(120) NOT NULL UNIQUE,
+  hashed_password VARCHAR(255) NOT NULL,
+  city VARCHAR(85),
+  phone VARCHAR(30),
+  role ENUM('owner','veterinary') NOT NULL,
+  order_nb INT NULL
 );
 
-CREATE TABLE veterinary (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  firstname VARCHAR(85) NOT NULL,
-  lastname VARCHAR(85) NOT NULL,
-  email VARCHAR(85) NOT NULL,
-  password VARCHAR(30) NOT NULL,
-  city VARCHAR(85) NOT NULL,
-  phone VARCHAR(30) NOT NULL,
-  order_nb INT(5) NOT NULL
-);
 
 CREATE TABLE pet (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -27,12 +19,18 @@ CREATE TABLE pet (
   born_at DATETIME NOT NULL,
   gender ENUM("m","f"),
   specie ENUM("chien","chat","lapin"),
-  breed VARCHAR(30) NOT NULL,
+  breed VARCHAR(100) NOT NULL,
   is_neutered BOOLEAN DEFAULT FALSE,
   photo TEXT DEFAULT NULL,
-  weight FLOAT(10) DEFAULT NULL,
-  owner_id INT NOT NULL,
-  veterinary_id INT NOT NULL
+  weight FLOAT(10) DEFAULT NULL
+);
+
+CREATE TABLE pet_user (
+  pet_id INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (pet_id, user_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (pet_id) REFERENCES pet(id)
 );
 
 CREATE TABLE reminder (
@@ -43,9 +41,8 @@ CREATE TABLE reminder (
   dosage VARCHAR(30) DEFAULT NULL,
   frequency ENUM('jour', 'semaine', 'mois', 'an') DEFAULT NULL,
   frequency_count INT DEFAULT 1,
-  veterinary_id INT NOT NULL,
   pet_id INT NOT NULL,
-  owner_id INT NOT NULL
+  user_id INT NOT NULL
 );
 
 CREATE TABLE consultation (
@@ -57,5 +54,5 @@ CREATE TABLE consultation (
   dosage TEXT DEFAULT NULL,
   category ENUM('vaccination', 'urgence', 'suivi', 'opération', 'médicale'),
   pet_id INT NOT NULL,
-  veterinary_id INT NOT NULL
+  user_id INT NOT NULL
 );

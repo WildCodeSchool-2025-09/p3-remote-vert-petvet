@@ -12,8 +12,9 @@ export interface Pet {
   is_neutered: boolean;
   photo: string;
   weight: number;
-  owner_id: string;
-  veterinary_id: string;
-  lastname: string;
+  vetInfo: {
+    vetName: string | null;
+    vetId: number | null;
+  };
   reminders: Reminder[];
 }

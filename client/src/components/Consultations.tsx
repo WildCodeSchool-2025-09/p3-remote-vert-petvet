@@ -1,14 +1,18 @@
 import { useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/consultations.css";
+import "../assets/styles/Consultations.css";
+import { useNavigate } from "react-router";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 import ConsultationDetails from "./ConsultationDetails";
 
 function Consultations({
   consultations,
+  pet,
 }: { pet: Pet; consultations: Consultation[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
+
   const [currentConsultation, setCurrentConsultation] =
     useState<Consultation | null>(null);
   const displayedConsultations = isExpanded
@@ -18,7 +22,11 @@ function Consultations({
   return (
     <section className="vet-consultations-container">
       <article className="vet-consultations-header">
-        <button type="button" className="add-consultation-button">
+        <button
+          type="button"
+          className="add-consultation-button"
+          onClick={() => navigate(`/consultation/add/${pet.vetInfo.vetId}`)}
+        >
           <img src="/images/white-cross.png" alt="Ajouter une consultation" />
           AJOUTER UNE CONSULTATION
         </button>

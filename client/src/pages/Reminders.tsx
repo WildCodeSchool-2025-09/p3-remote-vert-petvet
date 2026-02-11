@@ -15,34 +15,37 @@ function Reminders() {
   }, []);
 
   return (
-    <section className="all-reminders">
-      <h1>Mes rappels</h1>
+    <>
+      <header className="pet-vet">Pet&Vet</header>
+      <section className="all-reminders">
+        <h1>Mes rappels</h1>
 
-      {currentReminder && (
-        <ReminderDetails
-          reminderId={currentReminder.id}
-          reminder={currentReminder}
-          onClose={() => setCurrentReminder(null)}
-        />
-      )}
+        {currentReminder && (
+          <ReminderDetails
+            reminderId={currentReminder.id}
+            reminder={currentReminder}
+            onClose={() => setCurrentReminder(null)}
+          />
+        )}
 
-      {reminders.map((reminder) => (
-        <button
-          type="button"
-          className="button-reminder reminder-card"
-          key={reminder.id}
-          onClick={() => setCurrentReminder(reminder)}
-        >
-          <img src={reminder.photo} alt="Profil" className="reminder-img" />
-          <div>
-            <h3 className="reminder-title">{reminder.title}</h3>
-          </div>
-          <p className="reminder-date">
-            {new Date(reminder.programmed_at).toLocaleDateString()}
-          </p>
-        </button>
-      ))}
-    </section>
+        {reminders.map((reminder) => (
+          <button
+            type="button"
+            className="button-reminder reminder-card"
+            key={reminder.id}
+            onClick={() => setCurrentReminder(reminder)}
+          >
+            <img src={reminder.photo} alt="Profil" className="reminder-img" />
+            <div>
+              <h3 className="reminder-title">{reminder.title}</h3>
+            </div>
+            <p className="reminder-date">
+              {new Date(reminder.programmed_at).toLocaleDateString()}
+            </p>
+          </button>
+        ))}
+      </section>
+    </>
   );
 }
 export default Reminders;

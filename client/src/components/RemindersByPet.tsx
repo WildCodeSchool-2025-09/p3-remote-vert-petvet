@@ -11,7 +11,6 @@ function RemindersByPet({
   reminders,
 }: { pet: Pet; reminders: Reminder[] }) {
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
-
   const navigate = useNavigate();
 
   return (

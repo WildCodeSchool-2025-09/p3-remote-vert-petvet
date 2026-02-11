@@ -20,6 +20,12 @@ type PetRow = RowDataPacket & {
   };
 };
 
+interface PetWithOwner {
+  petName: string;
+  petPhoto: string | null;
+  ownerName: string;
+}
+
 class petRepository {
   async getByPet(id: number): Promise<PetRow> {
     const [vetRow] = await databaseClient.query<PetRow[]>(
@@ -81,6 +87,28 @@ class petRepository {
     );
 
     return pets;
+  }
+
+  async getByVeterinary(veterinaryId: number): Promise<PetWithOwner[] | null> {
+    const [rows] = await databaseClient.query<RowDataPacket[]>(
+      `
+    SELECT 
+      pet.name AS petName,
+      pet.photo AS petPhoto,
+      CONCAT(owner.firstname, ' ', owner.lastname) AS ownerName
+    FROM pet
+    JOIN pet_user AS vet_link ON vet_link.pet_id = pet.id
+    JOIN user AS veterinary ON vet_link.user_id = veterinary.id AND veterinary.role = 'veterinary'
+    JOIN pet_user AS owner_link ON owner_link.pet_id = pet.id
+    JOIN user AS owner ON owner_link.user_id = owner.id AND owner.role = 'owner'
+    WHERE veterinary.id = ?
+    `,
+      [veterinaryId],
+    );
+
+    if (!rows.length) return null;
+
+    return rows as PetWithOwner[];
   }
 }
 

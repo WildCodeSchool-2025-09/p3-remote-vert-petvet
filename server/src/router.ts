@@ -1,6 +1,7 @@
 import express from "express";
 import consultationActions from "./modules/consultation/consultationActions";
 import petActions from "./modules/pet/petActions";
+import petUsersActions from "./modules/petUsers/petUsersActions";
 import reminderActions from "./modules/reminder/reminderActions";
 
 const router = express.Router();
@@ -11,6 +12,8 @@ router.post(
   reminderActions.validateReminder,
   reminderActions.add,
 );
+
+router.post("/api/pet_add_veterinary", petUsersActions.add);
 
 router.get("/api/petslist", petActions.browseAllPets);
 

@@ -63,7 +63,7 @@ const browseAllPets = async (
       return;
     }
 
-    res.status(200).json(pets);
+    res.status(200).json({ pets });
   } catch (error) {
     next(error);
   }

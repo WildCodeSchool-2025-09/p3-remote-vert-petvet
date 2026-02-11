@@ -72,7 +72,13 @@ class petRepository {
   }
 
   async getAllPets(): Promise<Rows> {
-    const [pets] = await databaseClient.query<Rows>("SELECT pet.* FROM pet");
+    const [pets] = await databaseClient.query<Rows>(
+      `SELECT pet.id AS petId, pet.name AS petName, user.firstname AS ownerFirstName, user.lastname AS ownerLastName
+      FROM pet
+      JOIN pet_user ON pet.id = pet_user.pet_id
+      JOIN user ON user.id = pet_user.user_id
+      WHERE user.role = 'owner'`,
+    );
 
     return pets;
   }

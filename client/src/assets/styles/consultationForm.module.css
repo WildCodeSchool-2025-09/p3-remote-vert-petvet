@@ -14,161 +14,121 @@ body {
 
 .consultationFormTitle {
   font-family: var(--font-logo);
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding-top: 50px;
   text-align: center;
   padding-bottom: 30px;
+  color: var(--text-color);
 }
-
 .consultationFormContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  input {
-    display: block;
-  }
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .consultationForm {
-  width: 60vw;
-  height: 80vh;
-  background-color: white;
-  border-radius: 20px;
-  padding: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 6fr 2fr 1fr;
-}
-
-.consultationSelect {
-  margin: 300px;
-  font-family: var(--font-text);
-  color: var(--text-color);
-  font-size: 1.1rem;
-  background-color: lightgrey;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "category . date"
+    "pet . ."
+    "title title ."
+    "content content content"
+    "treatment dosage . "
+    "footer footer footer";
+  gap: 30px;
+  align-items: end;
 }
 
 .consultationCategoryValue {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  grid-area: category;
 }
-
 .consultationDate {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
+  grid-area: date;
 }
-
 .consultationPetName {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
+  grid-area: pet;
 }
-
 .consultationTitle {
-  font-family: var(--font-text);
-  color: var(--text-color);
-  font-size: 1.1rem;
-  padding: 20px;
-  align-self: center;
-  border: none;
-  grid-column: 1 / 2;
-  grid-row: 4 / 5;
+  grid-area: title;
 }
-
-.consultationTitleInput {
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 5px;
-}
-
 .consultationContent {
-  font-family: var(--font-text);
-  color: var(--text-color);
-  font-size: 1.1rem;
-  width: 60vw;
-  height: 25vh;
-  grid-column: 1 / 4;
-  grid-row: 5 / 6;
+  grid-area: content;
+}
+.consultationTreatment {
+  grid-area: treatment;
+}
+.consultationDosage {
+  grid-area: dosage;
+}
+.consultationButtonContainer {
+  grid-area: footer;
+}
+
+.consultationSelect,
+.consultationTitleInput,
+.consultationTreatmentInput,
+.consultationDosageInput,
+.date,
+.consultationContent textarea {
+  width: 100%;
+  padding: 12px 15px;
   border: none;
-  background-color: #d9d9d9;
-  justify-self: center;
-  align-self: center;
-  border-radius: 15px;
+  border-radius: 12px;
+  background-color: #e9e9e9;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+.consultationContent textarea {
+  height: 250px;
   resize: none;
 }
 
-.consultationTreatment {
-  font-family: var(--font-text);
-  color: var(--text-color);
-  font-size: 1.1rem;
-  border: none;
-  grid-column: 1 / 2;
-  grid-row: 6 / 7;
-  align-self: center;
-  justify-self: center;
-}
-
-.consultationTreatmentInput {
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 5px;
-}
-
-.consultationDosage {
-  font-family: var(--font-text);
-  color: var(--text-color);
-  font-size: 1.1rem;
-  border: none;
-  grid-column: 2 / 3;
-  grid-row: 6 / 7;
-  align-self: center;
-  justify-self: center;
-}
-
-.consultationDosageInput {
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 5px;
-}
-
 .consultationButtonContainer {
-  grid-column: 3 / 4;
-  grid-row: 7 / 8;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 20px;
-
-  button {
-    width: 100px;
-    height: 50px;
-    background-color: var(--vet-color);
-    font-family: var(--font-text);
-    font-size: 0.6rem;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-  }
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
 }
 
+.sendButton {
+  background-color: var(--vet-color);
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-text);
+  height: 60px;
+}
+
+.consultationForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-text);
+  border-radius: 15px;
+}
+.consultationForm label span {
+  color: #d4896c;
+  font-weight: 800;
+}
+.consultationForm label p {
+  padding-left: 6px;
+}
 .consultationObligatory {
   color: #d4896c;
   font-weight: 800;
 }
-
-.consultationError {
-  color: #d4896c;
-  font-weight: 800;
-}
-
-.consultationSuccess {
-  color: var(--vet-color);
-  font-weight: 800;
+.consultationButtonContainer {
+  display: flex;
+  justify-content: space-between;
 }

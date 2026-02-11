@@ -12,7 +12,7 @@ class UserSeeder extends AbstractSeeder {
         firstname: this.faker.person.firstName(),
         lastname: this.faker.person.lastName(),
         email: this.faker.internet.email(),
-        password: this.faker.internet.password(),
+        hashed_password: this.faker.internet.password(),
         city: this.faker.location.city(),
         phone: this.faker.phone.number(),
         role: role,

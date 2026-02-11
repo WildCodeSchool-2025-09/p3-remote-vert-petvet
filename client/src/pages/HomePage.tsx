@@ -1,6 +1,7 @@
 import "../assets/styles/reset.css";
-import "../assets/styles/homePage.css";
+import "../assets/styles/homePageAnimation.css";
 import { useEffect, useState } from "react";
+import styles from "../assets/styles/homePage.module.css";
 
 function HomePage() {
   const [showButton, setShowButton] = useState(false);
@@ -49,55 +50,64 @@ function HomePage() {
     <>
       <header>
         <nav>
-          <div className="logo-container">
+          <div className={styles.logoContainer}>
             <img
               src="/images/green/logo.png"
               alt="PetVet Logo vert"
-              className="logo logo1 reveal from-right"
+              className={`${styles.logo} ${styles.logo1} reveal from-right`}
               width="120px"
             />
             <img
               src="/images/blue/logo.png"
               alt="PetVet Logo bleu"
-              className="logo logo2 reveal from-left"
+              className={`${styles.logo} ${styles.logo2} reveal from-left`}
               width="120px"
             />
           </div>
 
           <h1 className="reveal">Pet&Vet</h1>
         </nav>
-        <div className="header-content">
+        <div className={styles.headerContent}>
           <h2 className="reveal">Bienvenue sur Pet&Vet !</h2>
           <h3 className="reveal">
             Votre carnet de santé numérique pour animaux de compagnie
           </h3>
           <ul>
-            <button type="button" className="button-homePage reveal from-left">
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-left`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               Me connecter
             </button>
-            <button type="button" className="button-homePage reveal from-left">
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-left`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               M'inscrire
             </button>
-            <button type="button" className="button-homePage reveal from-left">
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-left`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
               Contacts utiles
             </button>
           </ul>
         </div>
-        <a href="#intro" className="scroll-down">
-          <span className="arrow">↓</span>
+        <a href="#intro" className={styles.scrollDown}>
+          <span className={styles.arrow}>↓</span>
         </a>
       </header>
       <main>
-        <section id="intro" className="intro">
+        <section id="intro" className={styles.intro}>
           <h1>
             Pet&Vet : avec vous pour vous accompagner dans le suivi de vos
             animaux
           </h1>
-          <div className="intro-section">
-            <div className="intro-text">
+          <div className={styles.introSection}>
+            <div className={styles.introText}>
               <h2>Le carnet de santé numérique Pour tous les animaux</h2>
               <p>
                 Le premier carnet de santé numérique pour tous les animaux de
@@ -117,11 +127,11 @@ function HomePage() {
             />
           </div>
         </section>
-        <section className="individuals">
+        <section className={styles.individuals}>
           <h1>Particuliers et passionnés</h1>
           <h2>Tout le suivi de vos animaux dans une seule application!</h2>
-          <div className="individuals-text-and-image">
-            <div className="individuals-text">
+          <div className={styles.individualsTextAndImage}>
+            <div className={styles.individualsText}>
               <p>
                 Peu importe l'espèce de vos compagnons, Pet&Vet simplifie leur
                 suivi de santé grâce à un carnet numérique interactif et
@@ -147,10 +157,10 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="professionals">
+        <section className={styles.professionals}>
           <h1>L’allié numérique des experts de la santé animale</h1>
-          <div className="professionals-text-and-image">
-            <div className="professionals-text">
+          <div className={styles.professionalsTextAndImage}>
+            <div className={styles.professionalsText}>
               <p>
                 Vétérinaires et ASV, optimisez l'observance de vos soins grâce à
                 Pet&Vet, l'outil numérique gratuit qui connecte votre expertise
@@ -176,13 +186,13 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="associations">
+        <section className={styles.associations}>
           <h1>Associations,</h1>
           <h2>
             L’outil gratuit pour optimiser la gestion de votre association
           </h2>
-          <div className="associations-text-and-image">
-            <div className="associations-text">
+          <div className={styles.associationsTextAndImage}>
+            <div className={styles.associationsText}>
               <p>
                 Gagnez en efficacité grâce à notre plateforme web dédiée qui
                 centralise tous les carnets de santé numériques de vos animaux
@@ -197,19 +207,28 @@ function HomePage() {
             />
           </div>
         </section>
-        <section className="buttons-bottom">
-          <div className="button-contacts-utile">
-            <button type="button" className="button-homePage reveal from-right">
+        <section className={styles.buttonsBottom}>
+          <div className={styles.buttonContactsUtile}>
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-right`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               Contacts utiles
             </button>
           </div>
-          <div className="button-register-login">
-            <button type="button" className="button-homePage reveal from-right">
+          <div className={styles.buttonRegisterLogin}>
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-right`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               Me connecter
             </button>
-            <button type="button" className="button-homePage reveal from-right">
+            <button
+              type="button"
+              className={`${styles.buttonHomePage} reveal from-right`}
+            >
               <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
               M'inscrire
             </button>
@@ -217,7 +236,7 @@ function HomePage() {
         </section>
         <button
           type="button"
-          className={`back-to-top ${showButton ? "show" : ""}`}
+          className={`${styles.backToTop} ${showButton ? styles.show : ""}`}
           onClick={scrollToTop}
           title="Retour en haut"
         >

@@ -1,23 +1,26 @@
-.consultationList {
+.consultationList .full {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
   justify-content: center;
+  background: var(--main-color);
+  border-radius: 50px;
 }
 
-.consultationCard {
+.consultationCard .full {
+  border: none;
+  width: 100%;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: bold;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-evenly;
-  padding: 30px;
-  background-color: white;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  width: 400px;
-  height: auto;
-  gap: 30px;
-  border-radius: 10px;
-  font-family: var(--font-text);
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--main-color);
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.15);
 
   img {
     width: 40px;
@@ -33,16 +36,17 @@
   }
 }
 
-.consultationFirstInfo {
+.consultationFirstInfo .full {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
 
   h1 {
-    font-family: var(--font-title);
-    font-weight: bold;
-    color: var(--font-color);
-    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1.25rem;
+    font-family: var(--font-logo);
+    font-size: 1.75rem;
+    text-align: left;
   }
   div {
     display: flex;
@@ -52,7 +56,7 @@
   }
 }
 
-.consultationSecondInfo {
+.consultationSecondInfo .full {
   display: flex;
   justify-content: space-between;
 
@@ -66,7 +70,7 @@
   }
 }
 
-.medicalInfo {
+.medicalInfo .full {
   display: flex;
   width: 300px;
   flex-direction: column;

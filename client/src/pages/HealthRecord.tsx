@@ -4,7 +4,7 @@ import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import healthRecordStyle from "../assets/styles/healthRecord.module.css";
-import petInfoStyle from "../assets/styles/petInfo.module.css";
+
 import Consultations from "../components/Consultations";
 import MedicalHistory from "../components/MedicalHistory";
 import type { Consultation } from "../types/Consultation";
@@ -53,16 +53,16 @@ function HealthRecord() {
     <>
       <header className={healthRecordStyle.petVet}>Pet&Vet</header>
       <div className={healthRecordStyle.healthRecordPage}>
-        <section className={petInfoStyle.petCard}>
-          <div className={petInfoStyle.petFirstInfo}>
+        <section className={healthRecordStyle.petCard}>
+          <div className={healthRecordStyle.petFirstInfo}>
             <img
               src={petInfo.photo}
               alt={petInfo.specie}
               width="150px"
               height="150px"
-              className={petInfoStyle.imagePet}
+              className={healthRecordStyle.imagePet}
             />
-            <div className={petInfoStyle.petNameInfo}>
+            <div className={healthRecordStyle.petNameInfo}>
               <div>
                 <h2>{petInfo.name}</h2>
                 <p>
@@ -74,13 +74,13 @@ function HealthRecord() {
                     : ""}
                 </p>
               </div>
-              <div className={petInfoStyle.petTitle}>
-                <p className={petInfoStyle.age}>
+              <div className={healthRecordStyle.petTitle}>
+                <p className={healthRecordStyle.age}>
                   {new Date().getFullYear() -
                     new Date(petInfo.born_at).getFullYear()}{" "}
                   ans
                 </p>
-                <p className={petInfoStyle.weight}>{petInfo.weight} kg</p>
+                <p className={healthRecordStyle.weight}>{petInfo.weight} kg</p>
                 <p>
                   {`Né${petInfo.gender === "f" ? "e" : ""} le `}
                   {new Date(petInfo.born_at).toLocaleDateString()}
@@ -88,7 +88,7 @@ function HealthRecord() {
               </div>
             </div>
           </div>
-          <div className={petInfoStyle.petSecondInfo}>
+          <div className={healthRecordStyle.petSecondInfo}>
             <div>
               <h3>Espèce</h3>
               <p>{petInfo.specie}</p>
@@ -120,7 +120,7 @@ function HealthRecord() {
       </div>
       <div>
         <section>
-          <div className={petInfoStyle.buttonsContainer}>
+          <div className={healthRecordStyle.buttonsContainer}>
             <button
               type="button"
               onClick={() => {
@@ -128,7 +128,7 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(false);
               }}
-              className={openResume ? petInfoStyle.selectedSection : ""}
+              className={openResume ? healthRecordStyle.selectedSection : ""}
             >
               Résumé
             </button>
@@ -139,7 +139,7 @@ function HealthRecord() {
                 setOpenHealth(true);
                 setOpenMedicalHistory(false);
               }}
-              className={openHealth ? petInfoStyle.selectedSection : ""}
+              className={openHealth ? healthRecordStyle.selectedSection : ""}
             >
               Santé
             </button>
@@ -150,7 +150,9 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(true);
               }}
-              className={openMedicalHistory ? petInfoStyle.selectedSection : ""}
+              className={
+                openMedicalHistory ? healthRecordStyle.selectedSection : ""
+              }
             >
               Historique
             </button>
@@ -158,16 +160,16 @@ function HealthRecord() {
           <div
             className={
               !openMedicalHistory && !openHealth && openResume
-                ? petInfoStyle.resume
-                : petInfoStyle.none
+                ? healthRecordStyle.resume
+                : healthRecordStyle.none
             }
           >
-            <article className={petInfoStyle.shortMedicalHistory}>
+            <article className={healthRecordStyle.shortMedicalHistory}>
               <div>
                 <h2>Activités récentes</h2>
                 <h3>Les dernières activités de {petInfo.name}</h3>
               </div>
-              <MedicalHistory consultations={fewActivities} />
+              <MedicalHistory consultations={fewActivities} length="short" />
             </article>
             <article className={healthRecordStyle.petReminder}>
               <RemindersByPet reminders={reminders} pet={petInfo} />
@@ -176,8 +178,8 @@ function HealthRecord() {
           <div
             className={
               !openMedicalHistory && openHealth && !openResume
-                ? petInfoStyle.health
-                : petInfoStyle.none
+                ? healthRecordStyle.health
+                : healthRecordStyle.none
             }
           >
             Composant Santé - fonctionnalité a venir !
@@ -185,11 +187,11 @@ function HealthRecord() {
           <div
             className={
               openMedicalHistory && !openHealth && !openResume
-                ? petInfoStyle.medicalHistory
-                : petInfoStyle.none
+                ? healthRecordStyle.medicalHistory
+                : healthRecordStyle.none
             }
           >
-            <MedicalHistory consultations={consultations} />
+            <MedicalHistory consultations={consultations} length="full" />
           </div>
         </section>
       </div>

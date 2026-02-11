@@ -43,3 +43,163 @@
   font-size: 1.1rem;
   padding: 20px;
 }
+
+.medicalList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.resume {
+  display: flex;
+}
+
+.none {
+  display: none;
+}
+
+.shortMedicalHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  margin: 1.25rem 1.25rem auto;
+  border-radius: 10px;
+  width: 400px;
+  background-color: white;
+
+  h2 {
+    color: var(--text-color);
+    font-family: var(--font-logo);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    color: var(--owner-color);
+    font-family: var(--font-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.petCard {
+  margin: auto;
+  width: 800px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: white;
+}
+
+.petFirstInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding: 20px 20px 20px 80px;
+  gap: 50px;
+
+  h2 {
+    font-family: var(--font-logo);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  p {
+    font-family: var(--font-text);
+    color: var(--text-color);
+    padding-top: 5px;
+  }
+}
+
+.petSecondInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  h3 {
+    font-family: var(--font-logo);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  p {
+    font-family: var(--font-text);
+    color: var(--text-color);
+    padding-top: 5px;
+  }
+}
+
+.petTitle {
+  display: flex;
+  gap: 3rem;
+
+  .age {
+    color: white;
+    text-align: center;
+    background-color: var(--vet-color);
+    padding: 5px;
+    width: 50px;
+    border-radius: 10px;
+  }
+
+  .weight {
+    color: white;
+    text-align: center;
+    background-color: var(--owner-color);
+    padding: 5px;
+    width: 50px;
+    border-radius: 10px;
+  }
+}
+
+.petNameInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.imagePet {
+  border-radius: 50%;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+  margin: 4rem;
+
+  button:not(.selectedSection) {
+    height: 3rem;
+    width: 8rem;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    color: var(--font-text);
+  }
+}
+
+.selectedSection {
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--owner-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.buttonsContainer button:hover {
+  cursor: pointer;
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--owner-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}

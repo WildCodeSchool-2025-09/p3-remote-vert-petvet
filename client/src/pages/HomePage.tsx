@@ -48,7 +48,7 @@ function HomePage() {
 
   return (
     <>
-      <header>
+      <header className={styles.headerHome}>
         <nav>
           <div className={styles.logoContainer}>
             <img

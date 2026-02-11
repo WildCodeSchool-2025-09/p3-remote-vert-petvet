@@ -2,7 +2,7 @@ body {
   background-color: var(--main-color);
 }
 
-.pet-vet {
+.petVet {
   display: flex;
   justify-content: end;
   font-family: var(--font-logo);
@@ -14,7 +14,7 @@ body {
   padding-bottom: 50px;
 }
 
-.title-container {
+.titleContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,7 +28,7 @@ body {
   padding-bottom: 30px;
 }
 
-.add-animal {
+.addAnimal {
   background-color: var(--owner-color);
   font-family: var(--font-text);
   font-size: 1.1rem;
@@ -41,7 +41,7 @@ body {
   cursor: pointer;
 }
 
-.pet-card {
+.petCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,11 +81,11 @@ h3 {
   padding-top: 5px;
 }
 
-.pet-info-container {
+.petInfoContainer {
   display: flex;
 }
 
-.pet-info {
+.petInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,7 +93,7 @@ h3 {
   width: 60%;
 }
 
-.profil-access {
+.profilAccess {
   display: flex;
   justify-content: center;
   background-color: var(--owner-color);
@@ -106,6 +106,10 @@ h3 {
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  text-decoration: none;
+}
+.linkButton {
+  text-decoration: none;
 }
 
 .button {
@@ -115,7 +119,7 @@ h3 {
   padding-left: 35px;
 }
 
-.pet-cards-container {
+.petCardsContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -123,7 +127,7 @@ h3 {
   width: 60vw;
 }
 
-.pet-cards {
+.petCards {
   display: flex;
   flex-direction: column;
   align-items: center;

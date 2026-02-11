@@ -2,14 +2,16 @@ import { useState } from "react";
 import emergency from "../../public/images/green/emergency.png";
 import steto from "../../public/images/green/stetoscope.png";
 import syringe from "../../public/images/green/syringe.png";
+import styles from "../assets/styles/medicalHistory.module.css";
 import type { Consultation } from "../types/Consultation";
 import ConsultationDetails from "./ConsultationDetails";
 
 type MedicProps = {
   consultations: Consultation[];
+  length: "short" | "full";
 };
 
-function MedicalHistory({ consultations }: MedicProps) {
+function MedicalHistory({ consultations, length }: MedicProps) {
   if (!consultations || consultations.length === 0)
     return <p>Pas de consultation pour ce doudou !</p>;
 
@@ -17,10 +19,13 @@ function MedicalHistory({ consultations }: MedicProps) {
     useState<Consultation | null>(null);
 
   return (
-    <section className="consultation-list">
+    <section className={`${styles.consultationList} ${styles[length]}`}>
       {consultations.map((consultation) => (
-        <article key={consultation.id} className="consultation-card">
-          <div className="consultation-first-info">
+        <article
+          key={consultation.id}
+          className={`${styles.consultationCard} ${styles[length]}`}
+        >
+          <div className={`${styles.consultationFirstInfo} ${styles[length]}`}>
             <img
               src={
                 consultation.category === "vaccination"
@@ -33,13 +38,13 @@ function MedicalHistory({ consultations }: MedicProps) {
             />
             <div>
               <h1>{consultation.title}</h1>
-              <p className="created-date">
+              <p className={`${styles.createdDate} ${styles[length]}`}>
                 {new Date(consultation.created_at).toLocaleDateString("fr-FR")}
               </p>
             </div>
           </div>
-          <div className="consultation-second-info">
-            <div className="medical-info">
+          <div className={`${styles.consultationSecondInfo} ${styles[length]}`}>
+            <div className={`${styles.medicalInfo} ${styles[length]}`}>
               <div>
                 <h3>Traitement(s)</h3>
                 <p>
@@ -71,7 +76,7 @@ function MedicalHistory({ consultations }: MedicProps) {
             <button
               type="button"
               key={consultation.id}
-              className="consultation-item"
+              className={`${styles.consultationItem} ${styles[length]}`}
               onClick={() => setCurrentConsultation(consultation)}
             >
               Details

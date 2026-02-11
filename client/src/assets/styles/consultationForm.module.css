@@ -1,0 +1,134 @@
+body {
+  background-color: var(--main-color);
+}
+
+.petVetConsultation {
+  text-align: right;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+}
+
+.consultationFormTitle {
+  font-family: var(--font-logo);
+  font-size: 2rem;
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 30px;
+  color: var(--text-color);
+}
+.consultationFormContainer {
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.consultationForm {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "category . date"
+    "pet . ."
+    "title title ."
+    "content content content"
+    "treatment dosage . "
+    "footer footer footer";
+  gap: 30px;
+  align-items: end;
+}
+
+.consultationCategoryValue {
+  grid-area: category;
+}
+.consultationDate {
+  grid-area: date;
+}
+.consultationPetName {
+  grid-area: pet;
+}
+.consultationTitle {
+  grid-area: title;
+}
+.consultationContent {
+  grid-area: content;
+}
+.consultationTreatment {
+  grid-area: treatment;
+}
+.consultationDosage {
+  grid-area: dosage;
+}
+.consultationButtonContainer {
+  grid-area: footer;
+}
+
+.consultationSelect,
+.consultationTitleInput,
+.consultationTreatmentInput,
+.consultationDosageInput,
+.date,
+.consultationContent textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  background-color: #e9e9e9;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+.consultationContent textarea {
+  height: 250px;
+  resize: none;
+}
+
+.consultationButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.sendButton {
+  background-color: var(--vet-color);
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-text);
+  height: 60px;
+}
+
+.consultationForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-text);
+  border-radius: 15px;
+}
+.consultationForm label span {
+  color: #d4896c;
+  font-weight: 800;
+}
+.consultationForm label p {
+  padding-left: 6px;
+}
+.consultationObligatory {
+  color: #d4896c;
+  font-weight: 800;
+}
+.consultationButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}

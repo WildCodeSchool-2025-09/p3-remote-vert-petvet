@@ -1,13 +1,13 @@
-.reminder-container {
+.reminderContainer {
   background-color: #ffffff;
   padding: 1.25rem;
   border-radius: 10px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   margin: 1.25rem auto;
-  max-width: 400px;
+  max-width: 600px;
 }
 
-.reminder-container h1 {
+.reminderContainer h1 {
   color: var(--text-color);
   margin-bottom: 1.25rem;
   font-family: var(--font-logo);
@@ -15,7 +15,7 @@
   font-size: 1.75rem;
 }
 
-.reminder-container h2 {
+.reminderContainer h2 {
   color: var(--owner-color);
   margin-bottom: 1.25rem;
   font-family: var(--font-text);
@@ -23,41 +23,42 @@
   font-size: 1.2rem;
 }
 
-.reminder-container img {
+.reminderContainer img {
   width: 40px;
   height: 40px;
 }
-.reminder-container .button-reminder {
-  width: 100%;
+.reminderContainer .buttonReminder {
+  width: auto;
   border: none;
-  padding: 0.625rem;
+  padding: 1rem;
   background-color: var(--main-color);
   border-radius: 50px;
-  margin-bottom: 0.625rem;
+  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  gap: 2rem;
 }
-.reminder-container .button-reminder h3 {
+.reminderContainer .buttonReminder h3 {
   margin: 0;
   font-family: var(--font-text);
   font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color);
 }
-.reminder-container .button-reminder p {
+.reminderContainer .buttonReminder p {
   margin: 0;
   font-family: var(--font-text);
   font-size: 0.875rem;
   color: var(--text-color);
 }
-.reminder-container .button-reminder:hover {
+.reminderContainer .buttonReminder:hover {
   background-color: #f0f0f0;
   cursor: pointer;
 }
 
-.reminder-container .add-reminder-button {
+.reminderContainer .addReminderButton {
   width: 7rem;
   height: 2rem;
   border: none;
@@ -70,17 +71,17 @@
   margin: 1.25rem auto 0 auto;
 }
 
-.reminder-container .add-reminder-button img {
+.reminderContainer .addReminderButton img {
   width: 15px;
   height: 15px;
 }
 
-.reminder-container .add-reminder-button:hover {
+.reminderContainer .addReminderButton:hover {
   background-color: #95a878;
   cursor: pointer;
 }
 
-.reminder-container ul {
+.reminderContainer ul {
   max-height: 300px;
   overflow-y: auto;
   scrollbar-width: thin;

@@ -1,0 +1,162 @@
+body {
+  background-color: var(--main-color);
+}
+.consultationList.full {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  background: var(--main-color);
+}
+
+.consultationCard.full {
+  border: none;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.15);
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+  }
+
+  button {
+    font-family: var(--font-title);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.consultationFirstInfo .full {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  h1 {
+    color: var(--text-color);
+    margin-bottom: 1.25rem;
+    font-family: var(--font-logo);
+    font-size: 1.75rem;
+    text-align: left;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+  }
+}
+
+.consultationSecondInfo .full {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    color: white;
+    border: none;
+    background-color: var(--owner-color);
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+  }
+}
+
+.medicalInfo .full {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: stretch;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      max-width: 200px;
+    }
+  }
+}
+
+.consultationCard.short .consultationSecondInfo.short {
+  display: none;
+}
+
+.consultationCard.short .consultationSecondInfo .medicalInfo.short {
+  display: none;
+}
+
+.consultationList.short {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.consultationCard.short {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  border-radius: 50px;
+  background-color: rgba(253, 244, 234, 0.6);
+  width: 320px;
+  padding: 0.625rem;
+
+  margin-bottom: 0.625rem;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  img {
+    width: 40px;
+    height: auto;
+    border-radius: 0;
+  }
+  h1 {
+    /*C'est le titre*/
+    margin: 0;
+    font-family: var(--font-text);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--text-color);
+  }
+  h3 {
+    display: none;
+  }
+  p {
+    display: none;
+  }
+  .createdDate {
+    display: block;
+  }
+
+  button {
+    display: none;
+  }
+}
+/*C'est la date*/
+.consultationCard.short .consultationFirstInfo.short {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-text);
+  color: var(--text-color);
+  p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 0.875rem;
+    color: var(--text-color);
+  }
+}

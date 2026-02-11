@@ -106,6 +106,10 @@ body {
   justify-content: center;
   min-width: 150px;
 }
+.headerHome .buttonHomePage img {
+  width: 30px;
+  height: 30px;
+}
 .headerHome .scrollDown {
   position: absolute;
   bottom: 5px;
@@ -150,6 +154,11 @@ main .intro .introSection {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+}
+main .intro .introSection img {
+  width: 400px;
+  height: auto;
+  border-radius: 25px;
 }
 main .intro .introText {
   display: flex;
@@ -215,6 +224,7 @@ main .individuals .individualsTextAndImage {
   justify-content: center;
   gap: 2rem;
 }
+
 main .individuals p {
   font-family: var(--font-text);
   font-size: clamp(1.25rem, 3vw, 1.5rem);
@@ -227,6 +237,8 @@ main .individuals p {
 main .individuals .individualsTextAndImage img {
   border-radius: 80px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: auto;
 }
 main .professionals {
   background-color: var(--main-color);
@@ -259,6 +271,8 @@ main .professionals p {
 main .professionals .professionalsTextAndImage img {
   border-radius: 80px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: auto;
 }
 main .associations {
   background-color: #faecdb;
@@ -302,6 +316,8 @@ main .associations .associationsTextAndImage .associationsText {
 main .associations .associationsTextAndImage img {
   border-radius: 80px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: auto;
 }
 main .buttonsBottom {
   display: flex;
@@ -345,6 +361,10 @@ main .buttonsBottom .buttonRegisterLogin {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+}
+main .buttonsBottom img {
+  width: 20px;
+  height: 20px;
 }
 .backToTop {
   position: fixed;

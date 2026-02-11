@@ -122,7 +122,6 @@ function HomePage() {
             <img
               src="/images/dog-cat.jpg"
               alt="Chien et chat assis"
-              width="500px"
               className="reveal from-right"
             />
           </div>
@@ -151,7 +150,6 @@ function HomePage() {
             <img
               src="/images/cat-hand.jpg"
               alt="Chat qui tape dans la main"
-              width="300px"
               className="reveal from-left"
             />
           </div>
@@ -180,7 +178,6 @@ function HomePage() {
             <img
               src="/images/rabbit.jpg"
               alt="Lapin"
-              width="400px"
               className="reveal from-right"
             />
           </div>
@@ -202,7 +199,6 @@ function HomePage() {
             <img
               src="/images/dog-window.jpg"
               alt="Chien regardant par la fenêtre"
-              width="300px"
               className="reveal from-bottom"
             />
           </div>

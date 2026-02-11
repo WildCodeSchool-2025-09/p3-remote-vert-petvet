@@ -1,3 +1,12 @@
+.petVet {
+  text-align: right;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 50px;
+  padding-right: 100px;
+}
 .allReminders {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -29,6 +38,7 @@
   border-radius: 50px;
   margin-bottom: 0.75rem;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
 }
 
 .reminderCard:hover {

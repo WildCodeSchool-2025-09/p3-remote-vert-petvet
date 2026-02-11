@@ -7,7 +7,7 @@ import type { Reminder } from "./reminderRepository";
 const browseByOwner: RequestHandler = async (req, res, next) => {
   try {
     //id a défaker jusqu'au fameux cours de Mika sur les Authentifications <3
-    const id = 4;
+    const id = 5;
     const reminder = await reminderRepository.getByOwner(Number(id));
 
     if (!reminder) {

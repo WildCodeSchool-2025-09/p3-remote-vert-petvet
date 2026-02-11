@@ -62,7 +62,6 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  justify-content: space-around;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 .vetConsultationsContainer
@@ -76,9 +75,10 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
+
 .vetConsultationsContainer .vetConsultationsCards .consultationItem:hover {
   background-color: #f0f0f0;
   cursor: pointer;
@@ -92,6 +92,8 @@
 }
 .vetConsultationsContainer .vetConsultationsCards .consultationDetails p {
   margin: 0;
+  margin-left: 20px;
+  width: 100px;
   font-family: var(--font-text);
   font-size: 1rem;
   color: var(--text-color);

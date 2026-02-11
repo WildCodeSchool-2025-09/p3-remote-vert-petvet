@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import style from "../assets/styles/consultationDetails.module.css";
+import styles from "../assets/styles/consultationDetails.module.css";
 import type { Consultation } from "../types/Consultation";
 
 type ConsultationProps = {
@@ -27,7 +27,7 @@ export default function consultation({
   return (
     <dialog
       ref={dialogRef}
-      className={style.consultationModal}
+      className={styles.consultationModal}
       onCancel={onClose}
       tabIndex={-1}
       onClick={(e) => {
@@ -48,12 +48,12 @@ export default function consultation({
         }
       }}
     >
-      <div className={style.consultationCard}>
+      <div className={styles.consultationCardModal}>
         {consultation ? (
           <>
             <button
               type="button"
-              className={style.buttonClose}
+              className={styles.buttonClose}
               onClick={onClose}
             >
               <img
@@ -63,14 +63,14 @@ export default function consultation({
                 height="35px"
               />
             </button>
-            <h1 className={style.titleDetail}>Détails de la consultation</h1>
-            <h2 className={style.categoryDetail}>{consultation.category}</h2>
-            <div className={style.consultationAnimalName}>
-              <h3 className={style.animalName}>Animal :</h3> <br />
+            <h1 className={styles.titleDetail}>Détails de la consultation</h1>
+            <h2 className={styles.categoryDetail}>{consultation.category}</h2>
+            <div className={styles.consultationAnimalName}>
+              <h3 className={styles.animalName}>Animal :</h3> <br />
               <p>{consultation.petName}</p>
             </div>
-            <div className={style.consultationDateDetail}>
-              <h3 className={style.titleDate}>Date :</h3> <br />
+            <div className={styles.consultationDateDetail}>
+              <h3 className={styles.titleDate}>Date :</h3> <br />
               <p>
                 {new Date(consultation.created_at).toLocaleString("fr-FR", {
                   day: "numeric",
@@ -79,19 +79,19 @@ export default function consultation({
                 })}
               </p>
             </div>
-            <div className={style.treatment}>
-              <h3 className={style.treatmentDetail}>Traitement :</h3> <br />
+            <div className={styles.treatment}>
+              <h3 className={styles.treatmentDetail}>Traitement :</h3> <br />
               <p>{consultation.treatment}</p>
             </div>
-            <div className={style.dosage}>
-              <h3 className={style.dosageDetail}>Posologie :</h3> <br />
+            <div className={styles.dosage}>
+              <h3 className={styles.dosageDetail}>Posologie :</h3> <br />
               <p>{consultation.dosage}</p>
             </div>
-            <div className={style.contentReport}>
-              <h3 className={style.reportTitle}>Description :</h3>
+            <div className={styles.contentReport}>
+              <h3 className={styles.reportTitle}>Description :</h3>
               <p>{consultation.report}</p>
             </div>
-            <button type="button" className={style.deleteButton}>
+            <button type="button" className={styles.deleteButton}>
               Supprimer
             </button>
           </>

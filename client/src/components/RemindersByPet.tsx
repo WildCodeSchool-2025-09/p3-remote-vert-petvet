@@ -1,7 +1,7 @@
 import "../assets/styles/variables.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import style from "../assets/styles/reminderByPet.module.css";
+import styles from "../assets/styles/reminderByPet.module.css";
 import type { Pet } from "../types/Pet";
 import type { Reminder } from "../types/Reminder";
 import ReminderDetails from "./ReminderDetails";
@@ -14,7 +14,7 @@ function RemindersByPet({
   const navigate = useNavigate();
 
   return (
-    <section className={style.reminderContainer}>
+    <section className={styles.reminderContainer}>
       <h1>Les rappels</h1>
       <h2>Tous les rappels de {pet.name}</h2>
 
@@ -22,7 +22,7 @@ function RemindersByPet({
         {reminders.map((reminder) => (
           <button
             type="button"
-            className={style.buttonReminder}
+            className={styles.buttonReminder}
             key={reminder.id}
             onClick={() => setCurrentReminder(reminder)}
           >
@@ -42,7 +42,7 @@ function RemindersByPet({
       )}
       <button
         type="button"
-        className={style.addReminderButton}
+        className={styles.addReminderButton}
         onClick={() => navigate(`/pet-profile/${pet.id}/reminders/new`)}
       >
         <img src="/images/white-cross.png" alt="Add Reminder Icon" />

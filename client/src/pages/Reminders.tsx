@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import style from "../assets/styles/reminders.module.css";
+import styles from "../assets/styles/reminders.module.css";
 import "../assets/styles/variables.css";
 import ReminderDetails from "../components/ReminderDetails";
 import type { Reminder } from "../types/Reminder";
@@ -16,8 +16,8 @@ function Reminders() {
 
   return (
     <>
-      <header className={style.petVet}>Pet&Vet</header>
-      <section className={style.allReminders}>
+      <header className={styles.petVet}>Pet&Vet</header>
+      <section className={styles.allReminders}>
         <h1>Mes rappels</h1>
 
         {currentReminder && (
@@ -31,19 +31,19 @@ function Reminders() {
         {reminders.map((reminder) => (
           <button
             type="button"
-            className={`${style.buttonReminder} ${style.reminderCard}`}
+            className={`${styles.buttonReminder} ${styles.reminderCard}`}
             key={reminder.id}
             onClick={() => setCurrentReminder(reminder)}
           >
             <img
               src={reminder.photo}
               alt="Profil"
-              className={style.reminderImg}
+              className={styles.reminderImg}
             />
             <div>
-              <h3 className={style.reminderTitle}>{reminder.title}</h3>
+              <h3 className={styles.reminderTitle}>{reminder.title}</h3>
             </div>
-            <p className={style.reminderDate}>
+            <p className={styles.reminderDate}>
               {new Date(reminder.programmed_at).toLocaleDateString()}
             </p>
           </button>

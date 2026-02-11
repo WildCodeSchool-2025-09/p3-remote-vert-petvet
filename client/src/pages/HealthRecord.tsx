@@ -3,8 +3,7 @@ import { useLocation, useParams } from "react-router";
 import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import healthRecordStyle from "../assets/styles/healthRecord.module.css";
-
+import styles from "../assets/styles/healthRecord.module.css";
 import Consultations from "../components/Consultations";
 import MedicalHistory from "../components/MedicalHistory";
 import type { Consultation } from "../types/Consultation";
@@ -51,18 +50,18 @@ function HealthRecord() {
 
   return (
     <>
-      <header className={healthRecordStyle.petVet}>Pet&Vet</header>
-      <div className={healthRecordStyle.healthRecordPage}>
-        <section className={healthRecordStyle.petCard}>
-          <div className={healthRecordStyle.petFirstInfo}>
+      <header className={styles.petVet}>Pet&Vet</header>
+      <div className={styles.healthRecordPage}>
+        <section className={styles.petCard}>
+          <div className={styles.petFirstInfo}>
             <img
               src={petInfo.photo}
               alt={petInfo.specie}
               width="150px"
               height="150px"
-              className={healthRecordStyle.imagePet}
+              className={styles.imagePet}
             />
-            <div className={healthRecordStyle.petNameInfo}>
+            <div className={styles.petNameInfo}>
               <div>
                 <h2>{petInfo.name}</h2>
                 <p>
@@ -74,13 +73,13 @@ function HealthRecord() {
                     : ""}
                 </p>
               </div>
-              <div className={healthRecordStyle.petTitle}>
-                <p className={healthRecordStyle.age}>
+              <div className={styles.petTitle}>
+                <p className={styles.age}>
                   {new Date().getFullYear() -
                     new Date(petInfo.born_at).getFullYear()}{" "}
                   ans
                 </p>
-                <p className={healthRecordStyle.weight}>{petInfo.weight} kg</p>
+                <p className={styles.weight}>{petInfo.weight} kg</p>
                 <p>
                   {`Né${petInfo.gender === "f" ? "e" : ""} le `}
                   {new Date(petInfo.born_at).toLocaleDateString()}
@@ -88,7 +87,7 @@ function HealthRecord() {
               </div>
             </div>
           </div>
-          <div className={healthRecordStyle.petSecondInfo}>
+          <div className={styles.petSecondInfo}>
             <div>
               <h3>Espèce</h3>
               <p>{petInfo.specie}</p>
@@ -109,7 +108,7 @@ function HealthRecord() {
           </div>
         </section>
         {temporaryMessage && (
-          <p className={healthRecordStyle.success}>{temporaryMessage}</p>
+          <p className={styles.success}>{temporaryMessage}</p>
         )}
         <section>
           <Consultations /*Lea coté Veto*/
@@ -120,7 +119,7 @@ function HealthRecord() {
       </div>
       <div>
         <section>
-          <div className={healthRecordStyle.buttonsContainer}>
+          <div className={styles.buttonsContainer}>
             <button
               type="button"
               onClick={() => {
@@ -128,7 +127,7 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(false);
               }}
-              className={openResume ? healthRecordStyle.selectedSection : ""}
+              className={openResume ? styles.selectedSection : ""}
             >
               Résumé
             </button>
@@ -139,7 +138,7 @@ function HealthRecord() {
                 setOpenHealth(true);
                 setOpenMedicalHistory(false);
               }}
-              className={openHealth ? healthRecordStyle.selectedSection : ""}
+              className={openHealth ? styles.selectedSection : ""}
             >
               Santé
             </button>
@@ -150,9 +149,7 @@ function HealthRecord() {
                 setOpenHealth(false);
                 setOpenMedicalHistory(true);
               }}
-              className={
-                openMedicalHistory ? healthRecordStyle.selectedSection : ""
-              }
+              className={openMedicalHistory ? styles.selectedSection : ""}
             >
               Historique
             </button>
@@ -160,35 +157,35 @@ function HealthRecord() {
           <div
             className={
               !openMedicalHistory && !openHealth && openResume
-                ? healthRecordStyle.resume
-                : healthRecordStyle.none
+                ? styles.resume
+                : styles.none
             }
           >
-            <article className={healthRecordStyle.shortMedicalHistory}>
+            <article className={styles.shortMedicalHistory}>
               <div>
                 <h2>Activités récentes</h2>
                 <h3>Les dernières activités de {petInfo.name}</h3>
               </div>
               <MedicalHistory consultations={fewActivities} length="short" />
             </article>
-            <article className={healthRecordStyle.petReminder}>
+            <article className={styles.petReminder}>
               <RemindersByPet reminders={reminders} pet={petInfo} />
             </article>
           </div>
           <div
             className={
               !openMedicalHistory && openHealth && !openResume
-                ? healthRecordStyle.health
-                : healthRecordStyle.none
+                ? styles.health
+                : styles.none
             }
           >
-            Composant Santé - fonctionnalité a venir !
+            Fonctionnalité à venir !
           </div>
           <div
             className={
               openMedicalHistory && !openHealth && !openResume
-                ? healthRecordStyle.medicalHistory
-                : healthRecordStyle.none
+                ? styles.medicalHistory
+                : styles.none
             }
           >
             <MedicalHistory consultations={consultations} length="full" />

@@ -26,16 +26,18 @@ function MedicalHistory({ consultations, length }: MedicProps) {
           className={`${styles.consultationCard} ${styles[length]}`}
         >
           <div className={`${styles.consultationFirstInfo} ${styles[length]}`}>
-            <img
-              src={
-                consultation.category === "vaccination"
-                  ? syringe
-                  : consultation.category === "urgence"
-                    ? emergency
-                    : steto
-              }
-              alt={`Icone ${consultation.category}`}
-            />
+            <div className={`${styles.consultationCardImg} ${styles[length]}`}>
+              <img
+                src={
+                  consultation.category === "vaccination"
+                    ? syringe
+                    : consultation.category === "urgence"
+                      ? emergency
+                      : steto
+                }
+                alt={`Icone ${consultation.category}`}
+              />
+            </div>
             <div>
               <h1>{consultation.title}</h1>
               <p className={`${styles.createdDate} ${styles[length]}`}>
@@ -46,7 +48,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
           <div className={`${styles.consultationSecondInfo} ${styles[length]}`}>
             <div className={`${styles.medicalInfo} ${styles[length]}`}>
               <div>
-                <h3>Traitement(s)</h3>
+                <h3>Traitement(s):</h3>
                 <p>
                   {consultation.treatment
                     ? consultation.treatment.length >= 20
@@ -56,7 +58,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
                 </p>
               </div>
               <div>
-                <h3>Posologie(s)</h3>
+                <h3>Posologie(s):</h3>
                 <p>
                   {consultation.dosage
                     ? consultation.dosage.length >= 20
@@ -66,13 +68,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
                 </p>
               </div>
             </div>
-            {currentConsultation && (
-              <ConsultationDetails
-                consultId={currentConsultation.id}
-                consultation={currentConsultation}
-                onClose={() => setCurrentConsultation(null)}
-              />
-            )}
+
             <button
               type="button"
               key={consultation.id}
@@ -83,7 +79,14 @@ function MedicalHistory({ consultations, length }: MedicProps) {
             </button>
           </div>
         </article>
-      ))}
+      ))}{" "}
+      {currentConsultation && (
+        <ConsultationDetails
+          consultId={currentConsultation.id}
+          consultation={currentConsultation}
+          onClose={() => setCurrentConsultation(null)}
+        />
+      )}
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../assets/styles/variables.css";
 import { useNavigate } from "react-router";
-import style from "../assets/styles/consultations.module.css";
+import styles from "../assets/styles/consultations.module.css";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 import ConsultationDetails from "./ConsultationDetails";
@@ -20,11 +20,11 @@ function Consultations({
     : consultations.slice(0, 3);
 
   return (
-    <section className={style.vetConsultationsContainer}>
-      <article className={style.vetConsultationsHeader}>
+    <section className={styles.vetConsultationsContainer}>
+      <article className={styles.vetConsultationsHeader}>
         <button
           type="button"
-          className={style.addConsultationButton}
+          className={styles.addConsultationButton}
           onClick={() => navigate(`/consultation/add/${pet.vetInfo.vetId}`)}
         >
           <img src="/images/white-cross.png" alt="Ajouter une consultation" />
@@ -32,7 +32,7 @@ function Consultations({
         </button>
       </article>
 
-      <article className={style.vetConsultationsCards}>
+      <article className={styles.vetConsultationsCards}>
         <h1>Consultations</h1>
         <ul>
           {displayedConsultations.map((consultation) => {
@@ -40,7 +40,7 @@ function Consultations({
               <button
                 type="button"
                 key={consultation.id}
-                className={style.consultationItem}
+                className={styles.consultationItem}
                 onClick={() => setCurrentConsultation(consultation)}
               >
                 <img
@@ -52,10 +52,10 @@ function Consultations({
                         : "/images/blue/stetoscope.png"
                   }
                   alt="Icône de consultation vétérinaire"
-                  className={style.consultationIcon}
+                  className={styles.consultationIcon}
                 />
 
-                <div className={style.consultationDetails}>
+                <div className={styles.consultationDetails}>
                   <h3>
                     {new Date(consultation.created_at).toLocaleDateString()}
                   </h3>
@@ -74,7 +74,7 @@ function Consultations({
         )}
         <button
           type="button"
-          className={style.seeMoreButton}
+          className={styles.seeMoreButton}
           onClick={() => setIsExpanded(!isExpanded)}
         >
           {isExpanded ? "Voir moins ▲" : "Voir plus ▼"}

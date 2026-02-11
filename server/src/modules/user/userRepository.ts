@@ -13,7 +13,7 @@ export interface User {
 }
 
 class userRepository {
-  async getUserByEmail(email: string) {
+  async getByEmail(email: string) {
     const [row] = await databaseClient.query<Rows>(
       `SELECT *
       FROM user
@@ -47,17 +47,6 @@ class userRepository {
     );
 
     return result.insertId;
-  }
-
-  async getByEmailWithPassword(email: string) {
-    const [rows] = await databaseClient.query<Rows>(
-      `SELECT *
-      FROM user
-      WHERE email = ?`,
-      [email],
-    );
-
-    return rows[0] as User;
   }
 }
 

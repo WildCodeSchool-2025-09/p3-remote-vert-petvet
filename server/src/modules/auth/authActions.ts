@@ -9,15 +9,6 @@ interface Payload {
   role: "owner" | "veterinary";
 }
 
-declare module "express-serve-static-core" {
-  interface Request {
-    auth?: {
-      userId: number;
-      role: string;
-    };
-  }
-}
-
 const checkRole = (...allowedRoles: string[]): RequestHandler => {
   return (req, res, next) => {
     if (!req.auth || !allowedRoles.includes(req.auth.role)) {
@@ -57,7 +48,7 @@ const checkLogin: RequestHandler = (req, res, next) => {
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const user = await userRepository.getByEmailWithPassword(req.body.email);
+    const user = await userRepository.getByEmail(req.body.email);
 
     if (user == null) {
       res.status(StatusCodes.UNPROCESSABLE_ENTITY);

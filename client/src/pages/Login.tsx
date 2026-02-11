@@ -10,14 +10,11 @@ function Login() {
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
-  const [, setLoading] = useState(false);
-
   const auth = useAuth();
 
-  const userLogin: FormEventHandler = async (event) => {
+  const login: FormEventHandler = async (event) => {
     event.preventDefault();
     setError("");
-    setLoading(true);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
@@ -31,20 +28,14 @@ function Login() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Email ou mot de passe incorrect");
-      }
-
       if (response.status === 200) {
         const userData = await response.json();
-        localStorage.setItem("token", userData.token);
-        auth?.login(userData.user);
+        localStorage.setItem("token", userData.token); /*a checker*/
+        auth?.setUser(userData.user);
         navigate("/");
       }
     } catch (err) {
       setError("Email ou mot de passe incorrect");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -79,7 +70,7 @@ function Login() {
             <h1>Connexion</h1>
             <h2>à mon espace</h2>
             <p>{error}</p>
-            <form onSubmit={userLogin} className={styles.loginForm}>
+            <form onSubmit={login} className={styles.loginForm}>
               <div>
                 <label htmlFor="email">
                   <p>

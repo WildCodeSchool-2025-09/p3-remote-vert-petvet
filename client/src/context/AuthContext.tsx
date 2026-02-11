@@ -3,24 +3,21 @@ import type { User } from "../types/User";
 
 type AuthContextType = {
   user: User | null;
-  login: (user: User) => void;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   isVet: boolean;
   isOwner: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const login = (userData: User) => {
-    setUser(userData);
-  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        login,
+        setUser,
         isVet: user?.role === "veterinary",
         isOwner: user?.role === "owner",
       }}

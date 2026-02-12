@@ -5,16 +5,14 @@
   padding: 10px 20px;
   color: white;
   width: 15rem;
+  border-right: 4px solid #ffffff;
+  justify-content: space-between;
+  margin-top: 2rem;
 }
 
 .paw {
   width: 16px;
-  height: auto;
-}
-
-.logo {
-  height: 100px;
-  width: auto;
+  height: 16px;
 }
 
 .navButtonContent {

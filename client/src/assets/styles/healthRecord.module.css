@@ -1,13 +1,18 @@
 .petVet {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }
 .healthRecordPage {
   display: flex;
@@ -177,7 +182,7 @@
   flex-direction: row;
   align-items: center;
   gap: 5rem;
-  margin: 4rem;
+  margin: 2rem 6rem 4rem 6rem;
 
   button:not(.selectedSection) {
     height: 3rem;
@@ -218,4 +223,13 @@
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
 }

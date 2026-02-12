@@ -1,11 +1,18 @@
 .petVet {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }
 .allReminders {
   background-color: #ffffff;
@@ -66,4 +73,19 @@
   font-weight: 500;
   color: var(--text-color);
   margin-left: auto;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }

@@ -5,12 +5,13 @@ import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import styles from "../assets/styles/healthRecord.module.css";
 import Consultations from "../components/Consultations";
+import Footer from "../components/Footer";
 import MedicalHistory from "../components/MedicalHistory";
+import NavBar from "../components/NavBar";
 import type { Consultation } from "../types/Consultation";
-import "../assets/styles/healthRecord.css";
 import type { Pet } from "../types/Pet";
 
-function HealthRecord() {
+function HealthRecord({ isVet = false }) {
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
@@ -46,150 +47,163 @@ function HealthRecord() {
       }, 3000);
     }
   }, [temporaryMessage]);
+  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
 
   if (!petInfo) return <p>{error}</p>;
 
   return (
     <>
-      <header className={styles.petVet}>Pet&Vet</header>
-      <div className={styles.healthRecordPage}>
-        <section className={styles.petCard}>
-          <div className={styles.petFirstInfo}>
-            <img
-              src={petInfo.photo}
-              alt={petInfo.specie}
-              width="150px"
-              height="150px"
-              className={styles.imagePet}
-            />
-            <div className={styles.petNameInfo}>
-              <div>
-                <h2>{petInfo.name}</h2>
+      <header className={styles.petVet}>
+        <img src={logoSrc} alt="logo" className={styles.logo} />
+        <h1>Pet&Vet</h1>
+      </header>
+      <main className={styles.mainPage}>
+        <NavBar />
+        <div className={styles.allPage}>
+          <div className={styles.healthRecordPage}>
+            <section className={styles.petCard}>
+              <div className={styles.petFirstInfo}>
+                <img
+                  src={petInfo.photo}
+                  alt={petInfo.specie}
+                  width="150px"
+                  height="150px"
+                  className={styles.imagePet}
+                />
+                <div className={styles.petNameInfo}>
+                  <div>
+                    <h2>{petInfo.name}</h2>
+                    <p>
+                      {petInfo.vetInfo == null
+                        ? "Pas de vétérinaire"
+                        : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
+                    </p>
+                  </div>
+                  <div className={styles.petTitle}>
+                    <p className={styles.age}>
+                      {new Date().getFullYear() -
+                        new Date(petInfo.born_at).getFullYear()}{" "}
+                      ans
+                    </p>
+                    <p className={styles.weight}>{petInfo.weight} kg</p>
+                    <p>
+                      {`Né${petInfo.gender === "f" ? "e" : ""} le `}
+                      {new Date(petInfo.born_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.petSecondInfo}>
+                <div>
+                  <h3>Espèce</h3>
+                  <p>{petInfo.specie}</p>
+                </div>
+                <div>
+                  <h3>Race</h3>
+                  <p>{petInfo.breed}</p>
+                </div>
+                <div>
+                  <h3>Puce électronique</h3>
+                  <p>{petInfo.chip_nb}</p>
+                </div>
                 <p>
                   {petInfo.vetInfo == null
                     ? "Pas de vétérinaire"
                     : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
                 </p>
               </div>
-              <div className={styles.petTitle}>
-                <p className={styles.age}>
-                  {new Date().getFullYear() -
-                    new Date(petInfo.born_at).getFullYear()}{" "}
-                  ans
-                </p>
-                <p className={styles.weight}>{petInfo.weight} kg</p>
-                <p>
-                  {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                  {new Date(petInfo.born_at).toLocaleDateString()}
-                </p>
+            </section>
+            {temporaryMessage && (
+              <p className={styles.success}>{temporaryMessage}</p>
+            )}
+            <section>
+              <Consultations /*Lea coté Veto*/
+                consultations={consultations}
+                pet={petInfo}
+              />
+            </section>
+          </div>
+          <div>
+            <section>
+              <div className={styles.buttonsContainer}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(true);
+                    setOpenHealth(false);
+                    setOpenMedicalHistory(false);
+                  }}
+                  className={openResume ? styles.selectedSection : ""}
+                >
+                  Résumé
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(false);
+                    setOpenHealth(true);
+                    setOpenMedicalHistory(false);
+                  }}
+                  className={openHealth ? styles.selectedSection : ""}
+                >
+                  Santé
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(false);
+                    setOpenHealth(false);
+                    setOpenMedicalHistory(true);
+                  }}
+                  className={openMedicalHistory ? styles.selectedSection : ""}
+                >
+                  Historique
+                </button>
               </div>
-            </div>
-          </div>
-          <div className={styles.petSecondInfo}>
-            <div>
-              <h3>Espèce</h3>
-              <p>{petInfo.specie}</p>
-            </div>
-            <div>
-              <h3>Race</h3>
-              <p>{petInfo.breed}</p>
-            </div>
-            <div>
-              <h3>Puce électronique</h3>
-              <p>{petInfo.chip_nb}</p>
-            </div>
-            <p>
-              {petInfo.vetInfo == null
-                ? "Pas de vétérinaire"
-                : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
-            </p>
-          </div>
-        </section>
-        {temporaryMessage && (
-          <p className={styles.success}>{temporaryMessage}</p>
-        )}
-        <section>
-          <Consultations /*Lea coté Veto*/
-            consultations={consultations}
-            pet={petInfo}
-          />
-        </section>
-      </div>
-      <div>
-        <section>
-          <div className={styles.buttonsContainer}>
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(true);
-                setOpenHealth(false);
-                setOpenMedicalHistory(false);
-              }}
-              className={openResume ? styles.selectedSection : ""}
-            >
-              Résumé
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(false);
-                setOpenHealth(true);
-                setOpenMedicalHistory(false);
-              }}
-              className={openHealth ? styles.selectedSection : ""}
-            >
-              Santé
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(false);
-                setOpenHealth(false);
-                setOpenMedicalHistory(true);
-              }}
-              className={openMedicalHistory ? styles.selectedSection : ""}
-            >
-              Historique
-            </button>
-          </div>
-          <div
-            className={
-              !openMedicalHistory && !openHealth && openResume
-                ? styles.resume
-                : styles.none
-            }
-          >
-            <article className={styles.shortMedicalHistory}>
-              <div>
-                <h2>Activités récentes</h2>
-                <h3>Les dernières activités de {petInfo.name}</h3>
+              <div
+                className={
+                  !openMedicalHistory && !openHealth && openResume
+                    ? styles.resume
+                    : styles.none
+                }
+              >
+                <article className={styles.shortMedicalHistory}>
+                  <div>
+                    <h2>Activités récentes</h2>
+                    <h3>Les dernières activités de {petInfo.name}</h3>
+                  </div>
+                  <MedicalHistory
+                    consultations={fewActivities}
+                    length="short"
+                  />
+                </article>
+                <article className={styles.petReminder}>
+                  <RemindersByPet reminders={reminders} pet={petInfo} />
+                </article>
               </div>
-              <MedicalHistory consultations={fewActivities} length="short" />
-            </article>
-            <article className={styles.petReminder}>
-              <RemindersByPet reminders={reminders} pet={petInfo} />
-            </article>
+              <div
+                className={
+                  !openMedicalHistory && openHealth && !openResume
+                    ? styles.health
+                    : styles.none
+                }
+              >
+                Fonctionnalité à venir !
+              </div>
+              <div
+                className={
+                  openMedicalHistory && !openHealth && !openResume
+                    ? styles.medicalHistory
+                    : styles.none
+                }
+              >
+                <MedicalHistory consultations={consultations} length="full" />
+              </div>
+            </section>
           </div>
-          <div
-            className={
-              !openMedicalHistory && openHealth && !openResume
-                ? styles.health
-                : styles.none
-            }
-          >
-            Fonctionnalité à venir !
-          </div>
-          <div
-            className={
-              openMedicalHistory && !openHealth && !openResume
-                ? styles.medicalHistory
-                : styles.none
-            }
-          >
-            <MedicalHistory consultations={consultations} length="full" />
-          </div>
-        </section>
-      </div>
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }

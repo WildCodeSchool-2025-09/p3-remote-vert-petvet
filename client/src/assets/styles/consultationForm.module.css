@@ -2,6 +2,23 @@ body {
   background-color: var(--main-color);
 }
 
+.petVet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
+
 .petVetConsultation {
   text-align: right;
   font-family: var(--font-logo);
@@ -26,6 +43,7 @@ body {
   border-radius: 20px;
   max-width: 900px;
   margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
 .consultationForm {
@@ -102,7 +120,7 @@ body {
   font-size: 1.2rem;
   border: none;
   padding: 10px 30px;
-  border-radius: 50px;
+  border-radius: 15px;
   cursor: pointer;
   font-family: var(--font-text);
   height: 60px;
@@ -131,4 +149,13 @@ body {
 .consultationButtonContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
 }

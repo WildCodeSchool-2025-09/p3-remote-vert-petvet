@@ -3,14 +3,19 @@ body {
 }
 .petVet {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }
 
 .reminderFormTitle {
@@ -164,4 +169,13 @@ p {
 .error {
   color: #d4896c;
   font-weight: 800;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
 }

@@ -24,12 +24,9 @@ function NavBar({ isVet = false }) {
 
   const navButtons = isVet ? vetNavButtons : ownerNavButtons;
   console.log(navButtons);
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
 
   return (
     <nav className={styles.navBar}>
-      <img src={logoSrc} alt="logo" className={styles.logo} />
-
       <div className={styles.navButtons}>
         {navButtons.map((button) => (
           <a key={button.label} href={button.href} className={styles.navLink}>

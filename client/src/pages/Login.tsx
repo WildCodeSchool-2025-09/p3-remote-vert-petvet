@@ -32,7 +32,7 @@ function Login() {
         const userData = await response.json();
         localStorage.setItem("token", userData.token); /*a checker*/
         auth?.setUser(userData.user);
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (err) {
       setError("Email ou mot de passe incorrect");

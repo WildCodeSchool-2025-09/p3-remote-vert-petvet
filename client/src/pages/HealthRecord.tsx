@@ -7,6 +7,7 @@ import styles from "../assets/styles/healthRecord.module.css";
 import Consultations from "../components/Consultations";
 import MedicalHistory from "../components/MedicalHistory";
 import type { Consultation } from "../types/Consultation";
+import "../assets/styles/healthRecord.css";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
@@ -65,12 +66,9 @@ function HealthRecord() {
               <div>
                 <h2>{petInfo.name}</h2>
                 <p>
-                  {petInfo.gender === "m" ? "Mâle" : "Femelle"}
-                  {petInfo.is_neutered
-                    ? petInfo.gender === "mâle"
-                      ? "- Stérilisé"
-                      : "- Stérilisée"
-                    : ""}
+                  {petInfo.vetInfo == null
+                    ? "Pas de vétérinaire"
+                    : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
                 </p>
               </div>
               <div className={styles.petTitle}>

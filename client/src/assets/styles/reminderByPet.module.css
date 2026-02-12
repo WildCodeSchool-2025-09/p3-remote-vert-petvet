@@ -76,6 +76,7 @@
 .reminderContainer .addReminderButton img {
   width: 15px;
   height: 15px;
+  border-radius: 50%;
 }
 
 .reminderContainer .addReminderButton:hover {
@@ -89,4 +90,11 @@
   scrollbar-width: thin;
   scrollbar-color: var(--owner-color) #f0f0f0;
   padding-right: 10px;
+}
+@media screen and (max-width: 600px) {
+  .reminderContainer {
+    padding: 1rem;
+    max-width: 100%;
+    margin-bottom: 4rem;
+  }
 }

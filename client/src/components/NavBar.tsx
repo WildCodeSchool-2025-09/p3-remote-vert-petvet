@@ -1,11 +1,10 @@
-import { useLocation } from "react-router";
+//import { useState } from "react";
 import styles from "../assets/styles/navBar.module.css";
 
 function NavBar({ isVet = false }) {
-  const path = useLocation();
+  //const [menuBurger, setMenuBurger] = useState(false);
   // Il faut récupérer l'id du user dans le context, faker pour l'instant
   const userid = 5;
-  console.log(path);
   const vetNavButtons = [
     { label: "Tableau de bord", href: "/" },
     { label: "Mes animaux suivis", href: "/my-patients/" },
@@ -23,10 +22,12 @@ function NavBar({ isVet = false }) {
   ];
 
   const navButtons = isVet ? vetNavButtons : ownerNavButtons;
-  console.log(navButtons);
 
   return (
     <nav className={styles.navBar}>
+      <button type="button" className={styles.burgerButton}>
+        ☰
+      </button>
       <div className={styles.navButtons}>
         {navButtons.map((button) => (
           <a key={button.label} href={button.href} className={styles.navLink}>

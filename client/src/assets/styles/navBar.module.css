@@ -1,0 +1,47 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  width: 15rem;
+}
+
+.paw {
+  width: 16px;
+  height: auto;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+}
+
+.navButtonContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin: 2rem;
+  border-radius: 15px;
+  width: 10rem;
+  text-align: center;
+  color: var(--text-color);
+  font-family: var(--font-text);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.navButtonContent:hover {
+  background-color: var(--owner-color);
+  color: white;
+  cursor: pointer;
+}
+.navLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.navButtonContent span {
+  font-family: var(--font-text);
+  margin-left: 2rem;
+}

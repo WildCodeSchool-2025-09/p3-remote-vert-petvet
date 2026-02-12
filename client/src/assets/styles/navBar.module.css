@@ -61,4 +61,18 @@
     font-size: 2rem;
     color: var(--text-color);
   }
+
+  .navButtons,
+  .deconnexionContainer {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .none {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 }

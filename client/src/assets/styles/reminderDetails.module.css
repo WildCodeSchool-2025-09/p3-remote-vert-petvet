@@ -130,3 +130,70 @@
   grid-column: 2 / 3;
   grid-row: 6 / 7;
 }
+@media screen and (max-width: 650px) {
+  .reminderModalContent {
+    width: 70vw;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .reminderModalContent .titleReminderDetails {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    font-size: 1.2rem;
+  }
+  .reminderModalContent .dateReminder {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reminderModalContent .dateReminder h3 {
+    font-size: 1rem;
+  }
+  .reminderModalContent .dateReminder p {
+    font-size: 1rem;
+  }
+  .reminderModalContent .animalNameReminder {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reminderModalContent .animalNameReminder h3 {
+    font-size: 1rem;
+  }
+  .reminderModalContent .animalNameReminder p {
+    font-size: 1rem;
+  }
+
+  .frequencyReminder {
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+  }
+  .reminderModalContent .contentReminder {
+    grid-row: 5 / 6;
+    grid-column: 1 / 2;
+  }
+  .reminderModalContent .contentReminder h3 {
+    font-size: 1rem;
+  }
+  .reminderModalContent .contentReminder p {
+    font-size: 1rem;
+  }
+  .buttonClose {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    justify-self: end;
+  }
+  .deleteButton {
+    grid-row: 6 / 7;
+    grid-column: 1 / 2;
+    justify-self: center;
+    width: 8rem;
+    height: 3rem;
+    font-size: 0.7rem;
+  }
+}

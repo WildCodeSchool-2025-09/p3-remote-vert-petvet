@@ -149,3 +149,70 @@ h3 {
 .errorMessage {
   text-align: center;
 }
+@media screen and (max-width: 600px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+  .allPage {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  }
+  .petCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  .titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .title {
+    font-size: 1.5rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .addAnimal {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .petCard {
+    width: 100%;
+    height: auto;
+  }
+  .imagePetList {
+    height: 70px;
+    width: 70px;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .specie {
+    font-size: 0.9rem;
+    margin: 10px;
+  }
+  .profilAccess {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}

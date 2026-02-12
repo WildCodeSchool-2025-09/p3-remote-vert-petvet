@@ -1,8 +1,8 @@
-//import { useState } from "react";
+import { useState } from "react";
 import styles from "../assets/styles/navBar.module.css";
 
 function NavBar({ isVet = false }) {
-  //const [menuBurger, setMenuBurger] = useState(false);
+  const [menuBurger, setMenuBurger] = useState(false);
   // Il faut récupérer l'id du user dans le context, faker pour l'instant
   const userid = 5;
   const vetNavButtons = [
@@ -22,13 +22,17 @@ function NavBar({ isVet = false }) {
   ];
 
   const navButtons = isVet ? vetNavButtons : ownerNavButtons;
-
+  console.log(menuBurger);
   return (
     <nav className={styles.navBar}>
-      <button type="button" className={styles.burgerButton}>
+      <button
+        type="button"
+        className={styles.burgerButton}
+        onClick={() => setMenuBurger(!menuBurger)}
+      >
         ☰
       </button>
-      <div className={styles.navButtons}>
+      <div className={`${styles.navButtons} ${!menuBurger ? styles.none : ""}`}>
         {navButtons.map((button) => (
           <a key={button.label} href={button.href} className={styles.navLink}>
             <div className={styles.navButtonContent}>
@@ -38,7 +42,9 @@ function NavBar({ isVet = false }) {
           </a>
         ))}
       </div>
-      <div className={styles.deconnexionContainer}>
+      <div
+        className={`${styles.deconnexionContainer} ${!menuBurger ? styles.none : ""}`}
+      >
         <a href="/login" className={styles.navLink}>
           <div className={styles.navButtonContent}>
             <img src="/images/paw.png" alt="paw" className={styles.paw} />

@@ -234,22 +234,70 @@
   width: 100%;
 }
 @media screen and (max-width: 900px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
   .petFirstInfo {
     flex-direction: column;
     align-items: center;
     padding: 20px;
     gap: 20px;
   }
+  .petFirstInfo h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .petFirstInfo p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .petFirstInfo img {
+    width: 80px;
+    height: 80px;
+  }
+  .petTitle {
+    gap: 10px;
+    text-align: center;
+  }
+  .petTitle .age,
+  .petTitle .weight {
+    width: 40px;
+    font-size: 0.9rem;
+  }
 
   .petSecondInfo {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    text-align: center;
   }
 
   .buttonsContainer {
     flex-direction: column;
     gap: 1rem;
     margin: 2rem 0 4rem 0;
+  }
+  .petCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    width: 80%;
   }
 }

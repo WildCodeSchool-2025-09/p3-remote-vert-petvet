@@ -18,3 +18,14 @@ export interface Pet {
   };
   reminders: Reminder[];
 }
+
+export interface Patient {
+  id: number;
+  name: string;
+  photo: string;
+  specie: string;
+  breed: string;
+  gender: "m" | "f";
+  ownerFirstname: string;
+  ownerLastname: string;
+}

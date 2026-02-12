@@ -22,6 +22,7 @@ function HealthRecord() {
   const [openHealth, setOpenHealth] = useState(false);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [openMedicalHistory, setOpenMedicalHistory] = useState(false);
+
   const location = useLocation();
   const [temporaryMessage, setTemporaryMessage] = useState<string | null>(
     location.state?.successMessage ?? null,

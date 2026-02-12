@@ -117,3 +117,8 @@
   font-family: var(--font-text);
   background-color: transparent;
 }
+.consultationItem .consultationIcon {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}

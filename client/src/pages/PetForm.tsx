@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../assets/styles/petForm.module.css";
-import type { Gender, Specie, CreatePet } from "../types/Pet";
+import type { CreatePet, Gender, Specie } from "../types/Pet";
 
 function PetForm() {
   const [name, setName] = useState("");

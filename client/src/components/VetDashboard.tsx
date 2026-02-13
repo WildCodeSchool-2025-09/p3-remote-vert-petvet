@@ -37,17 +37,17 @@ function VetDashboard({ dashboard }: VetDashboard) {
     setNewTodo("");
   };
 
-  // const deleteTodo = (id: number) => {
-  //   setTodos(todos.filter((todo) => todo.id !== id));
-  // };
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
-  // const todoDone = (id: number) => {
-  //   setTodos(
-  //     todos.map((todo) =>
-  //       todo.id === id ? { ...todo, done: !todo.done } : todo,
-  //     ),
-  //   );
-  // };
+  const todoDone = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo,
+      ),
+    );
+  };
 
   return (
     <>
@@ -79,6 +79,22 @@ function VetDashboard({ dashboard }: VetDashboard) {
         <button type="button" onClick={addTodo}>
           Ajouter
         </button>
+        {todos.length === 0 && <p>Aucune tâche à faire.</p>}
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>
+              <input
+                type="checkbox"
+                checked={todo.done}
+                onChange={() => todoDone(todo.id)}
+              />
+              <p>{todo.content}</p>
+              <button type="button" onClick={() => deleteTodo(todo.id)}>
+                <img src="/images/cross.png" alt="Suppression de la tâche" />
+              </button>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );

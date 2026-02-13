@@ -49,7 +49,7 @@ const validateNewUser = async (
     return;
   }
 
-  const user = await userRepository.getUserByEmail(req.body.email);
+  const user = await userRepository.getByEmail(req.body.email);
 
   if (user) {
     res.status(400).json({

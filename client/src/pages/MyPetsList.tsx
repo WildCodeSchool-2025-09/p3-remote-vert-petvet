@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Pet } from "../types/Pet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 import styles from "../assets/styles/myPetsList.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
@@ -14,11 +14,12 @@ function MyPetsList({ isVet = false }) {
 
   const formatGender = (gender: string) => (gender === "m" ? "♂" : "♀");
 
-  const { id } = useParams();
-  const ownerId = Number(id);
-
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/owners/${ownerId}/pets`)
+    fetch(`${import.meta.env.VITE_API_URL}/owners/me/pets`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((petsData: Pet[]) => {
         setPets(petsData);
@@ -28,7 +29,7 @@ function MyPetsList({ isVet = false }) {
         setError("Impossible de charger les animaux");
         setIsLoading(false);
       });
-  }, [ownerId]);
+  }, []);
 
   if (isLoading) return <p>Chargement de vos animaux...</p>;
   if (error) return <p>{error}</p>;

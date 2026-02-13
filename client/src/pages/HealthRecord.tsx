@@ -8,10 +8,12 @@ import Consultations from "../components/Consultations";
 import Footer from "../components/Footer";
 import MedicalHistory from "../components/MedicalHistory";
 import NavBar from "../components/NavBar";
+import { useAuth } from "../context/AuthContext";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
-function HealthRecord({ isVet = false }) {
+function HealthRecord() {
+  const auth = useAuth();
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
@@ -26,7 +28,11 @@ function HealthRecord({ isVet = false }) {
   );
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {
@@ -47,7 +53,9 @@ function HealthRecord({ isVet = false }) {
       }, 3000);
     }
   }, [temporaryMessage]);
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
 
   if (!petInfo) return <p>{error}</p>;
 
@@ -117,10 +125,9 @@ function HealthRecord({ isVet = false }) {
               <p className={styles.success}>{temporaryMessage}</p>
             )}
             <section>
-              <Consultations /*Lea coté Veto*/
-                consultations={consultations}
-                pet={petInfo}
-              />
+              {auth?.isVet && (
+                <Consultations consultations={consultations} pet={petInfo} />
+              )}
             </section>
           </div>
           <div>

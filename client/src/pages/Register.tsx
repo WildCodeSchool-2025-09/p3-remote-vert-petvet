@@ -34,7 +34,7 @@ function Register() {
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
-        method: "post",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName,
@@ -49,7 +49,7 @@ function Register() {
       setErrors(data.errors);
 
       if (response.status === 201) {
-        navigate("/");
+        navigate("/login");
       } else {
         console.info(response);
       }

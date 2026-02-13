@@ -246,6 +246,11 @@
     margin: 0;
   }
 
+  .healthRecordPage {
+    justify-content: center;
+    align-items: center;
+  }
+
   .mainPage {
     display: contents;
     flex-direction: column;
@@ -288,10 +293,12 @@
   }
 
   .buttonsContainer {
+    display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin: 2rem 0 4rem 0;
+    margin: 0 0 2rem 0;
   }
+
   .petCard {
     display: flex;
     flex-direction: column;
@@ -299,5 +306,31 @@
     padding: 20px;
     gap: 20px;
     width: 80%;
+  }
+
+  .resume {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .resume > * {
+    flex: 0 0 auto;
+    width: 100%;
+    justify-content: center;
+    scroll-snap-align: center;
+  }
+
+  .health {
+    margin: 1rem;
+    padding: 2rem;
+    font-size: 2rem;
+  }
+
+  .shortMedicalHistory {
+    justify-content: space-between;
+    padding: 16px;
+    width: 250px;
+    margin-left: 30px;
   }
 }

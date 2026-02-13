@@ -159,3 +159,72 @@ body {
 .allPage {
   width: 100%;
 }
+
+@media screen and (max-width: 900px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .consultationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .consultationFormContainer {
+    max-width: 80%;
+    margin: 0 1rem 2rem 1rem;
+    padding: 25px;
+  }
+
+  .consultationFormTitle {
+    padding: 20px;
+  }
+
+  .consultationSelect {
+    width: 260px;
+  }
+
+  .date {
+    width: 260px;
+  }
+
+  .consultationContent textarea {
+    width: 260px;
+  }
+
+  .consultationDosageInput {
+    width: 260px;
+  }
+
+  .consultationTitleInput {
+    width: 260px;
+  }
+
+  .consultationTreatmentInput {
+    width: 260px;
+  }
+
+  .consultationButtonContainer {
+    flex-direction: column;
+  }
+
+  .sendButton {
+    font-size: 1.1rem;
+  }
+}

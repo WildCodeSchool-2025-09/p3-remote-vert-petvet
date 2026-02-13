@@ -196,4 +196,9 @@
     height: 3rem;
     font-size: 0.7rem;
   }
+
+  .reminderModal {
+    top: 0;
+    left: 0;
+  }
 }

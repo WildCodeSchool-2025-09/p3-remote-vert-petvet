@@ -122,3 +122,20 @@
   height: 40px;
   margin-left: 10px;
 }
+
+@media screen and (max-width: 900px) {
+  .vetConsultationsContainer {
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .vetConsultationsContainer .vetConsultationsCards {
+    width: 80%;
+  }
+
+  .vetConsultationsContainer .vetConsultationsHeader {
+    align-items: center;
+    justify-content: center;
+  }
+}

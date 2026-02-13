@@ -194,3 +194,17 @@ body {
   background-color: transparent;
   border-radius: 0;
 }
+
+@media screen and (max-width: 900px) {
+  .consultationCard.short {
+    width: 80%;
+  }
+
+  .consultationCard.full {
+    width: 80vw;
+  }
+  .medicalInfo.full {
+    font-size: 0.7rem;
+    padding-right: 10px;
+  }
+}

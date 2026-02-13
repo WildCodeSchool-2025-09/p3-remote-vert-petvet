@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { ChangeEventHandler, FormEventHandler } from "react";
 import { useNavigate } from "react-router";
 import styles from "../assets/styles/register.module.css";
+import Footer from "../components/Footer";
 
 type ApiError = {
   field: string | undefined;
@@ -283,6 +284,7 @@ function Register() {
           )}
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

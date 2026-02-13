@@ -56,19 +56,19 @@ function HealthRecord() {
       <div className="health-record-page">
         <section className="pet-card">
           <div className="pet-first-info">
-            <img
+            {/*<img
               src={petInfo.photo}
               alt={petInfo.specie}
               width="150px"
               height="150px"
               className="image-pet"
-            />
+            />*/}
             <div className="pet-name-info">
               <div>
                 <h2>{petInfo.name}</h2>
                 <p>
                   {petInfo.gender === "m" ? "Mâle" : "Femelle"}
-                  {petInfo.is_neutered
+                  {petInfo.isNeutered
                     ? petInfo.gender === "mâle"
                       ? "- Stérilisé"
                       : "- Stérilisée"
@@ -78,13 +78,13 @@ function HealthRecord() {
               <div className="pet-title">
                 <p className="age">
                   {new Date().getFullYear() -
-                    new Date(petInfo.born_at).getFullYear()}{" "}
+                    new Date(petInfo.bornAt).getFullYear()}{" "}
                   ans
                 </p>
                 <p className="weight">{petInfo.weight} kg</p>
                 <p>
                   {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                  {new Date(petInfo.born_at).toLocaleDateString()}
+                  {new Date(petInfo.bornAt).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -100,7 +100,11 @@ function HealthRecord() {
             </div>
             <div>
               <h3>Puce électronique</h3>
-              <p>{petInfo.chip_nb}</p>
+              <p>
+                {petInfo.chipNb == null
+                  ? "pas de numéro de puce"
+                  : petInfo.chipNb}
+              </p>
             </div>
             <p>
               {petInfo.vetInfo == null

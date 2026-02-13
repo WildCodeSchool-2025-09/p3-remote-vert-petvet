@@ -1,7 +1,10 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import Joi from "joi";
 import consultationRepository from "../consultation/consultationRepository";
 import reminderRepository from "../reminder/reminderRepository";
 import petRepository from "./petRepository";
+import type { PetRow } from "./petRepository";
 
 const browseByPet: RequestHandler = async (
   req: Request,
@@ -48,4 +51,45 @@ const browseByOwner = async (
   }
 };
 
-export default { browseByPet, browseByOwner };
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const body = req.body as PetRow;
+
+    const newPet: PetRow = {
+      ...body,
+    };
+
+    const newPetId = await petRepository.insert(newPet);
+
+    res.status(StatusCodes.CREATED).json({ newPetId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const petSchema = Joi.object({
+  name: Joi.string().max(30).required(),
+  tattooNb: Joi.string().max(10).allow(null).optional(),
+  chipNb: Joi.number().integer().max(15).allow(null).optional(),
+  bornAt: Joi.date().required(),
+  gender: Joi.string().valid("m", "f").required(),
+  specie: Joi.string().valid("chien", "chat", "lapin").required(),
+  breed: Joi.string().max(100).required(),
+  isNeutered: Joi.boolean().default(false),
+  photo: Joi.string().allow(null).optional(),
+  weight: Joi.number().positive().max(9999999999).allow(null).optional(),
+});
+
+const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
+  const { error } = petSchema.validate(req.body, { abortEarly: false });
+
+  if (error == null) {
+    next();
+  } else {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ validationErrors: error.details });
+  }
+};
+
+export default { browseByPet, browseByOwner, add, validateNewPet };

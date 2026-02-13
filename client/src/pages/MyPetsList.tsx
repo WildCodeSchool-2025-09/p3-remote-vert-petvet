@@ -38,9 +38,11 @@ function MyPetsList() {
         <h1 className="pet-vet">Pet&Vet</h1>
         <div className="title-container">
           <h2 className="title">Ma Tribu :</h2>
-          <button type="button" className="add-animal">
-            Ajouter un animal
-          </button>
+          <Link to="/my-pets/:id/pets/new">
+            <button type="button" className="add-animal">
+              Ajouter un animal
+            </button>
+          </Link>
         </div>
         {pets.length === 0 && (
           <p>
@@ -55,7 +57,7 @@ function MyPetsList() {
             <article className="pet-card" key={pet.id}>
               <p className="gender">{formatGender(pet.gender)}</p>
               <div className="pet-info-container">
-                <img src={pet.photo} alt={pet.name} />
+                {/*<img src={pet.photo} alt={pet.name} />*/}
                 <div className="pet-info">
                   <h3>{pet.name}</h3>
                   <p className="specie">

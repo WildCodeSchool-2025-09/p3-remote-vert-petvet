@@ -14,7 +14,10 @@ router.post(
   userActions.add,
 );
 
+router.post("/api/pets", petActions.add);
+
 router.get("/api/pets/:id", petActions.browseByPet);
+
 router.post(
   "/api/pets/:id/reminders",
   reminderActions.validateReminder,

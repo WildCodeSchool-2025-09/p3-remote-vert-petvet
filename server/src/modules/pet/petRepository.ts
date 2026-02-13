@@ -1,18 +1,17 @@
 import type { RowDataPacket } from "mysql2";
-import type { Rows } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
-type PetRow = RowDataPacket & {
+export type PetRow = RowDataPacket & {
   id: number;
   name: string;
-  tattoo_nb: string;
-  chip_nb: number;
+  tattoo_nb: string | null;
+  chip_nb: number | null;
   born_at: string;
   gender: "m" | "f";
   specie: string;
   breed: string;
   is_neutered: boolean;
-  photo: string;
   weight: number;
   vetRow: {
     vetName: string | null;
@@ -69,6 +68,26 @@ class petRepository {
     );
 
     return pets;
+  }
+
+  async insert(pet: PetRow) {
+    const [result] = await databaseClient.query<Result>(
+      `INSERT INTO pet
+    (name, tattoo_nb, chip_nb, born_at, gender, specie, breed, is_neutered, weight)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        pet.name,
+        pet.tattooNb,
+        pet.chipNb,
+        pet.bornAt,
+        pet.gender,
+        pet.specie,
+        pet.breed,
+        pet.isNeutered,
+        pet.weight,
+      ],
+    );
+    return result.insertId;
   }
 }
 

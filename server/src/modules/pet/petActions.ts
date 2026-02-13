@@ -59,13 +59,16 @@ const browseByOwner = async (
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const body = req.body as PetRow;
+    const ownerId = req.auth?.userId;
 
-    const newPet: PetRow = {
-      ...body,
-    };
+    if (!ownerId) {
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: "Utilisateur non connecté" });
+      return;
+    }
 
-    const newPetId = await petRepository.insert(newPet);
+    const newPetId = await petRepository.insert(req.body, Number(ownerId));
 
     res.status(StatusCodes.CREATED).json({ newPetId });
   } catch (err) {
@@ -75,14 +78,13 @@ const add: RequestHandler = async (req, res, next) => {
 
 const petSchema = Joi.object({
   name: Joi.string().max(30).required(),
-  tattooNb: Joi.string().max(10).allow(null).optional(),
-  chipNb: Joi.number().integer().max(15).allow(null).optional(),
-  bornAt: Joi.date().required(),
+  tattoo_nb: Joi.string().max(10).allow(null).optional(),
+  chip_nb: Joi.number().integer().max(15).allow(null).optional(),
+  born_at: Joi.date().required(),
   gender: Joi.string().valid("m", "f").required(),
-  specie: Joi.string().valid("chien", "chat", "lapin").required(),
+  specie: Joi.string().valid("Chien", "Chat", "Lapin").required(),
   breed: Joi.string().max(100).required(),
-  isNeutered: Joi.boolean().default(false),
-  photo: Joi.string().allow(null).optional(),
+  is_neutered: Joi.boolean().default(false),
   weight: Joi.number().positive().max(9999999999).allow(null).optional(),
 });
 

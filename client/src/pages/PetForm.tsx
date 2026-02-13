@@ -26,6 +26,7 @@ function PetForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(pet),
       });
@@ -74,14 +75,14 @@ function PetForm() {
             }
             createPet({
               name,
-              tattooNb,
-              chipNb: chipNb ? Number(chipNb) : null,
-              bornAt,
+              tattoo_nb: tattooNb || null,
+              chip_nb: chipNb ? Number(chipNb) : null,
+              born_at: bornAt,
               gender: gender as Gender,
               specie: specie as Specie,
               breed,
-              isNeutered,
-              weight: Number(weight),
+              is_neutered: isNeutered,
+              weight: weight ? Number(weight) : null,
             });
           }}
         >
@@ -155,11 +156,11 @@ function PetForm() {
                 Sélectionnez l'espèce de votre animal
               </option>
 
-              <option value="chien">Chien</option>
+              <option value="Chien">Chien</option>
 
-              <option value="chat">Chat</option>
+              <option value="Chat">Chat</option>
 
-              <option value="lapin">Lapin</option>
+              <option value="Lapin">Lapin</option>
             </select>
           </label>
 

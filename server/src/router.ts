@@ -14,6 +14,14 @@ router.post(
   userActions.add,
 );
 
+router.post(
+  "/api/pets",
+  authActions.checkLogin,
+  authActions.checkRole("owner"),
+  petActions.validateNewPet,
+  petActions.add,
+);
+
 router.post("/api/login", authActions.login);
 
 router.get(

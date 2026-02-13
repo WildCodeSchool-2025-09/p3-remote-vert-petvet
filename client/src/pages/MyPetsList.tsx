@@ -39,7 +39,7 @@ function MyPetsList() {
         <h1 className="pet-vet">Pet&Vet</h1>
         <div className="title-container">
           <h2 className="title">Ma Tribu :</h2>
-          <Link to="/my-pets/:id/pets/new">
+          <Link to="/my-pets/pets/new">
             <button type="button" className="add-animal">
               Ajouter un animal
             </button>

@@ -70,24 +70,33 @@ class petRepository {
     return pets;
   }
 
-  async insert(pet: PetRow) {
+  async insert(pet: PetRow, ownerId: number) {
     const [result] = await databaseClient.query<Result>(
-      `INSERT INTO pet
-    (name, tattoo_nb, chip_nb, born_at, gender, specie, breed, is_neutered, weight)
+      `INSERT INTO pet 
+    (name, tattoo_nb, chip_nb, born_at, gender, specie, breed, is_neutered, weight) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         pet.name,
-        pet.tattooNb,
-        pet.chipNb,
-        pet.bornAt,
+        pet.tattoo_nb || null,
+        pet.chip_nb || null,
+        pet.born_at,
         pet.gender,
         pet.specie,
         pet.breed,
-        pet.isNeutered,
-        pet.weight,
+        pet.is_neutered ? 1 : 0,
+        pet.weight || null,
       ],
     );
-    return result.insertId;
+
+    const newPetId = result.insertId;
+
+    await databaseClient.query(
+      `INSERT INTO pet_user (pet_id, user_id) 
+    VALUES (?, ?)`,
+      [newPetId, ownerId],
+    );
+
+    return newPetId;
   }
 }
 

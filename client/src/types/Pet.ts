@@ -21,13 +21,13 @@ export interface Pet {
 export interface CreatePet {
   id?: number;
   name: string;
-  tattooNb: string | null;
-  chipNb: number | null;
-  bornAt: string;
+  tattoo_nb: string | null;
+  chip_nb: number | null;
+  born_at: string;
   gender: "m" | "f";
   specie: string;
   breed?: string;
-  isNeutered?: boolean;
+  is_neutered?: boolean;
   weight?: number | null;
 }
 export type Gender = "m" | "f";

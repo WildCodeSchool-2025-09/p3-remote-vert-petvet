@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
+import ProtectedRoute from "./ProtectedRoute";
 import ConsultationForm from "./pages/ConsultationForm";
 import HealthRecord from "./pages/HealthRecord";
+import Login from "./pages/Login";
 import MyPetsList from "./pages/MyPetsList";
-import PetForm from "./pages/PetForm";
 import Register from "./pages/Register";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
@@ -14,32 +15,52 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/my-pets/:id",
-    element: <MyPetsList />,
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/my-pets",
+    element: (
+      <ProtectedRoute allowedRoles={["owner"]}>
+        <MyPetsList />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/reminders",
-    element: <Reminders />,
+    element: (
+      <ProtectedRoute allowedRoles={["owner", "veterinary"]}>
+        <Reminders />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/pet-profile/:id",
-    element: <HealthRecord />,
+    element: (
+      <ProtectedRoute allowedRoles={["owner", "veterinary"]}>
+        <HealthRecord />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/pet-profile/:id/reminders/new",
-    element: <ReminderForm />,
+    element: (
+      <ProtectedRoute allowedRoles={["owner", "veterinary"]}>
+        <ReminderForm />
+      </ProtectedRoute>
+    ),
   },
   {
-    path: "/my-pets/:id/pets/new",
-    element: <PetForm />,
-  },
-  {
-    path: "/pet-profile/:id/consultations/new",
-    element: <ConsultationForm />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
+    path: "/consultation/add/:id",
+    element: (
+      <ProtectedRoute allowedRoles={["veterinary"]}>
+        <ConsultationForm />
+      </ProtectedRoute>
+    ),
   },
 ]);
 

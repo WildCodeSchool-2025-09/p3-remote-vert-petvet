@@ -1,4 +1,4 @@
-import type { NextFunction, Request, RequestHandler, Response } from "express";
+import type { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
 import Joi from "joi";
 import consultationRepository from "./consultationRepository";
@@ -24,8 +24,14 @@ const consultationSchema = Joi.object({
 
 const readByConsultation: RequestHandler = async (req, res, next) => {
   try {
-    const vetId = Number(req.params.id);
-    const petList = await consultationRepository.getPetByVetId(vetId);
+    const userId = req.auth?.userId;
+
+    if (!userId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const petList = await consultationRepository.getPetByVetId(userId);
 
     if (petList == null) {
       res.sendStatus(404);
@@ -57,8 +63,15 @@ const validateConsultation: RequestHandler = (req, res, next): void => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const body = req.body as Consultation;
+    const userId = req.auth?.userId;
+
+    if (!userId) {
+      res.sendStatus(401);
+      return;
+    }
     const newConsultation: Consultation = {
       ...body,
+      userId,
     };
 
     const newConsultationId =

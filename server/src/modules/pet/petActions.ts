@@ -38,7 +38,13 @@ const browseByOwner = async (
   next: NextFunction,
 ) => {
   try {
-    const pets = await petRepository.getByOwner(Number(req.params.id));
+    const ownerId = req.auth?.userId;
+    if (!ownerId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const pets = await petRepository.getByOwner(Number(ownerId));
 
     if (!pets) {
       res.status(400).json({

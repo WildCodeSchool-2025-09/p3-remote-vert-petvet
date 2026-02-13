@@ -328,9 +328,16 @@
   }
 
   .shortMedicalHistory {
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 16px;
-    width: 250px;
+    width: 300px;
     margin-left: 30px;
+    max-height: 700px;
+  }
+  .shortMedicalHistory h2 {
+    font-size: 1.5rem;
+  }
+  .shortMedicalHistory h3 {
+    font-size: 1rem;
   }
 }

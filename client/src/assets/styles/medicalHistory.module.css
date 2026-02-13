@@ -197,14 +197,26 @@ body {
 
 @media screen and (max-width: 900px) {
   .consultationCard.short {
-    width: 80%;
+    width: 88%;
   }
 
   .consultationCard.full {
     width: 80vw;
   }
   .medicalInfo.full {
-    font-size: 0.7rem;
     padding-right: 10px;
+  }
+  .consultationFirstInfo.short img {
+    width: 30px;
+    height: 30px;
+  }
+  .consultationFirstInfo.short h1 {
+    font-size: 1rem;
+  }
+  .consultationFirstInfo.short p {
+    font-size: 0.9rem;
+  }
+  .consultationList.short {
+    max-height: 400px;
   }
 }

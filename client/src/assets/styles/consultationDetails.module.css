@@ -186,3 +186,52 @@
   grid-column: 2 / 3;
   grid-row: 6 / 7;
 }
+@media (max-width: 768px) {
+  .consultationModal .consultationCardModal {
+    display: flex;
+    max-height: 900px;
+    flex-direction: column;
+    width: 85%;
+  }
+  .consultationModal .buttonClose img {
+    height: 30px;
+    width: 30px;
+  }
+  .consultationModal .buttonClose {
+    align-self: flex-end;
+    display: flex;
+  }
+  .consultationModal .titleDetail {
+    font-size: 1.5rem;
+  }
+  .consultationModal .categoryDetail {
+    font-size: 1rem;
+  }
+
+  .consultationDateDetail {
+    margin-top: 20px;
+  }
+  .consultationModal p {
+    font-size: 0.9rem;
+  }
+  .consultationModal h3 {
+    font-size: 1rem;
+  }
+  .consultationModal .consultationDateDetail,
+  .consultationModal .consultationAnimalName {
+    margin-top: 2px;
+    display: flex;
+    gap: 5px;
+  }
+
+  .consultationModal .deleteButton {
+    display: block;
+    margin: 1rem;
+    align-self: center;
+  }
+  .consultationModal .contentReport,
+  .consultationModal .treatment,
+  .consultationModal .dosage {
+    overflow: auto;
+  }
+}

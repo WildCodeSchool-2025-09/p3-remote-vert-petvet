@@ -80,7 +80,7 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
             reminder.frequency_count != null &&
             reminder.frequency
               ? styles.frequencyReminder
-              : "none"
+              : styles.none
           }
         >
           {reminder.dosage} {reminder.frequency_count} fois par{" "}

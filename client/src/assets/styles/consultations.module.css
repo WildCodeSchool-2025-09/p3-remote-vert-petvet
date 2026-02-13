@@ -127,7 +127,7 @@
   .vetConsultationsContainer {
     align-items: center;
     padding: 20px;
-    width: 100%;
+    width: 90%;
   }
 
   .vetConsultationsContainer .vetConsultationsCards {
@@ -137,5 +137,22 @@
   .vetConsultationsContainer .vetConsultationsHeader {
     align-items: center;
     justify-content: center;
+  }
+
+  .vetConsultationsContainer .vetConsultationsCards h1 {
+    font-size: 1.5rem;
+  }
+
+  .vetConsultationsContainer .vetConsultationsCards .consultationItem h3 {
+    font-size: 0.9rem;
+  }
+
+  .vetConsultationsContainer .vetConsultationsCards .consultationItem p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .vetConsultationsContainer .vetConsultationsCards .consultationItem img {
+    height: 30px;
+    width: 30px;
   }
 }

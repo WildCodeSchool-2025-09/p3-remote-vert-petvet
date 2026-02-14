@@ -54,7 +54,7 @@ class petRepository {
   }
 
   async getByVeterinary(veterinaryId: number): Promise<Rows> {
-    const [pets] = await databaseClient.query<Rows>(
+    const [patients] = await databaseClient.query<Rows>(
       `SELECT pet.*
     FROM pet
     JOIN pet_user ON pet_user.pet_id = pet.id
@@ -64,7 +64,7 @@ class petRepository {
       [veterinaryId],
     );
 
-    return pets;
+    return patients;
   }
 
   async getByOwner(ownerId: number): Promise<Rows> {

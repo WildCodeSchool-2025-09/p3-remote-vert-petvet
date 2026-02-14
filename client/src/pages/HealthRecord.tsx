@@ -223,7 +223,7 @@ function HealthRecord() {
                 {auth?.isVet ? (
                   <Consultations consultations={consultations} pet={petInfo} />
                 ) : (
-                  <p className={styles.message}>"Fonctionnalité à venir !"</p>
+                  <p className={styles.message}>Fonctionnalité à venir !</p>
                 )}
               </div>
               <div

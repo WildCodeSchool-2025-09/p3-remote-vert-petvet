@@ -5,7 +5,7 @@ import "./assets/styles/reset.css";
 function App() {
   return (
     <>
-      <Link to="/my-pets">Mes animaux</Link>
+      <Link to="/pet-profile/5">Mes animaux</Link>
     </>
   );
 }

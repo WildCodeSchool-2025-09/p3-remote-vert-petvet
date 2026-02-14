@@ -1,19 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "../assets/styles/navBar.module.css";
+import { useAuth } from "../context/AuthContext";
 
-function NavBar({ isVet = false }) {
+function NavBar() {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [menuBurger, setMenuBurger] = useState(false);
-  // Il faut récupérer l'id du user dans le context, faker pour l'instant
-  const userid = 5;
+
   const vetNavButtons = [
     { label: "Tableau de bord", href: "/" },
-    { label: "Mes animaux suivis", href: "/my-patients/" },
+    { label: "Mes animaux suivis", href: "/my-patients" },
     { label: "Rappels", href: "/reminders" },
   ];
 
   const ownerNavButtons = [
     { label: "Tableau de bord", href: "/" },
-    { label: "Mes animaux", href: `/my-pets/${userid}` },
+    { label: "Mes animaux", href: "/my-pets" },
     { label: "Rappels", href: "/reminders" },
     { label: "Documents", href: "#" },
     { label: "Urgences", href: "#" },
@@ -21,36 +24,48 @@ function NavBar({ isVet = false }) {
     { label: "Contacts utiles", href: "#" },
   ];
 
-  const navButtons = isVet ? vetNavButtons : ownerNavButtons;
-  console.log(menuBurger);
+  const navButtons = auth?.isVet ? vetNavButtons : ownerNavButtons;
+
   return (
     <nav className={styles.navBar}>
       <button
         type="button"
-        className={styles.burgerButton}
+        className={`${styles.burgerButton} ${!menuBurger ? styles.open : ""}`}
         onClick={() => setMenuBurger(!menuBurger)}
       >
         ☰
       </button>
+
       <div className={`${styles.navButtons} ${!menuBurger ? styles.none : ""}`}>
         {navButtons.map((button) => (
-          <a key={button.label} href={button.href} className={styles.navLink}>
-            <div className={styles.navButtonContent}>
-              <img src="/images/paw.png" alt="paw" className={styles.paw} />
-              <span>{button.label}</span>
-            </div>
-          </a>
+          <button
+            key={button.label}
+            type="button"
+            onClick={() => {
+              if (button.href !== "#") navigate(button.href);
+            }}
+            className={`${styles.navButtonContent} ${styles.navLink} ${
+              auth?.isVet ? styles.vet : ""
+            }`}
+            disabled={button.href === "#"}
+          >
+            <img src="/images/paw.png" alt="paw" className={styles.paw} />
+            <span>{button.label}</span>
+          </button>
         ))}
       </div>
+
       <div
         className={`${styles.deconnexionContainer} ${!menuBurger ? styles.none : ""}`}
       >
-        <a href="/login" className={styles.navLink}>
-          <div className={styles.navButtonContent}>
-            <img src="/images/paw.png" alt="paw" className={styles.paw} />
-            <span>Déconnexion</span>
-          </div>
-        </a>
+        <button
+          type="button"
+          onClick={() => navigate("/login")}
+          className={`${styles.navButtonContent} ${auth?.isVet ? styles.vet : ""}`}
+        >
+          <img src="/images/paw.png" alt="paw" className={styles.paw} />
+          <span>Déconnexion</span>
+        </button>
       </div>
     </nav>
   );

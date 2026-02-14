@@ -16,7 +16,6 @@
   align-items: center;
   justify-content: space-around;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  margin: 1.25rem 0 0 0;
   font-size: 0.75rem;
   color: #ffffff;
   font-family: var(--font-text);
@@ -126,7 +125,7 @@
 @media screen and (max-width: 900px) {
   .vetConsultationsContainer {
     align-items: center;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     width: 90%;
   }
 

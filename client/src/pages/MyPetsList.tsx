@@ -6,13 +6,15 @@ import { Link } from "react-router";
 import styles from "../assets/styles/myPetsList.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import { useAuth } from "../context/AuthContext";
 
-function MyPetsList({ isVet = false }) {
+function MyPetsList() {
   const [pets, setPets] = useState<Pet[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const formatGender = (gender: string) => (gender === "m" ? "♂" : "♀");
+  const auth = useAuth();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/owners/me/pets`, {
@@ -33,7 +35,9 @@ function MyPetsList({ isVet = false }) {
 
   if (isLoading) return <p>Chargement de vos animaux...</p>;
   if (error) return <p>{error}</p>;
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
   return (
     <>
       <header className={styles.petVet}>

@@ -19,7 +19,7 @@ function HealthRecord() {
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
   const [openResume, setOpenResume] = useState(true);
-  const [openHealth, setOpenHealth] = useState(false);
+  const [openHealthOrConsult, setOpenHealthOrConsult] = useState(false);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [openMedicalHistory, setOpenMedicalHistory] = useState(false);
   const location = useLocation();
@@ -82,9 +82,16 @@ function HealthRecord() {
                   <div>
                     <h2>{petInfo.name}</h2>
                     <p>
-                      {petInfo.vetInfo == null
-                        ? "Pas de vétérinaire"
-                        : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
+                      {`${petInfo.breed}
+                       - ${
+                         petInfo.gender === "m"
+                           ? petInfo.is_neutered
+                             ? "Mâle Stérilisé"
+                             : "Mâle"
+                           : petInfo.is_neutered
+                             ? "Femelle stérilisée"
+                             : "Femelle"
+                       }`}
                     </p>
                   </div>
                   <div className={styles.petTitle}>
@@ -124,23 +131,26 @@ function HealthRecord() {
             {temporaryMessage && (
               <p className={styles.success}>{temporaryMessage}</p>
             )}
-            <section>
-              {auth?.isVet && (
-                <Consultations consultations={consultations} pet={petInfo} />
-              )}
-            </section>
           </div>
           <div>
             <section>
-              <div className={styles.buttonsContainer}>
+              <div
+                className={`${styles.buttonsContainer} ${auth?.isVet ? styles.vet : ""}`}
+              >
                 <button
                   type="button"
                   onClick={() => {
                     setOpenResume(true);
-                    setOpenHealth(false);
+                    setOpenHealthOrConsult(false);
                     setOpenMedicalHistory(false);
                   }}
-                  className={openResume ? styles.selectedSection : ""}
+                  className={
+                    openResume
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
                 >
                   Résumé
                 </button>
@@ -148,33 +158,48 @@ function HealthRecord() {
                   type="button"
                   onClick={() => {
                     setOpenResume(false);
-                    setOpenHealth(true);
+                    setOpenHealthOrConsult(true);
                     setOpenMedicalHistory(false);
                   }}
-                  className={openHealth ? styles.selectedSection : ""}
+                  className={
+                    openHealthOrConsult
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
                 >
-                  Santé
+                  {auth?.isVet ? "Consultation" : "Santé"}
                 </button>
                 <button
                   type="button"
                   onClick={() => {
                     setOpenResume(false);
-                    setOpenHealth(false);
+                    setOpenHealthOrConsult(false);
                     setOpenMedicalHistory(true);
                   }}
-                  className={openMedicalHistory ? styles.selectedSection : ""}
+                  className={
+                    openMedicalHistory
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
                 >
                   Historique
                 </button>
               </div>
               <div
                 className={
-                  !openMedicalHistory && !openHealth && openResume
+                  !openMedicalHistory && !openHealthOrConsult && openResume
                     ? styles.resume
                     : styles.none
                 }
               >
-                <article className={styles.shortMedicalHistory}>
+                {" "}
+                <article
+                  className={`${styles.shortMedicalHistory} ${auth?.isVet ? styles.vet : ""}`}
+                >
                   <div>
                     <h2>Activités récentes</h2>
                     <h3>Les dernières activités de {petInfo.name}</h3>
@@ -190,16 +215,20 @@ function HealthRecord() {
               </div>
               <div
                 className={
-                  !openMedicalHistory && openHealth && !openResume
+                  !openMedicalHistory && openHealthOrConsult && !openResume
                     ? styles.health
                     : styles.none
                 }
               >
-                Fonctionnalité à venir !
+                {auth?.isVet ? (
+                  <Consultations consultations={consultations} pet={petInfo} />
+                ) : (
+                  <p className={styles.message}>"Fonctionnalité à venir !"</p>
+                )}
               </div>
               <div
                 className={
-                  openMedicalHistory && !openHealth && !openResume
+                  openMedicalHistory && !openHealthOrConsult && !openResume
                     ? styles.medicalHistory
                     : styles.none
                 }

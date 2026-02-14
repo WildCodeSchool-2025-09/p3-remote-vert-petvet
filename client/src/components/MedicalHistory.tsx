@@ -1,8 +1,12 @@
 import { useState } from "react";
-import emergency from "../../public/images/green/emergency.png";
-import steto from "../../public/images/green/stetoscope.png";
-import syringe from "../../public/images/green/syringe.png";
+import blueEmergency from "../../public/images/blue/emergency.png";
+import bluesSteto from "../../public/images/blue/stetoscope.png";
+import blueSyringe from "../../public/images/blue/syringe.png";
+import greenEmergency from "../../public/images/green/emergency.png";
+import greensSteto from "../../public/images/green/stetoscope.png";
+import greenSyringe from "../../public/images/green/syringe.png";
 import styles from "../assets/styles/medicalHistory.module.css";
+import { useAuth } from "../context/AuthContext";
 import type { Consultation } from "../types/Consultation";
 import ConsultationDetails from "./ConsultationDetails";
 
@@ -12,14 +16,21 @@ type MedicProps = {
 };
 
 function MedicalHistory({ consultations, length }: MedicProps) {
+  const auth = useAuth();
   if (!consultations || consultations.length === 0)
-    return <p>Pas de consultation pour ce doudou !</p>;
+    return (
+      <p className={`${styles.noConsultationMessage} ${styles[length]}`}>
+        Pas de consultation pour ce doudou !
+      </p>
+    );
 
   const [currentConsultation, setCurrentConsultation] =
     useState<Consultation | null>(null);
 
   return (
-    <section className={`${styles.consultationList} ${styles[length]}`}>
+    <section
+      className={`${styles.consultationList} ${auth?.isVet ? styles.vet : ""} ${styles[length]}`}
+    >
       {consultations.map((consultation) => (
         <article
           key={consultation.id}
@@ -30,10 +41,16 @@ function MedicalHistory({ consultations, length }: MedicProps) {
               <img
                 src={
                   consultation.category === "vaccination"
-                    ? syringe
+                    ? auth?.isVet
+                      ? blueSyringe
+                      : greenSyringe
                     : consultation.category === "urgence"
-                      ? emergency
-                      : steto
+                      ? auth?.isVet
+                        ? blueEmergency
+                        : greenEmergency
+                      : auth?.isVet
+                        ? bluesSteto
+                        : greensSteto
                 }
                 alt={`Icone ${consultation.category}`}
               />
@@ -72,7 +89,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
             <button
               type="button"
               key={consultation.id}
-              className={`${styles.consultationItem} ${styles[length]}`}
+              className={`${styles.consultationItem} ${auth?.isVet ? styles.vet : ""} ${styles[length]}`}
               onClick={() => setCurrentConsultation(consultation)}
             >
               Details

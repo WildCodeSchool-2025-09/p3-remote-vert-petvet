@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "../assets/styles/reminderDetails.module.css";
+import { useAuth } from "../context/AuthContext";
 import type { Reminder } from "../types/Reminder";
 
 type ReminderProps = {
@@ -9,6 +10,7 @@ type ReminderProps = {
 };
 
 export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
+  const auth = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
@@ -92,7 +94,10 @@ export default function ReminderDetails({ onClose, reminder }: ReminderProps) {
           <p>{reminder.content}</p>
         </div>
 
-        <button type="button" className={styles.deleteButton}>
+        <button
+          type="button"
+          className={`${styles.deleteButton} ${auth?.isVet ? styles.vet : ""}`}
+        >
           Supprimer le rappel
         </button>
       </div>

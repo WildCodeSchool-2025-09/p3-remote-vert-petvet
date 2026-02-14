@@ -24,6 +24,14 @@
   font-size: 1.2rem;
 }
 
+.reminderContainer.vet h2 {
+  color: var(--vet-color);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
 .reminderContainer img {
   width: 40px;
   height: 40px;
@@ -55,6 +63,7 @@
   font-size: 0.875rem;
   color: var(--text-color);
 }
+
 .reminderContainer .buttonReminder:hover {
   background-color: #f0f0f0;
   cursor: pointer;
@@ -73,6 +82,19 @@
   margin: 1.25rem auto 0 auto;
 }
 
+.reminderContainer .addReminderButton.vet {
+  width: 7rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--vet-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin: 1.25rem auto 0 auto;
+}
+
 .reminderContainer .addReminderButton img {
   width: 15px;
   height: 15px;
@@ -83,11 +105,24 @@
   cursor: pointer;
 }
 
+.reminderContainer .addReminderButton.vet:hover {
+  background-color: #7fb3e8cb;
+  cursor: pointer;
+}
+
 .reminderContainer ul {
   max-height: 300px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--owner-color) #f0f0f0;
+  padding-right: 10px;
+}
+
+.reminderContainer.vet ul {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vet-color) #f0f0f0;
   padding-right: 10px;
 }
 @media screen and (max-width: 600px) {

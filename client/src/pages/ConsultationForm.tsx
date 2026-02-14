@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import styles from "../assets/styles/consultationForm.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import { useAuth } from "../context/AuthContext";
 import type { Category, CreateConsultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
-function consultationForm({ isVet = true }) {
+function consultationForm() {
+  const auth = useAuth();
   const [title, setTitle] = useState("");
   const [createdAt, setcreatedAt] = useState("");
   const [report, setReport] = useState("");
@@ -18,16 +20,12 @@ function consultationForm({ isVet = true }) {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedPet, setSelectedPet] = useState<number | null>(null);
-  const [pets, setpets] = useState<Pet[]>([]);
-  const { id } = useParams<{ id: string }>();
-  const vetId = Number(id);
+  const [pets, setPets] = useState<Pet[]>([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!vetId) return;
-
-    fetch(`${import.meta.env.VITE_API_URL}/consultations/pets/${vetId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/veterinaries/me/patients`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -35,16 +33,16 @@ function consultationForm({ isVet = true }) {
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          setpets(data);
+          setPets(data);
         } else if (data?.id && data?.name) {
-          setpets([data]);
+          setPets([data]);
         } else {
           console.error("Format inattendu:", data);
-          setpets([]);
+          setPets([]);
         }
       })
       .catch((err) => console.error(err));
-  }, [vetId]);
+  }, []);
 
   const createConsultation = async (consultation: CreateConsultation) => {
     if (!selectedPet) {
@@ -59,11 +57,12 @@ function consultationForm({ isVet = true }) {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/consultations/${selectedPet}`,
+        `${import.meta.env.VITE_API_URL}/veterinaries/me/consultations`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify(consultation),
         },
@@ -88,7 +87,9 @@ function consultationForm({ isVet = true }) {
       setIsSubmitting(false);
     }
   };
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
 
   return (
     <>

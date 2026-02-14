@@ -8,7 +8,6 @@ import ConsultationDetails from "./ConsultationDetails";
 
 function Consultations({
   consultations,
-  pet,
 }: { pet: Pet; consultations: Consultation[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ function Consultations({
         <button
           type="button"
           className={styles.addConsultationButton}
-          onClick={() => navigate(`/consultation/add/${pet.vetInfo.vetId}`)}
+          onClick={() => navigate("/consultation/add")}
         >
           <img src="/images/white-cross.png" alt="Ajouter une consultation" />
           AJOUTER UNE CONSULTATION

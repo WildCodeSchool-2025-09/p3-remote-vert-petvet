@@ -5,9 +5,10 @@ import "../assets/styles/variables.css";
 import styles from "../assets/styles/reminderForm.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import { useAuth } from "../context/AuthContext";
 import type { CreateReminder, Frequency } from "../types/Reminder";
 
-function ReminderForm({ isVet = false }) {
+function ReminderForm() {
   const [title, setTitle] = useState("");
   const [programmedAt, setProgrammedAt] = useState("");
   const [content, setContent] = useState("");
@@ -22,7 +23,7 @@ function ReminderForm({ isVet = false }) {
   const { id } = useParams();
 
   const petId = Number(id);
-
+  const auth = useAuth();
   const createReminder = async (reminder: CreateReminder) => {
     setIsSubmited(true);
 
@@ -56,7 +57,9 @@ function ReminderForm({ isVet = false }) {
       setIsSubmited(false);
     }
   };
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
   return (
     <>
       <header className={styles.petVet}>
@@ -156,7 +159,9 @@ function ReminderForm({ isVet = false }) {
                   </select>
                 </div>
               </div>
-              <div className={styles.buttonContainer}>
+              <div
+                className={`${styles.buttonContainer} ${auth?.isVet ? styles.vet : ""}`}
+              >
                 <p className={styles.obligatory}>* Champs obligatoires</p>
                 <button type="submit" disabled={isSubmited}>
                   {isSubmited ? "Création..." : "Créer un rappel"}

@@ -139,6 +139,10 @@ p {
   }
 }
 
+.buttonContainer.vet button {
+  background-color: var(--vet-color);
+}
+
 .title {
   width: 200px;
 }

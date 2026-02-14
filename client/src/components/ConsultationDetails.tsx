@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "../assets/styles/consultationDetails.module.css";
+import { useAuth } from "../context/AuthContext";
 import type { Consultation } from "../types/Consultation";
 
 type ConsultationProps = {
@@ -12,6 +13,7 @@ export default function consultation({
   consultation,
   onClose,
 }: ConsultationProps) {
+  const auth = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
@@ -48,7 +50,9 @@ export default function consultation({
         }
       }}
     >
-      <div className={styles.consultationCardModal}>
+      <div
+        className={`${styles.consultationCardModal} ${auth?.isVet ? styles.vet : ""}`}
+      >
         {consultation ? (
           <>
             <button

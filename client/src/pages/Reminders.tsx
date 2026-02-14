@@ -4,14 +4,16 @@ import "../assets/styles/variables.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import ReminderDetails from "../components/ReminderDetails";
+import { useAuth } from "../context/AuthContext";
 import type { Reminder } from "../types/Reminder";
 
-function Reminders({ isVet = false }) {
+function Reminders() {
+  const auth = useAuth();
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders/`, {
+    fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -19,7 +21,10 @@ function Reminders({ isVet = false }) {
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders));
   }, []);
-  const logoSrc = isVet ? "/images/blue/logo.png" : "/images/green/logo.png";
+
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
   return (
     <>
       <header className={styles.petVet}>

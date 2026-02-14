@@ -92,6 +92,13 @@
   margin-bottom: 1.25rem;
 }
 
+.shortMedicalHistory.vet h3 {
+  color: var(--vet-color);
+  font-family: var(--font-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
 .petCard {
   margin: auto;
   width: 800px;
@@ -203,6 +210,15 @@
   color: white;
 }
 
+.selectedSection.vet {
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--vet-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
 .buttonsContainer button:hover {
   cursor: pointer;
   height: 3rem;
@@ -213,7 +229,17 @@
   color: white;
 }
 
-.health {
+.buttonsContainer.vet button:hover {
+  cursor: pointer;
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--vet-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.health .message {
   color: var(--text-color);
   font-size: 2.5rem;
   font-family: var(--font-text);
@@ -321,7 +347,7 @@
     scroll-snap-align: center;
   }
 
-  .health {
+  .health .message {
     margin: 1rem;
     padding: 2rem;
     font-size: 2rem;
@@ -339,5 +365,10 @@
   }
   .shortMedicalHistory h3 {
     font-size: 1rem;
+  }
+
+  .shortMedicalHistory.vet h3 {
+    font-size: 1rem;
+    color: var(--vet-color);
   }
 }

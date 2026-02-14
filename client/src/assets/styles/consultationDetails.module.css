@@ -16,6 +16,7 @@
   width: 90%;
   max-width: 600px;
   max-height: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .consultationModal .titleDetail h1 {
@@ -52,6 +53,10 @@
 .consultationModal .categoryDetail {
   margin-top: -10%;
   font-weight: bold;
+}
+
+.consultationModal .vet .categoryDetail {
+  color: var(--vet-color);
 }
 
 .consultationModal .consultationDateDetail {
@@ -185,6 +190,11 @@
   grid-column: 2 / 3;
   grid-row: 6 / 7;
 }
+
+.consultationModal .vet .deleteButton {
+  background-color: var(--vet-color);
+}
+
 @media (max-width: 768px) {
   .consultationModal .consultationCardModal {
     display: flex;
@@ -228,9 +238,7 @@
     margin: 1rem;
     align-self: center;
   }
-  .consultationModal .contentReport,
-  .consultationModal .treatment,
-  .consultationModal .dosage {
+  .consultationModal .contentReport {
     overflow: auto;
   }
 }

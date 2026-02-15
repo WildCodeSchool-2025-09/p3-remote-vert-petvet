@@ -106,6 +106,13 @@ body {
   justify-content: center;
   min-width: 150px;
 }
+.headerHome .buttonHomePage:hover {
+  background-color: #f0f0f0;
+}
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
 .headerHome .buttonHomePage img {
   width: 30px;
   height: 30px;
@@ -397,7 +404,7 @@ main .buttonsBottom img {
   background-color: #f8f8f8;
   transform: translateY(-5px);
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   :root {
     overflow-x: hidden;
   }
@@ -420,7 +427,7 @@ main .buttonsBottom img {
   }
 
   .headerHome nav h1 {
-    font-size: 2.2rem;
+    font-size: 5.2rem;
     margin: 0;
   }
 
@@ -443,8 +450,7 @@ main .buttonsBottom img {
   }
   .headerHome .buttonHomePage {
     background: rgba(255, 255, 255, 0.568);
-    width: 80%;
-    max-width: 300px;
+    max-width: 200px;
     justify-content: flex-start;
     padding-left: 15%;
     gap: 15px;
@@ -525,7 +531,7 @@ main .buttonsBottom img {
   }
 
   main .buttonsBottom .buttonHomePage {
-    width: 50%;
+    width: auto;
     max-width: 200px;
     align-items: center;
     justify-content: center;
@@ -547,7 +553,7 @@ main .buttonsBottom img {
 
 @media (max-width: 480px) {
   .headerHome nav h1 {
-    font-size: 1.8rem;
+    font-size: 3.5rem;
   }
   main .intro h1 {
     font-size: 1.5rem;

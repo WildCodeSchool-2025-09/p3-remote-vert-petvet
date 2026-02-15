@@ -1,6 +1,7 @@
 import "../assets/styles/reset.css";
 import "../assets/styles/homePageAnimation.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import styles from "../assets/styles/homePage.module.css";
 
 function HomePage() {
@@ -73,27 +74,37 @@ function HomePage() {
             Votre carnet de santé numérique pour animaux de compagnie
           </h3>
           <ul>
-            <button
-              type="button"
-              className={`${styles.buttonHomePage} reveal from-left`}
-            >
-              <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
-              Me connecter
-            </button>
-            <button
-              type="button"
-              className={`${styles.buttonHomePage} reveal from-left`}
-            >
-              <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
-              M'inscrire
-            </button>
-            <button
-              type="button"
-              className={`${styles.buttonHomePage} reveal from-left`}
-            >
-              <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
-              Contacts utiles
-            </button>
+            <li>
+              <Link to="/login" className={styles.navLink}>
+                <button
+                  type="button"
+                  className={`${styles.buttonHomePage} reveal from-left`}
+                >
+                  <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
+                  Me connecter
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link to="/register" className={styles.navLink}>
+                <button
+                  type="button"
+                  className={`${styles.buttonHomePage} reveal from-left`}
+                >
+                  <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
+                  M'inscrire
+                </button>
+              </Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                className={`${styles.buttonHomePage} reveal from-left`}
+              >
+                <img src="/images/paw.png" alt="Pattoune Icon" width="15" />
+                Contacts utiles
+              </button>
+            </li>
           </ul>
         </div>
         <a href="#intro" className={styles.scrollDown}>
@@ -214,20 +225,24 @@ function HomePage() {
             </button>
           </div>
           <div className={styles.buttonRegisterLogin}>
-            <button
-              type="button"
-              className={`${styles.buttonHomePage} reveal from-right`}
-            >
-              <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
-              Me connecter
-            </button>
-            <button
-              type="button"
-              className={`${styles.buttonHomePage} reveal from-right`}
-            >
-              <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
-              M'inscrire
-            </button>
+            <Link to="/login" className={styles.navLink}>
+              <button
+                type="button"
+                className={`${styles.buttonHomePage} reveal from-right`}
+              >
+                <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
+                Me connecter
+              </button>
+            </Link>
+            <Link to="/register" className={styles.navLink}>
+              <button
+                type="button"
+                className={`${styles.buttonHomePage} reveal from-right`}
+              >
+                <img src="/images/paw.png" alt="Pattoune Icon" width="20" />
+                M'inscrire
+              </button>
+            </Link>
           </div>
         </section>
         <button

@@ -13,7 +13,7 @@ export interface User {
 }
 
 class userRepository {
-  async getUserByEmail(email: string) {
+  async getByEmail(email: string) {
     const [row] = await databaseClient.query<Rows>(
       `SELECT *
       FROM user

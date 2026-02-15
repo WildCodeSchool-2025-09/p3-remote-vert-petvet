@@ -1,13 +1,18 @@
 .petVet {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }
 .healthRecordPage {
   display: flex;
@@ -25,8 +30,6 @@
   width: 100%;
   max-width: 500px;
   display: flex;
-  align-items: flex-end;
-  margin-left: auto;
 }
 
 .addConsult {
@@ -52,6 +55,8 @@
 
 .resume {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .none {
@@ -64,28 +69,36 @@
   align-items: stretch;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
-  margin: 1.25rem 1.25rem auto;
   border-radius: 10px;
-  width: 400px;
+  width: 350px;
+  max-height: 439px;
   background-color: white;
-
-  h2 {
-    color: var(--text-color);
-    font-family: var(--font-logo);
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-  }
-
-  h3 {
-    color: var(--owner-color);
-    font-family: var(--font-text);
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
-  }
+  margin-bottom: 5rem;
 }
 
+.shortMedicalHistory h2 {
+  color: var(--text-color);
+  font-family: var(--font-logo);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.shortMedicalHistory h3 {
+  color: var(--owner-color);
+  font-family: var(--font-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.shortMedicalHistory.vet h3 {
+  color: var(--vet-color);
+  font-family: var(--font-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
 .petCard {
   margin: auto;
   width: 800px;
@@ -106,33 +119,36 @@
   align-items: center;
   padding: 20px 20px 20px 80px;
   gap: 50px;
+}
 
-  h2 {
-    font-family: var(--font-logo);
-    font-size: 2rem;
-    font-weight: 600;
-  }
-  p {
-    font-family: var(--font-text);
-    color: var(--text-color);
-    padding-top: 5px;
-  }
+.petFirstInfo h2 {
+  font-family: var(--font-logo);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.petFirstInfo p {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding-top: 5px;
 }
 
 .petSecondInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  h3 {
-    font-family: var(--font-logo);
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  p {
-    font-family: var(--font-text);
-    color: var(--text-color);
-    padding-top: 5px;
-  }
+}
+
+.petSecondInfo h3 {
+  font-family: var(--font-logo);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.petSecondInfo p {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding-top: 5px;
 }
 
 .petTitle {
@@ -173,7 +189,7 @@
   flex-direction: row;
   align-items: center;
   gap: 5rem;
-  margin: 4rem;
+  margin: 2rem 6rem 4rem 6rem;
 
   button:not(.selectedSection) {
     height: 3rem;
@@ -194,6 +210,15 @@
   color: white;
 }
 
+.selectedSection.vet {
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--vet-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
 .buttonsContainer button:hover {
   cursor: pointer;
   height: 3rem;
@@ -202,4 +227,148 @@
   border-radius: 10px;
   border: none;
   color: white;
+}
+
+.buttonsContainer.vet button:hover {
+  cursor: pointer;
+  height: 3rem;
+  width: 8rem;
+  background-color: var(--vet-color);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.health .message {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  font-family: var(--font-text);
+  text-align: center;
+  padding: 100px;
+  margin: 100px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
+}
+@media screen and (max-width: 900px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .healthRecordPage {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+  .petFirstInfo {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  .petFirstInfo h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .petFirstInfo p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .petFirstInfo img {
+    width: 80px;
+    height: 80px;
+  }
+  .petTitle {
+    gap: 10px;
+    text-align: center;
+  }
+  .petTitle .age,
+  .petTitle .weight {
+    width: 40px;
+    font-size: 0.9rem;
+  }
+
+  .petSecondInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 0 2rem 0;
+  }
+
+  .petCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    width: 80%;
+  }
+
+  .resume {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .resume > * {
+    flex: 0 0 auto;
+    width: 100%;
+    justify-content: center;
+    scroll-snap-align: center;
+  }
+
+  .health .message {
+    margin: 1rem;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+
+  .shortMedicalHistory {
+    justify-content: flex-start;
+    padding: 16px;
+    width: 300px;
+    margin-left: 30px;
+    max-height: 700px;
+  }
+  .shortMedicalHistory h2 {
+    font-size: 1.5rem;
+  }
+  .shortMedicalHistory h3 {
+    font-size: 1rem;
+  }
+
+  .shortMedicalHistory.vet h3 {
+    font-size: 1rem;
+    color: var(--vet-color);
+  }
 }

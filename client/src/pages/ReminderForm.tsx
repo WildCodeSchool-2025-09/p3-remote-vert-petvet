@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import style from "../assets/styles/reminderForm.module.css";
+import styles from "../assets/styles/reminderForm.module.css";
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import { useAuth } from "../context/AuthContext";
 import type { CreateReminder, Frequency } from "../types/Reminder";
 
 function ReminderForm() {
@@ -20,7 +23,7 @@ function ReminderForm() {
   const { id } = useParams();
 
   const petId = Number(id);
-
+  const auth = useAuth();
   const createReminder = async (reminder: CreateReminder) => {
     setIsSubmited(true);
 
@@ -31,6 +34,7 @@ function ReminderForm() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify(reminder),
         },
@@ -53,107 +57,122 @@ function ReminderForm() {
       setIsSubmited(false);
     }
   };
-
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
   return (
-    <section>
-      <header className={style.petVet}>Pet&Vet</header>
-      <h1 className={style.reminderFormTitle}>Ajouter un rappel</h1>
-      <article className={style.formContainer}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            createReminder({
-              title,
-              programmedAt,
-              content,
-              dosage: dosage || null,
-              frequency: frequency || null,
-              frequencyCount: frequencyCount || null,
-              petId,
-            });
-          }}
-        >
-          <p className={style.error}>{errorMessage}</p>
-          <div className={style.titleDate}>
-            <label className={style.reminderLabel}>
-              Titre <span className={style.obligatory}>*</span>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                className={`${style.title} ${style.reminderInput}`}
-              />
-            </label>
-            <label className={style.reminderLabel}>
-              Date programmée <span className={style.obligatory}>*</span>
-              <input
-                type="datetime-local"
-                value={programmedAt}
-                onChange={(e) => setProgrammedAt(e.target.value)}
-                required
-                className={`${style.date} ${style.reminderInput}`}
-              />
-            </label>
-          </div>
-          <div className={style.contentContainer}>
-            <label className={style.reminderLabel}>
-              Description <span className={style.obligatory}>*</span>
-              <input
-                type="text"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-                className={`${style.content} ${style.reminderInput}`}
-              />
-            </label>
-            <label className={style.reminderLabel}>
-              Dosage
-              <input
-                type="text"
-                value={dosage}
-                onChange={(e) => setDosage(e.target.value)}
-                className={`${style.content} ${style.reminderInput}`}
-              />
-            </label>
-          </div>
-          <div className={style.frequencyContainer}>
-            <div className={style.frequency}>
-              <label className={style.reminderLabel}>
-                Fréquence
-                <input
-                  type="number"
-                  min={1}
-                  value={frequencyCount}
-                  placeholder="Nb de x"
-                  onChange={(e) => setFrequencyCount(Number(e.target.value))}
-                  className={style.frequencyCount}
-                />
-              </label>
-            </div>
-            <div className={style.frequencyValue}>
-              <p>fois par</p>
-              <select
-                className={style.reminderSelect}
-                value={frequency}
-                onChange={(e) => setFrequency(e.target.value as Frequency)}
+    <>
+      <header className={styles.petVet}>
+        <img src={logoSrc} alt="logo" className={styles.logo} />
+        <h1>Pet&Vet</h1>
+      </header>
+      <main className={styles.mainPage}>
+        <NavBar />
+        <section className={styles.allPage}>
+          <h1 className={styles.reminderFormTitle}>Ajouter un rappel</h1>
+          <article className={styles.formContainer}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                createReminder({
+                  title,
+                  programmedAt,
+                  content,
+                  dosage: dosage || null,
+                  frequency: frequency || null,
+                  frequencyCount: frequencyCount || null,
+                  petId,
+                });
+              }}
+            >
+              <p className={styles.error}>{errorMessage}</p>
+              <div className={styles.titleDate}>
+                <label className={styles.reminderLabel}>
+                  Titre <span className={styles.obligatory}>*</span>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                    className={`${styles.title} ${styles.reminderInput}`}
+                  />
+                </label>
+                <label className={styles.reminderLabel}>
+                  Date programmée <span className={styles.obligatory}>*</span>
+                  <input
+                    type="datetime-local"
+                    value={programmedAt}
+                    onChange={(e) => setProgrammedAt(e.target.value)}
+                    required
+                    className={`${styles.date} ${styles.reminderInput}`}
+                  />
+                </label>
+              </div>
+              <div className={styles.contentContainer}>
+                <label className={styles.reminderLabel}>
+                  Description <span className={styles.obligatory}>*</span>
+                  <input
+                    type="text"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                    className={`${styles.content} ${styles.reminderInput}`}
+                  />
+                </label>
+                <label className={styles.reminderLabel}>
+                  Dosage
+                  <input
+                    type="text"
+                    value={dosage}
+                    onChange={(e) => setDosage(e.target.value)}
+                    className={`${styles.content} ${styles.reminderInput}`}
+                  />
+                </label>
+              </div>
+              <div className={styles.frequencyContainer}>
+                <div className={styles.frequency}>
+                  <label className={styles.reminderLabel}>
+                    Fréquence
+                    <input
+                      type="number"
+                      min={1}
+                      value={frequencyCount}
+                      placeholder="Nb de x"
+                      onChange={(e) =>
+                        setFrequencyCount(Number(e.target.value))
+                      }
+                      className={styles.frequencyCount}
+                    />
+                  </label>
+                </div>
+                <div className={styles.frequencyValue}>
+                  <p>fois par</p>
+                  <select
+                    className={styles.reminderSelect}
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value as Frequency)}
+                  >
+                    <option value="jour">jour</option>
+                    <option value="semaine">semaine</option>
+                    <option value="mois">mois</option>
+                    <option value="an">an</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                className={`${styles.buttonContainer} ${auth?.isVet ? styles.vet : ""}`}
               >
-                <option value="jour">jour</option>
-                <option value="semaine">semaine</option>
-                <option value="mois">mois</option>
-                <option value="an">an</option>
-              </select>
-            </div>
-          </div>
-          <div className={style.buttonContainer}>
-            <p className={style.obligatory}>* Champs obligatoires</p>
-            <button type="submit" disabled={isSubmited}>
-              {isSubmited ? "Création..." : "Créer un rappel"}
-            </button>
-          </div>
-        </form>
-      </article>
-    </section>
+                <p className={styles.obligatory}>* Champs obligatoires</p>
+                <button type="submit" disabled={isSubmited}>
+                  {isSubmited ? "Création..." : "Créer un rappel"}
+                </button>
+              </div>
+            </form>
+          </article>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
 

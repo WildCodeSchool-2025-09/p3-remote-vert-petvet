@@ -2,6 +2,23 @@ body {
   background-color: var(--main-color);
 }
 
+.petVet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
+
 .petVetConsultation {
   text-align: right;
   font-family: var(--font-logo);
@@ -20,12 +37,14 @@ body {
   padding-bottom: 30px;
   color: var(--text-color);
 }
+
 .consultationFormContainer {
   background-color: white;
   padding: 40px;
   border-radius: 20px;
   max-width: 900px;
   margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
 .consultationForm {
@@ -102,7 +121,7 @@ body {
   font-size: 1.2rem;
   border: none;
   padding: 10px 30px;
-  border-radius: 50px;
+  border-radius: 15px;
   cursor: pointer;
   font-family: var(--font-text);
   height: 60px;
@@ -131,4 +150,82 @@ body {
 .consultationButtonContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .consultationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .consultationFormContainer {
+    max-width: 80%;
+    margin: 0 1rem 2rem 1rem;
+    padding: 25px;
+  }
+
+  .consultationFormTitle {
+    padding: 20px;
+  }
+
+  .consultationSelect {
+    width: 260px;
+  }
+
+  .date {
+    width: 260px;
+  }
+
+  .consultationContent textarea {
+    width: 260px;
+  }
+
+  .consultationDosageInput {
+    width: 260px;
+  }
+
+  .consultationTitleInput {
+    width: 260px;
+  }
+
+  .consultationTreatmentInput {
+    width: 260px;
+  }
+
+  .consultationButtonContainer {
+    flex-direction: column;
+  }
+
+  .sendButton {
+    font-size: 1.1rem;
+  }
 }

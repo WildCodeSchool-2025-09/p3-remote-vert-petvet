@@ -1,0 +1,92 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  width: 15rem;
+  border-right: 4px solid #ffffff;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.paw {
+  width: 16px;
+  height: 16px;
+}
+
+.navButtonContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin: 2rem;
+  border: none;
+  border-radius: 15px;
+  width: 15rem;
+  text-align: center;
+  color: var(--text-color);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.navButtonContent:hover {
+  background-color: var(--owner-color);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navButtonContent.vet:hover {
+  background-color: var(--vet-color);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.navButtonContent span {
+  font-family: var(--font-text);
+  margin-left: 2rem;
+}
+
+.burgerButton {
+  display: none;
+}
+
+@media screen and (max-width: 450px) {
+  .navBar {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+  .burgerButton {
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+  }
+  .burgerButton.open {
+    transform: rotate(180deg);
+  }
+  .navButtons,
+  .deconnexionContainer {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    max-height: 650px;
+    opacity: 1;
+  }
+
+  .none {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

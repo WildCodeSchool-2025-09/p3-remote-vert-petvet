@@ -29,13 +29,19 @@ const browseByPet: RequestHandler = async (
   }
 };
 
-const browseByOwner = async (
+const browseByVeterinary = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const pets = await petRepository.getByOwner(Number(req.params.id));
+    const ownerId = req.auth?.userId;
+    if (!ownerId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const pets = await petRepository.getByVeterinary(Number(ownerId));
 
     if (!pets) {
       res.status(400).json({
@@ -48,4 +54,29 @@ const browseByOwner = async (
   }
 };
 
-export default { browseByPet, browseByOwner };
+const browseByOwner = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const ownerId = req.auth?.userId;
+    if (!ownerId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const pets = await petRepository.getByOwner(Number(ownerId));
+
+    if (!pets) {
+      res.status(400).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+    }
+    res.status(200).json(pets);
+  } catch (error) {
+    next();
+  }
+};
+
+export default { browseByPet, browseByOwner, browseByVeterinary };

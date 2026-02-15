@@ -1,8 +1,12 @@
 import { useState } from "react";
-import emergency from "../../public/images/green/emergency.png";
-import steto from "../../public/images/green/stetoscope.png";
-import syringe from "../../public/images/green/syringe.png";
+import blueEmergency from "../../public/images/blue/emergency.png";
+import bluesSteto from "../../public/images/blue/stetoscope.png";
+import blueSyringe from "../../public/images/blue/syringe.png";
+import greenEmergency from "../../public/images/green/emergency.png";
+import greensSteto from "../../public/images/green/stetoscope.png";
+import greenSyringe from "../../public/images/green/syringe.png";
 import styles from "../assets/styles/medicalHistory.module.css";
+import { useAuth } from "../context/AuthContext";
 import type { Consultation } from "../types/Consultation";
 import ConsultationDetails from "./ConsultationDetails";
 
@@ -12,30 +16,45 @@ type MedicProps = {
 };
 
 function MedicalHistory({ consultations, length }: MedicProps) {
+  const auth = useAuth();
   if (!consultations || consultations.length === 0)
-    return <p>Pas de consultation pour ce doudou !</p>;
+    return (
+      <p className={`${styles.noConsultationMessage} ${styles[length]}`}>
+        Pas de consultation pour ce doudou !
+      </p>
+    );
 
   const [currentConsultation, setCurrentConsultation] =
     useState<Consultation | null>(null);
 
   return (
-    <section className={`${styles.consultationList} ${styles[length]}`}>
+    <section
+      className={`${styles.consultationList} ${auth?.isVet ? styles.vet : ""} ${styles[length]}`}
+    >
       {consultations.map((consultation) => (
         <article
           key={consultation.id}
           className={`${styles.consultationCard} ${styles[length]}`}
         >
           <div className={`${styles.consultationFirstInfo} ${styles[length]}`}>
-            <img
-              src={
-                consultation.category === "vaccination"
-                  ? syringe
-                  : consultation.category === "urgence"
-                    ? emergency
-                    : steto
-              }
-              alt={`Icone ${consultation.category}`}
-            />
+            <div className={`${styles.consultationCardImg} ${styles[length]}`}>
+              <img
+                src={
+                  consultation.category === "vaccination"
+                    ? auth?.isVet
+                      ? blueSyringe
+                      : greenSyringe
+                    : consultation.category === "urgence"
+                      ? auth?.isVet
+                        ? blueEmergency
+                        : greenEmergency
+                      : auth?.isVet
+                        ? bluesSteto
+                        : greensSteto
+                }
+                alt={`Icone ${consultation.category}`}
+              />
+            </div>
             <div>
               <h1>{consultation.title}</h1>
               <p className={`${styles.createdDate} ${styles[length]}`}>
@@ -46,7 +65,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
           <div className={`${styles.consultationSecondInfo} ${styles[length]}`}>
             <div className={`${styles.medicalInfo} ${styles[length]}`}>
               <div>
-                <h3>Traitement(s)</h3>
+                <h3>Traitement(s):</h3>
                 <p>
                   {consultation.treatment
                     ? consultation.treatment.length >= 20
@@ -56,7 +75,7 @@ function MedicalHistory({ consultations, length }: MedicProps) {
                 </p>
               </div>
               <div>
-                <h3>Posologie(s)</h3>
+                <h3>Posologie(s):</h3>
                 <p>
                   {consultation.dosage
                     ? consultation.dosage.length >= 20
@@ -66,24 +85,25 @@ function MedicalHistory({ consultations, length }: MedicProps) {
                 </p>
               </div>
             </div>
-            {currentConsultation && (
-              <ConsultationDetails
-                consultId={currentConsultation.id}
-                consultation={currentConsultation}
-                onClose={() => setCurrentConsultation(null)}
-              />
-            )}
+
             <button
               type="button"
               key={consultation.id}
-              className={`${styles.consultationItem} ${styles[length]}`}
+              className={`${styles.consultationItem} ${auth?.isVet ? styles.vet : ""} ${styles[length]}`}
               onClick={() => setCurrentConsultation(consultation)}
             >
               Details
             </button>
           </div>
         </article>
-      ))}
+      ))}{" "}
+      {currentConsultation && (
+        <ConsultationDetails
+          consultId={currentConsultation.id}
+          consultation={currentConsultation}
+          onClose={() => setCurrentConsultation(null)}
+        />
+      )}
     </section>
   );
 }

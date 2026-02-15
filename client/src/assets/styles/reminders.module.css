@@ -1,3 +1,19 @@
+.petVet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
 .allReminders {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -29,6 +45,7 @@
   border-radius: 50px;
   margin-bottom: 0.75rem;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
 }
 
 .reminderCard:hover {
@@ -39,8 +56,9 @@
 }
 
 .reminderImg {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .reminderTitle {
@@ -56,4 +74,56 @@
   font-weight: 500;
   color: var(--text-color);
   margin-left: auto;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
+@media screen and (max-width: 600px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .allReminders {
+    padding: 1rem;
+    max-width: 80%;
+    margin-bottom: 4rem;
+  }
+  .allReminders h1 {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+  .allReminders h3 {
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+  .allReminders p {
+    font-size: 0.9rem;
+  }
 }

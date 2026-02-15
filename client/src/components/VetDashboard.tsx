@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "../assets/styles/vetDashboard.module.css";
 import type { Patient } from "../types/Pet";
 
 interface VetDashboard {
@@ -51,51 +52,101 @@ function VetDashboard({ dashboard }: VetDashboard) {
 
   return (
     <>
-      <section>
-        <h2>Mes patients</h2>
-        {dashboard.patients.length === 0 && (
-          <p>Vous n'avez aucun patient suivi, veuillez en ajouter.</p>
-        )}
-        {dashboard.patients.slice(0, 4).map((patient) => (
-          <article key={patient.id}>
-            <img src={patient.photo} alt={patient.name} />
-            <h3>{patient.name}</h3>
-            <p>
-              {patient.ownerLastname} {patient.ownerFirstname}
-            </p>
-            <p>{patient.specie}</p>
-            <p>{patient.breed}</p>
-            <p>{patient.gender === "m" ? "♂" : "♀"}</p>
-          </article>
-        ))}
-      </section>
-      <section>
-        <h2>A faire aujourd'hui</h2>
-        <input
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Ajouter une tâche"
-        />
-        <button type="button" onClick={addTodo}>
-          Ajouter
-        </button>
-        {todos.length === 0 && <p>Aucune tâche à faire.</p>}
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>
-              <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() => todoDone(todo.id)}
-              />
-              <p>{todo.content}</p>
-              <button type="button" onClick={() => deleteTodo(todo.id)}>
-                <img src="/images/cross.png" alt="Suppression de la tâche" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className={styles.allSections}>
+        <section className={styles.petSection}>
+          <h2 className={styles.myPatients}>Mes patients</h2>
+          <div className={styles.patientsCards}>
+            {dashboard.patients.length === 0 && (
+              <p className={styles.noData}>
+                Vous n'avez aucun patient suivi, veuillez en ajouter.
+              </p>
+            )}
+            {dashboard.patients.slice(0, 4).map((patient) => (
+              <article key={patient.id} className={styles.patientInfos}>
+                <p className={styles.gender}>
+                  {patient.gender === "m" ? "♂" : "♀"}
+                </p>
+                <div className={styles.patientInfo}>
+                  <img
+                    src={patient.photo}
+                    alt={patient.name}
+                    className={styles.patientImage}
+                  />
+                  <div className={styles.patientText}>
+                    <h3>{patient.name}</h3>
+                    <p>{patient.specie}</p>
+                  </div>
+                </div>
+                <p className={styles.owner}>
+                  Propriétaire :{" "}
+                  <span>
+                    {patient.ownerLastname} {patient.ownerFirstname}
+                  </span>
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className={styles.viewMoreContainer}>
+            <button type="button" className={styles.viewMore}>
+              Voir plus
+            </button>
+          </div>
+        </section>
+        <section className={styles.todoSection}>
+          <h2 className={styles.todoToday}>A faire aujourd'hui</h2>
+          <div className={styles.todoCards}>
+            {todos.length === 0 && (
+              <p className={styles.noData}>Aucune tâche à faire.</p>
+            )}
+            {todos.length > 0 && (
+              <ul className={styles.todoList}>
+                {todos.map((todo) => (
+                  <li
+                    key={todo.id}
+                    className={`${styles.todoCard} ${todo.done ? styles.done : styles.notDone}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={todo.done}
+                      onChange={() => todoDone(todo.id)}
+                      className={styles.checkBox}
+                    />
+                    <p className={todo.done ? styles.todoDone : ""}>
+                      {todo.content}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => deleteTodo(todo.id)}
+                      className={styles.closingBtn}
+                    >
+                      <img
+                        src="/images/blue/white-cross.png"
+                        alt="Suppression de la tâche"
+                        className={styles.crossImg}
+                      />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className={styles.addTodos}>
+            <input
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              placeholder="Ajouter une tâche"
+              className={styles.addTodoText}
+            />
+            <button
+              type="button"
+              onClick={addTodo}
+              className={styles.addTodoBtn}
+            >
+              Ajouter
+            </button>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

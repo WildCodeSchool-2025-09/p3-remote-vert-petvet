@@ -36,3 +36,15 @@ body {
 .components {
   width: 100%;
 }
+
+@media screen and (max-width: 600px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .userName {
+    font-size: 2rem;
+    justify-content: end;
+  }
+}

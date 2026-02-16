@@ -5,9 +5,9 @@ export interface Pet {
   name: string;
   tattooNb: number | null;
   chipNb: number | null;
-  bornAt: string;
+  born_at: string;
   gender: string;
-  specie: string;
+  specie: Specie;
   breed: string;
   isNeutered: boolean;
   weight: number | null;
@@ -31,4 +31,4 @@ export interface CreatePet {
   weight?: number | null;
 }
 export type Gender = "m" | "f";
-export type Specie = "Chien" | "Chat" | "Lapin";
+export type Specie = "chien" | "chat" | "lapin";

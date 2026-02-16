@@ -3,6 +3,9 @@ import type { Pet } from "../types/Pet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
 import { Link } from "react-router";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import styles from "../assets/styles/myPetsList.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
@@ -49,9 +52,11 @@ function MyPetsList() {
         <div className={styles.allPage}>
           <div className={styles.titleContainer}>
             <h2 className={styles.title}>Ma Tribu :</h2>
-            <button type="button" className={styles.addAnimal}>
-              Ajouter un animal
-            </button>
+            <Link to="/my-pets/pets/new">
+              <button type="button" className="add-animal">
+                Ajouter un animal
+              </button>
+            </Link>
           </div>
           {pets.length === 0 && (
             <p className={styles.errorMessage}>
@@ -65,11 +70,19 @@ function MyPetsList() {
                 <article className={styles.petCard} key={pet.id}>
                   <p className={styles.gender}>{formatGender(pet.gender)}</p>
                   <div className={styles.petInfoContainer}>
-                    <img
-                      // src={pet.photo}
-                      alt={pet.name}
-                      className={styles.imagePetList}
-                    />
+                    <div className={styles.divImage}>
+                      <img
+                        src={
+                          pet.specie === "chat"
+                            ? cat
+                            : pet.specie === "chien"
+                              ? dog
+                              : rabbit
+                        }
+                        alt={pet.name}
+                        className={styles.imagePetList}
+                      />
+                    </div>
                     <div className={styles.petInfo}>
                       <h3>{pet.name}</h3>
                       <p className={styles.specie}>

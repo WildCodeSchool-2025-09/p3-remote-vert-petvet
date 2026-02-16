@@ -169,11 +169,8 @@ function PetForm() {
                     <option value="" disabled>
                       Sélectionnez l'espèce de votre animal
                     </option>
-
                     <option value="Chien">Chien</option>
-
                     <option value="Chat">Chat</option>
-
                     <option value="Lapin">Lapin</option>
                   </select>
                 </label>

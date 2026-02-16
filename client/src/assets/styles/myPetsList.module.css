@@ -78,9 +78,14 @@ body {
 }
 
 .imagePetList {
-  height: 140px;
-  width: 140px;
+  height: 100px;
+  width: 100px;
+  padding: 20px;
+}
+
+.divImage {
   border-radius: 50%;
+  border: solid 7px var(--owner-color);
 }
 
 h3 {

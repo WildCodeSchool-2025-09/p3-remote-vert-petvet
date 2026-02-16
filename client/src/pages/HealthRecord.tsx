@@ -3,6 +3,9 @@ import { useLocation, useParams } from "react-router";
 import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import styles from "../assets/styles/healthRecord.module.css";
 import Consultations from "../components/Consultations";
 import Footer from "../components/Footer";
@@ -14,7 +17,7 @@ import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
   const auth = useAuth();
-  const [petInfo, setPetInfo] = useState<Pet>();
+  const [petInfo, setPetInfo] = useState<Pet | undefined>();
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
@@ -44,6 +47,7 @@ function HealthRecord() {
         }
       });
   }, [id]);
+
   const fewActivities = consultations.slice(0, 5) ?? [];
 
   useEffect(() => {
@@ -59,6 +63,18 @@ function HealthRecord() {
 
   if (!petInfo) return <p>{error}</p>;
 
+  const birthDate = new Date(petInfo.born_at);
+  const now = new Date();
+
+  const diffTime = now.getTime() - birthDate.getTime();
+  const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.44));
+
+  const years = Math.floor(diffMonths / 12);
+  const months = diffMonths % 12;
+
+  const petAge =
+    years >= 1 ? `${years} an${years > 1 ? "s" : ""}` : `${months} mois`;
+
   return (
     <>
       <header className={styles.petVet}>
@@ -71,13 +87,23 @@ function HealthRecord() {
           <div className={styles.healthRecordPage}>
             <section className={styles.petCard}>
               <div className={styles.petFirstInfo}>
-                <img
-                  // src={petInfo.photo}
-                  alt={petInfo.specie}
-                  width="150px"
-                  height="150px"
-                  className={styles.imagePet}
-                />
+                <div
+                  className={`${styles.divImage} ${auth?.isVet ? styles.vet : ""}`}
+                >
+                  <img
+                    src={
+                      petInfo.specie === "chat"
+                        ? cat
+                        : petInfo.specie === "chien"
+                          ? dog
+                          : rabbit
+                    }
+                    alt={petInfo.specie}
+                    width="150px"
+                    height="150px"
+                    className={styles.imagePet}
+                  />
+                </div>
                 <div className={styles.petNameInfo}>
                   <div>
                     <h2>{petInfo.name}</h2>
@@ -95,15 +121,11 @@ function HealthRecord() {
                     </p>
                   </div>
                   <div className={styles.petTitle}>
-                    <p className={styles.age}>
-                      {new Date().getFullYear() -
-                        new Date(petInfo.bornAt).getFullYear()}{" "}
-                      ans
-                    </p>
+                    <p className={styles.age}>{petAge}</p>
                     <p className={styles.weight}>{petInfo.weight} kg</p>
                     <p>
                       {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                      {new Date(petInfo.bornAt).toLocaleDateString()}
+                      {new Date(petInfo.born_at).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

@@ -3,15 +3,14 @@ import type { Reminder } from "./Reminder";
 export interface Pet {
   id: number;
   name: string;
-  tatoo_nb: number;
-  chip_nb: number;
+  tattooNb: number | null;
+  chipNb: number | null;
   born_at: string;
   gender: string;
-  specie: string;
+  specie: Specie;
   breed: string;
-  is_neutered: boolean;
-  photo: string;
-  weight: number;
+  isNeutered: boolean;
+  weight: number | null;
   vetInfo: {
     vetName: string | null;
     vetId: number | null;
@@ -29,3 +28,17 @@ export interface Patient {
   ownerFirstname: string;
   ownerLastname: string;
 }
+export interface CreatePet {
+  id?: number;
+  name: string;
+  tattoo_nb: string | null;
+  chip_nb: number | null;
+  born_at: string;
+  gender: "m" | "f";
+  specie: string;
+  breed?: string;
+  is_neutered?: boolean;
+  weight?: number | null;
+}
+export type Gender = "m" | "f";
+export type Specie = "chien" | "chat" | "lapin";

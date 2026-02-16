@@ -1,18 +1,17 @@
 import type { RowDataPacket } from "mysql2";
-import type { Rows } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 import databaseClient from "../../../database/client";
 
-type PetRow = RowDataPacket & {
+export type PetRow = RowDataPacket & {
   id: number;
   name: string;
-  tattoo_nb: string;
-  chip_nb: number;
+  tattoo_nb: string | null;
+  chip_nb: number | null;
   born_at: string;
   gender: "m" | "f";
   specie: string;
   breed: string;
   is_neutered: boolean;
-  photo: string;
   weight: number;
   vetRow: {
     vetName: string | null;
@@ -121,6 +120,34 @@ class petRepository {
     if (!rows.length) return null;
 
     return rows as PetWithOwner[];
+  }
+  async insert(pet: PetRow, ownerId: number) {
+    const [result] = await databaseClient.query<Result>(
+      `INSERT INTO pet 
+    (name, tattoo_nb, chip_nb, born_at, gender, specie, breed, is_neutered, weight) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        pet.name,
+        pet.tattoo_nb || null,
+        pet.chip_nb || null,
+        pet.born_at,
+        pet.gender,
+        pet.specie,
+        pet.breed,
+        pet.is_neutered ? 1 : 0,
+        pet.weight || null,
+      ],
+    );
+
+    const newPetId = result.insertId;
+
+    await databaseClient.query(
+      `INSERT INTO pet_user (pet_id, user_id) 
+    VALUES (?, ?)`,
+      [newPetId, ownerId],
+    );
+
+    return newPetId;
   }
 }
 

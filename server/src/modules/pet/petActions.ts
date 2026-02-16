@@ -1,7 +1,10 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import Joi from "joi";
 import consultationRepository from "../consultation/consultationRepository";
 import reminderRepository from "../reminder/reminderRepository";
 import petRepository from "./petRepository";
+import type { PetRow } from "./petRepository";
 
 const browseByPet: RequestHandler = async (
   req: Request,
@@ -121,10 +124,55 @@ const browseAllPets = async (
   }
 };
 
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const ownerId = req.auth?.userId;
+
+    if (!ownerId) {
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: "Utilisateur non connecté" });
+      return;
+    }
+
+    const newPetId = await petRepository.insert(req.body, Number(ownerId));
+
+    res.status(StatusCodes.CREATED).json({ newPetId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const petSchema = Joi.object({
+  name: Joi.string().max(30).required(),
+  tattoo_nb: Joi.string().max(10).allow(null).optional(),
+  chip_nb: Joi.number().integer().max(15).allow(null).optional(),
+  born_at: Joi.date().required(),
+  gender: Joi.string().valid("m", "f").required(),
+  specie: Joi.string().valid("Chien", "Chat", "Lapin").required(),
+  breed: Joi.string().max(100).required(),
+  is_neutered: Joi.boolean().default(false),
+  weight: Joi.number().positive().max(9999999999).allow(null).optional(),
+});
+
+const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
+  const { error } = petSchema.validate(req.body, { abortEarly: false });
+
+  if (error == null) {
+    next();
+  } else {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ validationErrors: error.details });
+  }
+};
+
 export default {
   browseByPet,
   browseByOwner,
+  add,
   browseAllPets,
   browseByVeterinary,
   readByVeterinary,
+  validateNewPet,
 };

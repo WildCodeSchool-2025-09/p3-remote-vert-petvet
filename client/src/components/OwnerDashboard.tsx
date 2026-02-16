@@ -1,4 +1,7 @@
 import { Link } from "react-router";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import styles from "../assets/styles/ownerDashboard.module.css";
 import type { Activity } from "../types/Activity";
 import type { Pet } from "../types/Pet";
@@ -28,7 +31,13 @@ function OwnerDashboard({ dashboard }: OwnerDashboard) {
                   </p>
                   <div className={styles.petInfoContainer}>
                     <img
-                      src={pet.photo}
+                      src={
+                        pet.specie === "chat"
+                          ? cat
+                          : pet.specie === "chien"
+                            ? dog
+                            : rabbit
+                      }
                       alt={pet.name}
                       className={styles.petImage}
                     />

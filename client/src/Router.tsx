@@ -7,6 +7,7 @@ import HealthRecord from "./pages/HealthRecord";
 import Login from "./pages/Login";
 import MyPatients from "./pages/MyPatients";
 import MyPetsList from "./pages/MyPetsList";
+import PetForm from "./pages/PetForm";
 import Register from "./pages/Register";
 import ReminderForm from "./pages/ReminderForm";
 import Reminders from "./pages/Reminders";
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute allowedRoles={["owner"]}>
         <MyPetsList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/my-pets/pets/new",
+    element: (
+      <ProtectedRoute allowedRoles={["owner"]}>
+        <PetForm />
       </ProtectedRoute>
     ),
   },

@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "../assets/styles/variables.css";
-import "../assets/styles/Consultations.css";
 import { useNavigate } from "react-router";
+import styles from "../assets/styles/consultations.module.css";
 import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 import ConsultationDetails from "./ConsultationDetails";
 
 function Consultations({
   consultations,
-  pet,
 }: { pet: Pet; consultations: Consultation[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
@@ -20,19 +19,19 @@ function Consultations({
     : consultations.slice(0, 3);
 
   return (
-    <section className="vet-consultations-container">
-      <article className="vet-consultations-header">
+    <section className={styles.vetConsultationsContainer}>
+      <article className={styles.vetConsultationsHeader}>
         <button
           type="button"
-          className="add-consultation-button"
-          onClick={() => navigate(`/consultation/add/${pet.vetInfo.vetId}`)}
+          className={styles.addConsultationButton}
+          onClick={() => navigate("/consultation/add")}
         >
           <img src="/images/white-cross.png" alt="Ajouter une consultation" />
           AJOUTER UNE CONSULTATION
         </button>
       </article>
 
-      <article className="vet-consultations-cards">
+      <article className={styles.vetConsultationsCards}>
         <h1>Consultations</h1>
         <ul>
           {displayedConsultations.map((consultation) => {
@@ -40,7 +39,7 @@ function Consultations({
               <button
                 type="button"
                 key={consultation.id}
-                className="consultation-item"
+                className={styles.consultationItem}
                 onClick={() => setCurrentConsultation(consultation)}
               >
                 <img
@@ -52,10 +51,10 @@ function Consultations({
                         : "/images/blue/stetoscope.png"
                   }
                   alt="Icône de consultation vétérinaire"
-                  className="consultation-icon"
+                  className={styles.consultationIcon}
                 />
 
-                <div className="consultation-details">
+                <div className={styles.consultationDetails}>
                   <h3>
                     {new Date(consultation.created_at).toLocaleDateString()}
                   </h3>
@@ -74,7 +73,7 @@ function Consultations({
         )}
         <button
           type="button"
-          className="see-more-button"
+          className={styles.seeMoreButton}
           onClick={() => setIsExpanded(!isExpanded)}
         >
           {isExpanded ? "Voir moins ▲" : "Voir plus ▼"}

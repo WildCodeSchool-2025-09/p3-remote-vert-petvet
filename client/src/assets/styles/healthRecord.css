@@ -10,13 +10,6 @@
   width: 100%;
   max-width: 800px;
 }
-.pet-reminder {
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  align-items: flex-end;
-  margin-left: auto;
-}
 
 .add-consult {
   display: flex;

@@ -3,6 +3,7 @@ import type { FormEventHandler } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import styles from "../assets/styles/login.module.css";
+import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
@@ -114,6 +115,7 @@ function Login() {
           </article>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,247 @@
+body {
+  background-color: var(--main-color);
+}
+.petVet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-logo);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--text-color);
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
+
+.reminderFormTitle {
+  font-family: var(--font-logo);
+  font-size: 2rem;
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 30px;
+  color: var(--text-color);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-color);
+  margin-bottom: 5rem;
+
+  input {
+    display: block;
+    font-family: var(--font-text);
+    color: var(--text-color);
+  }
+}
+
+.reminderForm {
+  width: 35vw;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+p {
+  font-family: var(--font-text);
+}
+
+.titleDate {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25px;
+  gap: 25px;
+}
+
+.frequencyContainer {
+  display: flex;
+  padding: 25px;
+  gap: 25px;
+}
+.frequencyContainer .frequency {
+  display: flex;
+  flex-direction: column;
+}
+.frequencyContainer .frequencyValue {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.frequencyValue p {
+  padding-bottom: 15px;
+}
+
+.reminderInput {
+  margin-top: 5px;
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  border: none;
+}
+
+.reminderLabel {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.reminderSelect {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  button {
+    background-color: var(--owner-color);
+    font-family: var(--font-text);
+    font-size: 1.1rem;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}
+
+.buttonContainer.vet button {
+  background-color: var(--vet-color);
+}
+
+.title {
+  width: 200px;
+}
+
+.content {
+  width: 250px;
+}
+
+.frequencyCount {
+  width: 100px;
+  height: 25px;
+  border-radius: 15px;
+  border: solid 1px #a5a5a5;
+  padding: 10px;
+  font-family: var(--font-text);
+  color: var(--text-color);
+}
+
+.obligatory {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.date {
+  width: 203px;
+}
+
+.error {
+  color: #d4896c;
+  font-weight: 800;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.allPage {
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .title {
+    width: 250px;
+  }
+
+  .date {
+    width: 250px;
+  }
+
+  .reminderFormTitle {
+    padding: 20px;
+  }
+  .formContainer {
+    width: 70%;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .titleDate {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 0;
+  }
+  .frequencyContainer {
+    gap: 15px;
+  }
+
+  .frequencyContainer .frequencyValue {
+    gap: 15px;
+  }
+
+  .contentContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}

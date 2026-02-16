@@ -1,0 +1,565 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.headerHome {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 4px solid rgba(255, 255, 255, 0.897);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.288),
+      rgba(255, 255, 255, 0.281)
+    ), url(/images/dog-and-cat.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.headerHome .headerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 4vh;
+}
+
+.headerHome nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.headerHome nav .logoContainer {
+  display: flex;
+  align-items: center;
+}
+.headerHome nav .logoContainer .logo {
+  width: 125px;
+  height: 125px;
+}
+.headerHome nav .logoContainer .logo.logo2 {
+  margin-left: -20px;
+  position: relative;
+  z-index: 1;
+}
+
+.headerHome nav h1 {
+  font-family: var(--font-logo);
+  font-size: 3.8rem;
+  color: var(--text-color);
+  font-weight: bold;
+  margin: 0 3rem;
+  text-align: center;
+}
+
+.headerHome h2 {
+  font-family: var(--font-logo);
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.headerHome h3 {
+  font-family: var(--font-text);
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 35vh;
+}
+
+.headerHome ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.headerHome .buttonHomePage {
+  gap: 15px;
+  width: 20rem;
+  height: 5rem;
+  font-size: 1.2rem;
+  background-color: var(--main-color);
+  border: none;
+  padding: 20px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  font-family: var(--font-text);
+  justify-content: center;
+  min-width: 150px;
+}
+.headerHome .buttonHomePage:hover {
+  background-color: #f0f0f0;
+}
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
+.headerHome .buttonHomePage img {
+  width: 30px;
+  height: 30px;
+}
+.headerHome .scrollDown {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color);
+  font-family: var(--font-text);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+header .scrollDown .arrow {
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+main .intro {
+  background-color: var(--main-color);
+  background-image: url(/images/paws-path.png);
+  background-repeat: no-repeat;
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 5rem 12rem;
+  min-width: 100vh;
+}
+main .intro .introSection {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+main .intro .introSection img {
+  width: 400px;
+  height: auto;
+  border-radius: 25px;
+}
+main .intro .introText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+main .intro h1 {
+  font-family: var(--font-logo);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+main .intro h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  color: var(--text-color);
+  margin: 1.5rem 0;
+}
+main .intro p {
+  font-family: var(--font-text);
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  padding: 0 50px;
+}
+main .intro img {
+  border-radius: 100px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+main .intro .introSection .introText span {
+  font-weight: bold;
+  background-color: #faecdb;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+main .individuals {
+  background-color: #faecdb;
+  padding: 4rem 4rem;
+  border-radius: 74% 26% 70% 30% / 25% 30% 70% 75%;
+}
+main .individuals h1 {
+  font-family: var(--font-logo);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--owner-color);
+  text-align: left;
+}
+main .individuals h2 {
+  font-family: var(--font-logo);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  color: var(--text-color);
+  margin: 1.5rem 0;
+}
+main .individuals .individualsTextAndImage {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+main .individuals p {
+  font-family: var(--font-text);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  padding-right: 8rem;
+  padding-top: 2rem;
+  text-align: left;
+}
+main .individuals .individualsTextAndImage img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: auto;
+}
+main .professionals {
+  background-color: var(--main-color);
+  background-image: url(/images/paws-path.png);
+  background-repeat: no-repeat;
+  padding: 8rem 4rem;
+}
+main .professionals h1 {
+  font-family: var(--font-logo);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--vet-color);
+  text-align: right;
+}
+main .professionals .professionalsTextAndImage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+main .professionals p {
+  font-family: var(--font-text);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  padding-left: 8rem;
+  padding-top: 2rem;
+  text-align: left;
+}
+main .professionals .professionalsTextAndImage img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: auto;
+}
+main .associations {
+  background-color: #faecdb;
+  background-image: url(/images/paws-path-reverse.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  padding: 5rem 4rem;
+}
+main .associations h1 {
+  font-family: var(--font-logo);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--owner-color);
+  text-align: left;
+}
+main .associations h2 {
+  font-family: var(--font-logo);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  color: var(--text-color);
+  margin: 1.5rem 0;
+}
+main .associations p {
+  font-family: var(--font-text);
+  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  padding-right: 8rem;
+  padding-top: 2rem;
+  text-align: left;
+}
+main .associations .associationsTextAndImage {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 0 10rem;
+}
+main .associations .associationsTextAndImage .associationsText {
+  max-width: 600px;
+}
+main .associations .associationsTextAndImage img {
+  border-radius: 80px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: auto;
+}
+main .buttonsBottom {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 5rem 0;
+  background-color: var(--main-color);
+  flex-direction: column;
+  background-image: url(/images/paws-path-reverse.png);
+  background-repeat: no-repeat;
+}
+main .buttonsBottom .buttonHomePage {
+  gap: 15px;
+  width: 15rem;
+  height: 4rem;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  background-color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  font-family: var(--font-text);
+  align-self: center;
+  justify-content: center;
+}
+main .buttonsBottom .buttonHomePage:hover {
+  background-color: #f0f0f0;
+}
+main .buttonsBottom .buttonContactsUtile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+main .buttonsBottom .buttonRegisterLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+main .buttonsBottom img {
+  width: 20px;
+  height: 20px;
+}
+.backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #333;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.backToTop:hover {
+  background-color: #f8f8f8;
+  transform: translateY(-5px);
+}
+@media (max-width: 800px) {
+  :root {
+    overflow-x: hidden;
+  }
+
+  .headerHome {
+    padding: 20px 10px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .headerHome nav {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .headerHome nav .logoContainer .logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .headerHome nav h1 {
+    font-size: 5.2rem;
+    margin: 0;
+  }
+
+  .headerHome h2 {
+    font-size: 1.8rem;
+    padding: 0 10px;
+  }
+
+  .headerHome h3 {
+    font-size: 1.2rem;
+    margin-bottom: 25vh;
+  }
+
+  .headerHome .headerContent ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 80px;
+  }
+  .headerHome .buttonHomePage {
+    background: rgba(255, 255, 255, 0.568);
+    max-width: 200px;
+    justify-content: flex-start;
+    padding-left: 15%;
+    gap: 15px;
+  }
+  .headerHome .buttonHomePage img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .headerHome .scrollDown {
+    position: relative;
+    left: 0;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .headerHome .scrollDown .arrow {
+    display: inline-block;
+    animation: bounce 2s infinite;
+  }
+
+  main {
+    overflow-x: hidden;
+  }
+
+  main .intro,
+  main .individuals,
+  main .professionals,
+  main .associations {
+    padding: 3rem 1.5rem;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  main .intro .introSection,
+  main .individuals .individualsTextAndImage,
+  main .professionals .professionalsTextAndImage,
+  main .associations .associationsTextAndImage {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  main .intro h1,
+  main .intro p,
+  main .individuals h1,
+  main .individuals h2,
+  main .individuals p,
+  main .professionals h1,
+  main .professionals p,
+  main .associations h1,
+  main .associations h2,
+  main .associations p {
+    text-align: center;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  main img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  main .buttonsBottom {
+    padding: 3rem 1rem;
+  }
+
+  main .buttonsBottom .buttonHomePage {
+    width: auto;
+    max-width: 200px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  main .buttonsBottom .buttonHomePage img {
+    width: 18px;
+    height: 18px;
+    align-items: flex-start;
+  }
+
+  .backToTop {
+    right: 15px;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerHome nav h1 {
+    font-size: 3.5rem;
+  }
+  main .intro h1 {
+    font-size: 1.5rem;
+  }
+  main .intro .introSection .introText span {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}

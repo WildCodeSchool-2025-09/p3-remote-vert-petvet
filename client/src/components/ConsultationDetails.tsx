@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import "../assets/styles/consultationDetails.css";
+import styles from "../assets/styles/consultationDetails.module.css";
+import { useAuth } from "../context/AuthContext";
 import type { Consultation } from "../types/Consultation";
 
 type ConsultationProps = {
@@ -12,6 +13,7 @@ export default function consultation({
   consultation,
   onClose,
 }: ConsultationProps) {
+  const auth = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function consultation({
   return (
     <dialog
       ref={dialogRef}
-      className="consultation-modal"
+      className={styles.consultationModal}
       onCancel={onClose}
       tabIndex={-1}
       onClick={(e) => {
@@ -48,10 +50,16 @@ export default function consultation({
         }
       }}
     >
-      <div className="consultation-card">
+      <div
+        className={`${styles.consultationCardModal} ${auth?.isVet ? styles.vet : ""}`}
+      >
         {consultation ? (
           <>
-            <button type="button" className="button-close" onClick={onClose}>
+            <button
+              type="button"
+              className={styles.buttonClose}
+              onClick={onClose}
+            >
               <img
                 src="/images/cross.png"
                 alt="croix de fermeture"
@@ -59,14 +67,14 @@ export default function consultation({
                 height="35px"
               />
             </button>
-            <h1 className="title-detail">Détails de la consultation</h1>
-            <h2 className="category-detail">{consultation.category}</h2>
-            <div className="consultation-animal-name">
-              <h3 className="animal-name">Animal :</h3> <br />
+            <h1 className={styles.titleDetail}>Détails de la consultation</h1>
+            <h2 className={styles.categoryDetail}>{consultation.category}</h2>
+            <div className={styles.consultationAnimalName}>
+              <h3 className={styles.animalName}>Animal :</h3> <br />
               <p>{consultation.petName}</p>
             </div>
-            <div className="consultation-date-detail">
-              <h3 className="title-date">Date :</h3> <br />
+            <div className={styles.consultationDateDetail}>
+              <h3 className={styles.titleDate}>Date :</h3> <br />
               <p>
                 {new Date(consultation.created_at).toLocaleString("fr-FR", {
                   day: "numeric",
@@ -75,19 +83,19 @@ export default function consultation({
                 })}
               </p>
             </div>
-            <div className="treatment">
-              <h3 className="treatment-detail">Traitement :</h3> <br />
+            <div className={styles.treatment}>
+              <h3 className={styles.treatmentDetail}>Traitement :</h3> <br />
               <p>{consultation.treatment}</p>
             </div>
-            <div className="dosage">
-              <h3 className="dosage-detail">Posologie :</h3> <br />
+            <div className={styles.dosage}>
+              <h3 className={styles.dosageDetail}>Posologie :</h3> <br />
               <p>{consultation.dosage}</p>
             </div>
-            <div className="content-report">
-              <h3 className="report-title">Description :</h3>
+            <div className={styles.contentReport}>
+              <h3 className={styles.reportTitle}>Description :</h3>
               <p>{consultation.report}</p>
             </div>
-            <button type="button" className="delete-button">
+            <button type="button" className={styles.deleteButton}>
               Supprimer
             </button>
           </>

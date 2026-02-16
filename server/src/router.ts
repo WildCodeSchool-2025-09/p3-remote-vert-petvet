@@ -17,7 +17,7 @@ router.post("/api/pet_add_veterinary", petUsersActions.add);
 
 router.get("/api/petslist", petActions.browseAllPets);
 
-router.get("/api/pet/veterinary:id", petActions.browseByVeterinary);
+router.get("/api/pet/veterinary/:id", petActions.browseByVeterinary);
 
 router.get("/api/owners/:id/pets", petActions.browseByOwner);
 

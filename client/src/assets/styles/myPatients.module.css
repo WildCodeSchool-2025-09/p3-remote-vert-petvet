@@ -24,7 +24,7 @@
   color: var(--text-color);
 }
 
-.selectedPet {
+.selectedPatient {
   width: 320px;
 }
 
@@ -48,10 +48,113 @@
   }
 }
 
-.green {
-  color: green;
+.addPatientSucces {
+  text-align: center;
+  color: var(--owner-color);
 }
 
-.red {
-  color: red;
+.addPatientError {
+  text-align: center;
+  color: #d4896c;
+}
+
+.patientsSearchBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.titlePatient {
+  font-family: var(--font-logo);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.patientsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.patientCard {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 320px;
+  padding: 30px 20px;
+  margin: 20px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+}
+
+.patientCard:hover {
+  transform: translateY(-5px);
+}
+
+.patientGenderWrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.patientGenderImage {
+  width: 22px;
+  height: 22px;
+}
+
+.patientPhoto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.patientInfo {
+  flex: 1;
+  margin-left: 18px;
+  margin-right: 18px;
+  text-align: center;
+}
+
+.patientName {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ownerName {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-top: 4px;
+}
+
+.healthRecordButton {
+  width: 150px;
+  height: 50px;
+  background-color: var(--vet-color);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  margin-top: 40px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.healthRecordButton:hover {
+  background: #6f9ac7;
 }

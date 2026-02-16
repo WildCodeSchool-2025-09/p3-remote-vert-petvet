@@ -93,8 +93,10 @@ class petRepository {
     const [rows] = await databaseClient.query<RowDataPacket[]>(
       `
     SELECT 
+    pet.id AS petId,
       pet.name AS petName,
       pet.photo AS petPhoto,
+      pet.gender AS petGender,
       CONCAT(owner.firstname, ' ', owner.lastname) AS ownerName
     FROM pet
     JOIN pet_user AS vet_link ON vet_link.pet_id = pet.id

@@ -1,46 +1,82 @@
-import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import Select from "react-select";
 import styles from "../assets/styles/myPatients.module.css";
 
-type ApiResponse = {
+export interface ApiResponse {
   petId: number;
   petName: string;
   ownerFirstName: string;
   ownerLastName: string;
-};
+}
 
-type PetOption = {
+export interface PetOwner {
+  petId: number;
+  petName: string;
+  petGender: string;
+  petPhoto: string | null;
+  ownerName: string;
+}
+
+export interface PetOption {
   value: number;
   label: string;
   pet: ApiResponse;
-};
+}
 
 export default function PetSearch() {
   const [pets, setPets] = useState<ApiResponse[]>([]);
+  const [veterinaryPets, setVeterinaryPets] = useState<PetOwner[]>([]);
   const [selectedPet, setSelectedPet] = useState<ApiResponse | null>(null);
+  const [selectedFilter, setSelectedFilter] = useState<PetOwner | null>(null);
 
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"success" | "error" | null>(
     null,
   );
+  const navigate = useNavigate();
 
   const { id: veterinaryId } = useParams<{ id: string }>();
 
+  const fetchVeterinaryPets = useCallback(async () => {
+    if (!veterinaryId) return;
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/pet/veterinary/${veterinaryId}`,
+      );
+
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        setVeterinaryPets(data);
+      } else if (Array.isArray(data.pets)) {
+        setVeterinaryPets(data.pets);
+      } else {
+        setVeterinaryPets([]);
+      }
+    } catch (error) {
+      console.error("Erreur fetch veterinary pets:", error);
+    }
+  }, [veterinaryId]);
+
   useEffect(() => {
-    const fetchPets = async () => {
+    const fetchData = async () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_URL}/petslist`);
         const data = await res.json();
         setPets(data.pets ?? []);
+
+        await fetchVeterinaryPets();
+      } catch (error) {
+        console.error("Erreur fetch pets:", error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchPets();
-  }, []);
+    fetchData();
+  }, [fetchVeterinaryPets]);
 
   useEffect(() => {
     if (!message) return;
@@ -56,6 +92,16 @@ export default function PetSearch() {
         pet: p,
       })),
     [pets],
+  );
+
+  const veterinaryOptions = useMemo(
+    () =>
+      veterinaryPets.map((pet) => ({
+        value: pet.petName,
+        label: `${pet.petName} (${pet.ownerName})`,
+        pet: pet,
+      })),
+    [veterinaryPets],
   );
 
   const addNewPet = async () => {
@@ -83,6 +129,7 @@ export default function PetSearch() {
       setMessage("Animal associé au vétérinaire !");
       setMessageType("success");
       setSelectedPet(null);
+      await fetchVeterinaryPets();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setMessage(error.message);
@@ -100,12 +147,13 @@ export default function PetSearch() {
       <header className={styles.petVet}>Pet&Vet</header>
       <section className={styles.newPatient}>
         <h2 className={styles.titleNewPatient}>Nouveau Patient</h2>
-        <div className={styles.selectedPet}>
+        <div className={styles.selectedPatient}>
           <Select<PetOption>
             options={petOptions}
             placeholder="Rechercher un animal..."
             isSearchable
-            className={styles.input}
+            classNamePrefix="rs"
+            className={styles.inputPatient}
             onChange={(opt) => setSelectedPet(opt?.pet ?? null)}
           />
         </div>
@@ -120,10 +168,77 @@ export default function PetSearch() {
         </button>
       </section>
       {message && (
-        <p className={messageType === "success" ? styles.green : styles.red}>
+        <p
+          className={
+            messageType === "success"
+              ? styles.addPatientSucces
+              : styles.addPatientError
+          }
+        >
           {message}
         </p>
       )}
+      <section className={styles.veterinaryPatients}>
+        <article className={styles.patientsSearchBar}>
+          <h2 className={styles.titlePatient}>Mes Patients</h2>
+          <div className={styles.selectedPatient}>
+            <Select
+              options={veterinaryOptions}
+              placeholder="Rechercher un patient..."
+              isSearchable
+              classNamePrefix="rs"
+              className={styles.patientInput}
+              onChange={(opt) => setSelectedFilter(opt?.pet ?? null)}
+              isClearable
+            />
+          </div>
+        </article>
+
+        {veterinaryPets.length === 0 ? (
+          <p>Aucun animal pour ce vétérinaire.</p>
+        ) : (
+          <article className={styles.patientsList}>
+            {(selectedFilter ? [selectedFilter] : veterinaryPets).map((pet) => (
+              <div key={pet.petId} className={styles.patientCard}>
+                <div className={styles.patientGenderWrapper}>
+                  <img
+                    className={styles.patientGenderImage}
+                    src={
+                      pet.petGender === "m"
+                        ? "/images/male.png"
+                        : "/images/female.png"
+                    }
+                    alt={pet.petGender === "m" ? "Mâle" : "Femelle"}
+                  />
+                </div>
+
+                {pet.petPhoto ? (
+                  <img
+                    src={pet.petPhoto}
+                    alt={pet.petName}
+                    className={`${styles.patientPhoto}`}
+                  />
+                ) : (
+                  <div className={styles.noPatientPhoto}>Pas de photo</div>
+                )}
+
+                <div className={styles.patientInfo}>
+                  <h3 className={styles.patientName}>{pet.petName}</h3>
+                  <p className={styles.ownerName}>{pet.ownerName}</p>
+
+                  <button
+                    type="button"
+                    className={styles.healthRecordButton}
+                    onClick={() => navigate(`/pet-profile/${pet.petId}`)}
+                  >
+                    Fiche de santé
+                  </button>
+                </div>
+              </div>
+            ))}
+          </article>
+        )}
+      </section>
     </>
   );
 }

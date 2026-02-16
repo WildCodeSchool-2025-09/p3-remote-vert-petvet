@@ -65,7 +65,6 @@ function HealthRecord() {
 
   const birthDate = new Date(petInfo.born_at);
   const now = new Date();
-
   const diffTime = now.getTime() - birthDate.getTime();
   const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.44));
 
@@ -75,6 +74,7 @@ function HealthRecord() {
   const petAge =
     years >= 1 ? `${years} an${years > 1 ? "s" : ""}` : `${months} mois`;
 
+  console.log(petInfo.is_neutered);
   return (
     <>
       <header className={styles.petVet}>
@@ -108,16 +108,15 @@ function HealthRecord() {
                   <div>
                     <h2>{petInfo.name}</h2>
                     <p>
-                      {`${petInfo.breed}
-                       - ${
-                         petInfo.gender === "m"
-                           ? petInfo.isNeutered
-                             ? "Mâle Stérilisé"
-                             : "Mâle"
-                           : petInfo.isNeutered
-                             ? "Femelle stérilisée"
-                             : "Femelle"
-                       }`}
+                      {`${petInfo.breed} - ${
+                        petInfo.gender === "m"
+                          ? petInfo.is_neutered
+                            ? "Mâle stérilisé"
+                            : "Mâle"
+                          : petInfo.is_neutered
+                            ? "Femelle stérilisée"
+                            : "Femelle"
+                      }`}
                     </p>
                   </div>
                   <div className={styles.petTitle}>

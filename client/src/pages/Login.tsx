@@ -35,8 +35,12 @@ function Login() {
         auth?.setUser(userData.user);
         navigate("/dashboard");
       }
-    } catch (err) {
-      setError("Email ou mot de passe incorrect");
+    } catch (error: unknown) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Mail ou mot de passe incorrect",
+      );
     }
   };
 
@@ -70,7 +74,7 @@ function Login() {
           <article className={styles.formContainer}>
             <h1>Connexion</h1>
             <h2>à mon espace</h2>
-            <p>{error}</p>
+            <p className={styles.errorMessage}>{error}</p>
             <form onSubmit={login} className={styles.loginForm}>
               <div>
                 <label htmlFor="email">

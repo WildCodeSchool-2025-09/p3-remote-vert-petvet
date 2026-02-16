@@ -9,7 +9,7 @@ export interface Pet {
   gender: string;
   specie: Specie;
   breed: string;
-  isNeutered: boolean;
+  is_neutered: boolean;
   weight: number | null;
   vetInfo: {
     vetName: string | null;
@@ -37,7 +37,7 @@ export interface CreatePet {
   gender: "m" | "f";
   specie: string;
   breed?: string;
-  is_neutered?: boolean;
+  is_neutered: boolean;
   weight?: number | null;
 }
 export type Gender = "m" | "f";

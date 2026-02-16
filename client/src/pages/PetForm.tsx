@@ -34,19 +34,19 @@ function PetForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Erreur lors de la création du rappel");
+        throw new Error("Erreur lors de la création de votre animal");
       }
 
       const data = await response.json();
 
       navigate(`/pet-profile/${data.newPetId}`, {
-        state: { successMessage: "Rappel créé avec succès !" },
+        state: { successMessage: "Animal ajouté à votre tribu avec succès !" },
       });
     } catch (error: unknown) {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "Erreur lors de la création du rappel",
+          : "Erreur lors de la création de votre animal",
       );
     } finally {
       setIsSubmited(false);
@@ -89,7 +89,7 @@ function PetForm() {
                     gender: gender as Gender,
                     specie: specie as Specie,
                     breed,
-                    is_neutered: isNeutered,
+                    is_neutered: Boolean(isNeutered),
                     weight: weight ? Number(weight) : null,
                   });
                 }}
@@ -193,7 +193,7 @@ function PetForm() {
                     id="modeSwitchNeutered"
                     className={styles.checkbox}
                     checked={isNeutered}
-                    onChange={() => setIsNeutered(!isNeutered)}
+                    onChange={(e) => setIsNeutered(e.target.checked)}
                   />
                   Stérilisé :
                   <label
@@ -225,22 +225,6 @@ function PetForm() {
                   />
                   <span>Kg</span>
                 </label>
-
-                {/* <label className={styles.photoLabel}>
-              Photo
-              <span className={styles.obligatory}>*</span>
-              <input
-                type="file"
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
-                required
-                className={styles.photoPetInput}
-              />
-            </label>
-
-            <div className={styles.FormPhotoContainer}>
-              <img src={photo} alt={name} />
-            </div> */}
                 <div className={styles.petLabelSubmit}>
                   <button type="submit" disabled={isSubmited}>
                     {isSubmited ? "Création..." : "Enregistrer"}

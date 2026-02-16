@@ -227,6 +227,11 @@
   color: var(--vet-color);
 }
 
+.errorMessage {
+  color: #d4896c;
+  font-weight: 800;
+}
+
 @media (max-width: 768px) {
   .navLogin {
     display: flex;

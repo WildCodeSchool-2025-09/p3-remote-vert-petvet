@@ -3,13 +3,13 @@ import { useLocation, useParams } from "react-router";
 import RemindersByPet from "../components/RemindersByPet";
 import "../assets/styles/reset.css";
 import "../assets/styles/variables.css";
-import "../assets/styles/petInfo.css";
-import "../assets/styles/consultCards.css";
-import MedicalHistory from "../components/MedicalHistory";
-import type { Consultation } from "../types/Consultation";
-import "../assets/styles/healthRecord.css";
+import styles from "../assets/styles/healthRecord.module.css";
 import Consultations from "../components/Consultations";
+import Footer from "../components/Footer";
+import MedicalHistory from "../components/MedicalHistory";
+import NavBar from "../components/NavBar";
 import { useAuth } from "../context/AuthContext";
+import type { Consultation } from "../types/Consultation";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
@@ -19,7 +19,7 @@ function HealthRecord() {
   const [reminders, setReminders] = useState([]);
   const { id } = useParams();
   const [openResume, setOpenResume] = useState(true);
-  const [openHealth, setOpenHealth] = useState(false);
+  const [openHealthOrConsult, setOpenHealthOrConsult] = useState(false);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [openMedicalHistory, setOpenMedicalHistory] = useState(false);
   const location = useLocation();
@@ -53,150 +53,193 @@ function HealthRecord() {
       }, 3000);
     }
   }, [temporaryMessage]);
+  const logoSrc = auth?.isVet
+    ? "/images/blue/logo.png"
+    : "/images/green/logo.png";
 
   if (!petInfo) return <p>{error}</p>;
 
   return (
     <>
-      <header className="pet-vet">Pet&Vet</header>
-      <div className="health-record-page">
-        <section className="pet-card">
-          <div className="pet-first-info">
-            <img
-              src={petInfo.photo}
-              alt={petInfo.specie}
-              width="150px"
-              height="150px"
-              className="image-pet"
-            />
-            <div className="pet-name-info">
-              <div>
-                <h2>{petInfo.name}</h2>
+      <header className={styles.petVet}>
+        <img src={logoSrc} alt="logo" className={styles.logo} />
+        <h1>Pet&Vet</h1>
+      </header>
+      <main className={styles.mainPage}>
+        <NavBar />
+        <div className={styles.allPage}>
+          <div className={styles.healthRecordPage}>
+            <section className={styles.petCard}>
+              <div className={styles.petFirstInfo}>
+                <img
+                  src={petInfo.photo}
+                  alt={petInfo.specie}
+                  width="150px"
+                  height="150px"
+                  className={styles.imagePet}
+                />
+                <div className={styles.petNameInfo}>
+                  <div>
+                    <h2>{petInfo.name}</h2>
+                    <p>
+                      {`${petInfo.breed}
+                       - ${
+                         petInfo.gender === "m"
+                           ? petInfo.is_neutered
+                             ? "Mâle Stérilisé"
+                             : "Mâle"
+                           : petInfo.is_neutered
+                             ? "Femelle stérilisée"
+                             : "Femelle"
+                       }`}
+                    </p>
+                  </div>
+                  <div className={styles.petTitle}>
+                    <p className={styles.age}>
+                      {new Date().getFullYear() -
+                        new Date(petInfo.born_at).getFullYear()}{" "}
+                      ans
+                    </p>
+                    <p className={styles.weight}>{petInfo.weight} kg</p>
+                    <p>
+                      {`Né${petInfo.gender === "f" ? "e" : ""} le `}
+                      {new Date(petInfo.born_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.petSecondInfo}>
+                <div>
+                  <h3>Espèce</h3>
+                  <p>{petInfo.specie}</p>
+                </div>
+                <div>
+                  <h3>Race</h3>
+                  <p>{petInfo.breed}</p>
+                </div>
+                <div>
+                  <h3>Puce électronique</h3>
+                  <p>{petInfo.chip_nb}</p>
+                </div>
                 <p>
-                  {petInfo.gender === "m" ? "Mâle" : "Femelle"}
-                  {petInfo.is_neutered
-                    ? petInfo.gender === "mâle"
-                      ? "- Stérilisé"
-                      : "- Stérilisée"
-                    : ""}
+                  {petInfo.vetInfo == null
+                    ? "Pas de vétérinaire"
+                    : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
                 </p>
               </div>
-              <div className="pet-title">
-                <p className="age">
-                  {new Date().getFullYear() -
-                    new Date(petInfo.born_at).getFullYear()}{" "}
-                  ans
-                </p>
-                <p className="weight">{petInfo.weight} kg</p>
-                <p>
-                  {`Né${petInfo.gender === "f" ? "e" : ""} le `}
-                  {new Date(petInfo.born_at).toLocaleDateString()}
-                </p>
+            </section>
+            {temporaryMessage && (
+              <p className={styles.success}>{temporaryMessage}</p>
+            )}
+          </div>
+          <div>
+            <section>
+              <div
+                className={`${styles.buttonsContainer} ${auth?.isVet ? styles.vet : ""}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(true);
+                    setOpenHealthOrConsult(false);
+                    setOpenMedicalHistory(false);
+                  }}
+                  className={
+                    openResume
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
+                >
+                  Résumé
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(false);
+                    setOpenHealthOrConsult(true);
+                    setOpenMedicalHistory(false);
+                  }}
+                  className={
+                    openHealthOrConsult
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
+                >
+                  {auth?.isVet ? "Consultation" : "Santé"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenResume(false);
+                    setOpenHealthOrConsult(false);
+                    setOpenMedicalHistory(true);
+                  }}
+                  className={
+                    openMedicalHistory
+                      ? auth?.isVet
+                        ? `${styles.selectedSection} ${styles.vet}`
+                        : styles.selectedSection
+                      : ""
+                  }
+                >
+                  Historique
+                </button>
               </div>
-            </div>
-          </div>
-          <div className="pet-second-info">
-            <div>
-              <h3>Espèce</h3>
-              <p>{petInfo.specie}</p>
-            </div>
-            <div>
-              <h3>Race</h3>
-              <p>{petInfo.breed}</p>
-            </div>
-            <div>
-              <h3>Puce électronique</h3>
-              <p>{petInfo.chip_nb}</p>
-            </div>
-            <p>
-              {petInfo.vetInfo == null
-                ? "Pas de vétérinaire"
-                : `Suivi : Dr. ${petInfo.vetInfo.vetName}`}
-            </p>
-          </div>
-        </section>
-        {temporaryMessage && <p className="success">{temporaryMessage}</p>}
-        <section className="vet-consultations-section">
-          {auth?.isVet && (
-            <Consultations consultations={consultations} pet={petInfo} />
-          )}
-        </section>
-      </div>
-      <div>
-        <section>
-          <div className="buttons-container">
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(true);
-                setOpenHealth(false);
-                setOpenMedicalHistory(false);
-              }}
-              className={openResume ? "selected-section" : ""}
-            >
-              Résumé
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(false);
-                setOpenHealth(true);
-                setOpenMedicalHistory(false);
-              }}
-              className={openHealth ? "selected-section" : ""}
-            >
-              Santé
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOpenResume(false);
-                setOpenHealth(false);
-                setOpenMedicalHistory(true);
-              }}
-              className={openMedicalHistory ? "selected-section" : ""}
-            >
-              Historique
-            </button>
-          </div>
-          <div
-            className={
-              !openMedicalHistory && !openHealth && openResume
-                ? "resume"
-                : "none"
-            }
-          >
-            <article className="short-medical-history">
-              <div>
-                <h2>Activités récentes</h2>
-                <h3>Les dernières activités de {petInfo.name}</h3>
+              <div
+                className={
+                  !openMedicalHistory && !openHealthOrConsult && openResume
+                    ? styles.resume
+                    : styles.none
+                }
+              >
+                {" "}
+                <article
+                  className={`${styles.shortMedicalHistory} ${auth?.isVet ? styles.vet : ""}`}
+                >
+                  <div>
+                    <h2>Activités récentes</h2>
+                    <h3>Les dernières activités de {petInfo.name}</h3>
+                  </div>
+                  <MedicalHistory
+                    consultations={fewActivities}
+                    length="short"
+                  />
+                </article>
+                <article className={styles.petReminder}>
+                  <RemindersByPet reminders={reminders} pet={petInfo} />
+                </article>
               </div>
-              <MedicalHistory consultations={fewActivities} />
-            </article>
-            <article className="pet-reminder">
-              <RemindersByPet reminders={reminders} pet={petInfo} />
-            </article>
+              <div
+                className={
+                  !openMedicalHistory && openHealthOrConsult && !openResume
+                    ? styles.health
+                    : styles.none
+                }
+              >
+                {auth?.isVet ? (
+                  <Consultations consultations={consultations} pet={petInfo} />
+                ) : (
+                  <p className={styles.message}>Fonctionnalité à venir !</p>
+                )}
+              </div>
+              <div
+                className={
+                  openMedicalHistory && !openHealthOrConsult && !openResume
+                    ? styles.medicalHistory
+                    : styles.none
+                }
+              >
+                <MedicalHistory consultations={consultations} length="full" />
+              </div>
+            </section>
           </div>
-          <div
-            className={
-              !openMedicalHistory && openHealth && !openResume
-                ? "health"
-                : "none"
-            }
-          >
-            Composant Santé - fonctionnalité a venir !
-          </div>
-          <div
-            className={
-              openMedicalHistory && !openHealth && !openResume
-                ? "medical-history"
-                : "none"
-            }
-          >
-            <MedicalHistory consultations={consultations} />
-          </div>
-        </section>
-      </div>
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }

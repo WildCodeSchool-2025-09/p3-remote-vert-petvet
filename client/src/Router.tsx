@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/consultation/add/:id",
+    path: "/consultation/add",
     element: (
       <ProtectedRoute allowedRoles={["veterinary"]}>
         <ConsultationForm />

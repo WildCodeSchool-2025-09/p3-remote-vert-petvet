@@ -53,12 +53,22 @@ class petRepository {
     };
   }
 
+  async getByVeterinary(veterinaryId: number): Promise<Rows> {
+    const [patients] = await databaseClient.query<Rows>(
+      `SELECT pet.*
+    FROM pet
+    JOIN pet_user ON pet_user.pet_id = pet.id
+    JOIN user ON pet_user.user_id = user.id
+    WHERE user.id = ?
+    AND user.role = 'veterinary'`,
+      [veterinaryId],
+    );
+
+    return patients;
+  }
+
   async getByOwner(ownerId: number): Promise<Rows> {
     const [pets] = await databaseClient.query<Rows>(
-      // `SELECT pet.*
-      // FROM pet
-      // JOIN owner ON owner.id = pet.owner_id
-      // WHERE pet.owner_id = ?`,
       `SELECT pet.*
     FROM pet
     JOIN pet_user ON pet_user.pet_id = pet.id

@@ -41,7 +41,7 @@ router.get(
 router.get(
   "/api/owners/me/reminders",
   authActions.checkLogin,
-  authActions.checkRole("owner"),
+  authActions.checkRole("owner", "veterinary"),
   reminderActions.browseByOwner,
 );
 
@@ -52,8 +52,15 @@ router.get(
   consultationActions.readByConsultation,
 );
 
+router.get(
+  "/api/veterinaries/me/patients",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  petActions.browseByVeterinary,
+);
+
 router.post(
-  "/api/consultations/:id",
+  "/api/veterinaries/me/consultations",
   authActions.checkLogin,
   authActions.checkRole("veterinary"),
   consultationActions.validateConsultation,

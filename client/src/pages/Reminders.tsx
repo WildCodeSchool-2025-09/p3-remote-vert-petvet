@@ -9,7 +9,11 @@ function Reminders() {
   const [currentReminder, setCurrentReminder] = useState<Reminder | null>(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders/`)
+    fetch(`${import.meta.env.VITE_API_URL}/owners/me/reminders/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((reminders) => setReminders(reminders));
   }, []);

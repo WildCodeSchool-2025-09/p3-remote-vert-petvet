@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import Select from "react-select";
 import styles from "../assets/styles/myPatients.module.css";
+import { useAuth } from "../context/AuthContext";
 
 export interface ApiResponse {
   petId: number;
@@ -25,6 +26,7 @@ export interface PetOption {
 }
 
 export default function PetSearch() {
+  const auth = useAuth();
   const [pets, setPets] = useState<ApiResponse[]>([]);
   const [veterinaryPets, setVeterinaryPets] = useState<PetOwner[]>([]);
   const [selectedPet, setSelectedPet] = useState<ApiResponse | null>(null);
@@ -37,17 +39,19 @@ export default function PetSearch() {
   );
   const navigate = useNavigate();
 
-  const { id: veterinaryId } = useParams<{ id: string }>();
-
   const fetchVeterinaryPets = useCallback(async () => {
-    if (!veterinaryId) return;
-
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/pet/veterinary/${veterinaryId}`,
+        `${import.meta.env.VITE_API_URL}/veterinaries/me/patients`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       );
 
       const data = await response.json();
+      console.log(data);
       if (Array.isArray(data)) {
         setVeterinaryPets(data);
       } else if (Array.isArray(data.pets)) {
@@ -58,12 +62,19 @@ export default function PetSearch() {
     } catch (error) {
       console.error("Erreur fetch veterinary pets:", error);
     }
-  }, [veterinaryId]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/petslist`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/patients-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          },
+        );
         const data = await res.json();
         setPets(data.pets ?? []);
 
@@ -105,17 +116,20 @@ export default function PetSearch() {
   );
 
   const addNewPet = async () => {
-    if (!selectedPet || !veterinaryId) return;
+    if (!selectedPet || !auth?.isVet) return;
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/pet_add_veterinary`,
+        `${import.meta.env.VITE_API_URL}/add/patient`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           body: JSON.stringify({
             pet_id: selectedPet.petId,
-            user_id: Number(veterinaryId),
+            user_id: auth?.user?.id,
           }),
         },
       );

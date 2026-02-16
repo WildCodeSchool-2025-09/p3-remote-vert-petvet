@@ -6,7 +6,7 @@ import "./assets/styles/reactSelect.css";
 function App() {
   return (
     <>
-      <Link to="/my-pets/1">Mes animaux</Link>
+      <Link to="/patients">Mes animaux</Link>
     </>
   );
 }

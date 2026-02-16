@@ -25,7 +25,11 @@ function consultationForm() {
   useEffect(() => {
     if (!vetId) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/consultations/pets/${vetId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/consultations/pets/${vetId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

@@ -9,9 +9,11 @@ import MedicalHistory from "../components/MedicalHistory";
 import type { Consultation } from "../types/Consultation";
 import "../assets/styles/healthRecord.css";
 import Consultations from "../components/Consultations";
+import { useAuth } from "../context/AuthContext";
 import type { Pet } from "../types/Pet";
 
 function HealthRecord() {
+  const auth = useAuth();
   const [petInfo, setPetInfo] = useState<Pet>();
   const [error, setError] = useState<string>();
   const [reminders, setReminders] = useState([]);
@@ -26,7 +28,11 @@ function HealthRecord() {
   );
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((petData) => {
         if (petData.error) {
@@ -111,10 +117,9 @@ function HealthRecord() {
         </section>
         {temporaryMessage && <p className="success">{temporaryMessage}</p>}
         <section className="vet-consultations-section">
-          <Consultations /*Lea coté Veto*/
-            consultations={consultations}
-            pet={petInfo}
-          />
+          {auth?.isVet && (
+            <Consultations consultations={consultations} pet={petInfo} />
+          )}
         </section>
       </div>
       <div>

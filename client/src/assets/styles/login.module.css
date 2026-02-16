@@ -81,7 +81,8 @@
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.541);
   border-radius: 15px;
-  width: 40%;
+  width: 60%;
+  margin-bottom: 40px;
 }
 
 .loginSectionForm h1 {
@@ -224,4 +225,84 @@
 
 .vet {
   color: var(--vet-color);
+}
+
+@media (max-width: 768px) {
+  .navLogin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .navLogin h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+  .navLogin img {
+    height: 80px;
+    width: 80px;
+  }
+  .buttonHomeLoginPage {
+    top: 120px;
+  }
+  .mainContainer {
+    height: auto;
+    margin-top: 20%;
+    margin-bottom: 20px;
+  }
+  .loginSection {
+    width: auto;
+    max-height: 400px;
+    justify-content: normal;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .loginSectionForm h1 {
+    margin: 1rem 0;
+    font-size: 2rem;
+  }
+  .loginSectionForm h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .loginSectionForm {
+    flex-direction: column-reverse;
+    justify-content: center;
+    width: 80%;
+    text-align: center;
+  }
+  .loginForm {
+    justify-content: center;
+    align-self: center;
+  }
+  .loginForm input {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+  }
+  .loginForm div {
+    width: 100%;
+  }
+  .loginForm label {
+    margin-left: 0;
+    width: 100%;
+  }
+  .registerButton {
+    margin: 0;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+  .imgContainer {
+    margin-top: 0;
+  }
+  .formContainer {
+    margin: 0;
+    width: 100%;
+  }
+  .buttonSubmit {
+    margin: 0;
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
 }

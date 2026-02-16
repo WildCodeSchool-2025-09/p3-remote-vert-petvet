@@ -29,6 +29,52 @@ const browseByPet: RequestHandler = async (
   }
 };
 
+const browseByVeterinary = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const ownerId = req.auth?.userId;
+    if (!ownerId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const pets = await petRepository.getByVeterinary(Number(ownerId));
+
+    if (!pets) {
+      res.status(400).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+    }
+    res.status(200).json(pets);
+  } catch (error) {
+    next();
+  }
+};
+
+const readByVeterinary = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const veterinaryId = req.auth?.userId;
+
+    const pets = await petRepository.getWithVeterinary(Number(veterinaryId));
+
+    if (!pets) {
+      res.status(400).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+    }
+    res.status(200).json(pets);
+  } catch (error) {
+    next();
+  }
+};
+
 const browseByOwner = async (
   req: Request,
   res: Response,
@@ -75,30 +121,10 @@ const browseAllPets = async (
   }
 };
 
-const browseByVeterinary = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const veterinaryId = req.auth?.userId;
-    console.log(veterinaryId);
-    const pets = await petRepository.getByVeterinary(Number(veterinaryId));
-
-    if (!pets) {
-      res.status(400).json({
-        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
-      });
-    }
-    res.status(200).json(pets);
-  } catch (error) {
-    next();
-  }
-};
-
 export default {
   browseByPet,
   browseByOwner,
   browseAllPets,
   browseByVeterinary,
+  readByVeterinary,
 };

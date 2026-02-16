@@ -1,12 +1,11 @@
-import { Link } from "react-router";
 import "./App.css";
 import "./assets/styles/reset.css";
-import "./assets/styles/reactSelect.css";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      <Link to="/patients">Mes animaux</Link>
+      <HomePage />
     </>
   );
 }

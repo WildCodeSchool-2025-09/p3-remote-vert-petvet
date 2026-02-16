@@ -1,13 +1,18 @@
 .petVet {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
 }
 
 .newPatient {
@@ -161,9 +166,15 @@
 
 @media (max-width: 480px) {
   .petVet {
-    justify-content: center;
-    font-size: 2.2rem;
-    padding: 24px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
   }
 
   .newPatient {

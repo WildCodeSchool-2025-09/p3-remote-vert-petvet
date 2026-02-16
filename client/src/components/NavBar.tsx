@@ -9,7 +9,7 @@ function NavBar() {
   const [menuBurger, setMenuBurger] = useState(false);
 
   const vetNavButtons = [
-    { label: "Tableau de bord", href: "/" },
+    { label: "Tableau de bord", href: "/dashboard" },
     { label: "Mes animaux suivis", href: "/my-patients" },
     { label: "Rappels", href: "/reminders" },
   ];

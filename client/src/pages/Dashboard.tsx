@@ -75,7 +75,9 @@ function Dashboard() {
           )}
         </div>
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

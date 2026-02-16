@@ -1,10 +1,12 @@
 body {
-  background-color: burlywood;
+  background-color: var(--main-color);
 }
+
 .allSection {
   display: flex;
   flex-wrap: nowrap;
 }
+
 .petVet {
   display: flex;
   justify-content: space-between;
@@ -31,6 +33,7 @@ body {
 }
 .mainPage {
   display: flex;
+  height: 100vh;
 }
 
 .components {
@@ -41,10 +44,27 @@ body {
   .mainPage {
     display: flex;
     flex-direction: column;
+    height: inherit;
   }
 
   .userName {
     font-size: 2rem;
     justify-content: end;
+  }
+
+  .petVet img {
+    height: 80px;
+    margin: 0;
+  }
+
+  .petVet {
+    font-size: 2rem;
+    padding: 1rem;
+    justify-content: space-between;
+    width: 80vw;
+  }
+
+  .userName {
+    padding-top: 20px;
   }
 }

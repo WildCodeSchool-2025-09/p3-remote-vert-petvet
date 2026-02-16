@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import styles from "../assets/styles/vetDashboard.module.css";
 import type { Patient } from "../types/Pet";
 
@@ -87,9 +88,11 @@ function VetDashboard({ dashboard }: VetDashboard) {
             ))}
           </div>
           <div className={styles.viewMoreContainer}>
-            <button type="button" className={styles.viewMore}>
-              Voir plus
-            </button>
+            <Link to={"/my-patients"}>
+              <button type="button" className={styles.viewMore}>
+                Voir plus
+              </button>
+            </Link>
           </div>
         </section>
         <section className={styles.todoSection}>

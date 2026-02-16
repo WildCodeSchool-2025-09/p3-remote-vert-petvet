@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styles from "../assets/styles/ownerDashboard.module.css";
 import type { Activity } from "../types/Activity";
 import type { Pet } from "../types/Pet";
@@ -38,17 +39,24 @@ function OwnerDashboard({ dashboard }: OwnerDashboard) {
                     </div>
                   </div>
                   <div className={styles.buttonContainer}>
-                    <button type="button" className={styles.petButton}>
-                      Fiche de santé
-                    </button>
+                    <Link
+                      to={`/pet-profile/${pet.id}`}
+                      className={styles.linkButton}
+                    >
+                      <button type="button" className={styles.petButton}>
+                        Fiche de santé
+                      </button>
+                    </Link>
                   </div>
                 </article>
               ))}
             </div>
             <div className={styles.viewMoreContainer}>
-              <button type="button" className={styles.viewMore}>
-                Voir plus
-              </button>
+              <Link to={"/my-pets"}>
+                <button type="button" className={styles.viewMore}>
+                  Voir plus
+                </button>
+              </Link>
             </div>
           </section>
           <section className={styles.actSection}>
@@ -72,7 +80,9 @@ function OwnerDashboard({ dashboard }: OwnerDashboard) {
                     <h3>{activity.title}</h3>
                     <p>{activity.petName}</p>
                   </div>
-                  <p>{new Date(activity.date).toLocaleDateString()}</p>
+                  <p className={styles.date}>
+                    {new Date(activity.date).toLocaleDateString()}
+                  </p>
                 </article>
               ))}
             </div>

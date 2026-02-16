@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: flex-end;
   flex-wrap: wrap;
+  margin-left: 25%;
 }
 
 .vetConsultationsContainer .addConsultationButton {

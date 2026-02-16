@@ -2,7 +2,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .petFormPage {
@@ -50,6 +50,7 @@ body {
   margin: 0 auto;
   appearance: none;
   line-height: 1.5;
+  background-color: #ffffff;
 }
 
 .petForm label {
@@ -87,7 +88,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px;
 }
 .petLabelIput {
@@ -212,4 +212,32 @@ body {
 .petLabelSubmit button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 678px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .petForm {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    overflow-x: hidden;
+  }
+
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
 }

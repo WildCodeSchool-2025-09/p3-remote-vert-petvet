@@ -2,19 +2,32 @@ body {
   background-color: var(--main-color);
 }
 
-.pet-vet {
+.petVet {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 800;
   font-size: 3rem;
   color: var(--text-color);
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-right: 80px;
+}
+.logo {
+  height: 100px;
+  width: auto;
+  margin-left: 6rem;
+}
+.mainPage {
+  display: flex;
+  flex-direction: row;
 }
 
-.title-container {
+.allPage {
+  width: 100%;
+}
+
+.titleContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,7 +41,7 @@ body {
   padding-bottom: 30px;
 }
 
-.add-animal {
+.addAnimal {
   background-color: var(--owner-color);
   font-family: var(--font-text);
   font-size: 1.1rem;
@@ -41,7 +54,7 @@ body {
   cursor: pointer;
 }
 
-.pet-card {
+.petCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +77,7 @@ body {
   font-family: var(--font-text);
 }
 
-img {
+.imagePetList {
   height: 140px;
   width: 140px;
   border-radius: 50%;
@@ -81,11 +94,11 @@ h3 {
   padding-top: 5px;
 }
 
-.pet-info-container {
+.petInfoContainer {
   display: flex;
 }
 
-.pet-info {
+.petInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,7 +106,7 @@ h3 {
   width: 60%;
 }
 
-.profil-access {
+.profilAccess {
   display: flex;
   justify-content: center;
   background-color: var(--owner-color);
@@ -106,6 +119,10 @@ h3 {
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  text-decoration: none;
+}
+.linkButton {
+  text-decoration: none;
 }
 
 .button {
@@ -115,7 +132,7 @@ h3 {
   padding-left: 35px;
 }
 
-.pet-cards-container {
+.petCardsContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -123,8 +140,79 @@ h3 {
   width: 60vw;
 }
 
-.pet-cards {
+.petCards {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.errorMessage {
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  .petVet {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 80px;
+    margin: 0;
+  }
+
+  .mainPage {
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+  .allPage {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  }
+  .petCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  .titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .title {
+    font-size: 1.5rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .addAnimal {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .petCard {
+    width: 100%;
+    height: auto;
+  }
+  .imagePetList {
+    height: 70px;
+    width: 70px;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .specie {
+    font-size: 0.9rem;
+    margin: 10px;
+  }
+  .profilAccess {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }

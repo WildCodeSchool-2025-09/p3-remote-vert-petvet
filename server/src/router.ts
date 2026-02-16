@@ -1,6 +1,7 @@
 import express from "express";
 import authActions from "./modules/auth/authActions";
 import consultationActions from "./modules/consultation/consultationActions";
+import dashboardActions from "./modules/dashboard/dashboardActions";
 import petActions from "./modules/pet/petActions";
 import petUsersActions from "./modules/petUsers/petUsersActions";
 import reminderActions from "./modules/reminder/reminderActions";
@@ -16,6 +17,20 @@ router.post(
 );
 
 router.post("/api/login", authActions.login);
+
+router.get(
+  "/api/owners/me/dashboard",
+  authActions.checkLogin,
+  authActions.checkRole("owner"),
+  dashboardActions.browseOwnerDashboard,
+);
+
+router.get(
+  "/api/veterinaries/me/dashboard",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  dashboardActions.browseVetDashboard,
+);
 
 router.get(
   "/api/pets/:id",

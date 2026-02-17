@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import styles from "../assets/styles/vetDashboard.module.css";
 import type { Patient } from "../types/Pet";
 
@@ -68,11 +71,19 @@ function VetDashboard({ dashboard }: VetDashboard) {
                   {patient.gender === "m" ? "♂" : "♀"}
                 </p>
                 <div className={styles.patientInfo}>
-                  <img
-                    src={patient.photo}
-                    alt={patient.name}
-                    className={styles.patientImage}
-                  />
+                  <div className={styles.divImage}>
+                    <img
+                      src={
+                        patient.specie === "chat"
+                          ? cat
+                          : patient.specie === "chien"
+                            ? dog
+                            : rabbit
+                      }
+                      alt={patient.name}
+                      className={styles.patientImage}
+                    />
+                  </div>
                   <div className={styles.patientText}>
                     <h3>{patient.name}</h3>
                     <p>{patient.specie}</p>

@@ -117,7 +117,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
   width: 320px;
   padding: 30px 20px;
   margin: 20px;
@@ -162,13 +161,16 @@
 }
 
 .patientName {
-  font-size: 24px;
+  font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
+  font-family: var(--font-logo);
+  color: var(--text-color);
 }
 
 .ownerName {
   font-size: 14px;
+  font-family: var(--font-text);
   color: var(--text-color);
   margin-top: 4px;
 }

@@ -31,7 +31,7 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 350px;
+  width: 250px;
   height: 150px;
   border-radius: 15px;
   padding: 20px;
@@ -54,9 +54,13 @@
 }
 
 .patientImage {
-  height: 110px;
-  width: 110px;
+  height: 50px;
+  width: 50px;
+  padding: 20px;
+}
+.divImage {
   border-radius: 50%;
+  border: solid 7px var(--vet-color);
 }
 
 .patientText {
@@ -67,10 +71,17 @@
   text-align: center;
   max-width: 18ch;
 }
-
-.owner {
-  text-align: end;
+.patientText h3 {
+  font-family: var(--font-logo);
+  font-size: 1.4rem;
   font-weight: bold;
+}
+.owner {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: var(--font-text);
+  padding: 10px;
 }
 
 .owner span {
@@ -90,6 +101,7 @@
   font-size: 1.1rem;
   text-decoration: underline;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .todoSection {
@@ -98,14 +110,14 @@
   padding: 1.25rem;
   border-radius: 15px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 400px;
   height: 550px;
   color: var(--text-color);
 }
 
 .todoToday {
   font-family: var(--font-title);
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding-bottom: 10px;
 }
@@ -140,9 +152,9 @@
 }
 
 .todoCard {
-  width: 500px;
+  width: 300px;
   border: none;
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: var(--main-color);
   border-radius: 50px;
   margin: 0.5rem 0;
@@ -155,7 +167,7 @@
 
 .notDone {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 

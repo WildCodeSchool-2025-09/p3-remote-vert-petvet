@@ -51,7 +51,11 @@
   align-items: stretch;
   background-color: var(--main-color);
 }
-
+.petInfos h3 {
+  font-family: var(--font-logo);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
 .gender {
   text-align: right;
   font-size: larger;
@@ -64,9 +68,13 @@
 }
 
 .petImage {
-  height: 110px;
-  width: 110px;
+  height: 50px;
+  width: 50px;
+  padding: 20px;
+}
+.divImage {
   border-radius: 50%;
+  border: solid 7px var(--owner-color);
 }
 
 .petText {
@@ -94,6 +102,10 @@
 .actSection h3 {
   max-width: 20ch;
   word-break: break-all;
+  font-size: 1.2rem;
+  font-family: var(--font-logo);
+  font-weight: bold;
+  color: var(--text-color);
 }
 .petButton {
   display: flex;
@@ -244,7 +256,13 @@
   justify-content: flex-start;
   align-items: center;
 }
-
+.infoTitle h3 {
+  font-family: var(--font-logo);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-left: 10px;
+}
 @media screen and (max-width: 678px) {
   .allSections {
     flex-direction: column;
@@ -328,6 +346,7 @@
   .actSection h3 {
     max-width: 20ch;
     word-break: break-all;
+    font-size: 1rem;
   }
   .actCard {
     flex-direction: column;

@@ -90,6 +90,7 @@
   font-size: 1.1rem;
   text-decoration: underline;
   cursor: pointer;
+  background-color: white;
 }
 
 .todoSection {

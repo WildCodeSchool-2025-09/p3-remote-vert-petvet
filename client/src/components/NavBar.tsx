@@ -15,7 +15,7 @@ function NavBar() {
   ];
 
   const ownerNavButtons = [
-    { label: "Tableau de bord", href: "/" },
+    { label: "Tableau de bord", href: "/dashboard" },
     { label: "Mes animaux", href: "/my-pets" },
     { label: "Rappels", href: "/reminders" },
     { label: "Documents", href: "#" },

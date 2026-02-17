@@ -171,104 +171,98 @@ export default function PetSearch() {
       </header>
       <main className={styles.mainPage}>
         <NavBar />
-        <section className={styles.newPatient}>
-          <h2 className={styles.titleNewPatient}>Nouveau Patient</h2>
-          <div className={styles.selectedPatient}>
-            <Select<PetOption>
-              options={petOptions}
-              placeholder="Rechercher un animal..."
-              isSearchable
-              classNamePrefix="rs"
-              className={styles.inputPatient}
-              onChange={(opt) => setSelectedPet(opt?.pet ?? null)}
-            />
-          </div>
-          <button
-            type="button"
-            className={styles.addPatientButton}
-            onClick={addNewPet}
-            disabled={!selectedPet}
-          >
-            <img src="../../public/images/white-cross.png" alt="plus" />
-            Ajouter l'animal
-          </button>
-        </section>
-        {message && (
-          <p
-            className={
-              messageType === "success"
-                ? styles.addPatientSucces
-                : styles.addPatientError
-            }
-          >
-            {message}
-          </p>
-        )}
-        <section className={styles.veterinaryPatients}>
-          <article className={styles.patientsSearchBar}>
-            <h2 className={styles.titlePatient}>Mes Patients</h2>
+        <div className={styles.sectionsContainer}>
+          <section className={styles.newPatient}>
+            <h2 className={styles.titleNewPatient}>Nouveau Patient</h2>
             <div className={styles.selectedPatient}>
-              <Select
-                options={veterinaryOptions}
-                placeholder="Rechercher un patient..."
+              <Select<PetOption>
+                options={petOptions}
+                placeholder="Rechercher un animal..."
                 isSearchable
                 classNamePrefix="rs"
-                className={styles.patientInput}
-                onChange={(opt) => setSelectedFilter(opt?.pet ?? null)}
-                isClearable
+                className={styles.inputPatient}
+                onChange={(opt) => setSelectedPet(opt?.pet ?? null)}
               />
             </div>
-          </article>
-
-          {veterinaryPets.length === 0 ? (
-            <p>Aucun animal pour ce vétérinaire.</p>
-          ) : (
-            <article className={styles.patientsList}>
-              {(selectedFilter ? [selectedFilter] : veterinaryPets).map(
-                (pet) => (
-                  <div key={pet.petId} className={styles.patientCard}>
-                    <div className={styles.patientGenderWrapper}>
-                      <img
-                        className={styles.patientGenderImage}
-                        src={
-                          pet.petGender === "m"
-                            ? "/images/male.png"
-                            : "/images/female.png"
-                        }
-                        alt={pet.petGender === "m" ? "Mâle" : "Femelle"}
-                      />
-                    </div>
-                    <div className={styles.divImage}>
-                      <img
-                        src={
-                          pet.petSpecie === "chat"
-                            ? cat
-                            : pet.petSpecie === "chien"
-                              ? dog
-                              : rabbit
-                        }
-                        alt={pet.petName}
-                        className={`${styles.imagePetList}`}
-                      />
-                    </div>
-                    <div className={styles.patientInfo}>
-                      <h3 className={styles.patientName}>{pet.petName}</h3>
-                      <p className={styles.ownerName}>{pet.ownerName}</p>
-
-                      <button
-                        type="button"
-                        className={styles.healthRecordButton}
-                        onClick={() => navigate(`/pet-profile/${pet.petId}`)}
-                      >
-                        Fiche de santé
-                      </button>
-                    </div>
-                  </div>
-                ),
-              )}
-            </article>
+            <button
+              type="button"
+              className={styles.addPatientButton}
+              onClick={addNewPet}
+              disabled={!selectedPet}
+            >
+              <img src="../../public/images/white-cross.png" alt="plus" />
+              Ajouter l'animal
+            </button>
+          </section>
+          {message && (
+            <p
+              className={
+                messageType === "success"
+                  ? styles.addPatientSucces
+                  : styles.addPatientError
+              }
+            >
+              {message}
+            </p>
           )}
-        </section>
+          <section className={styles.veterinaryPatients}>
+            <article className={styles.patientsSearchBar}>
+              <h2 className={styles.titlePatient}>Mes Patients</h2>
+              <div className={styles.selectedPatient}>
+                <Select
+                  options={veterinaryOptions}
+                  placeholder="Rechercher un patient..."
+                  isSearchable
+                  classNamePrefix="rs"
+                  className={styles.patientInput}
+                  onChange={(opt) => setSelectedFilter(opt?.pet ?? null)}
+                  isClearable
+                />
+              </div>
+            </article>
+
+            {veterinaryPets.length === 0 ? (
+              <p>Aucun animal pour ce vétérinaire.</p>
+            ) : (
+              <article className={styles.patientsList}>
+                {(selectedFilter ? [selectedFilter] : veterinaryPets).map(
+                  (pet) => (
+                    <div key={pet.petId} className={styles.patientCard}>
+                      <div className={styles.patientGenderWrapper}>
+                        <p>{pet.petGender === "m" ? "♂" : "♀"}</p>
+                      </div>
+                      <div className={styles.divImage}>
+                        <img
+                          src={
+                            pet.petSpecie === "chat"
+                              ? cat
+                              : pet.petSpecie === "chien"
+                                ? dog
+                                : rabbit
+                          }
+                          alt={pet.petName}
+                          className={`${styles.imagePetList}`}
+                        />
+                      </div>
+                      <div className={styles.patientInfo}>
+                        <h3 className={styles.patientName}>{pet.petName}</h3>
+                        <p className={styles.ownerName}>{pet.ownerName}</p>
+
+                        <button
+                          type="button"
+                          className={styles.healthRecordButton}
+                          onClick={() => navigate(`/pet-profile/${pet.petId}`)}
+                        >
+                          Fiche de santé
+                        </button>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </article>
+            )}
+          </section>
+        </div>
       </main>
       <Footer />
     </>

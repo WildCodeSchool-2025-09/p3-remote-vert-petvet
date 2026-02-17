@@ -145,14 +145,19 @@ const add: RequestHandler = async (req, res, next) => {
 
 const petSchema = Joi.object({
   name: Joi.string().max(30).required(),
-  tattoo_nb: Joi.string().max(10).allow(null).optional(),
-  chip_nb: Joi.number().integer().max(15).allow(null).optional(),
+  tattoo_nb: Joi.string().max(10).allow(null, "").optional(),
+  chip_nb: Joi.number()
+    .integer()
+    .min(1)
+    .max(999999999999999)
+    .allow(null, "")
+    .optional(),
   born_at: Joi.date().required(),
   gender: Joi.string().valid("m", "f").required(),
-  specie: Joi.string().valid("Chien", "Chat", "Lapin").required(),
+  specie: Joi.string().valid("chien", "chat", "lapin").required(),
   breed: Joi.string().max(100).required(),
   is_neutered: Joi.boolean().default(false),
-  weight: Joi.number().positive().max(9999999999).allow(null).optional(),
+  weight: Joi.number().positive().max(999).allow(null).optional(),
 });
 
 const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
@@ -161,6 +166,7 @@ const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
   if (error == null) {
     next();
   } else {
+    console.log("JOI ERROR :", error.details);
     res
       .status(StatusCodes.BAD_REQUEST)
       .json({ validationErrors: error.details });

@@ -129,14 +129,14 @@ class petRepository {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         pet.name,
-        pet.tattoo_nb || null,
-        pet.chip_nb || null,
+        pet.tattoo_nb ?? null,
+        pet.chip_nb ?? null,
         pet.born_at,
         pet.gender,
         pet.specie,
         pet.breed,
         pet.is_neutered ? 1 : 0,
-        pet.weight || null,
+        pet.weight ?? null,
       ],
     );
 

@@ -8,7 +8,7 @@ import type { CreatePet, Gender, Specie } from "../types/Pet";
 function PetForm() {
   const [name, setName] = useState("");
   const [tattooNb, setTattooNb] = useState("");
-  const [chipNb, setChipNb] = useState("");
+  const [chipNb, setChipNb] = useState<number | null>(null);
   const [bornAt, setBornAt] = useState("");
   const [gender, setGender] = useState<Gender | "">("");
   const [specie, setSpecie] = useState<Specie | "">("");
@@ -36,6 +36,7 @@ function PetForm() {
       if (!response.ok) {
         throw new Error("Erreur lors de la création de votre animal");
       }
+      console.log(pet);
 
       const data = await response.json();
 
@@ -84,10 +85,10 @@ function PetForm() {
                   createPet({
                     name,
                     tattoo_nb: tattooNb || null,
-                    chip_nb: chipNb ? Number(chipNb) : null,
+                    chip_nb: chipNb,
                     born_at: bornAt,
-                    gender: gender as Gender,
-                    specie: specie as Specie,
+                    gender,
+                    specie,
                     breed,
                     is_neutered: Boolean(isNeutered),
                     weight: weight ? Number(weight) : null,
@@ -110,7 +111,7 @@ function PetForm() {
                 <label className={styles.petLabelTattoo}>
                   {"Numéro de tatouage :"}
                   <input
-                    type="number"
+                    type="text"
                     value={tattooNb}
                     onChange={(e) => setTattooNb(e.target.value)}
                     placeholder="Numéro de tatouage"
@@ -122,8 +123,10 @@ function PetForm() {
                   {"Numéro de puce :"}
                   <input
                     type="number"
-                    value={chipNb}
-                    onChange={(e) => setChipNb(e.target.value)}
+                    value={chipNb ?? ""}
+                    onChange={(e) =>
+                      setChipNb(e.target.value ? Number(e.target.value) : null)
+                    }
                     placeholder="Numéro de puce"
                     className={styles.chipNbPetInput}
                   />
@@ -169,9 +172,9 @@ function PetForm() {
                     <option value="" disabled>
                       Sélectionnez l'espèce de votre animal
                     </option>
-                    <option value="Chien">Chien</option>
-                    <option value="Chat">Chat</option>
-                    <option value="Lapin">Lapin</option>
+                    <option value="chien">Chien</option>
+                    <option value="chat">Chat</option>
+                    <option value="lapin">Lapin</option>
                   </select>
                 </label>
 
@@ -219,7 +222,6 @@ function PetForm() {
                     type="number"
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
-                    required
                     placeholder="Poids"
                     className={styles.weightPetInput}
                   />

@@ -1,3 +1,7 @@
+.sizePage {
+  min-height: calc(100vh - 57px);
+}
+
 .petVet {
   display: flex;
   justify-content: space-between;

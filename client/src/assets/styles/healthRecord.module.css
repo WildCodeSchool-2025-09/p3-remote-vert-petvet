@@ -9,11 +9,17 @@
   padding-top: 30px;
   padding-right: 80px;
 }
+
+.sizePages {
+  min-height: calc(100vh - 57px);
+}
+
 .logo {
   height: 100px;
   width: auto;
   margin-left: 6rem;
 }
+
 .healthRecordPage {
   display: flex;
   flex-direction: column;

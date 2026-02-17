@@ -2,6 +2,10 @@ body {
   background-color: var(--main-color);
 }
 
+.sizePage {
+  min-height: calc(100vh - 57px);
+}
+
 .allSection {
   display: flex;
   flex-wrap: nowrap;

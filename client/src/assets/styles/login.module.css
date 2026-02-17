@@ -5,7 +5,7 @@
     ), url("/images/dog-and-mom.jpg");
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 57px);
   display: flex;
   flex-direction: column;
 }

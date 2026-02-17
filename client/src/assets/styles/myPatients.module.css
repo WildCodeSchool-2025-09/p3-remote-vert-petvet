@@ -3,6 +3,10 @@
   height: 100vh;
 }
 
+.sizePage {
+  min-height: calc(100vh - 57px);
+}
+
 .sectionsContainer {
   flex-direction: column;
   padding-top: 150px;
@@ -45,6 +49,10 @@
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-color);
+}
+
+.inputPatient {
+  font-family: var(--font-text);
 }
 
 .selectedPatient {
@@ -183,6 +191,10 @@
 
 .healthRecordButton:hover {
   background: #6f9ac7;
+}
+
+.patientInput {
+  font-family: var(--font-text);
 }
 
 @media (max-width: 480px) {

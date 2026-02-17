@@ -56,25 +56,29 @@ function Dashboard() {
 
   return (
     <>
-      <header className={styles.petVet}>
-        <img src={logoSrc} alt="Logo" className={styles.logo} />
-        <h1>Pet&Vet</h1>
-      </header>
-      <main className={styles.mainPage}>
-        <NavBar />
-        <div className={styles.components}>
-          <h1 className={styles.userName}>
-            Bonjour{" "}
-            {auth?.isVet ? `Dr ${auth.user.lastname}` : auth.user.firstname} !
-          </h1>
-          {auth?.isOwner && (
-            <OwnerDashboard dashboard={dashboardInfos as OwnerDashboardData} />
-          )}
-          {auth?.isVet && (
-            <VetDashboard dashboard={dashboardInfos as VetDashboardData} />
-          )}
-        </div>
-      </main>
+      <div className={styles.sizePage}>
+        <header className={styles.petVet}>
+          <img src={logoSrc} alt="Logo" className={styles.logo} />
+          <h1>Pet&Vet</h1>
+        </header>
+        <main className={styles.mainPage}>
+          <NavBar />
+          <div className={styles.components}>
+            <h1 className={styles.userName}>
+              Bonjour{" "}
+              {auth?.isVet ? `Dr ${auth.user.lastname}` : auth.user.firstname} !
+            </h1>
+            {auth?.isOwner && (
+              <OwnerDashboard
+                dashboard={dashboardInfos as OwnerDashboardData}
+              />
+            )}
+            {auth?.isVet && (
+              <VetDashboard dashboard={dashboardInfos as VetDashboardData} />
+            )}
+          </div>
+        </main>
+      </div>
       <footer>
         <Footer />
       </footer>

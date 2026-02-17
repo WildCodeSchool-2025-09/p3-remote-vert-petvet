@@ -12,10 +12,11 @@ function NavBar() {
     { label: "Tableau de bord", href: "/dashboard" },
     { label: "Mes animaux suivis", href: "/my-patients" },
     { label: "Rappels", href: "/reminders" },
+    { label: "Consultation", href: "/consultation/add" },
   ];
 
   const ownerNavButtons = [
-    { label: "Tableau de bord", href: "/" },
+    { label: "Tableau de bord", href: "/dashboard" },
     { label: "Mes animaux", href: "/my-pets" },
     { label: "Rappels", href: "/reminders" },
     { label: "Documents", href: "#" },

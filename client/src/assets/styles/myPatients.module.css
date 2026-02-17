@@ -15,6 +15,11 @@
   margin-left: 6rem;
 }
 
+.imagePetList {
+  height: 80px;
+  width: 80px;
+  padding: 20px;
+}
 .newPatient {
   display: flex;
   flex-direction: row;
@@ -111,7 +116,10 @@
   top: 20px;
   right: 20px;
 }
-
+.divImage {
+  border-radius: 50%;
+  border: solid 7px var(--vet-color);
+}
 .patientGenderImage {
   width: 22px;
   height: 22px;
@@ -166,10 +174,10 @@
 
 @media (max-width: 480px) {
   .petVet {
-    display: flex;
-    justify-content: space-between;
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding: 1rem;
+    justify-content: space-between;
+    width: 80vw;
   }
 
   .logo {

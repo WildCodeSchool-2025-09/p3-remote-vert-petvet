@@ -47,17 +47,21 @@ function Login() {
   return (
     <div className={styles.loginPage}>
       <nav className={styles.navLogin}>
-        <div className={styles.logoContainer}>
-          <img
-            className={styles.logo1}
-            src="/images/green/logo.png"
-            alt="Green Logo PetVet"
-          />
-          <img
-            className={styles.logo2}
-            src="/images/blue/logo.png"
-            alt="Blue logo PetVet"
-          />
+        <div className={styles.navHead}>
+          <div className={styles.logoContainer}>
+            <img
+              className={styles.logo1}
+              src="/images/green/logo.png"
+              alt="Green Logo PetVet"
+            />
+            <img
+              className={styles.logo2}
+              src="/images/blue/logo.png"
+              alt="Blue logo PetVet"
+            />
+          </div>
+
+          <h1 className={styles.petVet}>Pet&Vet</h1>
         </div>
         <button
           type="button"
@@ -67,7 +71,6 @@ function Login() {
           <img src="/images/paw.png" alt="paw" className={styles.pawLogin} />
           Accueil
         </button>
-        <h1 className={styles.petVet}>Pet&Vet</h1>
       </nav>
       <div className={styles.mainContainer}>
         <section className={styles.loginSectionForm}>

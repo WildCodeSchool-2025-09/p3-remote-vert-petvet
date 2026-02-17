@@ -53,7 +53,7 @@ function MyPetsList() {
           <div className={styles.titleContainer}>
             <h2 className={styles.title}>Ma Tribu :</h2>
             <Link to="/my-pets/pets/new">
-              <button type="button" className="add-animal">
+              <button type="button" className={styles.addAnimal}>
                 Ajouter un animal
               </button>
             </Link>

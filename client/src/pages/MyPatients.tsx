@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
-import Select from "react-select";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import styles from "../assets/styles/myPatients.module.css";
 import { useAuth } from "../context/AuthContext";
 import "../assets/styles/reactSelect.css";
+import Select from "react-select";
+import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
 export interface ApiResponse {
@@ -18,6 +22,7 @@ export interface PetOwner {
   petName: string;
   petGender: string;
   petPhoto: string | null;
+  petSpecie: string;
   ownerName: string;
 }
 
@@ -233,17 +238,19 @@ export default function PetSearch() {
                         alt={pet.petGender === "m" ? "Mâle" : "Femelle"}
                       />
                     </div>
-
-                    {pet.petPhoto ? (
+                    <div className={styles.divImage}>
                       <img
-                        src={pet.petPhoto}
+                        src={
+                          pet.petSpecie === "chat"
+                            ? cat
+                            : pet.petSpecie === "chien"
+                              ? dog
+                              : rabbit
+                        }
                         alt={pet.petName}
-                        className={`${styles.patientPhoto}`}
+                        className={`${styles.imagePetList}`}
                       />
-                    ) : (
-                      <div className={styles.noPatientPhoto}>Pas de photo</div>
-                    )}
-
+                    </div>
                     <div className={styles.patientInfo}>
                       <h3 className={styles.patientName}>{pet.petName}</h3>
                       <p className={styles.ownerName}>{pet.ownerName}</p>
@@ -262,6 +269,7 @@ export default function PetSearch() {
             </article>
           )}
         </section>
+        <Footer />
       </main>
     </>
   );

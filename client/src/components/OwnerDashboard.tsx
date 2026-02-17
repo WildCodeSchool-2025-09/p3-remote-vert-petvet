@@ -17,86 +17,85 @@ function OwnerDashboard({ dashboard }: OwnerDashboard) {
   return (
     <>
       <div className={styles.allSections}>
-        <div className={styles.animalsPart}>
-          <section className={styles.petSection}>
-            <h2 className={styles.myPets}>Mes compagnons</h2>
-            <div className={styles.petsCards}>
-              {dashboard.pets.length === 0 && (
-                <p>Vous n'avez aucun animal, veuillez en ajouter.</p>
-              )}
-              {dashboard.pets.slice(0, 4).map((pet) => (
-                <article key={pet.id} className={styles.petInfos}>
-                  <p className={styles.gender}>
-                    {pet.gender === "m" ? "♂" : "♀"}
-                  </p>
-                  <div className={styles.petInfoContainer}>
-                    <img
-                      src={
-                        pet.specie === "chat"
-                          ? cat
-                          : pet.specie === "chien"
-                            ? dog
-                            : rabbit
-                      }
-                      alt={pet.name}
-                      className={styles.petImage}
-                    />
-                    <div className={styles.petText}>
-                      <h3>{pet.name}</h3>
-                      <p>{pet.specie}</p>
-                      <p className={styles.breed}>{pet.breed}</p>
-                    </div>
-                  </div>
-                  <div className={styles.buttonContainer}>
-                    <Link
-                      to={`/pet-profile/${pet.id}`}
-                      className={styles.linkButton}
-                    >
-                      <button type="button" className={styles.petButton}>
-                        Fiche de santé
-                      </button>
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-            <div className={styles.viewMoreContainer}>
-              <Link to={"/my-pets"}>
-                <button type="button" className={styles.viewMore}>
-                  Voir plus
-                </button>
-              </Link>
-            </div>
-          </section>
-          <section className={styles.actSection}>
-            <h2 className={styles.petsActivities}>Activités et événements</h2>
-            <div className={styles.actCards}>
-              {dashboard.activities.length === 0 && (
-                <p>Aucun événement récent.</p>
-              )}
-              {dashboard.activities.map((activity: Activity) => (
-                <article key={activity.id} className={styles.actCard}>
+        <section className={styles.petSection}>
+          <h2 className={styles.myPets}>Mes compagnons</h2>
+          <div className={styles.petsCards}>
+            {dashboard.pets.length === 0 && (
+              <p>Vous n'avez aucun animal, veuillez en ajouter.</p>
+            )}
+            {dashboard.pets.slice(0, 4).map((pet) => (
+              <article key={pet.id} className={styles.petInfos}>
+                <p className={styles.gender}>
+                  {pet.gender === "m" ? "♂" : "♀"}
+                </p>
+                <div className={styles.petInfoContainer}>
                   <img
                     src={
-                      activity.type === "consultation"
-                        ? "/images/green/stetoscope.png"
-                        : "images/green/calendar.png"
+                      pet.specie === "chat"
+                        ? cat
+                        : pet.specie === "chien"
+                          ? dog
+                          : rabbit
                     }
-                    alt={activity.type}
-                    className={styles.actLogo}
+                    alt={pet.name}
+                    className={styles.petImage}
                   />
-                  <div className={styles.actText}>
-                    <h3>{activity.title}</h3>
-                    <p>{activity.petName}</p>
+                  <div className={styles.petText}>
+                    <h3>{pet.name}</h3>
+                    <p>{pet.specie}</p>
+                    <p className={styles.breed}>{pet.breed}</p>
                   </div>
-                  <p className={styles.date}>
-                    {new Date(activity.date).toLocaleDateString()}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </section>
-        </div>
+                </div>
+                <div className={styles.buttonContainer}>
+                  <Link
+                    to={`/pet-profile/${pet.id}`}
+                    className={styles.linkButton}
+                  >
+                    <button type="button" className={styles.petButton}>
+                      Fiche de santé
+                    </button>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className={styles.viewMoreContainer}>
+            <Link to={"/my-pets"}>
+              <button type="button" className={styles.viewMore}>
+                Voir plus
+              </button>
+            </Link>
+          </div>
+        </section>
+        <section className={styles.actSection}>
+          <h2 className={styles.petsActivities}>Activités et événements</h2>
+          <div className={styles.actCards}>
+            {dashboard.activities.length === 0 && (
+              <p>Aucun événement récent.</p>
+            )}
+            {dashboard.activities.map((activity: Activity) => (
+              <article key={activity.id} className={styles.actCard}>
+                <img
+                  src={
+                    activity.type === "consultation"
+                      ? "/images/green/stetoscope.png"
+                      : "images/green/calendar.png"
+                  }
+                  alt={activity.type}
+                  className={styles.actLogo}
+                />
+                <div className={styles.actText}>
+                  <h3>{activity.title}</h3>
+                  <p>{activity.petName}</p>
+                </div>
+                <p className={styles.date}>
+                  {new Date(activity.date).toLocaleDateString()}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className={styles.emergencySection}>
           <h2>Le saviez-vous ?</h2>
           <div className={styles.knowledge}>

@@ -61,11 +61,15 @@ function Register() {
   return (
     <div className={styles.registerPage}>
       <nav className={styles.navRegister}>
-        <img
-          src={isVet ? "/images/blue/logo.png" : "/images/green/logo.png"}
-          alt="logo-petvet"
-          className={styles.logoRegister}
-        />
+        <div className={styles.navHead}>
+          <img
+            src={isVet ? "/images/blue/logo.png" : "/images/green/logo.png"}
+            alt="logo-petvet"
+            className={styles.logoRegister}
+          />
+
+          <h1>Pet&Vet</h1>
+        </div>{" "}
         <button
           type="button"
           className={styles.buttonHomeRegisterPage}
@@ -74,7 +78,6 @@ function Register() {
           <img src="/images/paw.png" alt="paw" className={styles.pawRegister} />
           Accueil
         </button>
-        <h1>Pet&Vet</h1>
       </nav>
 
       <div className={styles.toggleWrapperRegister}>

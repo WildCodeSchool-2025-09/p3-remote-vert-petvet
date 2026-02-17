@@ -33,14 +33,13 @@ body {
 }
 .mainPage {
   display: flex;
-  height: 100vh;
 }
 
 .components {
   width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 678px) {
   .mainPage {
     display: flex;
     flex-direction: column;

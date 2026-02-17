@@ -70,13 +70,6 @@ router.get(
 );
 
 router.get(
-  "/api/veterinaries/me/patients",
-  authActions.checkLogin,
-  authActions.checkRole("veterinary"),
-  petActions.browseByVeterinary,
-);
-
-router.get(
   "/api/owners/me/pets",
   authActions.checkLogin,
   authActions.checkRole("owner"),

@@ -60,7 +60,7 @@ class petRepository {
 
   async getWithVeterinary(veterinaryId: number): Promise<Rows> {
     const [patients] = await databaseClient.query<Rows>(
-      `SELECT pet.name
+      `SELECT pet.name, pet.id
     FROM pet
     JOIN pet_user ON pet_user.pet_id = pet.id
     JOIN user ON pet_user.user_id = user.id
@@ -106,6 +106,7 @@ class petRepository {
       pet.name AS petName,
       pet.photo AS petPhoto,
       pet.gender AS petGender,
+      pet.specie AS petSpecie,
       CONCAT(owner.firstname, ' ', owner.lastname) AS ownerName
     FROM pet
     JOIN pet_user AS vet_link ON vet_link.pet_id = pet.id

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "../assets/styles/reminders.module.css";
 import "../assets/styles/variables.css";
+import cat from "../../public/images/chat_3.png";
+import dog from "../../public/images/chien_5.png";
+import rabbit from "../../public/images/lapin-de-paques.png";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import ReminderDetails from "../components/ReminderDetails";
@@ -53,7 +56,13 @@ function Reminders() {
                 onClick={() => setCurrentReminder(reminder)}
               >
                 <img
-                  src={reminder.photo}
+                  src={
+                    reminder.specie === "chat"
+                      ? cat
+                      : reminder.specie === "chien"
+                        ? dog
+                        : rabbit
+                  }
                   alt="Profil"
                   className={styles.reminderImg}
                 />

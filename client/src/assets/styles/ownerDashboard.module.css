@@ -1,7 +1,6 @@
 .allSections {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
   justify-content: center;
   gap: 50px;
   margin: auto;
@@ -14,6 +13,7 @@
   height: 480px;
   border-radius: 15px;
   color: var(--text-color);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .animalsPart {
@@ -91,6 +91,10 @@
   padding-bottom: 20px;
 }
 
+.actSection h3 {
+  max-width: 20ch;
+  word-break: break-all;
+}
 .petButton {
   display: flex;
   justify-content: center;
@@ -120,6 +124,7 @@
 .viewMore {
   border: none;
   font-family: var(--font-text);
+  background-color: white;
   font-size: 1.1rem;
   text-decoration: underline;
   cursor: pointer;
@@ -167,6 +172,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .actCards {
@@ -189,6 +196,7 @@
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .emergencySection h2 {
@@ -237,7 +245,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 678px) {
   .allSections {
     flex-direction: column;
     justify-content: center;
@@ -265,7 +273,7 @@
   }
 
   .petInfos {
-    min-width: 230px;
+    min-width: 80%;
     scroll-snap-align: start;
     height: auto;
   }
@@ -278,6 +286,7 @@
   .petImage {
     height: 70px;
     width: 70px;
+    border-radius: 0;
   }
 
   .petInfoContainer {
@@ -316,9 +325,13 @@
   .actSection {
     width: 87%;
   }
-
+  .actSection h3 {
+    max-width: 20ch;
+    word-break: break-all;
+  }
   .actCard {
-    width: auto;
+    flex-direction: column;
+    width: 70%;
   }
 
   .actLogo {
@@ -329,6 +342,8 @@
   .actText h3 {
     font-size: 1rem;
     text-align: center;
+    max-width: 20ch;
+    word-break: break-all;
   }
   .actText p {
     font-size: small;

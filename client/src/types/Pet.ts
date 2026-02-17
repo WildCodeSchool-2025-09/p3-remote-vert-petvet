@@ -35,7 +35,7 @@ export interface CreatePet {
   chip_nb: number | null;
   born_at: string;
   gender: "m" | "f";
-  specie: string;
+  specie: Specie;
   breed?: string;
   is_neutered: boolean;
   weight?: number | null;

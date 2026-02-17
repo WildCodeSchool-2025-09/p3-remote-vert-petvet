@@ -36,7 +36,6 @@ function PetForm() {
       if (!response.ok) {
         throw new Error("Erreur lors de la création de votre animal");
       }
-      console.log(pet);
 
       const data = await response.json();
 
@@ -172,9 +171,9 @@ function PetForm() {
                     <option value="" disabled>
                       Sélectionnez l'espèce de votre animal
                     </option>
-                    <option value="chien">Chien</option>
-                    <option value="chat">Chat</option>
-                    <option value="lapin">Lapin</option>
+                    <option value="hien">Chien</option>
+                    <option value="Chat">Chat</option>
+                    <option value="Lapin">Lapin</option>
                   </select>
                 </label>
 

@@ -1,3 +1,13 @@
+.mainPage {
+  display: flex;
+  height: 100vh;
+}
+
+.sectionsContainer {
+  flex-direction: column;
+  padding-top: 150px;
+}
+
 .petVet {
   display: flex;
   justify-content: space-between;
@@ -9,6 +19,7 @@
   padding-top: 30px;
   padding-right: 80px;
 }
+
 .logo {
   height: 100px;
   width: auto;
@@ -20,11 +31,13 @@
   width: 80px;
   padding: 20px;
 }
+
 .newPatient {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 100px;
   align-items: center;
+  width: 100%;
 }
 
 .titleNewPatient {
@@ -173,6 +186,14 @@
 }
 
 @media (max-width: 480px) {
+  .sectionsContainer {
+    padding-top: 50px;
+  }
+
+  .mainPage {
+    flex-direction: column;
+  }
+
   .petVet {
     font-size: 2rem;
     padding: 1rem;
@@ -185,24 +206,31 @@
     margin: 0;
   }
 
+  .inputPatient {
+    display: block;
+    width: 300px;
+  }
+
   .newPatient {
     flex-direction: column;
-    gap: 14px;
+    gap: 20px;
     padding: 0 16px;
   }
 
   .titleNewPatient {
+    padding-top: 20px;
     font-size: 1.6rem;
     text-align: center;
   }
 
   .selectedPatient {
     width: 100%;
+    display: flex;
+    justify-content: center;
     max-width: 360px;
   }
 
   .addPatientButton {
-    width: 100%;
     max-width: 360px;
     height: 48px;
     font-size: 1rem;

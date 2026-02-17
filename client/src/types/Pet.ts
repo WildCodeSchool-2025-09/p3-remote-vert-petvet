@@ -4,6 +4,7 @@ export interface Pet {
   id: number;
   name: string;
   tattooNb: number | null;
+  chipNb: number | null;
   chip_nb: number | null;
   born_at: string;
   gender: string;
@@ -35,7 +36,7 @@ export interface CreatePet {
   chip_nb: number | null;
   born_at: string;
   gender: "m" | "f";
-  specie: string;
+  specie: Specie;
   breed?: string;
   is_neutered: boolean;
   weight?: number | null;

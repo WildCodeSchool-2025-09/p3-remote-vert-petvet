@@ -146,7 +146,7 @@ const add: RequestHandler = async (req, res, next) => {
 const petSchema = Joi.object({
   name: Joi.string().max(30).required(),
   tattoo_nb: Joi.string().max(10).allow(null).optional(),
-  chip_nb: Joi.number().integer().max(15).allow(null).optional(),
+  chip_nb: Joi.number().integer().max(999999999999999).allow(null).optional(),
   born_at: Joi.date().required(),
   gender: Joi.string().valid("m", "f").required(),
   specie: Joi.string().valid("Chien", "Chat", "Lapin").required(),
@@ -156,6 +156,7 @@ const petSchema = Joi.object({
 });
 
 const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
+  console.log(req.body);
   const { error } = petSchema.validate(req.body, { abortEarly: false });
 
   if (error == null) {

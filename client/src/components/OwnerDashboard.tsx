@@ -29,17 +29,19 @@ function OwnerDashboard({ dashboard }: OwnerDashboard) {
                   {pet.gender === "m" ? "♂" : "♀"}
                 </p>
                 <div className={styles.petInfoContainer}>
-                  <img
-                    src={
-                      pet.specie === "chat"
-                        ? cat
-                        : pet.specie === "chien"
-                          ? dog
-                          : rabbit
-                    }
-                    alt={pet.name}
-                    className={styles.petImage}
-                  />
+                  <div className={styles.divImage}>
+                    <img
+                      src={
+                        pet.specie === "chat"
+                          ? cat
+                          : pet.specie === "chien"
+                            ? dog
+                            : rabbit
+                      }
+                      alt={pet.name}
+                      className={styles.petImage}
+                    />
+                  </div>
                   <div className={styles.petText}>
                     <h3>{pet.name}</h3>
                     <p>{pet.specie}</p>

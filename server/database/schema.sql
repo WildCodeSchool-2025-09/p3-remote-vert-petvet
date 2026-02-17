@@ -15,7 +15,7 @@ CREATE TABLE pet (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
   tattoo_nb VARCHAR(10) NULL,
-  chip_nb VARCHAR(15) NULL,
+  chip_nb BIGINT(15) NULL,
   born_at DATETIME NOT NULL,
   gender ENUM("m","f"),
   specie ENUM("chien","chat","lapin"),

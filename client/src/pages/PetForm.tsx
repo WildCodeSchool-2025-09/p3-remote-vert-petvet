@@ -36,7 +36,6 @@ function PetForm() {
       if (!response.ok) {
         throw new Error("Erreur lors de la création de votre animal");
       }
-
       const data = await response.json();
 
       navigate(`/pet-profile/${data.newPetId}`, {
@@ -113,7 +112,7 @@ function PetForm() {
                     type="text"
                     value={tattooNb}
                     onChange={(e) => setTattooNb(e.target.value)}
-                    placeholder="Numéro de tatouage"
+                    placeholder="Numéro de tatouage : max 10 caractères"
                     className={styles.tattooPetInput}
                   />
                 </label>
@@ -126,7 +125,7 @@ function PetForm() {
                     onChange={(e) =>
                       setChipNb(e.target.value ? Number(e.target.value) : null)
                     }
-                    placeholder="Numéro de puce"
+                    placeholder="Numéro de puce : max 15 chiffres"
                     className={styles.chipNbPetInput}
                   />
                 </label>

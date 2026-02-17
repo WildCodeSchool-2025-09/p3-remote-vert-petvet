@@ -123,6 +123,7 @@ class petRepository {
     return rows as PetWithOwner[];
   }
   async insert(pet: PetRow, ownerId: number) {
+    console.log(pet);
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO pet 
     (name, tattoo_nb, chip_nb, born_at, gender, specie, breed, is_neutered, weight) 

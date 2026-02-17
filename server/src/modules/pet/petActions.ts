@@ -161,6 +161,7 @@ const petSchema = Joi.object({
 });
 
 const validateNewPet = (req: Request, res: Response, next: NextFunction) => {
+  console.log(req.body);
   const { error } = petSchema.validate(req.body, { abortEarly: false });
 
   if (error == null) {

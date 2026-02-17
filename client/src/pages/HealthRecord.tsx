@@ -74,7 +74,7 @@ function HealthRecord() {
   const petAge =
     years >= 1 ? `${years} an${years > 1 ? "s" : ""}` : `${months} mois`;
 
-  console.log(petInfo.is_neutered);
+  console.log(petInfo);
   return (
     <>
       <header className={styles.petVet}>
@@ -140,7 +140,7 @@ function HealthRecord() {
                 </div>
                 <div>
                   <h3>Puce électronique</h3>
-                  <p>{petInfo.chipNb}</p>
+                  <p>{petInfo.chip_nb}</p>
                 </div>
                 <p>
                   {petInfo.vetInfo == null

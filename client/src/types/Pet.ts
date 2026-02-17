@@ -5,6 +5,7 @@ export interface Pet {
   name: string;
   tattooNb: number | null;
   chipNb: number | null;
+  chip_nb: number | null;
   born_at: string;
   gender: string;
   specie: Specie;

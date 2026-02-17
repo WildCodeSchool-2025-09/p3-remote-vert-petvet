@@ -269,8 +269,8 @@ export default function PetSearch() {
             </article>
           )}
         </section>
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

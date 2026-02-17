@@ -31,7 +31,7 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 350px;
+  width: 250px;
   height: 150px;
   border-radius: 15px;
   padding: 20px;
@@ -98,7 +98,7 @@
   padding: 1.25rem;
   border-radius: 15px;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 400px;
   height: 550px;
   color: var(--text-color);
 }
@@ -140,7 +140,7 @@
 }
 
 .todoCard {
-  width: 500px;
+  width: 300px;
   border: none;
   padding: 1.5rem;
   background-color: var(--main-color);

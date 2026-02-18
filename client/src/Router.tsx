@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import App from "./App";
 import ProtectedRoute from "./ProtectedRoute";
 import ConsultationForm from "./pages/ConsultationForm";
+import Dashboard from "./pages/Dashboard";
 import HealthRecord from "./pages/HealthRecord";
 import Login from "./pages/Login";
 import MyPetsList from "./pages/MyPetsList";
@@ -21,6 +22,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute allowedRoles={["owner", "veterinary"]}>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/my-pets",

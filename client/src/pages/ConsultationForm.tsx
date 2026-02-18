@@ -25,7 +25,7 @@ function consultationForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/veterinaries/me/patients`, {
+    fetch(`${import.meta.env.VITE_API_URL}/veterinaries/me/patients-name`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

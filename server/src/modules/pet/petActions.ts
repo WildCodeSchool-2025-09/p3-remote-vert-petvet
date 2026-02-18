@@ -54,6 +54,27 @@ const browseByVeterinary = async (
   }
 };
 
+const readByVeterinary = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const veterinaryId = req.auth?.userId;
+
+    const pets = await petRepository.getWithVeterinary(Number(veterinaryId));
+
+    if (!pets) {
+      res.status(400).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+    }
+    res.status(200).json(pets);
+  } catch (error) {
+    next();
+  }
+};
+
 const browseByOwner = async (
   req: Request,
   res: Response,
@@ -79,4 +100,31 @@ const browseByOwner = async (
   }
 };
 
-export default { browseByPet, browseByOwner, browseByVeterinary };
+const browseAllPets = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const pets = await petRepository.getAllPets();
+
+    if (pets.length === 0) {
+      res.status(404).json({
+        error: "Pas d'animaux disponibles. Veuillez ajouter un animal.",
+      });
+      return;
+    }
+
+    res.status(200).json({ pets });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default {
+  browseByPet,
+  browseByOwner,
+  browseAllPets,
+  browseByVeterinary,
+  readByVeterinary,
+};

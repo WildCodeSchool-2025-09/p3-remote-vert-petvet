@@ -3,6 +3,7 @@ import authActions from "./modules/auth/authActions";
 import consultationActions from "./modules/consultation/consultationActions";
 import dashboardActions from "./modules/dashboard/dashboardActions";
 import petActions from "./modules/pet/petActions";
+import petUsersActions from "./modules/petUsers/petUsersActions";
 import reminderActions from "./modules/reminder/reminderActions";
 import userActions from "./modules/user/userActions";
 
@@ -46,6 +47,27 @@ router.post(
   reminderActions.add,
 );
 
+router.post(
+  "/api/add/patient",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  petUsersActions.add,
+);
+
+router.get(
+  "/api/patients-list",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  petActions.browseAllPets,
+);
+
+router.get(
+  "/api/veterinaries/me/patients",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  petActions.browseByVeterinary,
+);
+
 router.get(
   "/api/owners/me/pets",
   authActions.checkLogin,
@@ -72,6 +94,13 @@ router.get(
   authActions.checkLogin,
   authActions.checkRole("veterinary"),
   petActions.browseByVeterinary,
+);
+
+router.get(
+  "/api/veterinaries/me/patients-name",
+  authActions.checkLogin,
+  authActions.checkRole("veterinary"),
+  petActions.readByVeterinary,
 );
 
 router.post(

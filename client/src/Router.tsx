@@ -5,6 +5,7 @@ import ConsultationForm from "./pages/ConsultationForm";
 import Dashboard from "./pages/Dashboard";
 import HealthRecord from "./pages/HealthRecord";
 import Login from "./pages/Login";
+import MyPatients from "./pages/MyPatients";
 import MyPetsList from "./pages/MyPetsList";
 import Register from "./pages/Register";
 import ReminderForm from "./pages/ReminderForm";
@@ -68,6 +69,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute allowedRoles={["veterinary"]}>
         <ConsultationForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/my-patients",
+    element: (
+      <ProtectedRoute allowedRoles={["veterinary"]}>
+        <MyPatients />
       </ProtectedRoute>
     ),
   },
